@@ -221,7 +221,7 @@ class PostsController extends Controller
 
         $module_action = 'Show';
 
-        $$module_name_singular = $module_model::findOrFail($id);
+        $$module_name_singular = $module_model::withTrashed()->findOrFail($id);
 
         $activities = Activity::where('subject_type', '=', $module_model)
                                 ->where('log_name', '=', $module_name)

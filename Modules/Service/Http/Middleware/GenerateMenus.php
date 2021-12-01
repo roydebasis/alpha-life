@@ -64,7 +64,7 @@ class GenerateMenus
             ])->data([
                 'order'         => 81,
                 'activematches' => 'admin/services*',
-                'permission'    => [],
+                'permission'    => ['view_services'],
             ])
             ->link->attr([
                 'class' => 'c-sidebar-nav-link',

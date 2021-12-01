@@ -172,7 +172,7 @@ class ServiceController extends Controller
 
         $module_action = 'Show';
 
-        $$module_name_singular = $module_model::findOrFail($id);
+        $$module_name_singular = $module_model::withTrashed()->findOrFail($id);
 
         $activities = Activity::where('subject_type', '=', $module_model)
             ->where('log_name', '=', $module_name)
@@ -245,12 +245,85 @@ class ServiceController extends Controller
     }
 
     /**
+     * List of trashed ertries
+     * works if the softdelete is enabled.
+     *
+     * @return Response
+     */
+    public function trashed()
+    {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'Trash List';
+
+        $$module_name = $module_model::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate();
+
+        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name);
+
+        return view(
+            "service::backend.$module_name.trash",
+            compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
+        );
+    }
+
+    /**
+     * Restore a soft deleted entry.
+     *
+     * @param Request $request
+     * @param int     $id
+     *
+     * @return Response
+     */
+    public function restore($id)
+    {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'Restore';
+
+        $$module_name_singular = $module_model::withTrashed()->find($id);
+        $$module_name_singular->restore();
+
+        Flash::success('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Data Restored Successfully!')->important();
+
+        Log::info(label_case($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
+
+        return redirect("admin/$module_name");
+    }
+
+    /**
      * Remove the specified resource from storage.
      * @param int $id
      * @return Renderable
      */
     public function destroy($id)
     {
-        //
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'destroy';
+
+        $$module_name_singular = $module_model::findOrFail($id);
+
+        $$module_name_singular->delete();
+
+        Flash::success('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Deleted Successfully!')->important();
+
+        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
+
+        return redirect("admin/$module_name");
     }
 }
