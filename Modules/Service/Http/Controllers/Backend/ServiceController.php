@@ -17,7 +17,7 @@ use Yajra\DataTables\DataTables;
 
 class ServiceController extends Controller
 {
-//    use Authorizable;
+    use Authorizable;
 
     public function __construct()
     {

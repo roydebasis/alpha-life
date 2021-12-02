@@ -8,7 +8,6 @@ use Auth;
 use Carbon\Carbon;
 use Flash;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Log;
 use Modules\Article\Entities\Category;
