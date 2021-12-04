@@ -1,18 +1,9 @@
-
-<p align="center"><img src="https://user-images.githubusercontent.com/396987/82162573-6940f500-98c7-11ea-974e-888b4f866c74.jpg" alt="Laravel Starter - A CMS like modular starter project built with Laravel"></p>
-
 # Laravel Starter (based on Laravel 8.x)
-**Laravel Starter** is a Laravel 8.x based simple starter project. It can be used to build all type of applications. Most of the commonly needed features like Authentication, Application Backend, Backup, Logviewer are available here. It is modular, so you can use this project as a base and build your own modules. You can use the same module in any of the `Laravel Starter` based projects. New features and functionalities are being added on a regular basis.
-
-Please let me know your feedback and comments.
-
-# Reporting a Vulnerability
-If you discover any security related issues, please send an e-mail to Nasir Khan Saikat via nasir8891@gmail.com instead of using the issue tracker.
 
 # Demo
 Check the following demo project. It is just a straight installation of the project without any modification.
 
-Demo URL: http://laravel.nasirkhn.com
+Demo URL: N/A
 
 ```
 User: super@admin.com
@@ -50,8 +41,6 @@ apply the code style fix by this command.
 
 # Features
 
-The `Laravel Starter` comes with a number of features which are the most common in almost all the applications. It is a template project which means it is intended to build in a way that it can be used for other projects.
-
 It is a modular application, and a number of modules are installed by default. It will be helpful to use it as a base for the future applications.
 
 * Admin feature and public views are completely separated as `Backend` and `Frontend` namespace.
@@ -64,7 +53,7 @@ It is a modular application, and a number of modules are installed by default. I
 * Social Login
   * Google
   * Facebook
-  * Github
+ a * Github
   * Build in a way adding more is much easy now
 * User Profile with Avatar
   * Separate User Profile table
@@ -125,30 +114,3 @@ FontAwesome & CoreUI Icons, two different font icon library is installed for the
 
 * **FontAwesome** - https://fontawesome.com/icons?d=gallery&m=free
 * **CoreUI Icons** - https://icons.coreui.io/icons/
-
-
-# Screenshots
-
-__Home Page__
-
-![Laravel Starter Home](https://user-images.githubusercontent.com/396987/95010200-3d8d9400-0649-11eb-8c44-72b02a37c00b.jpeg)
-
-__Login Page__
-
-![Laravel Starter Login](https://user-images.githubusercontent.com/396987/95010203-3ebec100-0649-11eb-91a6-1a7ef0bb47eb.jpeg)
-
-__Posts Page__
-
-![Laravel Starter Posts Page](https://user-images.githubusercontent.com/396987/95010196-39fa0d00-0649-11eb-8a06-78472065b2e6.jpeg)
-
-__Backend Dashboard__
-
-![Backend Dashboard](https://user-images.githubusercontent.com/396987/88489727-f3889200-cfb7-11ea-819f-dc9a52bc8d82.jpg)
-
----
-
-![List-Posts-Laravel-Starter](https://user-images.githubusercontent.com/396987/88519250-a0dcc380-d013-11ea-9dc5-9d731af611f1.jpg)
-
----
-
-![Edit-Posts-Laravel-Starter](https://user-images.githubusercontent.com/396987/88519360-d1bcf880-d013-11ea-9f6c-b5d33912057f.jpg)
