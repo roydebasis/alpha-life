@@ -31,7 +31,7 @@
     <x-google-analytics />
 
     @livewireStyles
-    
+
 </head>
 <body class="c-app">
 
