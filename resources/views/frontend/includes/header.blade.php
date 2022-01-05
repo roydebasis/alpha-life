@@ -1,146 +1,235 @@
-<header class="header-global">
-    <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg headroom py-lg-3 px-lg-6 navbar-dark navbar-theme-primary">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <img class="navbar-brand-dark common" src="{{asset('img/AILI.png')}}" height="35" alt="Logo light">
-                <img class="navbar-brand-light common" src="{{asset('img/AILI.png')}}" height="35" alt="Logo dark">
-            </a>
-            <div class="navbar-collapse collapse" id="navbar_global">
-                <div class="navbar-collapse-header">
-                    <div class="row">
-                        <div class="col-6 collapse-brand">
-                            <a href="/">
-                                <img src="{{asset('img/backend-logo.jpg')}}" height="35" alt="Logo Impact">
-                            </a>
-                        </div>
-                        <div class="col-6 collapse-close">
-                            <a href="#navbar_global" role="button" class="fas fa-times" data-toggle="collapse"
-                                data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false"
-                                aria-label="Toggle navigation"></a>
-                        </div>
+<header>
+    <div id="sticky-sidebar">
+        <ul>
+            <li>
+                <a href="javascript:void(0)" onclick="activeCalculator()" class="text-center" data-toggle="tooltip"
+                   data-placement="left"
+                   title="Premium Calculator">
+                    <i class="fa fa-calculator"></i>
+                </a>
+            </li>
+
+            <li>
+                <a href="javascript:void(0)" class="text-center" data-toggle="tooltip" data-placement="left"
+                   title="My Transactions">
+                    <i class="fa fa-money"></i>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" class="text-center" data-toggle="tooltip" data-placement="left"
+                   title="Policy Information">
+                    <i class="fa fa-book"></i>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" class="text-center" data-toggle="tooltip" data-placement="left"
+                   title="Book an Appointment">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                </a>
+            </li>
+
+            <li>
+                <a href="javascript:void(0)" class="text-center" data-toggle="tooltip" data-placement="left"
+                   title="Preferred Hospitals">
+                    <i class="fa fa-hospital-o" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- Top Nav Start -->
+    <section class="case-study-section topbar">
+        <div class="container-fluid">
+            <div class="row equal">
+                <div class="col-sm-9 no-padding">
+                    <div class="topNavLeft">
+                        <marquee direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+                            Email: info@alphalife.com.bd &nbsp; Hot line: 01787683517 (Policy Service Department),
+                            01787683520 (Group Insurance) IP Phone : 09612 400 200
+                        </marquee>
                     </div>
                 </div>
-                <ul class="navbar-nav navbar-nav-hover justify-content-center">
-                    <li class="nav-item">
-                        <a href="/" class="nav-link">
-                            <span class="fas fa-home mr-2"></span> Home
-                        </a>
+                <div class="col-sm-3 no-padding">
+                    <div class="topNavRight">
+                        <ul class="top-social-icons">
+                            <li><a href="https://www.linkedin.com/company/alpha-islami-life-insurance-limited"
+                                   target="_blank"><img src="{{ asset('assets/images/ico/in.png') }}"></a></li>
+                            <li><a href="https://twitter.com/AlphaIslamilife" target="_blank"><img
+                                        src="{{ asset('assets/images/ico/twitter.png') }}"></a></li>
+                            <li><a href="https://www.facebook.com/AlphaIslamiLifeInsuranceLimited" target="_blank"><img
+                                        src="{{ asset('assets/images/ico/facebook.png') }}"></a></li>
+                            <li><a href="#" target="_blank"><img src="{{ asset('assets/images/ico/ist.png') }}"></a></li>
+                            <li><a href="https://www.youtube.com/channel/UCvaACoqGf4sdo4858xHnwIQ" target="_blank"><img
+                                        src="{{ asset('assets/images/ico/u.png') }}"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section>
+    <!-- Top Nav Start -->
+
+    <!-- Navigation start -->
+    <nav class="navbar navbar-custom tt-default-nav" role="navigation">
+        <div class="container">
+
+            <div class="search-box-wrap pull-right hidden-sm hidden-xs">
+                <div class="search-icon"></div>
+                <input id="search-box" placeholder="Search">
+            </div>
+
+            <div class="navbar-header">
+                <button type="button" id="btn-nav-toggler" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#custom-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><img src="{{ asset('assets/images/logoNew.png') }}" class="h-sm-100"
+                                                               alt="Alpha Islami Life Insurance"></a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="custom-collapse">
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle menu-item" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about.html">About Alpha</a></li>
+                            <li><a href="mission.html">Mission, Vision & Objective</a></li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Board Affairs</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="board-of-directors.html">Board of Directors</a></li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Committee</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="eccommittee.html">EC Committee</a></li>
+                                            <li><a href="auditcommittee.html">Audit Committee</a></li>
+                                            <li><a href="claimcommittee.html">Claim Committee</a></li>
+                                            <li><a href="devcommittee.html">Development Committee</a></li>
+                                            <li><a href="shariah-board.html">Shariah Board</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Management</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="corporate.html">Corporate</a></li>
+
+                                    <li><a href="business.html">Business Promotion</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="corporate-information.html">Corporate Information</a></li>
+                            <li><a href="field.html">Our Field Offices</a></li>
+                            <li><a href="InsuranceFAQ.html">About Insurance FAQ</a></li>
+
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ route('frontend.posts.index') }}" class="nav-link">
-                            <span class="fas fa-file-alt mr-1"></span> Posts
-                        </a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle menu-item" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">Services</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="premium-calculator.html">Premium Calculator</a></li>
+                            <li><a href="SMSService.html">SMS Service</a></li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Payment</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="bKash.html">bKash Payment</a></li>
+                                    <li><a href="rocket.html">Rocket Payment</a></li>
+                                    <li><a href="nagad.html">Nagad Payment</a></li>
+                                    <li><a href="mobileApps.html">Mobile Apps Payment</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="bank.html">Our Banks</a></li>
+                            <!-- <li><a href="lease.html">Lease Financing Organization</a></li>-->
+                            <li><a href="hospital.html">Our Hospital Network</a></li>
+                            <li><a href="training.html">Training & Organizational Development</a></li>
+                            <li><a href="claim.html">Claim Information</a></li>
+                            <li><a href="notice.html">Notice Board</a></li>
+                            <li><a href="downlaod.html">Download</a></li>
+                            <li><a href="citizencharter.html">Citizen Charter</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link" data-toggle="dropdown" aria-controls="pages_submenu" aria-expanded="false" aria-label="Toggle pages menu item">
-                            <span class="nav-link-inner-text">
-                                <span class="fas fa-file-image mr-1"></span>
-                                Pages
-                            </span>
-                            <span class="fas fa-angle-down nav-link-arrow ml-2"></span>
-                        </a>
-                        <ul class="dropdown-menu" id="pages_submenu">
-                            <li>
-                                <a class="dropdown-item" href="{{ route('frontend.posts.index') }}">
-                                    <span class="fas fa-file-alt mr-1"></span> Posts
-                                </a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle menu-item" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">Products</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Insurance Plan</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="ordinaryendowment.html">Ordinary Endowment Assurance Plan - With
+                                            Profit </a></li>
+                                    <li><a href="biennialpayment.html">Biennial Payment Plan - With Profit</a></li>
+                                    <li><a href="anticipatedendowment 3Stage.html">Anticipated Endowment (3 Stage
+                                            Payment) Insurance Plan - With
+                                            Profit</a></li>
+                                    <li><a href="anticipatedendowment 4Stage.html">Anticipated Endowment (4 Stage
+                                            Payment) Insurance Plan - With
+                                            Profit</a></li>
+                                    <li><a href="anticipatedendowment 5Stage.html">Anticipated Endowment (5 Stage
+                                            Payment) Insurance Plan - With
+                                            Profit</a></li>
+                                    <!--  <li><a href="EducationProtection.html">Education Protection Plan - With Profit</a></li> -->
+                                    <li><a href="assurancecumpensionplan.html">Assurance cum Pension Plan - Without
+                                            Profits</a></li>
+                                    <li><a href="singlepremiuminsuranceplan.html">Single Premium Insurance Plan -
+                                            Without Profit</a></li>
+                                    <!-- <li><a href="monthlysmallsavingsinsurance.html">Monthly Small Savings Insurance - With Profit</a></li> -->
+                                    <li><a href="hajjbima.html">Hajj Bima - With Profit</a></li>
+                                    <li><a href="denmohorbima.html">Denmohor Bima - With Profit</a></li>
+                                    <!--!<li><a href="microtakaful.html">Micro Takaful</a></li> -->
+                                    <li><a href="DPS-Gold.html">DPS Gold</a></li>
+                                </ul>
                             </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('frontend.categories.index') }}">
-                                    <span class="fas fa-sitemap mr-1"></span> Categories
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('frontend.tags.index') }}">
-                                    <span class="fas fa-tags mr-1"></span> Tags
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('frontend.comments.index') }}">
-                                    <span class="fas fa-comments mr-1"></span> Comments
-                                </a>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Supplementary Plan</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="accidentaldeathbenefit.html">Accidental Death Benefit</a></li>
+                                    <li><a href="criticalcare.html">Critical Care</a></li>
+                                    <li><a href="embeddedpersonalaccident.html">Embedded Personal Accident</a></li>
+                                    <li><a href="incomebenefitrider.html">Income Benefit Rider</a></li>
+                                    <li><a href="permanentdisability-accidentaleenefit.html">Permanent Disability &
+                                            Accidental Benefit</a></li>
+                                    <li><a href="plus.html">Plus</a></li>
+                                    <li><a href="waiverofpremium.html">Waiver of Premium</a></li>
+                                </ul>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" aria-expanded="false" data-toggle="dropdown">
-                            <span class="nav-link-inner-text mr-1">
-                                <span class="fas fa-user mr-1"></span>
-                                Account
-                            </span>
-                            <i class="fas fa-angle-down nav-link-arrow"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-lg">
-                            <div class="col-auto px-0" data-dropdown-content>
-                                <div class="list-group list-group-flush">
-                                    @auth
-                                    <a href="{{ route('frontend.users.profile', auth()->user()->id) }}"
-                                        class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                        <span class="icon icon-sm icon-success"><i class="fas fa-user"></i></span>
-                                        <div class="ml-4">
-                                            <span class="text-dark d-block">
-                                                {{ Auth::user()->name }}
-                                            </span>
-                                            <span class="small">View profile details!</span>
-                                        </div>
-                                    </a>
-                                    <a href="{{ route('logout') }}"
-                                        class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4" onclick="event.preventDefault(); document.getElementById('account-logout-form').submit();">
-                                        <span class="icon icon-sm icon-secondary">
-                                            <i class="fas fa-sign-out-alt"></i>
-                                        </span>
-                                        <div class="ml-4">
-                                            <span class="text-dark d-block">
-                                                Logout
-                                            </span>
-                                            <span class="small">Logout from your account!</span>
-                                        </div>
-                                    </a>
-                                    <form id="account-logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                    @else
-                                    <a href="{{ route('login') }}"
-                                        class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                        <span class="icon icon-sm icon-secondary"><i class="fas fa-key"></i></span>
-                                        <div class="ml-4">
-                                            <span class="text-dark d-block">
-                                                Login
-                                            </span>
-                                            <span class="small">Login to the application</span>
-                                        </div>
-                                    </a>
-                                    @if(user_registration())
-                                    <a href="{{ route('register') }}"
-                                        class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                        <span class="icon icon-sm icon-primary">
-                                            <i class="fas fa-address-card"></i>
-                                        </span>
-                                        <div class="ml-4">
-                                            <span class="text-dark d-block">Register</span>
-                                            <span class="small">Join with us!</span>
-                                        </div>
-                                    </a>
-                                    @endif
-                                    @endauth
-                                </div>
-                            </div>
-                        </div>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle menu-item" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">Media </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="photogallery.html">Photo gallery </a></li>
+                            <li><a href="videogallery.html">Video gallery</a></li>
+                            <li><a href="blog.html">Recent News</a></li>
+
+                        </ul>
                     </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle menu-item" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">Blog</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="blog.html">Recent News</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="http://www.idra.org.bd/" class="menu-item" target="_blank">IDRA</a></li>
+                    <li><a href="contact.html" class="menu-item">Contact</a></li>
+                    <li><a href="mujib-corner.html" class="menu-item">Mujib Corner</a></li>
+
+                    <li> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+
                 </ul>
             </div>
-            <div class="d-none d-lg-block">
-                @can('view_backend')
-                <a href="{{ route('backend.dashboard') }}" class="btn btn-white animate-up-2 mr-3"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a>
-                @endcan
-
-                <a href="#" class="btn btn-outline-white animate-up-2 mr-3"><i class="fas fa-th-large mr-2"></i> Support</a>
-
-                <a href="#" target="_blank" class="btn btn-secondary animate-up-2"><i class="fas fa-paper-plane mr-2"></i> Contact</a>
-            </div>
-            <div class="d-flex d-lg-none align-items-center">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            </div>
-        </div>
+        </div><!-- /.container -->
     </nav>
+    <!-- Navigation end -->
 </header>

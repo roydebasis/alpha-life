@@ -14,17 +14,52 @@
     @include('frontend.includes.meta')
 
     <!-- Shortcut Icon -->
-    <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
-    <link rel="icon" type="image/ico" href="{{asset('img/favicon.png')}}" />
+{{--    <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">--}}
+{{--    <link rel="icon" type="image/ico" href="{{asset('img/favicon.png')}}" />--}}
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @stack('before-styles')
 
-    <link rel="stylesheet" href="{{ mix('css/frontend.css') }}">
+{{--    <link rel="stylesheet" href="{{ mix('css/frontend.css') }}">--}}
+    <!--  favicon -->
+    <link rel="shortcut icon" href="{{ asset('assets/images/ico/favicon.png') }}" >
+    <!--  apple-touch-icon -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="{{ asset('assets/images/ico/apple-touch-icon-144-precomposed.png')}}" >
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="{{ asset('assets/images/ico/apple-touch-icon-114-precomposed.png')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('assets/images/ico/apple-touch-icon-72-precomposed.png')}}">
+    <link rel="apple-touch-icon-precomposed" href="{{ asset('assets/images/ico/apple-touch-icon-57-precomposed.png')}}">
 
-    @stack('after-styles')
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300' rel='stylesheet' type='text/css'>
+    <!-- animate CSS -->
+    <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet">
+    <!-- FontAwesome CSS -->
+    <link href="{{ asset('assets/fonts/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <!-- Flat Icon CSS -->
+    <link href="{{ asset('assets/fonts/flaticon/flaticon.css') }}" rel="stylesheet">
+    <!-- magnific-popup -->
+    <link href="{{ asset('assets/magnific-popup/magnific-popup.css') }}" rel="stylesheet">
+    <!-- owl.carousel -->
+    <link href="{{ asset('assets/owl-carousel/owl.carousel.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/owl-carousel/owl.theme.css') }}" rel="stylesheet">
+    <!-- swiper-->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <!-- Bootstrap -->
+    <link href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Style CSS -->
+    <link href="{{ asset('assets/jquery-ui-1.13.0/jquery-ui.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <!-- Responsive CSS -->
+    <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
+
+
+{{--    @stack('after-styles')--}}
 
     <x-google-analytics />
 </head>
