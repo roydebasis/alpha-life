@@ -1,62 +1,60 @@
 <?php
 
-namespace Modules\Service\Http\Controllers\Backend;
+namespace Modules\Page\Http\Controllers\Backend;
 
-use App\Authorizable;
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
 use Log;
 use Auth;
 use Flash;
-use Modules\Service\Http\Requests\ServiceRequest;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\DataTables\DataTables;
 
-class ServiceController extends Controller
+class PageController extends Controller
 {
-//    use Authorizable;
-
     public function __construct()
     {
         // Page Title
-        $this->module_title = 'Services';
+        $this->module_title = 'Pages';
 
         // module name
-        $this->module_name = 'services';
+        $this->module_name = 'pages';
 
         // directory path of the module
-        $this->module_path = 'services';
+        $this->module_path = 'pages';
 
         // module icon
-        $this->module_icon = 'fab fa-servicestack';
+        $this->module_icon = 'fas fa-newspaper';
 
         // module model name, path
-        $this->module_model = "Modules\Service\Entities\Service";
+        $this->module_model = "Modules\Page\Entities\Page";
     }
+
     /**
      * Display a listing of the resource.
-     * @return Renderable
+     *
+     * @return Response
      */
     public function index()
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
 
         $module_action = 'List';
 
-        $$module_name = $module_model::latest()->paginate();
+        $$module_name = $module_model::paginate();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view(
-            "service::backend.$module_path.index_datatable",
+            "page::backend.$module_name.index_datatable",
             compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
         );
     }
@@ -72,7 +70,7 @@ class ServiceController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::select('id', 'name',  'status', 'updated_at', 'published_at', 'is_featured');
+        $$module_name = $module_model::select('id', 'name', 'status', 'updated_at', 'published_at');
 
         $data = $$module_name;
 
@@ -104,6 +102,42 @@ class ServiceController extends Controller
     }
 
     /**
+     * Select Options for Select 2 Request/ Response.
+     *
+     * @return Response
+     */
+    public function index_list(Request $request)
+    {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'List';
+
+        $term = trim($request->q);
+
+        if (empty($term)) {
+            return response()->json([]);
+        }
+
+        $query_data = $module_model::where('name', 'LIKE', "%$term%")->published()->limit(10)->get();
+
+        $$module_name = [];
+
+        foreach ($query_data as $row) {
+            $$module_name[] = [
+                'id'   => $row->id,
+                'text' => $row->name,
+            ];
+        }
+
+        return response()->json($$module_name);
+    }
+
+    /**
      * Show the form for creating a new resource.
      * @return Renderable
      */
@@ -121,17 +155,16 @@ class ServiceController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view(
-            "service::backend.$module_path.create",
+            "page::backend.$module_path.create",
             compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular')
         );
     }
 
     /**
-     * Store a newly created resource in storage.
      * @param Request $request
-     * @return Renderable
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(ServiceRequest $request)
+    public function store(Request $request)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -143,10 +176,8 @@ class ServiceController extends Controller
         $module_action = 'Store';
 
         $data = $request->except('_token');
-        $data['created_by_name'] = auth()->user()->name;
 
         $$module_name_singular = $module_model::create($data);
-        //event(new PostCreated($$module_name_singular));
 
         Flash::success("<i class='fas fa-check'></i> New '".Str::singular($module_title)."' Added")->important();
 
@@ -162,7 +193,6 @@ class ServiceController extends Controller
      */
     public function show($id)
     {
-        //return view("service::backend.$module_path.show");
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
@@ -183,7 +213,7 @@ class ServiceController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view(
-            "service::backend.$module_path.show",
+            "page::backend.$module_path.show",
             compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular", 'activities')
         );
     }
@@ -209,7 +239,7 @@ class ServiceController extends Controller
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view(
-            "service::backend.$module_name.edit",
+            "page::backend.$module_name.edit",
             compact( 'module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular")
         );
     }
@@ -220,7 +250,7 @@ class ServiceController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(ServiceRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -232,10 +262,7 @@ class ServiceController extends Controller
         $module_action = 'Update';
 
         $$module_name_singular = $module_model::findOrFail($id);
-
         $$module_name_singular->update($request->except('_token'));
-
-//        event(new PostUpdated($$module_name_singular));
 
         Flash::success("<i class='fas fa-check'></i> '".Str::singular($module_title)."' Updated Successfully")->important();
 
@@ -266,11 +293,10 @@ class ServiceController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name);
 
         return view(
-            "service::backend.$module_name.trash",
+            "page::backend.$module_name.trash",
             compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
         );
     }
-
     /**
      * Restore a soft deleted entry.
      *
@@ -299,6 +325,7 @@ class ServiceController extends Controller
 
         return redirect("admin/$module_name");
     }
+
 
     /**
      * Remove the specified resource from storage.
