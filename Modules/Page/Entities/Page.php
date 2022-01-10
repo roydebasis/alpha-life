@@ -1,26 +1,27 @@
 <?php
 
-namespace Modules\Service\Entities;
+namespace Modules\Page\Entities;
 
 use App\Models\BaseModel;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class Service extends BaseModel
+class Page extends BaseModel
 {
     use HasFactory;
     use LogsActivity;
     use SoftDeletes;
     use Notifiable;
-
+//    protected $fillable = ['name', 'slug'];
 //    protected $table = 'services';
 
-    protected static $logName = 'services';
+    protected static $logName = 'pages';
     protected static $logOnlyDirty = true;
-    protected static $logAttributes = ['name', 'intro', 'content', 'is_featured', 'meta_title', 'meta_keywords', 'meta_description', 'published_at', 'moderated_at', 'moderated_by', 'status', 'created_by_alias'];
+    protected static $logAttributes = ['name', 'intro', 'content', 'slug', 'featured_image', 'meta_title', 'meta_keywords', 'meta_description', 'published_at', 'moderated_at', 'moderated_by', 'status'];
 
     /**
      * @param $value
@@ -139,6 +140,6 @@ class Service extends BaseModel
 
     protected static function newFactory()
     {
-        return \Modules\Service\Database\factories\ServiceFactory::new();
+        return \Modules\Page\Database\factories\PageFactory::new();
     }
 }
