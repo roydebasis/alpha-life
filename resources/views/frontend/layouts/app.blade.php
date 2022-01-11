@@ -82,6 +82,52 @@
 @stack('before-scripts')
 
 <script src="{{ mix('js/frontend.js') }}"></script>
+<!-- jQuery -->
+<script src="{{ asset('assets/js/jquery-2.1.3.min.js') }}"></script>
+<script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.easing.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.sticky.min.js') }}"></script>
+<script src="{{ asset('assets/js/smoothscroll.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.stellar.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.inview.min.js') }}"></script>
+<script src="{{ asset('assets/js/wow.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.countTo.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.shuffle.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.BlackAndWhite.min.js') }}"></script>
+<script src="{{ asset('assets/owl-carousel/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('assets/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="{{ asset('assets/jquery-ui-1.13.0/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('assets/moment.min.js') }}"></script>
+<script src="{{ asset('assets/js/scripts.js') }}"></script>
+<script src="{{ asset('assets/js/calculator.js') }}"></script>
+<script type="text/javascript">
+    function activeCalculator() {
+        $('#calculatorActivator').trigger('click');
+        scrollToSection('servicetabs');
+    }
+
+    function scrollToSection(id) {
+        $('html, body').animate({
+            scrollTop: $('#' + id).offset().top
+        }, 1000);
+    }
+
+    function vidplay() {
+        var video = document.getElementById("videoPlayer");
+        var button = document.getElementById("playbtn");
+        if (video.paused) {
+            video.play();
+            button.className = "pause"
+        } else {
+            video.pause();
+            button.className = "play"
+        }
+    }
+</script>
 
 @stack('after-scripts')
 

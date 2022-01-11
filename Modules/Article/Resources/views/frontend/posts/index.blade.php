@@ -4,88 +4,156 @@
 
 @section('content')
 
-<section class="section-header bg-primary text-white pb-7 pb-lg-11">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-8 text-center">
-                <h1 class="display-2 mb-4">
-                    The Super Articles
-                </h1>
-                <p class="lead">
-                    We publish articles on a number of topics. We encourage you to read our posts and let us know your feedback. It would be really help us to move forward.
-                </p>
-
-                @include('frontend.includes.messages')
+    <!-- page-title-section start -->
+    <section class="page-title-section about-us-one" data-stellar-background-ratio="0.1">
+        <div class="container">
+            <div class="page-header text-center">
+                <h1>Recent News</h1>
             </div>
         </div>
-    </div>
-    <div class="pattern bottom"></div>
-</section>
+    </section>
+    <!-- page-title-section end -->
 
-@if(count($$module_name))
-<section class="section section-lg line-bottom-light">
-    <div class="container mt-n7 mt-lg-n12 z-2">
-        <div class="row">
-            @php
-            $$module_name_singular = $$module_name->shift();
 
-            $details_url = route("frontend.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
-            @endphp
+    <!-- Recent News Start-->
+    <section class="blog-section blog-grid v2 ptb-90">
+        <div class="container">
+            <div class="row">
+                <div id="blogGrid">
+{{--                    @php--}}
+{{--                        dd($$module_name);--}}
+{{--                    @endphp--}}
 
-            <div class="col-lg-12 mb-5">
-                <div class="card bg-white border-light shadow-soft flex-md-row no-gutters p-4">
-                    <a href="{{$details_url}}" class="col-md-6 col-lg-6">
-                        <img src="{{$$module_name_singular->featured_image}}" alt="" class="card-img-top">
-                    </a>
-                    <div class="card-body d-flex flex-column justify-content-between col-auto py-4 p-lg-5">
-                        <a href="{{$details_url}}">
-                            <h2>{{$$module_name_singular->name}}</h2>
-                        </a>
-                        <p>
-                            {{$$module_name_singular->intro}}
-                        </p>
-                        <div class="d-flex align-items-center">
-                            <img class="avatar avatar-sm rounded-circle" src="{{asset('img/avatars/'.rand(1, 8).'.jpg')}}" alt="">
+                    @foreach ($$module_name as $$module_name_singular)
+                    @php
+                        $details_url = route("frontend.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
+                    @endphp
+                    <div class="col-xs-12 col-sm-6 col-md-4 blog-grid-item">
+                        <article class="post-wrapper"
+                                 style="border-top-left-radius: 50px; border-bottom-right-radius: 50px;">
+                            <header class="featured-wrapper">
 
-                            {!!isset($$module_name_singular->created_by_alias)? $$module_name_singular->created_by_alias : '<a href="'.route('frontend.users.profile', $$module_name_singular->created_by).'"><h6 class="text-muted small ml-2 mb-0">'.$$module_name_singular->created_by_name.'</h6></a>'!!}
+                                <a href="{{$details_url}}" class="author"><img src="{{ asset('assets/images/blog/blog-three/author-1.jpg') }}"
+                                                                alt=""></a>
+                                <a href="{{$details_url}}"><img src="{{$$module_name_singular->featured_image}}" class="img-responsive "
+                                                 alt="Image"
+                                                 style="border-top-left-radius: 50px; border-bottom-right-radius: 50px; border: 1px solid #172a52  ;"></a>
 
-                            <h6 class="text-muted small font-weight-normal mb-0 ml-auto"><time datetime="{{$$module_name_singular->published_at}}">{{$$module_name_singular->published_at_formatted}}</time></h6>
-                        </div>
-                    </div>
+                                <div class="entry-meta clearfix">
+                                    <ul>
+                                        <li>
+                                            <span class="post-date"><a href="{{$details_url}}"><i class="fa fa-calendar"></i> {{ date_format($$module_name_singular->published_at, 'd F, Y') }}</a></span>
+                                        </li>
+
+                                    </ul>
+                                </div><!-- /.entry-meta -->
+                            </header><!-- /.post-thumbnail -->
+
+                            <div class="blog-content">
+                                <header class="entry-header">
+                                    <h2 class="entry-title"><a href="{{$details_url}}">{{$$module_name_singular->name}}</a></h2>
+                                </header><!-- /.entry-header -->
+
+                                <div class="entry-content">
+                                    <p>{{$$module_name_singular->intro}}</p>
+
+                                    <div class="readmore">
+                                        <a href="{{$details_url}}">Readmore</a>
+                                    </div>
+
+                                </div><!-- /.entry-content -->
+
+
+                            </div><!-- /.blog-content -->
+                        </article>
+                    </div><!-- /.col-md-4 -->
+                    @endforeach
+{{--                    <div class="col-xs-12 col-sm-6 col-md-4 blog-grid-item">--}}
+{{--                        <article class="post-wrapper"--}}
+{{--                                 style="border-top-left-radius: 50px; border-bottom-right-radius: 50px;">--}}
+{{--                            <header class="featured-wrapper">--}}
+
+{{--                                <a href="#" class="author"><img src="assets/images/blog/blog-three/author-1.jpg"--}}
+{{--                                                                alt=""></a>--}}
+{{--                                <a href="#"><img src="assets/images/blog/blog-three/blog-2.jpg" class="img-responsive "--}}
+{{--                                                 alt="Image"--}}
+{{--                                                 style="border-top-left-radius: 50px; border-bottom-right-radius: 50px; border: 1px solid #172a52  ;"></a>--}}
+
+{{--                                <div class="entry-meta clearfix">--}}
+{{--                                    <ul>--}}
+{{--                                        <li><span class="post-date"><a href="#"><i class="fa fa-calendar"></i> 25 Aug--}}
+{{--                                                    2015</a></span></li>--}}
+
+{{--                                    </ul>--}}
+{{--                                </div><!-- /.entry-meta -->--}}
+{{--                            </header><!-- /.post-thumbnail -->--}}
+
+{{--                            <div class="blog-content">--}}
+{{--                                <header class="entry-header">--}}
+{{--                                    <h2 class="entry-title"><a href="#">৬ষ্ঠ এবং ২০২১ সালের ৪র্থ শরিয়াহ্ মিটিং</a></h2>--}}
+{{--                                </header><!-- /.entry-header -->--}}
+
+{{--                                <div class="entry-content">--}}
+{{--                                    <p>আলহামদুলিল্লাহ, অদ্য ২৭/১২/২০২১ ইং আলফা ইসলামী লাইফ ইন্সুরেন্স লিমিটেড এর ৬ষ্ঠ--}}
+{{--                                        এবং ২০২১ সালের ৪র্থ শরিয়াহ্ মিটিং কোম্পানীর প্রধান কার্যালয়ের বোর্ড রুমে--}}
+{{--                                        অনুষ্ঠিত হয়। </p>--}}
+
+{{--                                    <div class="readmore">--}}
+{{--                                        <a href="#">Readmore</a>--}}
+{{--                                    </div>--}}
+
+{{--                                </div><!-- /.entry-content -->--}}
+
+
+{{--                            </div><!-- /.blog-content -->--}}
+{{--                        </article>--}}
+{{--                    </div><!-- /.col-md-4 -->--}}
+
+{{--                    <div class="col-xs-12 col-sm-6 col-md-4 blog-grid-item">--}}
+{{--                        <article class="post-wrapper"--}}
+{{--                                 style="border-top-left-radius: 50px; border-bottom-right-radius: 50px;">--}}
+{{--                            <header class="featured-wrapper">--}}
+
+{{--                                <a href="#" class="author"><img src="assets/images/blog/blog-three/author-1.jpg"--}}
+{{--                                                                alt=""></a>--}}
+{{--                                <a href="#"><img src="assets/images/blog/blog-three/blog-3.jpg" class="img-responsive "--}}
+{{--                                                 alt="Image"--}}
+{{--                                                 style="border-top-left-radius: 50px; border-bottom-right-radius: 50px; border: 1px solid #172a52  ;"></a>--}}
+
+{{--                                <div class="entry-meta clearfix">--}}
+{{--                                    <ul>--}}
+{{--                                        <li><span class="post-date"><a href="#"><i class="fa fa-calendar"></i>--}}
+{{--                                                    17 December, 2021</a></span></li>--}}
+
+{{--                                    </ul>--}}
+{{--                                </div><!-- /.entry-meta -->--}}
+{{--                            </header><!-- /.post-thumbnail -->--}}
+
+{{--                            <div class="blog-content">--}}
+{{--                                <header class="entry-header">--}}
+{{--                                    <h2 class="entry-title"><a href="#">Kick-Off Training Program for Unit Manager’s--}}
+{{--                                        </a></h2>--}}
+{{--                                </header><!-- /.entry-header -->--}}
+
+{{--                                <div class="entry-content">--}}
+{{--                                    <p>Alhamdulillah! Kick-Off Training Program for Unit Manager’s (Rangpur Territory)--}}
+{{--                                        Successfully completed today (17-12-21)</p>--}}
+
+{{--                                    <div class="readmore">--}}
+{{--                                        <a href="#">Readmore</a>--}}
+{{--                                    </div>--}}
+
+{{--                                </div><!-- /.entry-content -->--}}
+
+
+{{--                            </div><!-- /.blog-content -->--}}
+{{--                        </article>--}}
+{{--                    </div><!-- /.col-md-4 -->--}}
                 </div>
-            </div>
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section>
 
-            @foreach ($$module_name as $$module_name_singular)
-            @php
-            $details_url = route("frontend.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
-            @endphp
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card bg-white border-light shadow-soft p-4 rounded">
-                    <a href="{{$details_url}}"><img src="{{$$module_name_singular->featured_image}}" class="card-img-top" alt=""></a>
-                    <div class="card-body p-0 pt-4">
-                        <a href="{{$details_url}}" class="h3">{{$$module_name_singular->name}}</a>
-                        <div class="d-flex align-items-center my-4">
-                            <img class="avatar avatar-sm rounded-circle" src="{{asset('img/avatars/'.rand(1, 8).'.jpg')}}" alt="">
-                            {!!isset($$module_name_singular->created_by_alias)? $$module_name_singular->created_by_alias : '<a href="'.route('frontend.users.profile', $$module_name_singular->created_by).'"><h6 class="text-muted small ml-2 mb-0">'.$$module_name_singular->created_by_name.'</h6></a>'!!}
-                        </div>
-                        <p class="mb-3">{{$$module_name_singular->intro}}</p>
-                        <a href="{{route('frontend.categories.show', [encode_id($$module_name_singular->category_id), $$module_name_singular->category->slug])}}" class="badge badge-primary">{{$$module_name_singular->category_name}}</a>
-                        <p>
-                            @foreach ($$module_name_singular->tags as $tag)
-                            <a href="{{route('frontend.tags.show', [encode_id($tag->id), $tag->slug])}}" class="badge badge-warning">{{$tag->name}}</a>
-                            @endforeach
-                        </p>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-
-        <div class="d-flex justify-content-center w-100 mt-3">
-            {{$$module_name->links()}}
-        </div>
-    </div>
-</section>
-@endif
+    <!-- Recent News end-->
 
 @endsection
