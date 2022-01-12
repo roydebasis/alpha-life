@@ -1,88 +1,66 @@
-@include ('frontend.includes.footer-comment-area')
-
-<footer class="footer section pt-6 pt-md-8 pt-lg-10 pb-3 bg-primary text-white overflow-hidden">
-    <div class="pattern pattern-soft top"></div>
+<footer class="footer-section text-center">
     <div class="container">
+        <a class="page-scroll backToTop" href="#page-top"><i class="fa fa-angle-up"></i></a>
+
         <div class="row">
-            <div class="col-lg-4 mb-4 mb-lg-0">
-                <a class="footer-brand mr-lg-5 d-flex" href="/">
-                    <img src="{{asset('img/backend-logo.jpg')}}" height="35" class="mr-3" alt="Footer logo">
-                </a>
-                <p class="my-4">
-                    {!! setting('meta_description') !!}
+            <div class="col-md-4" style="padding:20px ;">
+                <br>
+                <h3 style="color: white; text-align: center;"> Alpha Islami Life Insurance Limited </h3>
+                <hr>
+                <p style=" color: #ffff; ; font-size: medium; line-height:140% ; text-align: left;">
+                    A. J. Tower, Level # 8 and 9 <br>
+                    Sonargaon Link Road <br>
+                    4, Kawran BazarDhaka - 1215<br>
+                    Tel : 88 02 (55013304, 55013305, 55013306) <br>
+                    IP Phone : 09612 400 200<br>
+                    <u>Hotline</u> <br>
+                    01787683517 (Policy Servicing)<br>
+                    01787683520 (Group Life) <br>
+                    E-mail : info@alphalife.com.bd
                 </p>
             </div>
-            <div class="col-6 col-sm-3 col-lg-2 mb-4 mb-lg-0 text-center">
-                <h6>
-                    Pages
-                </h6>
-                <ul class="links-vertical">
-                    <li><a target="_blank" href="#">Blog</a></li>
-                    <li><a target="_blank" href="#">Themes</a></li>
-                    <li><a target="_blank" href="#">Support</a></li>
-                    <li><a target="_blank" href="#">Contact Us</a></li>
-                </ul>
+            <div class="col-md-4" style="padding:20px ;">
+                <br>
+                <br>
+                <img src="{{ asset('assets/images/MoblieLogo.png') }}" alt="logo">
+                <br><br>
+                <div class="social-icon clearfix">
+                    <ul class="list-inline">
+                        <li><a href="https://www.linkedin.com/company/alpha-islami-life-insurance-limited/"><img
+                                    src="{{ asset('assets/images/social/li1.png') }}" target="_blank"> </a></li>
+                        <li><a href="https://www.facebook.com/AlphaIslamiLifeInsuranceLimited"><img
+                                    src="{{ asset('assets/images/social/f1.png') }}" target="_blank"> </a></li>
+                        <li><a href="#"><img src="{{ asset('assets/images/social/ist1.png') }}" target="_blank"> </a></li>
+                        <li><a href="https://twitter.com/AlphaIslamilife" target="_blank"><img
+                                    src="{{ asset('assets/images/social/t1.png') }}"> </a></li>
+                        <li><a href="https://www.youtube.com/channel/UCvaACoqGf4sdo4858xHnwIQ" target="_blank"><img
+                                    src="{{ asset('assets/images/social/u1.png') }}"> </a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-6 col-sm-3 col-lg-2 mb-4 mb-lg-0 text-center">
-                <h6>
-                    Account
-                </h6>
-                <ul class="links-vertical">
-                    <li>
-                        <a target="_blank" href="#">Blog</a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="#">License</a>
-                    </li>
-                    @guest
-                    @if(user_registration())
-                    <li>
-                        <a href="{{ route('register') }}">Register</a>
-                    </li>
-                    @endif
-                    <li>
-                        <a href="{{ route('login') }}">Login</a>
-                    </li>
-                    @else
-                    <li>
-                        <a href="#">{{ Auth::user()->name }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Logout
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </li>
-                    @endguest
-                </ul>
-            </div>
-            <div class="col-12 col-sm-6 col-lg-4">
-                <h6>Subscribe</h6>
-                <p class="font-small">The latest Impact news, articles, and resources, sent straight to your inbox every month.</p>
-                <form action="#">
-                    <div class="form-row">
-                        <div class="col-8">
-                            <input type="email" class="form-control mb-2" placeholder="Email Address" required>
-                        </div>
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-secondary btn-block"><span>Subscribe</span></button>
-                        </div>
-                    </div>
-                </form>
-                <small class="mt-2 form-text">We’ll never share your details. See our <a href="{{route('frontend.privacy')}}" class="font-weight-bold text-underline">Privacy Policy</a></small>
+            <div class="col-md-4" style="padding:20px ; text-align: left;">
+                <br>
+                <h3 style="color: white; text-align: center;">Important Link</h3>
+                <hr>
+                <a href="http://www.idra.org.bd/" style="color: white;" target="_blank">IDRA</a> <br>
+                <a href="https://nbr.gov.bd/" style="color: white;" target="_blank">NBR </a><br>
+                <a href="https://www.bb.org.bd/" style="color: white;" target="_blank">Bangladesh Bank </a><br>
+                <a href="https://bia.portal.gov.bd/" style="color: white;" target="_blank">Bangladesh Insurance
+                    Academy </a><br>
+                <a href="https://biabd.org/" style="color: white;" target="_blank">Bangladesh Insurance Association
+                </a><br>
+
+
             </div>
         </div>
-
-        <hr class="my-4 my-lg-5">
-
-        <div class="row">
-            <div class="col pb-4 mb-md-0">
-                <div class="d-flex text-center justify-content-center align-items-center">
-                    <p class="font-weight-normal mb-0">
-                        &copy; {{ app_name() }}, {!! setting('footer_text') !!}
-                    </p>
+    </div>
+    <div class="container-fluid" style="background-color: white;">
+        <div class="row"
+             style="background-color: #172a52; border-top:1px dotted #ffff; border-bottom-left-radius: 100px;border-bottom-right-radius: 100px; ">
+            <div class="col-md-12" style="padding:1px ;">
+                <div class="copyright">
+                    <p>&copy; Copright 2021 Alpha Islami Life - Design & Development my Inspire32 Web Solution</p>
+                    <br>
                 </div>
             </div>
         </div>

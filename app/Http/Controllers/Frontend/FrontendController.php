@@ -41,4 +41,18 @@ class FrontendController extends Controller
 
         return view('frontend.terms', compact('body_class'));
     }
+
+    //Tushar
+
+    /**
+     * Blog Page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function blogs()
+    {
+        $body_class = '';
+
+        return view('frontend.blog', compact('body_class'));
+    }
 }
