@@ -7,36 +7,39 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Laracasts\Flash\Flash;
 use Modules\Article\Entities\Category;
 use Modules\Article\Events\PostCreated;
 use Modules\Article\Events\PostUpdated;
 use Modules\Article\Http\Requests\Backend\PostsRequest;
+use Modules\Media\Http\Requests\Backend\VideoRequest;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\DataTables\DataTables;
 use function view;
 
-class MediaController extends Controller
+class VideoController extends Controller
 {
 //    use Authorizable;
 
     public function __construct()
     {
         // Page Title
-        $this->module_title = 'Media';
+        $this->module_title = 'Video';
 
         // module name
-        $this->module_name = 'medias';
+        $this->module_name = 'videos';
 
         // directory path of the module
-        $this->module_path = 'medias';
+        $this->module_path = 'videos';
 
         // module icon
         $this->module_icon = 'fas fa-file-alt';
 
         // module model name, path
-        $this->module_model = "Modules\Media\Entities\Media";
+        $this->module_model = "Modules\Media\Entities\Video";
     }
 
     /**
@@ -76,7 +79,7 @@ class MediaController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::select('id', 'name', 'url', 'slug', 'type', 'updated_at');
+        $$module_name = $module_model::select('id', 'name', 'url', 'slug', 'updated_at');
 
         $data = $$module_name;
 
@@ -154,13 +157,13 @@ class MediaController extends Controller
 
         $module_action = 'Create';
 
-        $categories = Category::pluck('name', 'id');
+//        $categories = Category::pluck('name', 'id');
 
 //        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view(
             "media::backend.$module_name.create",
-            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', 'categories')
+            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular')
         );
     }
 
@@ -171,7 +174,7 @@ class MediaController extends Controller
      *
      * @return Response
      */
-    public function store(PostsRequest $request)
+    public function store(VideoRequest $request)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -182,13 +185,13 @@ class MediaController extends Controller
 
         $module_action = 'Store';
 
-        $data = $request->except('tags_list');
+        $data = $request->all();
         $data['created_by_name'] = auth()->user()->name;
 
         $$module_name_singular = $module_model::create($data);
-        $$module_name_singular->tags()->attach($request->input('tags_list'));
+//        $$module_name_singular->tags()->attach($request->input('tags_list'));
 
-        event(new PostCreated($$module_name_singular));
+//        event(new PostCreated($$module_name_singular));
 
         Flash::success("<i class='fas fa-check'></i> New '".Str::singular($module_title)."' Added")->important();
 
@@ -226,7 +229,7 @@ class MediaController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view(
-            "article::backend.$module_name.show",
+            "media::backend.$module_name.show",
             compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular", 'activities')
         );
     }
@@ -251,13 +254,13 @@ class MediaController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        $categories = Category::pluck('name', 'id');
+//        $categories = Category::pluck('name', 'id');
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view(
-            "article::backend.$module_name.edit",
-            compact('categories', 'module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular")
+            "media::backend.$module_name.edit",
+            compact( 'module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular")
         );
     }
 
@@ -269,7 +272,7 @@ class MediaController extends Controller
      *
      * @return Response
      */
-    public function update(PostsRequest $request, $id)
+    public function update(VideoRequest $request, $id)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -282,16 +285,16 @@ class MediaController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        $$module_name_singular->update($request->except('tags_list'));
+        $$module_name_singular->update($request->all());
 
-        if ($request->input('tags_list') == null) {
-            $tags_list = [];
-        } else {
-            $tags_list = $request->input('tags_list');
-        }
-        $$module_name_singular->tags()->sync($tags_list);
+//        if ($request->input('tags_list') == null) {
+//            $tags_list = [];
+//        } else {
+//            $tags_list = $request->input('tags_list');
+//        }
+//        $$module_name_singular->tags()->sync($tags_list);
 
-        event(new PostUpdated($$module_name_singular));
+//        event(new PostUpdated($$module_name_singular));
 
         Flash::success("<i class='fas fa-check'></i> '".Str::singular($module_title)."' Updated Successfully")->important();
 
@@ -351,7 +354,7 @@ class MediaController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name);
 
         return view(
-            "article::backend.$module_name.trash",
+            "media::backend.$module_name.trash",
             compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
         );
     }
