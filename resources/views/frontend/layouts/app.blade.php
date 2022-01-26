@@ -68,7 +68,7 @@
 
     @include('frontend.includes.header')
 
-    <x-preloader />
+{{--    <x-preloader />--}}
 
     <main>
         @yield('content')
