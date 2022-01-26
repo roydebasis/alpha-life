@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use Modules\Page\Entities\Page;
 
 class FrontendController extends Controller
 {
@@ -54,5 +55,10 @@ class FrontendController extends Controller
         $body_class = '';
 
         return view('frontend.blog', compact('body_class'));
+    }
+
+    public function getPage($slug) {
+        $page = Page::where('slug', $slug)->first();
+        dd($page);
     }
 }
