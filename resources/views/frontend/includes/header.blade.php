@@ -86,8 +86,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/"><img src="{{ asset('assets/images/logoNew.png') }}" class="h-sm-100"
-                                                               alt="Alpha Islami Life Insurance"></a>
+                <a class="navbar-brand" href="/">
+                    <img src="assets/images/logoNew.png" class="h-sm-100" alt="Alpha Islami Life Insurance">
+                </a>
             </div>
 
             <div class="collapse navbar-collapse" id="custom-collapse">
@@ -208,8 +209,9 @@
                         <a href="#" class="dropdown-toggle menu-item" data-toggle="dropdown" role="button"
                            aria-haspopup="true" aria-expanded="false">Media </a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ url('photos') }}">Photo gallery </a></li>
-                            <li><a href="{{ url('videos') }}">Video gallery</a></li>
+                            <li><a href="{{  url('photos') }}">Photo gallery </a></li>
+                            <li><a href="{{  url('videos') }}">Video gallery</a></li>
+                            <li><a href="{{ url('posts') }}">Recent News</a></li>
 
                         </ul>
                     </li>
@@ -217,12 +219,13 @@
                         <a href="#" class="dropdown-toggle menu-item" data-toggle="dropdown" role="button"
                            aria-haspopup="true" aria-expanded="false">Blog</a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ url('posts') }}">Recent News</a></li>
+                            <li><a href="blog.html">Recent News</a></li>
                         </ul>
                     </li>
-                    <li><a href="http://www.idra.org.bd/" class="menu-item" target="_blank">IDRA</a></li>
+                    <li><a href="claim.html" class="menu-item">Claim</a></li>
+{{--                    <li><a href="http://www.idra.org.bd/" class="menu-item" target="_blank">IDRA</a></li>--}}
                     <li><a href="contact.html" class="menu-item">Contact</a></li>
-                    <li><a href="mujib-corner.html" class="menu-item">Mujib Corner</a></li>
+                    <!-- <li><a href="mujib-corner.html" class="menu-item">Mujib Corner</a></li> -->
 
                     <li> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 
