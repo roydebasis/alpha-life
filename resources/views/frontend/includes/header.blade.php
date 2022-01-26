@@ -208,9 +208,8 @@
                         <a href="#" class="dropdown-toggle menu-item" data-toggle="dropdown" role="button"
                            aria-haspopup="true" aria-expanded="false">Media </a>
                         <ul class="dropdown-menu">
-                            <li><a href="photogallery.html">Photo gallery </a></li>
-                            <li><a href="videogallery.html">Video gallery</a></li>
-                            <li><a href="blog.html">Recent News</a></li>
+                            <li><a href="{{ url('photos') }}">Photo gallery </a></li>
+                            <li><a href="{{ url('videos') }}">Video gallery</a></li>
 
                         </ul>
                     </li>
