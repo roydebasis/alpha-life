@@ -1,7 +1,13 @@
 @php
-if(!isset($meta_page_type)){
+if (!isset($meta_page_type)) {
     $meta_page_type = 'website';
 }
+
+$meta_title         = $content->meta_title ?? config('app.name');
+$meta_site_name     = setting('meta_site_name');
+$meta_description   = $content->meta_description ?? setting('meta_description');
+$meta_image         = isset($content->meta_og_image) ? url($content->meta_og_image) : url(setting('meta_image'));
+
 @endphp
 
 @switch($meta_page_type)
@@ -36,10 +42,10 @@ if(!isset($meta_page_type)){
 
     <!-- Facebook Meta -->
     <meta property="og:url" content="{{url()->full()}}" />
-    <meta property="og:title" content="@yield('title') | {{ config('app.name') }}" />
-    <meta property="og:site_name" content="{{setting('meta_site_name')}}" />
-    <meta property="og:description" content="{{ setting('meta_description') }}" />
-    <meta property="og:image" content="{{ asset(setting('meta_image')) }}" />
+    <meta property="og:title" content="{{ $meta_title }}" />
+    <meta property="og:site_name" content="{{ $meta_site_name }}" />
+    <meta property="og:description" content="{{ $meta_description }}" />
+    <meta property="og:image" content="{{ $meta_image }}" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
@@ -48,9 +54,9 @@ if(!isset($meta_page_type)){
     <meta name="twitter:site" content="{{ setting('meta_twitter_site') }}">
     <meta name="twitter:url" content="{{url()->full()}}" />
     <meta name="twitter:creator" content="{{ setting('meta_twitter_creator') }}">
-    <meta name="twitter:title" content="@yield('title') | {{ config('app.name') }}">
-    <meta name="twitter:description" content="{{ setting('meta_description') }}">
-    <meta name="twitter:image" content="{{ asset(setting('meta_image')) }}">
+    <meta name="twitter:title" content="{{ $meta_title }}">
+    <meta name="twitter:description" content="{{ $meta_description }}">
+    <meta name="twitter:image" content="{{ $meta_image }}">
 
     <!--canonical link-->
     <link type="text/plain" rel="author" href="{{asset('humans.txt')}}" />

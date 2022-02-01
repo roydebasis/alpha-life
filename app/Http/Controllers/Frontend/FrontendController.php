@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
+use Modules\Page\Entities\Page;
 
 class FrontendController extends Controller
 {
@@ -54,5 +56,16 @@ class FrontendController extends Controller
         $body_class = '';
 
         return view('frontend.blog', compact('body_class'));
+    }
+
+    /**
+     * Page view
+     * @param $slug
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function getPage($slug) {
+        $content = Page::where('slug', $slug)->first();
+        $meta_page_type = 'page';
+        return view('frontend.page', compact('content', 'meta_page_type'));
     }
 }

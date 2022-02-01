@@ -87,7 +87,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/">
-                    <img src="assets/images/logoNew.png" class="h-sm-100" alt="Alpha Islami Life Insurance">
+                    <img src="{{ url('assets/images/logoNew.png') }}" class="h-sm-100" alt="Alpha Islami Life Insurance">
                 </a>
             </div>
 
@@ -98,7 +98,7 @@
                         <a href="#" class="dropdown-toggle menu-item" data-toggle="dropdown" role="button"
                            aria-haspopup="true" aria-expanded="false">About</a>
                         <ul class="dropdown-menu">
-                            <li><a href="about.html">About Alpha</a></li>
+                            <li><a href="{{ route('frontend.page', ['slug' => 'about-su']) }}">About Alpha</a></li>
                             <li><a href="mission.html">Mission, Vision & Objective</a></li>
 
                             <li class="dropdown">

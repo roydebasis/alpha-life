@@ -8,21 +8,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>@yield('title') | {{ config('app.name') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="{{ setting('meta_description') }}">
-    <meta name="keyword" content="{{ setting('meta_keyword') }}">
+    <meta name="description" content="{{ $content->meta_description ?? setting('meta_description') }}">
+    <meta name="keyword" content="{{ $content->meta_keywords ?? setting('meta_keyword') }}">
 
     @include('frontend.includes.meta')
-
-    <!-- Shortcut Icon -->
-{{--    <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">--}}
-{{--    <link rel="icon" type="image/ico" href="{{asset('img/favicon.png')}}" />--}}
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @stack('before-styles')
 
-{{--    <link rel="stylesheet" href="{{ mix('css/frontend.css') }}">--}}
     <!--  favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/images/ico/favicon.png') }}" >
     <!--  apple-touch-icon -->
@@ -59,7 +54,7 @@
     <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
 
 
-{{--    @stack('after-styles')--}}
+    @stack('after-styles')
 
     <x-google-analytics />
 </head>
@@ -114,18 +109,6 @@
         $('html, body').animate({
             scrollTop: $('#' + id).offset().top
         }, 1000);
-    }
-
-    function vidplay() {
-        var video = document.getElementById("videoPlayer");
-        var button = document.getElementById("playbtn");
-        if (video.paused) {
-            video.play();
-            button.className = "pause"
-        } else {
-            video.pause();
-            button.className = "play"
-        }
     }
 </script>
 
