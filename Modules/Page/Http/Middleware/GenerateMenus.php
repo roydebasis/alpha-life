@@ -33,7 +33,7 @@ class GenerateMenus
                 ->data([
                     'order'         => 89,
                     'activematches' => ['admin/pages*'],
-                    //'permission'    => [],
+                    'permission'    => ['edit_pages'],
                 ])
                 ->link->attr([
                     'class' => 'c-sidebar-nav-link',
