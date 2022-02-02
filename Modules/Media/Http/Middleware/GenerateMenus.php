@@ -19,7 +19,7 @@ class GenerateMenus
         \Menu::make('admin_sidebar', function ($menu) {
 
             // Medias Dropdown
-            $articles_menu = $menu->add('<i class="c-sidebar-nav-icon fas fa-file-alt"></i> Media', [
+            $media_menu = $menu->add('<i class="c-sidebar-nav-icon fas fa-file-alt"></i> Media', [
                 'class' => 'c-sidebar-nav-dropdown',
             ])
                 ->data([
@@ -30,14 +30,14 @@ class GenerateMenus
                     ],
                     'permission' => ['view_posts', 'view_categories'],
                 ]);
-            $articles_menu->link->attr([
+            $media_menu->link->attr([
                 'class' => 'c-sidebar-nav-dropdown-toggle',
                 'href'  => '#',
             ]);
 
             // Submenu: Posts
-            $articles_menu->add('<i class="c-sidebar-nav-icon fas fa-file-alt"></i> Photos', [
-                'route' => 'backend.medias.photos.index',
+            $media_menu->add('<i class="c-sidebar-nav-icon fas fa-file-alt"></i> Photos', [
+                'route' => 'backend.photos.index',
                 'class' => 'c-sidebar-nav-item',
             ])
                 ->data([
@@ -49,8 +49,8 @@ class GenerateMenus
                     'class' => 'c-sidebar-nav-link',
                 ]);
             // Submenu: Categories
-            $articles_menu->add('<i class="c-sidebar-nav-icon fas fa-sitemap"></i> Videos', [
-                'route' => 'backend.medias.videos.index',
+            $media_menu->add('<i class="c-sidebar-nav-icon fas fa-sitemap"></i> Videos', [
+                'route' => 'backend.videos.index',
                 'class' => 'c-sidebar-nav-item',
             ])
                 ->data([
@@ -66,3 +66,4 @@ class GenerateMenus
         return $next($request);
     }
 }
+

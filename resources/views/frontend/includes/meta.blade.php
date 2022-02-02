@@ -7,7 +7,6 @@ $meta_title         = $content->meta_title ?? config('app.name');
 $meta_site_name     = setting('meta_site_name');
 $meta_description   = $content->meta_description ?? setting('meta_description');
 $meta_image         = isset($content->meta_og_image) ? url($content->meta_og_image) : url(setting('meta_image'));
-
 @endphp
 
 @switch($meta_page_type)
