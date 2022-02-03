@@ -4,5 +4,6 @@
     "Comment": true,
     "Service": true,
     "Page": true,
-    "Media": true
+    "Media": true,
+    "Management": true
 }
