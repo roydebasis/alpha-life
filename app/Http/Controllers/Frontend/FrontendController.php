@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Modules\Article\Entities\Post;
 use Modules\Page\Entities\Page;
 
 class FrontendController extends Controller
@@ -16,8 +18,8 @@ class FrontendController extends Controller
     public function index()
     {
         $body_class = '';
-
-        return view('frontend.index', compact('body_class'));
+        $blogs = Post::latest()->with(['category', 'tags', 'comments'])->take(3)->get();
+        return view('frontend.index', compact('body_class', 'blogs'));
     }
 
     /**

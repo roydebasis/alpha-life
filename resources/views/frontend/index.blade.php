@@ -628,6 +628,10 @@
         <div class="container">
             <div class="row">
                 <div id="blogGrid">
+                    @foreach ($blogs as $blog)
+                        @php
+                            $details_url = route("frontend.posts.show",[encode_id($blog->id), $blog->slug]);
+                        @endphp
                     <div class="col-xs-12 col-sm-6 col-md-4 blog-grid-item">
                         <article class="post-wrapper"
                                  style="border-top-left-radius: 50px; border-bottom-right-radius: 50px;">
@@ -635,15 +639,14 @@
 
                                 <a href="#" class="author"><img src="{{ asset('assets/images/blog/blog-three/author-1.jpg') }}"
                                                                 alt=""></a>
-                                <a href="#"><img src="{{ asset('assets/images/blog/blog-three/blog-1.jpg') }}" class="img-responsive "
+                                <a href="#"><img src="{{$blog->featured_image}}" class="img-responsive "
                                                  alt="Image"
                                                  style="border-top-left-radius: 50px; border-bottom-right-radius: 50px; border: 1px solid #172a52  ;"></a>
 
                                 <div class="entry-meta clearfix">
                                     <ul>
                                         <li>
-                                            <span class="post-date"><a href="#"><i class="fa fa-calendar"></i> 27
-                                                    December, 2021</a></span>
+                                            <span class="post-date"><a href="{{$details_url}}"><i class="fa fa-calendar"></i> {{ date_format($blog->published_at, 'd F, Y') }}</a></span>
                                         </li>
 
                                     </ul>
@@ -652,14 +655,14 @@
 
                             <div class="blog-content">
                                 <header class="entry-header">
-                                    <h2 class="entry-title"><a href="#">Monthly Staff General Meeting</a></h2>
+                                    <h2 class="entry-title"><a href="{{$details_url}}">{{$blog->name}}</a></h2>
                                 </header><!-- /.entry-header -->
 
                                 <div class="entry-content">
-                                    <p>After Monthly Staff General Meeting Today at Head Office</p>
+                                    <p>{{$blog->intro}}</p>
 
                                     <div class="readmore">
-                                        <a href="#">Readmore</a>
+                                        <a href="{{$details_url}}">Readmore</a>
                                     </div>
 
                                 </div><!-- /.entry-content -->
@@ -668,87 +671,88 @@
                             </div><!-- /.blog-content -->
                         </article>
                     </div><!-- /.col-md-4 -->
-                    <div class="col-xs-12 col-sm-6 col-md-4 blog-grid-item">
-                        <article class="post-wrapper"
-                                 style="border-top-left-radius: 50px; border-bottom-right-radius: 50px;">
-                            <header class="featured-wrapper">
+                    @endforeach
+{{--                    <div class="col-xs-12 col-sm-6 col-md-4 blog-grid-item">--}}
+{{--                        <article class="post-wrapper"--}}
+{{--                                 style="border-top-left-radius: 50px; border-bottom-right-radius: 50px;">--}}
+{{--                            <header class="featured-wrapper">--}}
 
-                                <a href="#" class="author"><img src="{{ asset('assets/images/blog/blog-three/author-1.jpg') }}"
-                                                                alt=""></a>
-                                <a href="#"><img src="{{ asset('assets/images/blog/blog-three/blog-2.jpg') }}" class="img-responsive "
-                                                 alt="Image"
-                                                 style="border-top-left-radius: 50px; border-bottom-right-radius: 50px; border: 1px solid #172a52  ;"></a>
+{{--                                <a href="#" class="author"><img src="{{ asset('assets/images/blog/blog-three/author-1.jpg') }}"--}}
+{{--                                                                alt=""></a>--}}
+{{--                                <a href="#"><img src="{{ asset('assets/images/blog/blog-three/blog-2.jpg') }}" class="img-responsive "--}}
+{{--                                                 alt="Image"--}}
+{{--                                                 style="border-top-left-radius: 50px; border-bottom-right-radius: 50px; border: 1px solid #172a52  ;"></a>--}}
 
-                                <div class="entry-meta clearfix">
-                                    <ul>
-                                        <li><span class="post-date"><a href="#"><i class="fa fa-calendar"></i> 25 Aug
-                                                    2015</a></span></li>
+{{--                                <div class="entry-meta clearfix">--}}
+{{--                                    <ul>--}}
+{{--                                        <li><span class="post-date"><a href="#"><i class="fa fa-calendar"></i> 25 Aug--}}
+{{--                                                    2015</a></span></li>--}}
 
-                                    </ul>
-                                </div><!-- /.entry-meta -->
-                            </header><!-- /.post-thumbnail -->
+{{--                                    </ul>--}}
+{{--                                </div><!-- /.entry-meta -->--}}
+{{--                            </header><!-- /.post-thumbnail -->--}}
 
-                            <div class="blog-content">
-                                <header class="entry-header">
-                                    <h2 class="entry-title"><a href="#">৬ষ্ঠ এবং ২০২১ সালের ৪র্থ শরিয়াহ্ মিটিং</a></h2>
-                                </header><!-- /.entry-header -->
+{{--                            <div class="blog-content">--}}
+{{--                                <header class="entry-header">--}}
+{{--                                    <h2 class="entry-title"><a href="#">৬ষ্ঠ এবং ২০২১ সালের ৪র্থ শরিয়াহ্ মিটিং</a></h2>--}}
+{{--                                </header><!-- /.entry-header -->--}}
 
-                                <div class="entry-content">
-                                    <p>আলহামদুলিল্লাহ, অদ্য ২৭/১২/২০২১ ইং আলফা ইসলামী লাইফ ইন্সুরেন্স লিমিটেড এর ৬ষ্ঠ
-                                        এবং ২০২১ সালের ৪র্থ শরিয়াহ্ মিটিং কোম্পানীর প্রধান কার্যালয়ের বোর্ড রুমে
-                                        অনুষ্ঠিত হয়। </p>
+{{--                                <div class="entry-content">--}}
+{{--                                    <p>আলহামদুলিল্লাহ, অদ্য ২৭/১২/২০২১ ইং আলফা ইসলামী লাইফ ইন্সুরেন্স লিমিটেড এর ৬ষ্ঠ--}}
+{{--                                        এবং ২০২১ সালের ৪র্থ শরিয়াহ্ মিটিং কোম্পানীর প্রধান কার্যালয়ের বোর্ড রুমে--}}
+{{--                                        অনুষ্ঠিত হয়। </p>--}}
 
-                                    <div class="readmore">
-                                        <a href="#">Readmore</a>
-                                    </div>
+{{--                                    <div class="readmore">--}}
+{{--                                        <a href="#">Readmore</a>--}}
+{{--                                    </div>--}}
 
-                                </div><!-- /.entry-content -->
-
-
-                            </div><!-- /.blog-content -->
-                        </article>
-                    </div><!-- /.col-md-4 -->
-
-                    <div class="col-xs-12 col-sm-6 col-md-4 blog-grid-item">
-                        <article class="post-wrapper"
-                                 style="border-top-left-radius: 50px; border-bottom-right-radius: 50px;">
-                            <header class="featured-wrapper">
-
-                                <a href="#" class="author"><img src="{{ asset('assets/images/blog/blog-three/author-1.jpg')}}"
-                                                                alt=""></a>
-                                <a href="#"><img src="{{ asset('assets/images/blog/blog-three/blog-3.jpg') }}" class="img-responsive "
-                                                 alt="Image"
-                                                 style="border-top-left-radius: 50px; border-bottom-right-radius: 50px; border: 1px solid #172a52  ;"></a>
-
-                                <div class="entry-meta clearfix">
-                                    <ul>
-                                        <li><span class="post-date"><a href="#"><i class="fa fa-calendar"></i>
-                                                    17 December, 2021</a></span></li>
-
-                                    </ul>
-                                </div><!-- /.entry-meta -->
-                            </header><!-- /.post-thumbnail -->
-
-                            <div class="blog-content">
-                                <header class="entry-header">
-                                    <h2 class="entry-title"><a href="#">Kick-Off Training Program for Unit Manager’s
-                                        </a></h2>
-                                </header><!-- /.entry-header -->
-
-                                <div class="entry-content">
-                                    <p>Alhamdulillah! Kick-Off Training Program for Unit Manager’s (Rangpur Territory)
-                                        Successfully completed today (17-12-21)</p>
-
-                                    <div class="readmore">
-                                        <a href="#">Readmore</a>
-                                    </div>
-
-                                </div><!-- /.entry-content -->
+{{--                                </div><!-- /.entry-content -->--}}
 
 
-                            </div><!-- /.blog-content -->
-                        </article>
-                    </div><!-- /.col-md-4 -->
+{{--                            </div><!-- /.blog-content -->--}}
+{{--                        </article>--}}
+{{--                    </div><!-- /.col-md-4 -->--}}
+
+{{--                    <div class="col-xs-12 col-sm-6 col-md-4 blog-grid-item">--}}
+{{--                        <article class="post-wrapper"--}}
+{{--                                 style="border-top-left-radius: 50px; border-bottom-right-radius: 50px;">--}}
+{{--                            <header class="featured-wrapper">--}}
+
+{{--                                <a href="#" class="author"><img src="{{ asset('assets/images/blog/blog-three/author-1.jpg')}}"--}}
+{{--                                                                alt=""></a>--}}
+{{--                                <a href="#"><img src="{{ asset('assets/images/blog/blog-three/blog-3.jpg') }}" class="img-responsive "--}}
+{{--                                                 alt="Image"--}}
+{{--                                                 style="border-top-left-radius: 50px; border-bottom-right-radius: 50px; border: 1px solid #172a52  ;"></a>--}}
+
+{{--                                <div class="entry-meta clearfix">--}}
+{{--                                    <ul>--}}
+{{--                                        <li><span class="post-date"><a href="#"><i class="fa fa-calendar"></i>--}}
+{{--                                                    17 December, 2021</a></span></li>--}}
+
+{{--                                    </ul>--}}
+{{--                                </div><!-- /.entry-meta -->--}}
+{{--                            </header><!-- /.post-thumbnail -->--}}
+
+{{--                            <div class="blog-content">--}}
+{{--                                <header class="entry-header">--}}
+{{--                                    <h2 class="entry-title"><a href="#">Kick-Off Training Program for Unit Manager’s--}}
+{{--                                        </a></h2>--}}
+{{--                                </header><!-- /.entry-header -->--}}
+
+{{--                                <div class="entry-content">--}}
+{{--                                    <p>Alhamdulillah! Kick-Off Training Program for Unit Manager’s (Rangpur Territory)--}}
+{{--                                        Successfully completed today (17-12-21)</p>--}}
+
+{{--                                    <div class="readmore">--}}
+{{--                                        <a href="#">Readmore</a>--}}
+{{--                                    </div>--}}
+
+{{--                                </div><!-- /.entry-content -->--}}
+
+
+{{--                            </div><!-- /.blog-content -->--}}
+{{--                        </article>--}}
+{{--                    </div><!-- /.col-md-4 -->--}}
                 </div>
             </div><!-- /.row -->
         </div><!-- /.container -->
