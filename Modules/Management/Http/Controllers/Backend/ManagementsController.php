@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 use Modules\Management\Entities\Category;
-use Modules\Article\Http\Requests\Backend\PostsRequest;
+use Modules\Management\Http\Requests\Backend\ManagementsRequest;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\DataTables\DataTables;
 
@@ -74,7 +74,7 @@ class ManagementsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::select('id', 'name', 'category_name', 'status', 'updated_at', 'published_at', 'is_featured');
+        $$module_name = $module_model::select('id', 'name', 'designation', 'category_name', 'status', 'updated_at');
 
         $data = $$module_name;
 
@@ -162,7 +162,7 @@ class ManagementsController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view(
-            "article::backend.$module_name.create",
+            "management::backend.$module_name.create",
             compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', 'categories')
         );
     }
@@ -174,7 +174,7 @@ class ManagementsController extends Controller
      *
      * @return Response
      */
-    public function store(PostsRequest $request)
+    public function store(ManagementsRequest $request)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -185,13 +185,12 @@ class ManagementsController extends Controller
 
         $module_action = 'Store';
 
-        $data = $request->except('tags_list');
+        $data = $request->all();
         $data['created_by_name'] = auth()->user()->name;
 
         $$module_name_singular = $module_model::create($data);
-        $$module_name_singular->tags()->attach($request->input('tags_list'));
 
-        event(new PostCreated($$module_name_singular));
+//        event(new PostCreated($$module_name_singular));
 
         Flash::success("<i class='fas fa-check'></i> New '".Str::singular($module_title)."' Added")->important();
 
@@ -229,7 +228,7 @@ class ManagementsController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view(
-            "article::backend.$module_name.show",
+            "management::backend.$module_name.show",
             compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular", 'activities')
         );
     }
@@ -259,7 +258,7 @@ class ManagementsController extends Controller
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view(
-            "article::backend.$module_name.edit",
+            "management::backend.$module_name.edit",
             compact('categories', 'module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular")
         );
     }
@@ -272,7 +271,7 @@ class ManagementsController extends Controller
      *
      * @return Response
      */
-    public function update(PostsRequest $request, $id)
+    public function update(ManagementsRequest $request, $id)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -285,16 +284,9 @@ class ManagementsController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        $$module_name_singular->update($request->except('tags_list'));
+        $$module_name_singular->update($request->all());
 
-        if ($request->input('tags_list') == null) {
-            $tags_list = [];
-        } else {
-            $tags_list = $request->input('tags_list');
-        }
-        $$module_name_singular->tags()->sync($tags_list);
-
-        event(new PostUpdated($$module_name_singular));
+//        event(new PostUpdated($$module_name_singular));
 
         Flash::success("<i class='fas fa-check'></i> '".Str::singular($module_title)."' Updated Successfully")->important();
 
@@ -354,7 +346,7 @@ class ManagementsController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name);
 
         return view(
-            "article::backend.$module_name.trash",
+            "management::backend.$module_name.trash",
             compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
         );
     }

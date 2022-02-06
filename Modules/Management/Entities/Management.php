@@ -82,6 +82,6 @@ class Management extends BaseModel
 
     protected static function newFactory()
     {
-        return \Modules\Article\Database\Factories\ManagementFactory::new();
+        return \Modules\Management\Database\Factories\ManagementFactory::new();
     }
 }

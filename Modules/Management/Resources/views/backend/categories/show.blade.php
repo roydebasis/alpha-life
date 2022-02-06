@@ -53,12 +53,12 @@
 
                 <div class="card">
                     <div class="card-header">
-                        Posts
+                        Members
                     </div>
 
                     <div class="card-body">
                         <ul class="fa-ul">
-                            @forelse($posts as $row)
+                            @forelse($members as $row)
                             @php
                             switch ($row->status) {
                                 case 0:
@@ -91,7 +91,7 @@
                             </p>
                             @endforelse
                         </ul>
-                        {{$posts->links()}}
+                        {{$members->links()}}
                     </div>
                 </div>
             </div>
