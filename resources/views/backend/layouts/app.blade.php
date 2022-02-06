@@ -72,7 +72,6 @@
 
         <!-- Scripts -->
         @stack('before-scripts')
-
         <script src="{{ mix('js/backend.js') }}"></script>
 
         @livewireScripts
