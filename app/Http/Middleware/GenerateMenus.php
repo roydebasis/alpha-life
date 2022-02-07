@@ -45,6 +45,17 @@ class GenerateMenus
 //                'class' => 'c-sidebar-nav-link',
 //            ]);
 
+            $menu->add('<i class="cil-menu c-sidebar-nav-icon"></i> Menu', [
+                'route' => 'backend.menuGenerator',
+                'class' => 'c-sidebar-nav-item',
+            ])->data([
+                'order'         => 60,
+                'activematches' => 'admin/menu-generator*',
+            ])
+            ->link->attr([
+                'class' => 'c-sidebar-nav-link',
+            ]);
+
             // Separator: Access Management
             $menu->add('Management', [
                 'class' => 'c-sidebar-nav-title',

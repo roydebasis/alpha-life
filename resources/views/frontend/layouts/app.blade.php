@@ -53,7 +53,6 @@
     <!-- Responsive CSS -->
     <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
 
-
     @stack('after-styles')
 
     <x-google-analytics />
@@ -99,6 +98,8 @@
 <script src="{{ asset('assets/moment.min.js') }}"></script>
 <script src="{{ asset('assets/js/scripts.js') }}"></script>
 <script src="{{ asset('assets/js/calculator.js') }}"></script>
+
+
 <script type="text/javascript">
     function activeCalculator() {
         $('#calculatorActivator').trigger('click');
@@ -113,5 +114,4 @@
 </script>
 
 @stack('after-scripts')
-
 </html>

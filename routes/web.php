@@ -137,4 +137,15 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'backend.',
     Route::resource("$module_name", "$controller_name");
     Route::patch("$module_name/{id}/block", ['as' => "$module_name.block", 'uses' => "$controller_name@block", 'middleware' => ['permission:block_users']]);
     Route::patch("$module_name/{id}/unblock", ['as' => "$module_name.unblock", 'uses' => "$controller_name@unblock", 'middleware' => ['permission:block_users']]);
+
+    /*
+    *
+    *  Drag & drop menu Generation Routes
+    *
+    * ---------------------------------------------------------------------
+    */
+    Route::get('menu-generator', function() {
+        return view('backend.menu-generator');
+    })->name('menuGenerator');
 });
+
