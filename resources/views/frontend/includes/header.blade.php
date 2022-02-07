@@ -92,7 +92,7 @@
             </div>
 
             @php
-                $public_menu = \WPMenu::getByName('Main Menux');
+                $public_menu = \WPMenu::getByName('Main Menu');
             @endphp
 
             {{--  TODO: Refactor menu generation to recursive to get submenus --}}
@@ -145,7 +145,7 @@
                 </ul>
             </div>
             @else
-                <p class="text-warning"><a href="/admin/menu-generator">Create Menu</a></p>
+                <p class="text-warning"><a href="{{ route('backend.menuGenerator') }}">Create Menu</a></p>
             @endif
         </div>
     </nav>
