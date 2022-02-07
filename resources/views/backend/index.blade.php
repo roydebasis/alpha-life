@@ -56,7 +56,6 @@
             </div>
         </div>
     </div>
-    {!! WPMenu::render() !!}
     <div class="col-sm-6 col-lg-3">
         <div class="card">
             <div class="card-body">
@@ -134,8 +133,3 @@
 
 </div>
 @endsection
-
-@push('after-scripts')
-    <script src="{{ asset('assets/js/jquery-2.1.3.min.js') }}"></script>
-    {!! WPMenu::scripts() !!}
-@endpush
