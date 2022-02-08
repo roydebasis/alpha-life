@@ -97,8 +97,6 @@
 <script src="{{ asset('assets/jquery-ui-1.13.0/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('assets/moment.min.js') }}"></script>
 <script src="{{ asset('assets/js/scripts.js') }}"></script>
-<script src="{{ asset('assets/js/calculator.js') }}"></script>
-
 
 <script type="text/javascript">
     function activeCalculator() {
