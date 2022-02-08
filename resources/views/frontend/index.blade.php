@@ -725,6 +725,7 @@
                     $(this).change();
                 }
             });
+            $('#current_date').datepicker('setDate', new Date());
             $('#effective_date').change(function() {
                 let date = $('#effective_date').val();
                 if (date) $('#current_date').datepicker('option', 'minDate', date);
