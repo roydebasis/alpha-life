@@ -4,16 +4,16 @@ namespace Modules\Management\Database\Factories;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Modules\Management\Entities\Category;
+use Modules\Management\Entities\Group;
 
-class CategoryFactory extends Factory
+class GroupFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Category::class;
+    protected $model = Group::class;
 
     /**
      * Define the model's default state.

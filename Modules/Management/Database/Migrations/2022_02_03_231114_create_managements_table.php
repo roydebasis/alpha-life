@@ -17,13 +17,16 @@ class CreateManagementsTable extends Migration
             $table->bigIncrements('id')->unsigned();
             $table->string('name');
             $table->string('designation');
-            $table->integer('category_id')->unsigned()->nullable();
-            $table->string('category_name')->nullable();
+            $table->integer('group_id')->unsigned()->nullable();
+            $table->string('group_name')->nullable();
             $table->string('image')->nullable();
-
-            $table->string('meta_title')->nullable();
-            $table->text('meta_keywords')->nullable();
-            $table->text('meta_description')->nullable();
+            $table->string('order')->nullable();
+            $table->string('email')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('youtube')->nullable();
 
             $table->tinyInteger('status')->default(1);
 

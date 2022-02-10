@@ -56,7 +56,7 @@
                                 Designation
                             </th>
                             <th>
-                                Categoty
+                                Group
                             </th>
                             <th class="text-right">
                                 Action
@@ -107,7 +107,7 @@
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
             {data: 'designation', name: 'designation'},
-            {data: 'category_name', name: 'category_name'},
+            {data: 'group_name', name: 'group_name'},
             {data: 'action', name: 'action', orderable: false, searchable: false}
         ]
     });

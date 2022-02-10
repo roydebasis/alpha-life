@@ -14,26 +14,26 @@ use Illuminate\Support\Facades\Log;
 use Modules\Management\Http\Requests\Backend\CategoriesRequest;
 use Yajra\DataTables\DataTables;
 
-class CategoriesController extends Controller
+class GroupsController extends Controller
 {
     use Authorizable;
 
     public function __construct()
     {
         // Page Title
-        $this->module_title = 'Categories';
+        $this->module_title = 'Groups';
 
         // module name
-        $this->module_name = 'categories';
+        $this->module_name = 'groups';
 
         // directory path of the module
-        $this->module_path = 'categories';
+        $this->module_path = 'groups';
 
         // module icon
         $this->module_icon = 'fas fa-sitemap';
 
         // module model name, path
-        $this->module_model = "Modules\Management\Entities\Category";
+        $this->module_model = "Modules\Management\Entities\Group";
     }
 
     /**
@@ -184,7 +184,7 @@ class CategoriesController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-        return redirect("admin/$module_name");
+        return redirect("admin/managements/$module_name");
     }
 
     /**

@@ -7,11 +7,15 @@ return [
     'created_by_alias' => 'Author Name Alias',
     'designation'      => 'Designation',
     'image'            => 'Image',
-    'category_id'      => 'Category',
+    'group_id'      => 'Group',
+    'order'      => 'Order',
     'status'           => 'Status',
 
-    'meta_title'       => 'Meta Title',
-    'meta_keywords'    => 'Meta Keywords',
-    'meta_description' => 'Meta Description',
+    'email'       => 'Email Id',
+    'facebook'    => 'Facebook Profile Url',
+    'linkedin' => 'Linkedin Profile Url',
+    'twitter' => 'Twitter Profile Url',
+    'instagram' => 'Instagram Profile Url',
+    'youtube' => 'Youtube Url',
 
 ];
