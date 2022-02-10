@@ -22,22 +22,22 @@ class Management extends BaseModel
 
     protected static $logName = 'managements';
     protected static $logOnlyDirty = true;
-    protected static $logAttributes = ['name', 'designation','category_id', 'category_name', 'meta_title', 'meta_keywords', 'meta_description', 'status', 'created_by_alias'];
+    protected static $logAttributes = ['name', 'designation','group_id', 'group_name', 'meta_title', 'meta_keywords', 'meta_description', 'status', 'created_by_alias'];
 
-    public function category()
+    public function group()
     {
-        return $this->belongsTo('Modules\Management\Entities\Category');
+        return $this->belongsTo('Modules\Management\Entities\Group');
     }
 
-    public function setCategoryIdAttribute($value)
+    public function setGroupIdAttribute($value)
     {
-        $this->attributes['category_id'] = $value;
+        $this->attributes['group_id'] = $value;
 
         try {
-            $category = Category::findOrFail($value);
-            $this->attributes['category_name'] = $category->name;
+            $category = Group::findOrFail($value);
+            $this->attributes['group_name'] = $category->name;
         } catch (\Exception $e) {
-            $this->attributes['category_name'] = null;
+            $this->attributes['group_name'] = null;
         }
     }
 

@@ -10,7 +10,7 @@ use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
-use Modules\Management\Entities\Category;
+use Modules\Management\Entities\Group;
 use Modules\Management\Http\Requests\Backend\ManagementsRequest;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\DataTables\DataTables;
@@ -74,7 +74,7 @@ class ManagementsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::select('id', 'name', 'designation', 'category_name', 'status', 'updated_at');
+        $$module_name = $module_model::select('id', 'name', 'designation', 'group_name', 'status', 'updated_at');
 
         $data = $$module_name;
 
@@ -157,7 +157,7 @@ class ManagementsController extends Controller
 
         $module_action = 'Create';
 
-        $categories = Category::pluck('name', 'id');
+        $categories = Group::pluck('name', 'id');
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
@@ -253,7 +253,7 @@ class ManagementsController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        $categories = Category::pluck('name', 'id');
+        $categories = Group::pluck('name', 'id');
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 

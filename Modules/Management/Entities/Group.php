@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends BaseModel
+class Group extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
@@ -30,6 +30,6 @@ class Category extends BaseModel
      */
     protected static function newFactory()
     {
-        return \Modules\Management\Database\Factories\CategoryFactory::new();
+        return \Modules\Management\Database\Factories\GroupFactory::new();
     }
 }

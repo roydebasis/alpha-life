@@ -25,8 +25,8 @@ Route::group(['namespace' => '\Modules\Management\Http\Controllers\Frontend', 'a
      *
      * ---------------------------------------------------------------------
      */
-    $module_name = 'categories';
-    $controller_name = 'CategoriesController';
+    $module_name = 'groups';
+    $controller_name = 'GroupsController';
     Route::get("$module_name", ['as' => "$module_name.index", 'uses' => "$controller_name@index"]);
     Route::get("$module_name/{id}/{slug?}", ['as' => "$module_name.show", 'uses' => "$controller_name@show"]);
 });
@@ -59,8 +59,8 @@ Route::group(['namespace' => '\Modules\Management\Http\Controllers\Backend', 'as
      *
      * ---------------------------------------------------------------------
      */
-    $module_name = 'categories';
-    $controller_name = 'CategoriesController';
+    $module_name = 'groups';
+    $controller_name = 'GroupsController';
     Route::get("managements/$module_name/index_list", ['as' => "$module_name.index_list", 'uses' => "$controller_name@index_list"]);
     Route::get("managements/$module_name/index_data", ['as' => "$module_name.index_data", 'uses' => "$controller_name@index_data"]);
     Route::get("managements/$module_name/trashed", ['as' => "$module_name.trashed", 'uses' => "$controller_name@trashed"]);

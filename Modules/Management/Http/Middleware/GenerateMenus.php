@@ -49,13 +49,13 @@ class GenerateMenus
                 'class' => 'c-sidebar-nav-link',
             ]);
             // Submenu: Categories
-            $articles_menu->add('<i class="c-sidebar-nav-icon fas fa-sitemap"></i> Categories', [
-                'route' => 'backend.categories.index',
+            $articles_menu->add('<i class="c-sidebar-nav-icon fas fa-sitemap"></i> Groups', [
+                'route' => 'backend.groups.index',
                 'class' => 'c-sidebar-nav-item',
             ])
             ->data([
                 'order'         => 83,
-                'activematches' => 'admin/managements/categories*',
+                'activematches' => 'admin/managements/groups*',
                 'permission'    => ['edit_categories'],
             ])
             ->link->attr([

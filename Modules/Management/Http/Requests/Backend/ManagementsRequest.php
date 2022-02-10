@@ -27,7 +27,7 @@ class ManagementsRequest extends FormRequest
             'name'              => 'required|max:191',
             'slug'              => 'nullable|max:191',
             'designation'       => 'required',
-            'category_id'       => 'required|numeric',
+            'group_id'       => 'required|numeric',
             'created_by_alias'  => 'nullable|max:191',
             'image'    => 'required|max:191',
             'status'            => 'required',
