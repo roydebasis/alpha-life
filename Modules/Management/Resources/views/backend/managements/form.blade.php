@@ -111,10 +111,9 @@
                             $field_name = 'email';
                             $field_lable = __("management::$module_name.$field_name");
                             $field_placeholder = $field_lable;
-                            $required = "required";
                             ?>
-                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            {{ html()->label($field_lable, $field_name) }}
+                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control') }}
                         </div>
                     </div>
                 </div>
@@ -125,10 +124,9 @@
                             $field_name = 'facebook';
                             $field_lable = __("management::$module_name.$field_name");
                             $field_placeholder = $field_lable;
-                            $required = "required";
                             ?>
-                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            {{ html()->label($field_lable, $field_name) }}
+                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control') }}
                         </div>
                     </div>
                 </div>
@@ -139,10 +137,9 @@
                             $field_name = 'linkedin';
                             $field_lable = __("management::$module_name.$field_name");
                             $field_placeholder = $field_lable;
-                            $required = "required";
                             ?>
-                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            {{ html()->label($field_lable, $field_name) }}
+                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control') }}
                         </div>
                     </div>
                 </div>
@@ -153,10 +150,9 @@
                             $field_name = 'twitter';
                             $field_lable = __("management::$module_name.$field_name");
                             $field_placeholder = $field_lable;
-                            $required = "required";
                             ?>
-                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            {{ html()->label($field_lable, $field_name) }}
+                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control') }}
                         </div>
                     </div>
                 </div>
@@ -167,10 +163,9 @@
                             $field_name = 'instagram';
                             $field_lable = __("management::$module_name.$field_name");
                             $field_placeholder = $field_lable;
-                            $required = "required";
                             ?>
-                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            {{ html()->label($field_lable, $field_name) }}
+                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control') }}
                         </div>
                     </div>
                 </div>
@@ -181,10 +176,9 @@
                             $field_name = 'youtube';
                             $field_lable = __("management::$module_name.$field_name");
                             $field_placeholder = $field_lable;
-                            $required = "required";
                             ?>
-                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            {{ html()->label($field_lable, $field_name) }}
+                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control') }}
                         </div>
                     </div>
                 </div>
