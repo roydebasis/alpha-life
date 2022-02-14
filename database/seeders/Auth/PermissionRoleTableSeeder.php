@@ -94,6 +94,11 @@ class PermissionRoleTableSeeder extends Seeder
         ]);
         echo "\n _pages_ Permissions Created.";
 
+        \Artisan::call('auth:permission', [
+            'name' => 'menu',
+        ]);
+        echo "\n _menu_ Permissions Created.";
+
         echo "\n\n";
 
         // Assign Permissions to Roles
