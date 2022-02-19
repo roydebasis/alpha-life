@@ -2,7 +2,7 @@
 
 return [
 
-    'name'             => 'Name',
+    'name'             => 'Video Title',
     'slug'             => 'Slug',
     'created_by_alias' => 'Author Name Alias',
     'status'           => 'Status',
@@ -10,6 +10,6 @@ return [
     'meta_keywords'    => 'Meta Keywords',
     'meta_description' => 'Meta Description',
     'order'            => 'Order',
-    'url'            => 'Videos',
+    'url'            => 'Video\'s Link',
 
 ];
