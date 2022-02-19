@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Management\Http\Controllers\Backend;
+namespace Modules\Management\Http\Controllers\Frontend;
 
 use App\Authorizable;
 use App\Http\Controllers\Controller;
@@ -57,7 +57,7 @@ class GroupsController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(
-            "management::backend.$module_path.index_datatable",
+            "management::frontend.$module_path.index_datatable",
             compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
         );
     }
@@ -190,11 +190,11 @@ class GroupsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param string $slug
      *
      * @return Response
      */
-    public function show($id)
+    public function show($slug)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -205,15 +205,16 @@ class GroupsController extends Controller
 
         $module_action = 'Show';
 
-        $$module_name_singular = $module_model::findOrFail($id);
+        $$module_name_singular = $module_model::where('slug', $slug)->first();
 
-        $members = $$module_name_singular->managements()->latest()->paginate();
+        $first_member = $$module_name_singular->managements()->orderBy('order')->first();
+        $members = $$module_name_singular->managements()->where('id', '!=', $first_member->id)->orderBy('order')->paginate(9);
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(
-            "management::backend.$module_name.show",
-            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular", 'members')
+            "management::frontend.$module_name.show",
+            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular", 'members', 'first_member')
         );
     }
 

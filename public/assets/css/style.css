@@ -2574,6 +2574,11 @@ span.count-description {
     color: #fff;
 }
 
+.team-pagination {
+    margin: 30px 0;
+    text-align: right;
+}
+
 
 /* =-=-=-=-=-=-= Team Intro Section =-=-=-=-=-=-= */
 .team-intro-section {}
