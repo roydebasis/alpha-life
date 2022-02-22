@@ -80,11 +80,10 @@
             $field_name = 'image';
             $field_lable = __("management::$module_name.$field_name");
             $field_placeholder = $field_lable;
-            $required = "required";
             ?>
-            {!! Form::label("$field_name", "$field_lable") !!} {!! fielf_required($required) !!}
+            {!! Form::label("$field_name", "$field_lable") !!}
             <div class="input-group mb-3">
-                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required", 'aria-label'=>'Image', 'aria-describedby'=>'button-image']) }}
+                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(['aria-label'=>'Image', 'aria-describedby'=>'button-image']) }}
                 <div class="input-group-append">
                     <button class="btn btn-info" type="button" id="button-image"><i class="fas fa-folder-open"></i> @lang('Browse')</button>
                 </div>

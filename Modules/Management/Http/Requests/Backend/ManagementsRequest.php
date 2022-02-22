@@ -29,7 +29,7 @@ class ManagementsRequest extends FormRequest
             'designation'       => 'required',
             'group_id'       => 'required|numeric',
             'created_by_alias'  => 'nullable|max:191',
-            'image'    => 'required|max:191',
+            'image'    => 'max:191',
             'status'            => 'required',
         ];
     }

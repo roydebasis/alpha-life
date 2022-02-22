@@ -12,6 +12,7 @@
 {{--@endsection--}}
 
 @section('content')
+
     <!-- page-title-section start -->
     <section class="page-title-section about-us-one" data-stellar-background-ratio="0.1">
         <div class="container">
@@ -20,61 +21,149 @@
             </div>
         </div>
     </section>
+    @if($$module_name_singular->layout == 1)
+        <!-- page-title-section end -->
+        <!-- page-title-section start -->
+        <section class="service-section-v3 section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
 
-    <!-- page-title-section end -->
-    <!-- page-title-section start -->
-    <section class="service-section-v3 section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-3">
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="team-member">
+                            <div class="team-thumb">
+                                <div class="thumb-overlay"></div>
+                                @if($first_member->image)
+                                    <img src="{{asset($first_member->image)}}" alt="" class="bod">
+                                @else
+                                    <img src="{{asset('assets/images/team/placeMan.jpg')}}" alt="" class="bod">
+                                @endif
 
-                </div>
-                <div class="col-sm-6">
-                    <div class="team-member">
-                        <div class="team-thumb">
-                            <div class="thumb-overlay"></div>
-                            <img src="{{asset($first_member->image)}}" alt="" class="bod">
+                                <div class="member-info text-center">
+                                    <h3>{{ $first_member->name }}</h3>
 
-                            <div class="member-info text-center">
-                                <h3>{{ $first_member->name }}</h3>
+                                    <span class="title">{{ $first_member->designation }}</span>
+                                    <ul class="social-link list-inline">
+                                        <li><a href="{{ 'mailto:'. $first_member->email }}" target="_blank"><i
+                                                    class="fa fa-envelope"></i></a></li>
+                                        <li><a href="{{ $first_member->facebook ?? '#' }}" @if($first_member->facebook)target="_blank" @endif><i class="fa fa-facebook"></i></a></li>
 
-                                <span class="title">{{ $first_member->designation }}</span>
-                                <ul class="social-link list-inline">
-                                    <li><a href="{{ 'mailto:'. $first_member->email }}" target="_blank"><i
-                                                class="fa fa-envelope"></i></a></li>
-                                    <li><a href="{{ $first_member->facebook }}"><i class="fa fa-facebook"></i></a></li>
-
-                                </ul>
+                                    </ul>
+                                </div>
+                                <span class="taemTitle">{{ $first_member->name }}</span>
                             </div>
-                            <span class="taemTitle">{{ $first_member->name }}</span>
-                        </div>
+                        </div><!-- /.team-member -->
+
                     </div><!-- /.team-member -->
 
-                </div><!-- /.team-member -->
+                    <div class="col-sm-3">
 
-                <div class="col-sm-3">
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    @foreach($members as $member)
+                        <div class="col-sm-4">
+                            <div class="team-member">
+                                <div class="team-thumb">
+                                    <div class="thumb-overlay"></div>
+                                    @if($member->image)
+                                        <img src="{{asset($member->image)}}" alt="" class="bod">
+                                    @else
+                                        <img src="{{asset('assets/images/team/placeMan.jpg')}}" alt="" class="bod">
+                                    @endif
+
+                                    <div class="member-info text-center">
+                                        <h3>{{ $member->name }}</h3>
+
+                                        <span class="title">{{ $member->designation }}</span>
+                                        <ul class="social-link list-inline">
+                                            <li><a href="{{ 'mailto:'. $member->email }}" target="_blank"><i
+                                                        class="fa fa-envelope"></i></a></li>
+                                            <li><a href="{{ $member->facebook?? '#' }}" @if($member->facebook)target="_blank" @endif><i class="fa fa-facebook"></i></a></li>
+
+                                        </ul>
+                                    </div>
+                                    <span class="taemTitle">{{ $member->name }}</span>
+
+                                </div>
+                            </div><!-- /.team-member -->
+
+                        </div><!-- /.team-member -->
+                    @endforeach
+
 
                 </div>
-            </div>
 
-            <div class="row">
+                <div class="team-pagination">
+                    {!! $members->links() !!}
+                </div>
 
-                @foreach($members as $member)
+
+
+            </div><!-- /.container -->
+        </section>
+        <!-- page-title-section end -->
+
+    @else
+        <!-- page-title-section start -->
+        <section class="service-section-v3 section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+
+                    </div>
                     <div class="col-sm-4">
                         <div class="team-member">
                             <div class="team-thumb">
                                 <div class="thumb-overlay"></div>
-                                <img src="{{asset($member->image)}}" alt="" class="bod">
+                                @if($first_member->image)
+                                    <img src="{{asset($first_member->image)}}" alt="">
+                                @else
+                                    <img src="{{asset('assets/images/team/placeMan.jpg')}}" alt="">
+                                @endif
+
+                                <div class="member-info text-center">
+                                    <h3>{{ $first_member->name }}</h3>
+
+                                    <span class="title">{{ $first_member->designation }}</span>
+                                    <ul class="social-link list-inline">
+                                        <li><a href="{{ 'mailto:'. $first_member->email }}" target="_blank"><i class="fa fa-envelope"></i></a></li>
+                                        <li><a href="{{ $first_member->facebook ?? '#' }}" @if($first_member->facebook)target="_blank" @endif><i class="fa fa-facebook"></i></a></li>
+                                    </ul>
+                                </div>
+                                <span class="taemTitle">{{ $first_member->name }}</span>
+                            </div>
+                        </div><!-- /.team-member -->
+
+                    </div><!-- /.team-member -->
+
+                    <div class="col-sm-4">
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    @foreach($members as $member)
+                        <div class="col-sm-3">
+                        <div class="team-member">
+                            <div class="team-thumb">
+                                <div class="thumb-overlay"></div>
+                                @if($member->image)
+                                    <img src="{{asset($member->image)}}" alt="">
+                                @else
+                                    <img src="{{asset('assets/images/team/placeMan.jpg')}}" alt="">
+                                @endif
 
                                 <div class="member-info text-center">
                                     <h3>{{ $member->name }}</h3>
 
                                     <span class="title">{{ $member->designation }}</span>
                                     <ul class="social-link list-inline">
-                                        <li><a href="{{ 'mailto:'. $member->email }}" target="_blank"><i
-                                                    class="fa fa-envelope"></i></a></li>
-                                        <li><a href="{{ $member->facebook }}"><i class="fa fa-facebook"></i></a></li>
-
+                                        <li><a href="{{ 'mailto:'. $member->email }}" target="_blank"><i class="fa fa-envelope"></i></a></li>
+                                        <li><a href="{{ $member->facebook?? '#' }}" @if($member->facebook)target="_blank" @endif><i class="fa fa-facebook"></i></a></li>
                                     </ul>
                                 </div>
                                 <span class="taemTitle">{{ $member->name }}</span>
@@ -83,20 +172,12 @@
                         </div><!-- /.team-member -->
 
                     </div><!-- /.team-member -->
-                @endforeach
+                    @endforeach
+                </div>
+            </div><!-- /.container -->
+        </section>
 
-
-            </div>
-
-            <div class="team-pagination">
-                {!! $members->links() !!}
-            </div>
-
-
-
-        </div><!-- /.container -->
-    </section>
-
-    <!-- page-title-section end -->
+        <!-- page-title-section end -->
+    @endif
 
 @endsection
