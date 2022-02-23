@@ -18,8 +18,8 @@ class GenerateMenus
     {
         \Menu::make('admin_sidebar', function ($menu) {
 
-            // Articles Dropdown
-            $articles_menu = $menu->add('<i class="c-sidebar-nav-icon fas fa-file-alt"></i> Managements', [
+            // Management Dropdown
+            $articles_menu = $menu->add('<i class="c-sidebar-nav-icon fas fa-users"></i> Managements', [
                 'class' => 'c-sidebar-nav-dropdown',
             ])
             ->data([
@@ -36,7 +36,7 @@ class GenerateMenus
             ]);
 
             // Submenu: Posts
-            $articles_menu->add('<i class="c-sidebar-nav-icon fas fa-file-alt"></i> Members', [
+            $articles_menu->add('<i class="c-sidebar-nav-icon fas fa-user"></i> Members', [
                 'route' => 'backend.managements.index',
                 'class' => 'c-sidebar-nav-item',
             ])
