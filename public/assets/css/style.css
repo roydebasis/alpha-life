@@ -2579,6 +2579,24 @@ span.count-description {
     text-align: right;
 }
 
+.box {
+    width: 100%;
+    margin: 10px;
+    display: table;
+}
+
+.box .box-row {
+    display: table-row;
+    width: 100%;
+}
+
+.box .box-cell {
+    display: table-cell;
+    /* border: 1px solid black;*/
+    width: 25%;
+    padding: 10px;
+}
+
 
 /* =-=-=-=-=-=-= Team Intro Section =-=-=-=-=-=-= */
 .team-intro-section {}
