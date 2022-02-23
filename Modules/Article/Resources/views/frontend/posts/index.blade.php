@@ -1,29 +1,15 @@
 @extends('frontend.layouts.app')
 
-@section('title') {{ __("Posts") }} @endsection
+@section('title') {{ __($module_title) }} @endsection
 
 @section('content')
-
-    <!-- page-title-section start -->
-    <section class="page-title-section about-us-one" data-stellar-background-ratio="0.1">
-        <div class="container">
-            <div class="page-header text-center">
-                <h1>Recent News</h1>
-            </div>
-        </div>
-    </section>
-    <!-- page-title-section end -->
-
+    <x-page-header pageTitle="Recent News"/>
 
     <!-- Recent News Start-->
     <section class="blog-section blog-grid v2 ptb-90">
         <div class="container">
             <div class="row">
                 <div id="blogGrid">
-{{--                    @php--}}
-{{--                        dd($$module_name);--}}
-{{--                    @endphp--}}
-
                     @foreach ($$module_name as $$module_name_singular)
                     @php
                         $details_url = route("frontend.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
