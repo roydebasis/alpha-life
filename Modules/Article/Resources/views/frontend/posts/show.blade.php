@@ -11,7 +11,7 @@
 
                     <div style="border-bottom-right-radius: 50px; border-top-left-radius: 50px; overflow: hidden; background-color: white; border-left: 1px solid #2a2a86; border-right: 1px solid #2a2a86; border-bottom: 1px solid #2a2a86;">
                         @if($$module_name_singular->featured_image)
-                            <div style="border-top-left-radius: 50px; overflow: hidden;">
+                            <div style="border-top-left-radius: 50px; overflow: hidden; margin: 0 auto">
                                 <img style="display: block; max-width: 100%; height: auto;" src="{{ url($$module_name_singular->featured_image) }}">
                             </div>
                         @endif
