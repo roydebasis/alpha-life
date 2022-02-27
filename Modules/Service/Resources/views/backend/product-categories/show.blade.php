@@ -47,18 +47,18 @@
             <div class="col-12 col-sm-7">
 
                 <div class="text-center">
-                    <a href="{{route("frontend.$module_name.show", [encode_id($$module_name_singular->id), $$module_name_singular->slug])}}" class="btn btn-success" target="_blank"><i class="fas fa-link"></i> Public View</a>
+{{--                    <a href="{{route("frontend.$module_name.show", [encode_id($$module_name_singular->id), $$module_name_singular->slug])}}" class="btn btn-success" target="_blank"><i class="fas fa-link"></i> Public View</a>--}}
                 </div>
                 <hr>
 
                 <div class="card">
                     <div class="card-header">
-                        Posts
+                        Members
                     </div>
 
                     <div class="card-body">
                         <ul class="fa-ul">
-                            @forelse($posts as $row)
+                            @forelse($members as $row)
                             @php
                             switch ($row->status) {
                                 case 0:
@@ -83,7 +83,7 @@
                             }
                             @endphp
                             <li>
-                                <span class="fa-li"><i class="fas fa-check-square {{$text_class}}"></i></span> <a href="{{route('backend.posts.show', $row->id)}}">{{$row->name}}</a> <a href="{{route('frontend.posts.show', [encode_id($row->id), $row->slug])}}" class="btn btn-sm btn-outline-primary" target="_blank" data-toggle="tooltip" title="Public View" > <i class="fas fa-external-link-square-alt"></i> </a>
+                                <span class="fa-li"><i class="fas fa-check-square {{$text_class}}"></i></span> <a href="{{route('backend.managements.show', $row->id)}}">{{$row->name}}</a> <a href="{{route('frontend.managements.show', [encode_id($row->id), $row->slug])}}" class="btn btn-sm btn-outline-primary" target="_blank" data-toggle="tooltip" title="Public View" > <i class="fas fa-external-link-square-alt"></i> </a>
                             </li>
                             @empty
                             <p class="text-center">
@@ -91,7 +91,7 @@
                             </p>
                             @endforelse
                         </ul>
-                        {{$posts->links()}}
+                        {{$members->links()}}
                     </div>
                 </div>
             </div>

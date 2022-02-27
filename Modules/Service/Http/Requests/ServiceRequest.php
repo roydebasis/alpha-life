@@ -19,7 +19,7 @@ class ServiceRequest extends FormRequest
 //            'intro'             => 'required',
             'content'           => 'required',
             'created_by_alias'  => 'nullable|max:191',
-            'featured_image'    => 'required|max:191',
+            'featured_image'    => 'nullable|max:191',
             'is_featured'       => 'required',
             'order'             => 'nullable|numeric',
             'status'            => 'required',
