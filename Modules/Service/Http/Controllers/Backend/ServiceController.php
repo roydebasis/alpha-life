@@ -202,14 +202,14 @@ class ServiceController extends Controller
         $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Edit';
-
+        $categories = ProductCategory::pluck('name', 'id');
         $$module_name_singular = $module_model::findOrFail($id);
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view(
             "service::backend.$module_name.edit",
-            compact( 'module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular")
+            compact( 'categories', 'module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular")
         );
     }
 
