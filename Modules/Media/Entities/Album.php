@@ -25,6 +25,13 @@ class Album extends BaseModel
     protected static $logAttributes = ['title', 'date', 'place'];
 
 
+    public function photos()
+    {
+        return $this->belongsToMany('Photo');
+    }
+
+
+
     /**
      * Create a new factory instance for the model.
      *

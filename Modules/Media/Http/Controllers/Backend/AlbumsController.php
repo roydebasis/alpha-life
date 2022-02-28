@@ -8,7 +8,9 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Laracasts\Flash\Flash;
 use Modules\Article\Entities\Category;
@@ -184,9 +186,24 @@ class AlbumsController extends Controller
         $module_action = 'Store';
         $data = $request->all();
 
-        Log::info($data);
+//        Log::info($data);
 
         $$module_name_singular = $module_model::create($data);
+
+        if ($request->hasFile("images")) {
+            Log::info('hello');
+            $filesArr = [];
+            $files = $request->file("images");
+            Log::info($files);
+            foreach ($files as $file) {
+                $imageName = time().'_'.$file->getClientOriginalName();
+                Storage::disk('public')->put('/files' . $imageName, File::get($file));
+                $filePath   = 'storage/files/' . $imageName;
+                array_push($filesArr, array('name' => $imageName, 'url' => $filePath));
+                Log::info((string)$filesArr);
+
+            }
+        }
 
 //        event(new PostCreated($$module_name_singular));
 

@@ -24,6 +24,11 @@ class Photo extends BaseModel
     protected static $logOnlyDirty = true;
     protected static $logAttributes = ['name', 'url', 'status', 'meta_title', 'meta_keywords', 'meta_description', 'created_at', 'updated_at'];
 
+    public function albums()
+    {
+        return $this->belongsToMany('Album');
+    }
+
     /**
      * Set the 'meta title'.
      * If no value submitted use the 'Title'.

@@ -44,6 +44,24 @@
             </div>
         </div>
     </div>
+    <div class="col-6">
+        <div class="form-group">
+            <?php
+            $field_name = 'images[]';
+            $field_lable = "Images";
+            $field_placeholder = $field_lable;
+            $required = "";
+            ?>
+            {!! Form::label("$field_name", "$field_lable") !!} {!! fielf_required($required) !!}
+            <div class="input-group mb-3">
+                {{ html()->file($field_name)->class('form-control')->attributes(["$required", "multiple", 'aria-label'=>'Image', 'aria-describedby'=>'button-image']) }}
+{{--                <div class="input-group-append">--}}
+{{--                    <button class="btn btn-info" type="button" id="button-image"><i class="fas fa-folder-open"></i> @lang('Browse')</button>--}}
+{{--                </div>--}}
+            </div>
+        </div>
+    </div>
+
 
 </div>
 

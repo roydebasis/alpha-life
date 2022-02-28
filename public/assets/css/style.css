@@ -5751,6 +5751,10 @@ Static Homepage
     }
 }
 
+.contact-form-input-height {
+    height: 20px;
+}
+
 /*404 Page*/
 .error-wrapper {
     padding: 200px 0;
