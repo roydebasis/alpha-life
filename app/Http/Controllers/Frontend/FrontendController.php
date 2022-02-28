@@ -59,6 +59,18 @@ class FrontendController extends Controller
 
         return view('frontend.blog', compact('body_class'));
     }
+    /**
+     * Contacts Page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function contact()
+    {
+        $body_class = '';
+
+        return view('frontend.contact', compact('body_class'));
+    }
+
 
     /**
      * Page view

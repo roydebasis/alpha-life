@@ -17,12 +17,12 @@ class GenerateMenus
     public function handle($request, Closure $next)
     {
         \Menu::make('admin_sidebar', function ($menu) {
-            $menu->add('<i class="c-sidebar-nav-icon fas fa-image"></i> Gallery', [
-                'route' => 'backend.photos.index',
+            $menu->add('<i class="c-sidebar-nav-icon fab fa-servicestack"></i> Gallery', [
+                'route' => 'backend.albums.index',
                 'class' => 'c-sidebar-nav-item',
             ])->data([
                 'order'         => 81,
-                'activematches' => 'admin/photos*',
+                'activematches' => 'admin/albums*',
                 'permission'    => ['edit_photos'],
             ])
                 ->link->attr([

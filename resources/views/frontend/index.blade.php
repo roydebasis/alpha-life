@@ -656,7 +656,7 @@
                         <p>You can contact us to talk more about your Insurance Plan.</p>
                     </div>
                     <div class="col-sm-3">
-                        <a href="#" class="btn btn-primary">Message Us</a>
+                        <a href="{{ url('contacts') }}" class="btn btn-primary">Message Us</a>
                     </div>
                 </div><!-- /.row -->
             </div>
