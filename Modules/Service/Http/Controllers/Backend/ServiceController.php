@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use Log;
 use Auth;
 use Flash;
+use Modules\Service\Entities\ProductCategory;
 use Modules\Service\Http\Requests\ServiceRequest;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\DataTables\DataTables;
@@ -22,7 +23,7 @@ class ServiceController extends Controller
     public function __construct()
     {
         // Page Title
-        $this->module_title = 'Services';
+        $this->module_title = 'Products';
 
         // module name
         $this->module_name = 'services';
@@ -115,14 +116,12 @@ class ServiceController extends Controller
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
-
         $module_action = 'Create';
-
-        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        $categories = ProductCategory::pluck('name', 'id');
 
         return view(
             "service::backend.$module_path.create",
-            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular')
+            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', 'categories')
         );
     }
 
@@ -203,14 +202,14 @@ class ServiceController extends Controller
         $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Edit';
-
+        $categories = ProductCategory::pluck('name', 'id');
         $$module_name_singular = $module_model::findOrFail($id);
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view(
             "service::backend.$module_name.edit",
-            compact( 'module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular")
+            compact( 'categories', 'module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular")
         );
     }
 

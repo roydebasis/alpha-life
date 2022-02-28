@@ -1,10 +1,13 @@
 <?php
 
-namespace Modules\Service\Http\Controllers;
+namespace Modules\Service\Http\Controllers\Frontend;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Str;
+use Modules\Page\Entities\Page;
+use Modules\Service\Entities\Service;
 
 class ServiceController extends Controller
 {
@@ -14,7 +17,10 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        return view('service::index');
+        $content = Service::where('status', 1)->orderBy('order', 'asc')->get();
+        $meta_page_type = 'page';
+//        dd($content);
+        return view('service::frontend.products.index', compact('content', 'meta_page_type'));
     }
 
     /**
@@ -41,9 +47,12 @@ class ServiceController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
+    public function show($slug)
     {
-        return view('service::show');
+        $content = Service::where('slug', $slug)->first();
+        $meta_page_type = 'page';
+
+        return view('service::frontend.products.show', compact('content', 'meta_page_type'));
     }
 
     /**
