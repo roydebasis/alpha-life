@@ -18,11 +18,11 @@ class GenerateMenus
     {
         \Menu::make('admin_sidebar', function ($menu) {
             $menu->add('<i class="c-sidebar-nav-icon fab fa-servicestack"></i> Gallery', [
-                'route' => 'backend.photos.index',
+                'route' => 'backend.albums.index',
                 'class' => 'c-sidebar-nav-item',
             ])->data([
                 'order'         => 81,
-                'activematches' => 'admin/photos*',
+                'activematches' => 'admin/albums*',
                 'permission'    => ['edit_photos'],
             ])
                 ->link->attr([
