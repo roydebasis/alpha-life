@@ -8,7 +8,7 @@ return [
     'intro'            => 'Intro',
     'content'          => 'Content',
     'featured_image'   => 'Featured Image',
-    'category_id'      => 'Category',
+    'product_category_id'      => 'Category',
     'type'             => 'Type',
     'is_featured'      => 'Is Featured',
     'tags'             => 'Tags',

@@ -32,7 +32,7 @@ class GenerateMenus
         })->sortBy('order');
 
         \Menu::make('admin_sidebar', function ($menu) {
-            $menu->add('<i class="c-sidebar-nav-icon fab fa-servicestack"></i> Videos', [
+            $menu->add('<i class="c-sidebar-nav-icon fas fa-video"></i> Videos', [
                 'route' => 'backend.videos.index',
                 'class' => 'c-sidebar-nav-item',
             ])->data([

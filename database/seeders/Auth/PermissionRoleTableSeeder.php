@@ -62,6 +62,9 @@ class PermissionRoleTableSeeder extends Seeder
         \Artisan::call('auth:permission', [
             'name' => 'services',
         ]);
+        \Artisan::call('auth:permission', [
+            'name' => 'service_category',
+        ]);
         echo "\n _Services_ Permissions Created.";
 
         \Artisan::call('auth:permission', [
