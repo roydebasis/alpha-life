@@ -121,24 +121,24 @@
                                                                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">{{ $subChild['label'] }}</a>
                                                                 <ul class="dropdown-menu">
                                                                     @foreach( $subChild['child'] as $thirdLevel )
-                                                                        <li><a href="{{ $thirdLevel['link'] }}">{{ $thirdLevel['label'] }}</a></li>
+                                                                        <li><a href="{{ url($thirdLevel['link']) }}">{{ $thirdLevel['label'] }}</a></li>
                                                                     @endforeach
                                                                 </ul>
                                                             </li>
                                                         @else
-                                                            <li><a href="{{ $subChild['link'] }}">{{ $subChild['label'] }}</a></li>
+                                                            <li><a href="{{ url($subChild['link']) }}">{{ $subChild['label'] }}</a></li>
                                                         @endif
                                                     @endforeach
                                                 </ul>
                                             </li>
                                         @else
-                                            <li><a href="{{ $child['link'] }}">{{ $child['label'] }}</a></li>
+                                            <li><a href="{{ url($child['link']) }}">{{ $child['label'] }}</a></li>
                                         @endif
                                     @endforeach
                                 </ul>
                             </li>
                         @else
-                            <li><a href="{{ $menu['link'] }}" class="menu-item">{{ $menu['label']  }}</a></li>
+                            <li><a href="{{ url($menu['link']) }}" class="menu-item">{{ $menu['label']  }}</a></li>
                         @endif
                     @endforeach
                     <li>&nbsp;</li>
