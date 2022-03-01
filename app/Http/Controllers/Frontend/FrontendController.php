@@ -20,7 +20,7 @@ class FrontendController extends Controller
     {
         $body_class = '';
         $blogs = Post::latest()->with(['category', 'tags', 'comments'])->take(3)->get();
-        $insurancePlans = Service::where('product_category_id')
+//        $insurancePlans = Service::where('product_category_id')
         return view('frontend.index', compact('body_class', 'blogs'));
     }
 
