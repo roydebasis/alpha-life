@@ -17,6 +17,7 @@ use Modules\Article\Entities\Category;
 use Modules\Article\Events\PostCreated;
 use Modules\Article\Events\PostUpdated;
 use Modules\Article\Http\Requests\Backend\PostsRequest;
+use Modules\Media\Entities\Photo;
 use Modules\Media\Http\Requests\Backend\AlbumRequest;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\DataTables\DataTables;
@@ -190,19 +191,12 @@ class AlbumsController extends Controller
 
         $$module_name_singular = $module_model::create($data);
 
-        if ($request->hasFile("images")) {
-            Log::info('hello');
-            $filesArr = [];
-            $files = $request->file("images");
-            Log::info($files);
-            foreach ($files as $file) {
-                $imageName = time().'_'.$file->getClientOriginalName();
-                Storage::disk('public')->put('/files' . $imageName, File::get($file));
-                $filePath   = 'storage/files/' . $imageName;
-                array_push($filesArr, array('name' => $imageName, 'url' => $filePath));
-                Log::info((string)$filesArr);
-
-            }
+        if ($request->has("url")) {
+            $sepItems = explode('/', $request->url);
+            $imageName = time().'_'. $sepItems[3];
+            $newImage = new Photo(array('name' => $imageName,
+                'url' => $data['url']));
+            $$module_name_singular->photos()->save($newImage);
         }
 
 //        event(new PostCreated($$module_name_singular));
@@ -231,7 +225,8 @@ class AlbumsController extends Controller
 
         $module_action = 'Show';
 
-        $$module_name_singular = $module_model::withTrashed()->findOrFail($id);
+        $$module_name_singular = $module_model::withTrashed()->with('photos')->findOrFail($id);
+        Log::info($$module_name_singular);
 
         $activities = Activity::where('subject_type', '=', $module_model)
             ->where('log_name', '=', $module_name)
@@ -300,14 +295,13 @@ class AlbumsController extends Controller
 
         $$module_name_singular->update($request->all());
 
-//        if ($request->input('tags_list') == null) {
-//            $tags_list = [];
-//        } else {
-//            $tags_list = $request->input('tags_list');
-//        }
-//        $$module_name_singular->tags()->sync($tags_list);
-
-//        event(new PostUpdated($$module_name_singular));
+        if ($request->has("url") && !empty($request->input('url'))) {
+            $sepItems = explode('/', $request->url);
+            $imageName = time().'_'. $sepItems[3];
+            $newImage = new Photo(array('name' => $imageName,
+                'url' => $request->input('url')));
+            $$module_name_singular->photos()->save($newImage);
+        }
 
         Flash::success("<i class='fas fa-check'></i> '".Str::singular($module_title)."' Updated Successfully")->important();
 
@@ -343,6 +337,35 @@ class AlbumsController extends Controller
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return redirect("admin/$module_name");
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function deletePhoto($albumId, $id)
+    {
+//        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+//        $module_path = $this->module_path;
+//        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+//        $module_action = 'destroy';
+
+        $$module_name_singular = $module_model::findOrFail($albumId);
+
+        $$module_name_singular->photos()->detach($id);
+
+        Flash::success('<i class="fas fa-check"></i> '.label_case("Photo").' Deleted Successfully!')->important();
+
+//        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
+
+        return redirect("admin/$module_name/$albumId/edit");
     }
 
     /**

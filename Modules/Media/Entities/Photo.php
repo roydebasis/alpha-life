@@ -26,7 +26,7 @@ class Photo extends BaseModel
 
     public function albums()
     {
-        return $this->belongsToMany('Album');
+        return $this->belongsToMany(Album::class);
     }
 
     /**

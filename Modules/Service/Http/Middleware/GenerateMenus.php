@@ -49,18 +49,18 @@ class GenerateMenus
                     'class' => 'c-sidebar-nav-link',
                 ]);
             // Submenu: Categories
-            $media_menu->add('<i class="c-sidebar-nav-icon fas fa-sitemap"></i> Category', [
-                'route' => 'backend.product-categories.index',
-                'class' => 'c-sidebar-nav-item',
-            ])
-                ->data([
-                    'order'         => 83,
-                    'activematches' => 'admin/product-categories*',
-                    'permission'    => ['edit_service_category'],
-                ])
-                ->link->attr([
-                    'class' => 'c-sidebar-nav-link',
-                ]);
+//            $media_menu->add('<i class="c-sidebar-nav-icon fas fa-sitemap"></i> Category', [
+//                'route' => 'backend.product-categories.index',
+//                'class' => 'c-sidebar-nav-item',
+//            ])
+//                ->data([
+//                    'order'         => 83,
+//                    'activematches' => 'admin/product-categories*',
+//                    'permission'    => ['edit_service_category'],
+//                ])
+//                ->link->attr([
+//                    'class' => 'c-sidebar-nav-link',
+//                ]);
         })->sortBy('order');
 
 
