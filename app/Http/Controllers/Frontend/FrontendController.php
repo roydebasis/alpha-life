@@ -20,8 +20,17 @@ class FrontendController extends Controller
     {
         $body_class = '';
         $blogs = Post::latest()->with(['category', 'tags', 'comments'])->take(3)->get();
-//        $insurancePlans = Service::where('product_category_id')
-        return view('frontend.index', compact('body_class', 'blogs'));
+        $insurancePlans = Service::where('product_category_id', 1)
+            ->where('status', 1)
+            ->orderBy('order', 'asc')
+            ->take(6)
+            ->get();
+        $suplementaryPlans = Service::where('product_category_id', 2)
+            ->where('status', 1)
+            ->orderBy('order', 'asc')
+            ->take(6)
+            ->get();
+        return view('frontend.index', compact('body_class', 'blogs', 'insurancePlans', 'suplementaryPlans'));
     }
 
     /**

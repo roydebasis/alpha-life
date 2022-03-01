@@ -61,7 +61,7 @@
             $field_name = 'featured_image';
             $field_lable = __("page::$module_name.$field_name");
             $field_placeholder = $field_lable;
-            $required = "required";
+            $required = "";
             ?>
             {!! Form::label("$field_name", "$field_lable") !!} {!! fielf_required($required) !!}
             <div class="input-group mb-3">
