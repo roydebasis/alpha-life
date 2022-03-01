@@ -18,25 +18,10 @@
 */
 Route::group(['namespace' => '\Modules\Service\Http\Controllers\Frontend', 'as' => 'frontend.', 'middleware' => 'web', 'prefix' => ''], function () {
 
-    /*
-     *
-     *  Posts Routes
-     *
-     * ---------------------------------------------------------------------
-     */
-    $module_name = 'managements';
-    $controller_name = 'ManagementsController';
-    /*
-     *
-     *  Groups Routes
-     *
-     * ---------------------------------------------------------------------
-     */
-    $module_name = 'services';
+    $module_name = 'plans';
     $controller_name = 'ServiceController';
     Route::get("$module_name", ['as' => "$module_name.index", 'uses' => "$controller_name@index"]);
-    Route::get("products", ['as' => "$module_name.show", 'uses' => "$controller_name@index"]);
-    Route::get("products/{slug?}", ['as' => "$module_name.show", 'uses' => "$controller_name@show"]);
+    Route::get("$module_name/{slug?}", ['as' => "$module_name.show", 'uses' => "$controller_name@show"]);
 });
 
 

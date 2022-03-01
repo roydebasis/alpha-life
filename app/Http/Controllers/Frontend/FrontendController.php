@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Modules\Article\Entities\Post;
 use Modules\Page\Entities\Page;
+use Modules\Service\Entities\Service;
 
 class FrontendController extends Controller
 {
@@ -19,7 +20,17 @@ class FrontendController extends Controller
     {
         $body_class = '';
         $blogs = Post::latest()->with(['category', 'tags', 'comments'])->take(3)->get();
-        return view('frontend.index', compact('body_class', 'blogs'));
+        $insurancePlans = Service::where('product_category_id', 1)
+            ->where('status', 1)
+            ->orderBy('order', 'asc')
+            ->take(6)
+            ->get();
+        $suplementaryPlans = Service::where('product_category_id', 2)
+            ->where('status', 1)
+            ->orderBy('order', 'asc')
+            ->take(6)
+            ->get();
+        return view('frontend.index', compact('body_class', 'blogs', 'insurancePlans', 'suplementaryPlans'));
     }
 
     /**
@@ -78,8 +89,13 @@ class FrontendController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function getPage($slug) {
-        $content = Page::where('slug', $slug)->first();
         $meta_page_type = 'page';
+        //redirect to static page
+        if ($slug == 'premium-calculator') {
+            return view('frontend.premium-calculator', compact('meta_page_type'));
+        }
+        $content = Page::where('slug', $slug)->first();
+
         return view('frontend.page', compact('content', 'meta_page_type'));
     }
 }

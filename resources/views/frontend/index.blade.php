@@ -341,33 +341,40 @@
         <div class="container">
             <div class="row text-center">
                 <div class="col-xs-6 col-sm-4 col-md-3">
-                    <div class="process-box">
-                        <i class="flaticon-cup7"></i>
-                        <h3>Premium Calculator </h3>
-                    </div><!-- /.process-box -->
-                </div><!-- /.col-xs-2 -->
+                    <a href="{{ url('page/premium-calculator') }}">
+                        <div class="process-box">
+                            <i class="flaticon-cup7"></i>
+                            <h3>Premium Calculator</h3>
+                        </div>
+                    </a>
+                </div>
 
                 <div class="col-xs-6 col-sm-4 col-md-3">
-                    <div class="process-box">
-                        <i class="flaticon-light110"></i>
-                        <h3>Policy Information </h3>
-                    </div><!-- /.process-box -->
-                </div><!-- /.col-xs-2 -->
+                    <a href="{{ url('page/policy-information') }}">
+                        <div class="process-box">
+                            <i class="flaticon-light110"></i>
+                            <h3>Policy Information </h3>
+                        </div>
+                    </a>
+                </div>
 
                 <div class="col-xs-6 col-sm-4 col-md-3">
-                    <div class="process-box">
-                        <i class="flaticon-paint104"></i>
-                        <h3>Insurance Plan </h3>
-                    </div><!-- /.process-box -->
-                </div><!-- /.col-xs-2 -->
+                    <a href="{{ url('plans') }}">
+                        <div class="process-box">
+                            <i class="flaticon-paint104"></i>
+                            <h3>Insurance Plan </h3>
+                        </div>
+                    </a>
+                </div>
 
                 <div class="col-xs-6 col-sm-4 col-md-3">
-                    <div class="process-box">
-                        <i class="flaticon-paint104"></i>
-                        <h3>Sign In </h3>
-
-                    </div><!-- /.process-box -->
-                </div><!-- /.col-xs-2 -->
+                    <a href="{{ url('news') }}">
+                        <div class="process-box">
+                            <i class="flaticon-paint104"></i>
+                            <h3>Recent News</h3>
+                        </div>
+                    </a>
+                </div>
             </div><!-- /.row -->
         </div><!-- /.container -->
     </section>
@@ -382,100 +389,27 @@
                 <h2 class="section-title">Exclusive Insurance Plan</h2>
                 <hr>
             </div>
-            <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
-                <div class="col-md-4 service-box-container">
-                    <div style="border-top-left-radius: 50px; overflow: hidden; border-left: 1px solid #2a2a86;">
-                        <img style="display: block; max-width: 100%; height: auto;" src="{{ asset('assets/images/i1.jpg') }}">
-                    </div>
-                    <div
-                        style="border-bottom-right-radius: 50px; overflow: hidden; background-color: white; border-left: 1px solid #2a2a86; border-right: 1px solid #2a2a86;border-bottom: 1px solid #2a2a86;">
-                        <div class="service-box">
-                            <h3 style="text-align: center;"> Denmohor Bima </h3>
-                            <p style="text-align: justify;"> Denmohor Insurance plan is actually a savings insurance
-                                plan. For making the family life fully confident & pure this policy can play a vital
-                                role considering financial matters. Considering the reality <a
-                                    href="denmohorbima.html"><strong>More...</strong></a></p>
+            @if(!$insurancePlans->isEmpty())
+                <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
+                    @foreach($insurancePlans as $insurancePlan)
+                        <div class="col-md-4 service-box-container">
+                            @if($insurancePlan->featured_image)
+                                <div style="border-top-left-radius: 50px; overflow: hidden; border-left: 1px solid #2a2a86;">
+                                    <img style="display: block; max-width: 100%; height: auto;" src="{{ url($insurancePlan->featured_image) }}">
+                                </div>
+                            @endif
+                            <div
+                                style="border-bottom-right-radius: 50px; overflow: hidden; background-color: white; border-left: 1px solid #2a2a86; border-right: 1px solid #2a2a86;border-bottom: 1px solid #2a2a86;">
+                                <div class="service-box">
+                                    <h3 style="text-align: center;"> {{ $insurancePlan->name }} </h3>
+                                    <p style="text-align: justify;"> {{ $insurancePlan->intro }} <a
+                                            href="{{ route('frontend.plans.show', ['slug' => $insurancePlan->slug]) }}"><strong>More...</strong></a></p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
-                <div class="col-md-4 service-box-container">
-                    <div style="border-top-left-radius: 50px; overflow: hidden;">
-                        <img style="display: block; max-width: 100%; height: auto;" src="{{ asset('assets/images/i2.jpg') }}">
-                    </div>
-                    <div
-                        style="border-bottom-right-radius: 50px; overflow: hidden; background-color: white; border-left: 1px solid #2a2a86; border-right: 1px solid #2a2a86;border-bottom: 1px solid #2a2a86;">
-                        <div class="service-box">
-                            <h3 style="text-align: center;"> DPS Gold</h3>
-                            <p style="text-align: justify;">For providing financial security of mass people & make
-                                savings minded Alpha Islami Life Insurance Limited has introduced “Monthly Saving
-                                Insurance” plan. Aim of this plan is to <a
-                                    href="DPS-Gold.html"><strong>More...</strong></a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 service-box-container">
-                    <div style="border-top-left-radius: 50px; overflow: hidden;">
-                        <img style="display: block; max-width: 100%; height: auto;" src="{{ asset('assets/images/i3.jpg') }}">
-                    </div>
-                    <div
-                        style="border-bottom-right-radius: 50px; overflow: hidden; background-color: white; border-left: 1px solid #2a2a86; border-right: 1px solid #2a2a86;border-bottom: 1px solid #2a2a86;">
-                        <div class="service-box">
-                            <h3 style="text-align: center;"> Anticipated Endowment</h3>
-                            <p style="text-align: justify;"> For making future life prospective 04 (four) stage plan of
-                                Alpha Islami Life Insurance Limited is an attractive plan. Policyholder gets his whole
-                                Sum Assured with profit by 04(four) installments <a
-                                    href="anticipatedendowment 3Stage.html"><strong>More...</strong></a></p>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 service-box-container">
-                    <div style="border-top-left-radius: 50px; overflow: hidden;">
-                        <img style="display: block; max-width: 100%; height: auto;" src="{{ asset('assets/images/i4.jpg') }}">
-                    </div>
-                    <div
-                        style="border-bottom-right-radius: 50px; overflow: hidden; background-color: white; border-left: 1px solid #2a2a86; border-right: 1px solid #2a2a86;border-bottom: 1px solid #2a2a86;">
-                        <div class="service-box">
-                            <h3 style="text-align: center;"> Hajj Bima</h3>
-                            <p style="text-align: justify;">For making the mass people financially secured and make then
-                                savings minded Alpha Islami Life Insurance Limited has introduced “Hajj Insurance Plan”
-                                Plan. Ultimate goal of this plan <a href="#"><strong>More...</strong></a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 service-box-container">
-                    <div style="border-top-left-radius: 50px; overflow: hidden;">
-                        <img style="display: block; max-width: 100%; height: auto;" src="{{ asset('assets/images/i5.jpg') }}">
-                    </div>
-                    <div
-                        style="border-bottom-right-radius: 50px; overflow: hidden; background-color: white; border-left: 1px solid #2a2a86; border-right: 1px solid #2a2a86;border-bottom: 1px solid #2a2a86;">
-                        <div class="service-box">
-                            <h3 style="text-align: center;"> Single Premium Insurance Plan </h3>
-                            <p style="text-align: justify;"> For maximize your money “Single Premium Endowment Insurance
-                                Plan” would be a great choice for you attractive part of this plan is you will get
-                                double of your money after <a href="#"><strong>More...</strong></a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 service-box-container">
-                    <div style="border-top-left-radius: 50px; overflow: hidden;">
-                        <img style="display: block; max-width: 100%; height: auto;" src="{{ asset('assets/images/more.jpg') }}">
-                    </div>
-                    <div
-                        style="border-bottom-right-radius: 50px; overflow: hidden; background-color: white; border-left: 1px solid #2a2a86; border-right: 1px solid #2a2a86;border-bottom: 1px solid #2a2a86;">
-                        <div class="service-box">
-                            <h3 style="text-align: center;"> More Insurance-Plan </h3>
-                            <p style="text-align: justify; line-height: 1.5;"> There are also several exclusive <a
-                                    href="insuranceplan.html"> <strong>Insurance Plan</strong> </a> and supplimentary
-                                plan in Alpha Islami Life Insurance Limited <a
-                                    href="insuranceplan.html"><strong>More...</strong></a></p>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            @endif
         </div>
     </section>
     <!-- Insurance end -->
@@ -489,84 +423,28 @@
                 <h2 class="section-title" style="color: white;">Supplementary Plan</h2>
                 <hr>
             </div>
-
-            <div class="row ">
-                <div class="col-lg-12">
-                    <div class="swiper mySwiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="plan-item">
-                                    <a href="accidentaldeathbenefit.html"><img
-                                            style="display: block; max-width: 100%; height: auto;"
-                                            src="{{ asset('assets/images/sup/430x260_Accidental-Death-Benefit.jpg') }}"
-                                            alt="Accidental Death Benefit" title="Accidental Death Benefit"/></a>
-                                </div>
+            @if(!$suplementaryPlans->isEmpty())
+                <div class="row ">
+                    <div class="col-lg-12">
+                        <div class="swiper mySwiper">
+                            <div class="swiper-wrapper">
+                                @foreach($suplementaryPlans as $isuplementaryPlan)
+                                    <div class="swiper-slide">
+                                        <div class="plan-item">
+                                            <a href="{{ route('frontend.plans.show', ['slug' => $isuplementaryPlan->slug]) }}">
+                                                <img style="display: block; max-width: 100%; height: auto;"
+                                                    src="{{ asset('assets/images/sup/430x260_Accidental-Death-Benefit.jpg') }}"
+                                                    alt="{{ $isuplementaryPlan->name }}" title="{{ $isuplementaryPlan->name }}"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
-                            <div class="swiper-slide">
-                                <div class="plan-item">
-                                    <a href="criticalcare.html">
-                                        <img style="display: block; max-width: 100%; height: auto;"
-                                             src="{{ asset('assets/images/sup/430x260_Critical-Care.jpg') }}" alt="Critical Care"
-                                             title="Critical Care"/>
-
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="plan-item">
-                                    <a href="embeddedpersonalaccident.html">
-                                        <img style="display: block; max-width: 100%; height: auto;"
-                                             src="{{ asset('assets/images/sup/430x260_Embedded-Personal-Accident.jpg') }}"
-                                             alt="Embedded Personal Accident" title="Embedded Personal Accident"/>
-                                    </a>
-
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="plan-item">
-                                    <a href="incomebenefitrider.html"><img
-                                            style="display: block; max-width: 100%; height: auto;"
-                                            src="{{ asset('assets/images/sup/430x260_Income-Benefit-Rider.jpg') }}"
-                                            alt="Income Benefit Rider" title="Income Benefit Rider"/></a>
-
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="plan-item">
-                                    <a href="permanentdisability-accidentaleenefit.html"> <img
-                                            style="display: block; max-width: 100%; height: auto;"
-                                            src="{{ asset('assets/images/sup/430x260_Permanent-Disability-&-Accidental-Benefit.jpg') }}"
-                                            alt="Permanent-Disability & Accidental Benefit"
-                                            title="Permanent-Disability & Accidental Benefit"/></a>
-
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="plan-item">
-                                    <a href="plus.html">
-                                        <img style="display: block; max-width: 100%; height: auto;"
-                                             src="{{ asset('assets/images/sup/430x260_Plus.jpg') }}" alt="Plus" title="Plus"/>
-
-                                    </a>
-
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="plan-item">
-                                    <a href="waiverofpremium.html"> <img
-                                            style="display: block; max-width: 100%; height: auto;"
-                                            src="{{ asset('assets/images/sup/430x260_Waiver-of-Premium.jpg') }}"
-                                            alt="Waiver of Premium" title="Waiver of Premium"/></a>
-
-                                </div>
-                            </div>
-
+                            <div class="swiper-pagination"></div>
                         </div>
-                        <div class="swiper-pagination"></div>
                     </div>
-
                 </div>
-            </div>
+            @endif
         </div>
         <br/><br/>
     </section>
