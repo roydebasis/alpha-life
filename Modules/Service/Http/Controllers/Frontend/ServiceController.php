@@ -17,29 +17,10 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $content = Service::where('status', 1)->orderBy('order', 'asc')->get();
-        $meta_page_type = 'page';
-//        dd($content);
-        return view('service::frontend.products.index', compact('content', 'meta_page_type'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('service::create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(Request $request)
-    {
-        //
+        $products = Service::where('status', 1)->orderBy('order', 'asc')->paginate(9);
+        $meta_page_type = 'website';
+//        dd($products);
+        return view('service::frontend.products.index', compact('products', 'meta_page_type'));
     }
 
     /**
@@ -51,38 +32,6 @@ class ServiceController extends Controller
     {
         $content = Service::where('slug', $slug)->first();
         $meta_page_type = 'page';
-
         return view('service::frontend.products.show', compact('content', 'meta_page_type'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('service::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

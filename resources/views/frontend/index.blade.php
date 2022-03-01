@@ -341,33 +341,40 @@
         <div class="container">
             <div class="row text-center">
                 <div class="col-xs-6 col-sm-4 col-md-3">
-                    <div class="process-box">
-                        <i class="flaticon-cup7"></i>
-                        <h3>Premium Calculator </h3>
-                    </div><!-- /.process-box -->
-                </div><!-- /.col-xs-2 -->
+                    <a href="{{ url('page/premium-calculator') }}">
+                        <div class="process-box">
+                            <i class="flaticon-cup7"></i>
+                            <h3>Premium Calculator</h3>
+                        </div>
+                    </a>
+                </div>
 
                 <div class="col-xs-6 col-sm-4 col-md-3">
-                    <div class="process-box">
-                        <i class="flaticon-light110"></i>
-                        <h3>Policy Information </h3>
-                    </div><!-- /.process-box -->
-                </div><!-- /.col-xs-2 -->
+                    <a href="{{ url('page/policy-information') }}">
+                        <div class="process-box">
+                            <i class="flaticon-light110"></i>
+                            <h3>Policy Information </h3>
+                        </div>
+                    </a>
+                </div>
 
                 <div class="col-xs-6 col-sm-4 col-md-3">
-                    <div class="process-box">
-                        <i class="flaticon-paint104"></i>
-                        <h3>Insurance Plan </h3>
-                    </div><!-- /.process-box -->
-                </div><!-- /.col-xs-2 -->
+                    <a href="{{ url('plans') }}">
+                        <div class="process-box">
+                            <i class="flaticon-paint104"></i>
+                            <h3>Insurance Plan </h3>
+                        </div>
+                    </a>
+                </div>
 
                 <div class="col-xs-6 col-sm-4 col-md-3">
-                    <div class="process-box">
-                        <i class="flaticon-paint104"></i>
-                        <h3>Sign In </h3>
-
-                    </div><!-- /.process-box -->
-                </div><!-- /.col-xs-2 -->
+                    <a href="{{ url('news') }}">
+                        <div class="process-box">
+                            <i class="flaticon-paint104"></i>
+                            <h3>Recent News</h3>
+                        </div>
+                    </a>
+                </div>
             </div><!-- /.row -->
         </div><!-- /.container -->
     </section>
