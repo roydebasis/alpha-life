@@ -386,7 +386,7 @@
         <div class="container">
             <br><br>
             <div class="text-center">
-                <h2 class="section-title">Exclusive Insurance Plan xxx</h2>
+                <h2 class="section-title">Exclusive Insurance Plan</h2>
                 <hr>
             </div>
             @if(!$insurancePlans->isEmpty())
