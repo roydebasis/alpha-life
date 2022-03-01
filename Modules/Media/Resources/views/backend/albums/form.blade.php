@@ -47,23 +47,57 @@
     <div class="col-6">
         <div class="form-group">
             <?php
-            $field_name = 'images[]';
-            $field_lable = "Images";
+            $field_name = 'thumbnail';
+            $field_lable = __("media::$module_name.$field_name");
             $field_placeholder = $field_lable;
             $required = "";
             ?>
             {!! Form::label("$field_name", "$field_lable") !!} {!! fielf_required($required) !!}
             <div class="input-group mb-3">
-                {{ html()->file($field_name)->class('form-control')->attributes(["$required", "multiple", 'aria-label'=>'Image', 'aria-describedby'=>'button-image']) }}
-{{--                <div class="input-group-append">--}}
-{{--                    <button class="btn btn-info" type="button" id="button-image"><i class="fas fa-folder-open"></i> @lang('Browse')</button>--}}
-{{--                </div>--}}
+                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required", "id" => 'image2', 'aria-label'=>'Image', 'aria-describedby'=>'thumbnail-button-image']) }}
+                <div class="input-group-append">
+                    <button class="btn btn-info" type="button" id="thumbnail-button-image"><i class="fas fa-folder-open"></i> @lang('Browse')</button>
+                </div>
             </div>
         </div>
     </div>
 
-
 </div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <?php
+            $field_name = 'url';
+            $field_lable = __("media::$module_name.$field_name");
+            $field_placeholder = $field_lable;
+            $required = "";
+            ?>
+            {!! Form::label("$field_name", "$field_lable") !!} {!! fielf_required($required) !!}
+            <div class="input-group mb-3">
+                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required", "id" => 'image1', 'aria-label'=>'Image', 'aria-describedby'=>'button-image']) }}
+                <div class="input-group-append">
+                    <button class="btn btn-info" type="button" id="button-image"><i class="fas fa-folder-open"></i> @lang('Browse')</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@isset($$module_name_singular)
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                @foreach($$module_name_singular->photos as $photo)
+                    <div class="col-2 mb-3 position-relative">
+                        <a href="{{route("backend.$module_name.deletePhoto", ['albumId' => $$module_name_singular->id, 'id' => $photo->id])}}" class="btn btn-danger text-white position-absolute right-0" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.delete')}}"><i class="fas fa-trash-alt"></i></a>
+                        <image src="{{ asset($photo->url) }}" class="img-thumbnail"></image>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+@endisset
 
 
 <div></div>
@@ -112,14 +146,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
   document.getElementById('button-image').addEventListener('click', (event) => {
     event.preventDefault();
-
+    inputId = 'image1';
     window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
+  });
+
+  document.getElementById('thumbnail-button-image').addEventListener('click', (event) => {
+      event.preventDefault();
+      inputId = 'image2';
+      window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
   });
 });
 
+// input
+let inputId = '';
+
+
 // set file link
 function fmSetLink($url) {
-  document.getElementById('url').value = $url;
+    document.getElementById(inputId).value = $url;
 }
+
 </script>
 @endpush

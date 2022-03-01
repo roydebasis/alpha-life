@@ -44,45 +44,15 @@
                 @include('backend.includes.show')
 
             </div>
-{{--            <div class="col-12 col-sm-6">--}}
-
-{{--                <div class="text-center">--}}
-{{--                    <a href="{{route("frontend.$module_name.show", [encode_id($$module_name_singular->id), $$module_name_singular->slug])}}" class="btn btn-success" target="_blank"><i class="fas fa-link"></i> Public View</a>--}}
-{{--                </div>--}}
-{{--                <hr>--}}
-
-{{--                <h4>Category</h4>--}}
-{{--                <ul>--}}
-{{--                    <li>--}}
-{{--                        <a href="{{route('backend.categories.show', $$module_name_singular->category_id)}}">{{$$module_name_singular->category_name}}</a>--}}
-{{--                    </li>--}}
-{{--                </ul>--}}
-{{--                <hr>--}}
-
-{{--                <h4>Tags</h4>--}}
-{{--                <ul>--}}
-{{--                    @foreach($$module_name_singular->tags as $row)--}}
-{{--                    <li>--}}
-{{--                        <a href="{{route('backend.tags.show', $row->id)}}">{{$row->name}}</a>--}}
-{{--                    </li>--}}
-{{--                    @endforeach--}}
-{{--                </ul>--}}
-{{--                <hr>--}}
-
-{{--                <h4>Comments</h4>--}}
-{{--                <ul>--}}
-{{--                    @foreach($$module_name_singular->comments as $row)--}}
-{{--                    <li>--}}
-{{--                        <a href="{{route('backend.comments.show', $row->id)}}">{{$row->name}}</a> by {{$row->user_name}}--}}
-{{--                    </li>--}}
-{{--                    @endforeach--}}
-{{--                </ul>--}}
-{{--                <hr>--}}
-
-{{--                @include('media::backend.includes.activitylog')--}}
-{{--                <hr>--}}
-
-{{--            </div>--}}
+            <div class="col-12 col-sm-6">
+                <div class="row">
+                    @foreach($$module_name_singular->photos as $photo)
+                        <div class="col-3 mb-3">
+                            <image src="{{ asset($photo->url) }}" class="img-thumbnail"></image>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 

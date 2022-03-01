@@ -4,5 +4,7 @@ return [
 
     'title'             => 'Title',
     'place'             => 'Place',
-    'date' => 'Date'
+    'date' => 'Date',
+    'url' => 'Add Images',
+    'thumbnail' => 'Thumbnail Image'
 ];

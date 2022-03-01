@@ -17,7 +17,7 @@ class AlbumRequest extends FormRequest
             'title'              => 'required|max:191',
             'place'               => 'max:191',
             'date'             => 'nullable|date',
-            'images'            => 'file'
+            'url'            => 'max:191'
         ];
     }
 

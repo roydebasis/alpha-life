@@ -18,6 +18,7 @@ class CreateAlbumsTable extends Migration
             $table->string('title');
             $table->timestamp('date')->nullable();
             $table->string('place')->nullable();
+            $table->string('thumbnail')->nullable();
             $table->integer('created_by')->unsigned()->nullable();
             $table->string('created_by_name')->nullable();
             $table->string('created_by_alias')->nullable();
