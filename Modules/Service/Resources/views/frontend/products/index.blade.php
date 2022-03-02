@@ -29,7 +29,7 @@
             </div>
             <div class="col-12" style="margin-bottom: 50px">
                 <div class="team-pagination">
-                    {!! $products->links() !!}
+                    {!! $products->appends(request()->query())->links() !!}
                 </div>
             </div>
             @else
