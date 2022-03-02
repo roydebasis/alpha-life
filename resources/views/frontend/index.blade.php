@@ -359,7 +359,7 @@
                 </div>
 
                 <div class="col-xs-6 col-sm-4 col-md-3">
-                    <a href="{{ url('plans') }}">
+                    <a href="{{ url('plans') }}?category=">
                         <div class="process-box">
                             <i class="flaticon-paint104"></i>
                             <h3>Insurance Plan </h3>
