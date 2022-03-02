@@ -433,7 +433,7 @@
                                         <div class="plan-item">
                                             <a href="{{ route('frontend.plans.show', ['slug' => $isuplementaryPlan->slug]) }}">
                                                 <img style="display: block; max-width: 100%; height: auto;"
-                                                    src="{{ asset('assets/images/sup/430x260_Accidental-Death-Benefit.jpg') }}"
+                                                    src="{{ url($isuplementaryPlan->featured_image) }}"
                                                     alt="{{ $isuplementaryPlan->name }}" title="{{ $isuplementaryPlan->name }}"/>
                                             </a>
                                         </div>
