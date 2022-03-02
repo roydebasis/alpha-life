@@ -212,7 +212,7 @@ class GroupsController extends Controller
             $members = array_chunk($$module_name_singular->managements()->where('id', '!=', $first_member->id)->orderBy('order')->paginate(9)->toArray()['data'], 2);
         }
         else {
-            $members = $$module_name_singular->managements()->where('id', '!=', $first_member->id)->orderBy('order')->paginate(9);
+            $members = $$module_name_singular->managements()->where('id', '!=', $first_member->id)->orderBy('order')->get();
         }
 
 
