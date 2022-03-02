@@ -22,11 +22,13 @@ class FrontendController extends Controller
         $blogs = Post::latest()->with(['category', 'tags', 'comments'])->take(3)->get();
         $insurancePlans = Service::where('product_category_id', 1)
             ->where('status', 1)
+            ->where('is_featured', 1)
             ->orderBy('order', 'asc')
             ->take(6)
             ->get();
         $suplementaryPlans = Service::where('product_category_id', 2)
             ->where('status', 1)
+            ->where('is_featured', 1)
             ->orderBy('order', 'asc')
             ->take(6)
             ->get();
