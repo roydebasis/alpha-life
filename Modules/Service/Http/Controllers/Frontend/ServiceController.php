@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
 use Modules\Page\Entities\Page;
+use Modules\Service\Entities\ProductCategory;
 use Modules\Service\Entities\Service;
 
 class ServiceController extends Controller
@@ -15,11 +16,17 @@ class ServiceController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request  $request)
     {
-        $products = Service::where('status', 1)->orderBy('order', 'asc')->paginate(9);
+        $category_id = $request->get('category') ? $request->get('category') : '';
+//        die($category_id);
+        $products = Service::where('status', 1)
+            ->when($category_id, function($q) use ($category_id) {
+                return $q->where('product_category_id', $category_id);
+            })
+            ->orderBy('order', 'asc')
+            ->paginate(9);
         $meta_page_type = 'website';
-//        dd($products);
         return view('service::frontend.products.index', compact('products', 'meta_page_type'));
     }
 

@@ -32,6 +32,8 @@
                     {!! $products->links() !!}
                 </div>
             </div>
+            @else
+                <p class="text-center mb-80">No Plan Found</p>
             @endif
         </div>
     </section>
