@@ -209,10 +209,10 @@ class GroupsController extends Controller
 
         $first_member = $$module_name_singular->managements()->orderBy('order')->first();
         if ($$module_name_singular->layout == 1) {
-            $members = array_chunk($$module_name_singular->managements()->where('id', '!=', $first_member->id)->orderBy('order')->get()->toArray()['data'], 2);
+            $members = array_chunk($$module_name_singular->managements()->where('id', '!=', $first_member->id)->orderBy('order')->paginate(50)->toArray()['data'], 2);
         }
         else {
-            $members = $$module_name_singular->managements()->where('id', '!=', $first_member->id)->orderBy('order')->get();
+            $members = $$module_name_singular->managements()->where('id', '!=', $first_member->id)->orderBy('order')->paginate(50);
         }
 
 
