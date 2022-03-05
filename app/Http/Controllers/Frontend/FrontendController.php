@@ -96,8 +96,11 @@ class FrontendController extends Controller
         if ($slug == 'premium-calculator') {
             return view('frontend.premium-calculator', compact('meta_page_type'));
         }
-        $content = Page::where('slug', $slug)->first();
-
+        $content = Page::where('slug', $slug)->firstOrFail();
+        if ($slug == 'about-alpha') {
+            return view('frontend.page-about', compact('content', 'meta_page_type'));
+        }
         return view('frontend.page', compact('content', 'meta_page_type'));
     }
 }
+
