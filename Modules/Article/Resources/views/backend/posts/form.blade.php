@@ -67,7 +67,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-12">
+    <div class="col-6">
         <div class="form-group">
             <?php
             $field_name = 'featured_image';
@@ -80,6 +80,23 @@
                 {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required", 'aria-label'=>'Image', 'aria-describedby'=>'button-image']) }}
                 <div class="input-group-append">
                     <button class="btn btn-info" type="button" id="button-image"><i class="fas fa-folder-open"></i> @lang('Browse')</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="form-group">
+            <?php
+            $field_name = 'banner_image';
+            $field_lable = __("article::$module_name.$field_name");
+            $field_placeholder = $field_lable;
+            $required = "";
+            ?>
+            {!! Form::label("$field_name", "$field_lable") !!} {!! fielf_required($required) !!}
+            <div class="input-group mb-3">
+                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required", 'aria-label'=>'Image', 'aria-describedby'=>'button-image']) }}
+                <div class="input-group-append">
+                    <button class="btn btn-info" type="button" id="button-banner"><i class="fas fa-folder-open"></i> @lang('Browse')</button>
                 </div>
             </div>
         </div>
@@ -116,7 +133,7 @@
 {{--            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}--}}
 {{--        </div>--}}
 {{--    </div>--}}
-    <div class="col-3">
+    <div class="col-4">
         <div class="form-group">
             <?php
             $field_name = 'is_featured';
@@ -132,7 +149,7 @@
             {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
         </div>
     </div>
-    <div class="col-3">
+    <div class="col-4">
         <div class="form-group">
             <?php
             $field_name = 'status';
@@ -148,24 +165,24 @@
             {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
         </div>
     </div>
-        <div class="col-3">
-            <div class="form-group">
-                <?php
-                $field_name = 'published_at';
-                $field_lable = __("article::$module_name.$field_name");
-                $field_placeholder = $field_lable;
-                $required = "";
-                ?>
-                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                <div class="input-group date datetime" id="{{$field_name}}" data-target-input="nearest">
-                    {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control datetimepicker-input')->attributes(["$required", 'data-target'=>"#$field_name"]) }}
-                    <div class="input-group-append" data-target="#{{$field_name}}" data-toggle="datetimepicker">
-                        <div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <div class="col-3">
+{{--        <div class="col-3">--}}
+{{--            <div class="form-group">--}}
+{{--                <?php--}}
+{{--                $field_name = 'published_at';--}}
+{{--                $field_lable = __("article::$module_name.$field_name");--}}
+{{--                $field_placeholder = $field_lable;--}}
+{{--                $required = "";--}}
+{{--                ?>--}}
+{{--                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}--}}
+{{--                <div class="input-group date datetime" id="{{$field_name}}" data-target-input="nearest">--}}
+{{--                    {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control datetimepicker-input')->attributes(["$required", 'data-target'=>"#$field_name"]) }}--}}
+{{--                    <div class="input-group-append" data-target="#{{$field_name}}" data-toggle="datetimepicker">--}}
+{{--                        <div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+    <div class="col-4">
         <div class="form-group">
             <?php
             $field_name = 'order';
@@ -366,21 +383,27 @@ $(function() {
 <script type="text/javascript" src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
 
 <script type="text/javascript">
-
+let setImageTo = '';
 CKEDITOR.replace('content', {filebrowserImageBrowseUrl: '/file-manager/ckeditor', language:'{{App::getLocale()}}', defaultLanguage: 'en'});
 
 document.addEventListener("DOMContentLoaded", function() {
-
-  document.getElementById('button-image').addEventListener('click', (event) => {
-    event.preventDefault();
-
-    window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
-  });
+    document.getElementById('button-image').addEventListener('click', (event) => {
+        event.preventDefault();
+        setImageTo = 'featured_image';
+        window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
+    });
+    document.getElementById('button-banner').addEventListener('click', (event) => {
+        event.preventDefault();
+        setImageTo = 'banner_image';
+        window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
+    });
 });
 
 // set file link
 function fmSetLink($url) {
-  document.getElementById('featured_image').value = $url;
+    if (setImageTo != '') {
+        document.getElementById(setImageTo).value = $url;
+    }
 }
 </script>
 @endpush
