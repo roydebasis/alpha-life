@@ -8,7 +8,7 @@
     <section class="page-title-section about-us-one" data-stellar-background-ratio="0.1">
         <div class="container">
             <div class="page-header text-center">
-                <h1>Gallery Album</h1>
+                <h1>Album</h1>
             </div>
         </div>
     </section>
@@ -34,12 +34,12 @@
 
                         <li class="portfolio-item" >
                             <a href="{{route("frontend.$module_name.show", $$module_name_singular)}}" data-method="GET">
-                                <div class="portfolio">
-                                    <div class="tt-overlay"></div>
+                                <div>
+{{--                                    <div class="tt-overlay"></div>--}}
                                     <img src="{{ $$module_name_singular->thumbnail }}" class="img-thumbnail" alt="">
                                     <div class="p-4 text-left">
                                         <p>Title: {{ $$module_name_singular->title }}</p>
-                                        <p>Date: {{ $$module_name_singular->date }}</p>
+                                        <p>Date: {{ date('j F, Y', strtotime($$module_name_singular->date)) }}</p>
                                         <p>Place: {{ $$module_name_singular->place }}</p>
                                     </div>
                                 </div><!-- /.recent-project -->
