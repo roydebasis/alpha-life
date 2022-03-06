@@ -166,7 +166,7 @@ return [
                 'label' => 'Meta Twitter Site Account', // you know what label it is
                 'rules' => '', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => '@nasir8891', // default value if you want
+                'value' => '', // default value if you want
             ],
             [
                 'type'  => 'text', // input fields type
@@ -175,7 +175,7 @@ return [
                 'label' => 'Meta Twitter Creator Account', // you know what label it is
                 'rules' => '', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => '@nasir8891', // default value if you want
+                'value' => '', // default value if you want
             ],
         ],
     ],
@@ -207,6 +207,25 @@ return [
                 'display'  => 'raw', // Help text for the input field.
             ],
         ],
+    ],
+    'map' => [
+        'title' => 'Map',
+        'desc'  => 'Google Map Embed Code',
+        'icon'  => 'fas fa-map',
 
+        'elements' => [
+            [
+                'type'  => 'textarea', // input fields type
+                'data'  => 'string', // data type, string, int, boolean
+                'name'  => 'google_map_embed_code', // unique name for field
+                'label' => 'Google Map', // you know what label it is
+                'rules' => '', // validation rule of laravel
+                'class' => '', // any class for input
+                // 'value' => '123', // any class for input
+                'value' => '', // default value if you want
+                'help'     => 'Paste Google Map Embed Code', // Help text for the input field.
+                'display'  => 'raw', // Help text for the input field.
+            ],
+        ],
     ],
 ];
