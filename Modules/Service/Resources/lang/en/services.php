@@ -8,7 +8,7 @@ return [
     'intro'            => 'Intro',
     'content'          => 'Content',
     'featured_image'   => 'Featured Image',
-    'product_category_id'      => 'Category',
+    'product_category_id' => 'Category',
     'type'             => 'Type',
     'is_featured'      => 'Is Featured',
     'tags'             => 'Tags',
@@ -21,5 +21,5 @@ return [
     'meta_og_image'    => 'Meta Open Graph Image',
     'meta_og_url'      => 'Meta Open Graph URL',
     'order'            => 'Order',
-
+    'banner_image'     => 'Banner Image'
 ];
