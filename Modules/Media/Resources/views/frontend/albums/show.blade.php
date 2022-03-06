@@ -8,7 +8,7 @@
     <section class="page-title-section about-us-one" data-stellar-background-ratio="0.1">
         <div class="container">
             <div class="page-header text-center">
-                <h1>Photo Gallery</h1>
+                <h1>{{ $$module_name_singular->title }}</h1>
             </div>
         </div>
     </section>

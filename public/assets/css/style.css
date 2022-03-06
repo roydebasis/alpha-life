@@ -92,7 +92,7 @@ a > * {
 }
 a:focus,
 a:hover {
-    color: #C02232;
+    /*color: #C02232;*/
     outline: none;
     text-decoration: none;
 }
