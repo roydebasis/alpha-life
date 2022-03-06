@@ -14,6 +14,11 @@
     <!-- page-title-section end -->
 
     <!-- page-title-section start -->
+    @if(\App\Models\Setting::has('google_map_embed_code'))
+    <section class="service-section-v3">
+        {!! \App\Models\Setting::get('google_map_embed_code') !!}
+    </section>
+    @endif
     <section class="service-section-v3  section-padding">
         <div class="container">
             <div class="row">
