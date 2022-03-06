@@ -22,7 +22,8 @@
                     <div class="col-sm-4">
                         {{ $$module_name_singular->name }}
                         <div class="video-wrap">
-                            <iframe src="{{ $$module_name_singular->url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{{--                            <iframe src="{{ $$module_name_singular->url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>--}}
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$$module_name_singular->url}}" frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>
                 @endforeach

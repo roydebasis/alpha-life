@@ -46,7 +46,7 @@
             $required = "";
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+            {{ html()->textarea($field_name)->placeholder($field_placeholder . ' ( Max 360 characters )')->class('form-control')->attributes(["$required", "maxlength" => 360]) }}
         </div>
     </div>
 </div>

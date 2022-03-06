@@ -167,6 +167,21 @@ class VideoController extends Controller
         );
     }
 
+    function YoutubeID($url)
+    {
+        if(strlen($url) > 11)
+        {
+            if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match))
+            {
+                return $match[1];
+            }
+            else
+                return false;
+        }
+
+        return $url;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -187,6 +202,13 @@ class VideoController extends Controller
 
         $data = $request->all();
         $data['created_by_name'] = auth()->user()->name;
+        if(strlen($data['url']) > 11)
+        {
+            if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $data['url'], $match))
+            {
+                $data['url'] = $match[1];
+            }
+        }
 
         $$module_name_singular = $module_model::create($data);
 //        $$module_name_singular->tags()->attach($request->input('tags_list'));
