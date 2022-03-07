@@ -48,8 +48,8 @@
             $field_placeholder = $field_lable;
             $required = "required";
             ?>
-            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+            {{ html()->label($field_lable, $field_name) }} {!! fielf_required("required") !!}
+            {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required", "id" => "content"]) }}
         </div>
     </div>
 </div>
@@ -205,12 +205,24 @@ $(function() {
 });
 </script>
 
-<script type="text/javascript" src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
+{{--<script type="text/javascript" src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>--}}
+<script src="https://cdn.tiny.cloud/1/ojsg2y60oijklnlkgsxpc60xh94cu5ta2vrsh0f83i94r8yg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script type="text/javascript" src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
 
 <script type="text/javascript">
 
-CKEDITOR.replace('content', {filebrowserImageBrowseUrl: '/file-manager/ckeditor', language:'{{App::getLocale()}}', defaultLanguage: 'en'});
+{{--CKEDITOR.replace('content', {filebrowserImageBrowseUrl: '/file-manager/ckeditor', language:'{{App::getLocale()}}', defaultLanguage: 'en'});--}}
+
+tinymce.init({
+    selector: '#content',
+    plugins: ['advlist autolink lists link image charmap print preview hr anchor pagebreak', "searchreplace wordcount visualblocks visualchars code fullscreen", "insertdatetime media nonbreaking save table contextmenu directionality", "emotions template paste textcolor colorpicker textpattern"],
+    toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | link image media | copy cut paste',
+    setup: function (editor) {
+        editor.on('change', function (e) {
+            editor.save();
+        });
+    }
+});
 
 document.addEventListener("DOMContentLoaded", function() {
 
