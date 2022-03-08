@@ -205,7 +205,7 @@ $(function() {
 });
 </script>
 
-<script src="https://cdn.tiny.cloud/1/ojsg2y60oijklnlkgsxpc60xh94cu5ta2vrsh0f83i94r8yg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/ym8q5dj6b8ndg6fvncwdg374ihxv01btz4ygrazpj1uakc93/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script type="text/javascript" src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
 
 <script type="text/javascript">
