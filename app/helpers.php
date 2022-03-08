@@ -490,3 +490,32 @@ if (!function_exists('date_today')) {
         return $str;
     }
 }
+
+/*
+ *
+ * Return Video Id
+ *
+ * ------------------------------------------------------------------------
+ */
+if (!function_exists('get_video_id')) {
+
+    /**
+     * Return Date with weekday.
+     *
+     * Carbon Locale will be considered here
+     * Example:
+     * শুক্রবার, ২৪ জুলাই ২০২০
+     * Friday, July 24, 2020
+     */
+    function get_video_id($url)
+    {
+        if(strlen($url) > 11)
+        {
+            if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match))
+            {
+                return $match[1];
+            }
+        }
+        return $url;
+    }
+}
