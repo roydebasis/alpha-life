@@ -202,18 +202,9 @@ class VideoController extends Controller
 
         $data = $request->all();
         $data['created_by_name'] = auth()->user()->name;
-        if(strlen($data['url']) > 11)
-        {
-            if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $data['url'], $match))
-            {
-                $data['url'] = $match[1];
-            }
-        }
+
 
         $$module_name_singular = $module_model::create($data);
-//        $$module_name_singular->tags()->attach($request->input('tags_list'));
-
-//        event(new PostCreated($$module_name_singular));
 
         Flash::success("<i class='fas fa-check'></i> New '".Str::singular($module_title)."' Added")->important();
 
@@ -305,9 +296,11 @@ class VideoController extends Controller
 
         $module_action = 'Update';
 
+        $data = $request->all();
+
         $$module_name_singular = $module_model::findOrFail($id);
 
-        $$module_name_singular->update($request->all());
+        $$module_name_singular->update($data);
 
 //        if ($request->input('tags_list') == null) {
 //            $tags_list = [];
