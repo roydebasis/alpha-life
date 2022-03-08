@@ -3,7 +3,7 @@
 @section('title') Insurance Plan @endsection
 
 @section('content')
-    <x-page-header pageTitle="Insurance Plan"/>
+    <x-page-header pageTitle="{{ $pageTitle }}"/>
     <section class="service-section-v3 exclusive-plans">
         <div class="container">
             <br><br>
