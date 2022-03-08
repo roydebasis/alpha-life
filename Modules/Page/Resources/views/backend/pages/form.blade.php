@@ -205,37 +205,33 @@ $(function() {
 });
 </script>
 
-{{--<script type="text/javascript" src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>--}}
 <script src="https://cdn.tiny.cloud/1/ojsg2y60oijklnlkgsxpc60xh94cu5ta2vrsh0f83i94r8yg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script type="text/javascript" src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
 
 <script type="text/javascript">
+    tinymce.init({
+        selector: '#content',
+        plugins: ['advlist autolink lists link image charmap print preview hr anchor pagebreak', "searchreplace wordcount visualblocks visualchars code fullscreen", "insertdatetime media nonbreaking save table contextmenu directionality", "emotions template paste textcolor colorpicker textpattern"],
+        toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | link image media | copy cut paste',
+        setup: function (editor) {
+            editor.on('change', function (e) {
+                editor.save();
+            });
+        }
+    });
 
-{{--CKEDITOR.replace('content', {filebrowserImageBrowseUrl: '/file-manager/ckeditor', language:'{{App::getLocale()}}', defaultLanguage: 'en'});--}}
+    document.addEventListener("DOMContentLoaded", function() {
 
-tinymce.init({
-    selector: '#content',
-    plugins: ['advlist autolink lists link image charmap print preview hr anchor pagebreak', "searchreplace wordcount visualblocks visualchars code fullscreen", "insertdatetime media nonbreaking save table contextmenu directionality", "emotions template paste textcolor colorpicker textpattern"],
-    toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | link image media | copy cut paste',
-    setup: function (editor) {
-        editor.on('change', function (e) {
-            editor.save();
-        });
+      document.getElementById('button-image').addEventListener('click', (event) => {
+        event.preventDefault();
+
+        window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
+      });
+    });
+
+    // set file link
+    function fmSetLink($url) {
+      document.getElementById('featured_image').value = $url;
     }
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-
-  document.getElementById('button-image').addEventListener('click', (event) => {
-    event.preventDefault();
-
-    window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
-  });
-});
-
-// set file link
-function fmSetLink($url) {
-  document.getElementById('featured_image').value = $url;
-}
 </script>
 @endpush

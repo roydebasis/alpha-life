@@ -18,8 +18,13 @@ class ServiceController extends Controller
      */
     public function index(Request  $request)
     {
-        $category_id = $request->get('category') ? $request->get('category') : '';
-//        die($category_id);
+        $category_id = '';
+        $pageTitle = '';
+        if ($request->get('category')) {
+            $category_id = $request->get('category');
+            $category = ProductCategory::findOrFail($category_id);
+            $pageTitle = $category->name;
+        }
         $products = Service::where('status', 1)
             ->when($category_id, function($q) use ($category_id) {
                 return $q->where('product_category_id', $category_id);
@@ -27,7 +32,7 @@ class ServiceController extends Controller
             ->orderBy('order', 'asc')
             ->paginate(9);
         $meta_page_type = 'website';
-        return view('service::frontend.products.index', compact('products', 'meta_page_type'));
+        return view('service::frontend.products.index', compact('pageTitle', 'products', 'meta_page_type'));
     }
 
     /**

@@ -10,9 +10,9 @@
                 <div class="col-md-12 service-box-container">
 
                     <div style="border-bottom-right-radius: 50px; border-top-left-radius: 50px; overflow: hidden; background-color: white; border-left: 1px solid #2a2a86; border-right: 1px solid #2a2a86; border-bottom: 1px solid #2a2a86;">
-                        @if($content->featured_image)
+                        @if($content->banner_image)
                             <div style="border-top-left-radius: 50px; overflow: hidden;">
-                                <img style="display: block; max-width: 100%; height: auto;" src="{{ url($content->featured_image) }}">
+                                <img style="display: block; max-width: 100%; height: auto;" src="{{ url($content->banner_image) }}">
                             </div>
                         @endif
                         <div class="service-box">

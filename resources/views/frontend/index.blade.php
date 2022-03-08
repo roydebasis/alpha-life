@@ -393,9 +393,9 @@
                 <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
                     @foreach($insurancePlans as $insurancePlan)
                         <div class="col-md-4 service-box-container">
-                            @if($insurancePlan->banner_image)
+                            @if($insurancePlan->featured_image)
                                 <div style="border-top-left-radius: 50px; overflow: hidden; border-left: 1px solid #2a2a86;">
-                                    <img style="display: block; max-width: 100%; height: auto;" src="{{ url($insurancePlan->banner_image) }}">
+                                    <img style="display: block; max-width: 100%; height: auto;" src="{{ url($insurancePlan->featured_image) }}">
                                 </div>
                             @endif
                             <div
@@ -433,7 +433,7 @@
                                         <div class="plan-item">
                                             <a href="{{ route('frontend.plans.show', ['slug' => $isuplementaryPlan->slug]) }}">
                                                 <img style="display: block; max-width: 100%; height: auto;"
-                                                    src="{{ url($isuplementaryPlan->banner_image) }}"
+                                                    src="{{ url($isuplementaryPlan->featured_image) }}"
                                                     alt="{{ $isuplementaryPlan->name }}" title="{{ $isuplementaryPlan->name }}"/>
                                             </a>
                                         </div>
