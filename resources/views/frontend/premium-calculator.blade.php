@@ -7,8 +7,12 @@
     <section class="service-section-v3">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 col-md-12 service-box-container">
-                    <div class="premium-calculator curved-border" id="creative-ideas">
+                <div class="col-lg-12 col-md-12 service-box-container curved-border no-padding">
+                    <div style="border-top-left-radius: 50px; overflow: hidden;">
+                        <img style="display: block; max-width: 100%; height: auto;" src="{{ asset('assets/images/banner_premium_calculator.png') }}">
+                    </div>
+                    <div class="premium-calculator" id="creative-ideas">
+
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
@@ -120,19 +124,17 @@
 @endsection
 @push('after-styles')
     <style>
-    .curved-border {
-        border-bottom-right-radius: 50px;
-        border-top-left-radius: 50px;
-        overflow: hidden;
-        background-color: white;
-        border-left: 1px solid #2a2a86;
-        border-right: 1px solid #2a2a86;
-        border-bottom: 1px solid #2a2a86;
-    }
-    .premium-calculator {
-        margin: 20px 0 80px;
-        padding: 30px;
-    }
+        .service-box-container { margin: 20px 0 80px; }
+        .curved-border {
+            border-bottom-right-radius: 50px;
+            border-top-left-radius: 50px;
+            overflow: hidden;
+            background-color: white;
+            border-left: 1px solid #2a2a86;
+            border-right: 1px solid #2a2a86;
+            border-bottom: 1px solid #2a2a86;
+        }
+        .premium-calculator { padding: 30px; }
     </style>
 @endpush
 @push('after-scripts')
