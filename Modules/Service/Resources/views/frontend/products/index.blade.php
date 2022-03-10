@@ -8,20 +8,21 @@
         <div class="container">
             <br><br>
             @if(!$products->isEmpty())
-            <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
+            <div class="row row-flex" style="padding-top: 20px; padding-bottom: 20px;">
                 @foreach($products as $product)
                     <div class="col-md-4 service-box-container">
-                        @if($product->featured_image)
-                            <div style="border-top-left-radius: 50px; overflow: hidden; border-left: 1px solid #2a2a86;">
+                        <div style="background-color: white; height: 100%; overflow: hidden; border-left: 1px solid #2a2a86; border-right: 1px solid #2a2a86;border-bottom: 1px solid #2a2a86; border-top-left-radius: 50px; border-bottom-right-radius: 50px;">
+                            @if($product->featured_image)
+                            <div>
                                 <img style="display: block; max-width: 100%; height: auto;" src="{{ url($product->featured_image) }}">
                             </div>
-                        @endif
-                        <div
-                            style="border-bottom-right-radius: 50px; overflow: hidden; background-color: white; border-left: 1px solid #2a2a86; border-right: 1px solid #2a2a86;border-bottom: 1px solid #2a2a86;">
-                            <div class="service-box">
-                                <h3 style="text-align: center;"> {{ $product->name }} </h3>
-                                <p style="text-align: justify;"> {{ $product->intro }}, <a
-                                        href="{{ route('frontend.plans.show', ['slug' => $product->slug]) }}"><strong>More...</strong></a></p>
+                            @endif
+                            <div>
+                                <div class="service-box">
+                                    <h3 style="text-align: center;" class="single-line"> {{ $product->name }} </h3>
+                                    <p style="text-align: justify;"> {{ $product->intro }}, <a
+                                            href="{{ route('frontend.plans.show', ['slug' => $product->slug]) }}"><strong>More...</strong></a></p>
+                                </div>
                             </div>
                         </div>
                     </div>
