@@ -33,10 +33,8 @@ class FrontendController extends Controller
             ->orderBy('order', 'asc')
             ->take(6)
             ->get();
-
-        $bulletins = Bulletin::all();
         
-        return view('frontend.index', compact('body_class', 'blogs', 'insurancePlans', 'suplementaryPlans', 'bulletins'));
+        return view('frontend.index', compact('body_class', 'blogs', 'insurancePlans', 'suplementaryPlans'));
     }
 
     /**

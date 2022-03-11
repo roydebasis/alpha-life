@@ -43,9 +43,13 @@
                 <div class="col-sm-9 no-padding">
                     <div class="topNavLeft">
                         <marquee direction="left" onmouseover="this.stop();" onmouseout="this.start();">
-                            @foreach($bulletins as $bulletin)
-                                {{ $bulletin->name }}
-                            @endforeach
+                            @if(!empty($bulletins))
+                                @foreach($bulletins as $bulletin)
+                                    {{ $bulletin->name }}
+                                @endforeach
+                            @else
+                                Please add bulletin text to show here
+                            @endif
                         </marquee>
                     </div>
                 </div>

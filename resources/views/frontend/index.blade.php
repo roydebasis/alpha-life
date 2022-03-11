@@ -390,22 +390,24 @@
                 <hr>
             </div>
             @if(!$insurancePlans->isEmpty())
-                <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
+                <div class="row row-flex" style="padding-top: 20px; padding-bottom: 20px;">
                     @foreach($insurancePlans as $insurancePlan)
                         <div class="col-md-4 service-box-container">
-                            @if($insurancePlan->featured_image)
-                                <div style="border-top-left-radius: 50px; overflow: hidden; border-left: 1px solid #2a2a86;">
+                            <div style="background-color: white; height: 100%; overflow: hidden; border-left: 1px solid #2a2a86; border-right: 1px solid #2a2a86;border-bottom: 1px solid #2a2a86; border-top-left-radius: 50px; border-bottom-right-radius: 50px;">
+                                @if($insurancePlan->featured_image)
+                                <div>
                                     <img style="display: block; max-width: 100%; height: auto;" src="{{ url($insurancePlan->featured_image) }}">
                                 </div>
-                            @endif
-                            <div
-                                style="border-bottom-right-radius: 50px; overflow: hidden; background-color: white; border-left: 1px solid #2a2a86; border-right: 1px solid #2a2a86;border-bottom: 1px solid #2a2a86;">
-                                <div class="service-box">
-                                    <h3 style="text-align: center;"> {{ $insurancePlan->name }} </h3>
-                                    <p style="text-align: justify;"> {{ $insurancePlan->intro }} <a
-                                            href="{{ route('frontend.plans.show', ['slug' => $insurancePlan->slug]) }}"><strong>More...</strong></a></p>
+                                @endif
+                                <div>
+                                    <div class="service-box">
+                                        <h3 style="text-align: center;" class="single-line"> {{ $insurancePlan->name }} </h3>
+                                        <p style="text-align: justify;"> {{ $insurancePlan->intro }} <a
+                                                href="{{ route('frontend.plans.show', ['slug' => $insurancePlan->slug]) }}"><strong>More...</strong></a></p>
+                                    </div>
                                 </div>
                             </div>
+                            
                         </div>
                     @endforeach
                 </div>
@@ -472,15 +474,14 @@
     <!-- Recent News Start-->
     <section class="blog-section blog-grid v2 ptb-90">
         <div class="container">
-            <div class="row">
-                <div id="blogGrid">
-                    @foreach ($blogs as $blog)
-                        @php
-                            $details_url = route("frontend.posts.show",[encode_id($blog->id), $blog->slug]);
-                        @endphp
+            <div class="row row-flex">
+                @foreach ($blogs as $blog)
+                    @php
+                        $details_url = route("frontend.posts.show",[encode_id($blog->id), $blog->slug]);
+                    @endphp
                     <div class="col-xs-12 col-sm-6 col-md-4 blog-grid-item">
                         <article class="post-wrapper"
-                                 style="border-top-left-radius: 50px; border-bottom-right-radius: 50px;">
+                                 style="border-top-left-radius: 50px; border-bottom-right-radius: 50px; height: 100%;">
                             <header class="featured-wrapper">
                                 <a href="#" class="author">
                                     <img src="{{ asset('assets/images/blog/blog-three/author-1.jpg') }}">
@@ -500,7 +501,7 @@
                             </header>
                             <div class="blog-content">
                                 <header class="entry-header">
-                                    <h2 class="entry-title"><a href="{{$details_url}}">{{$blog->name}}</a></h2>
+                                    <h2 class="entry-title single-line"><a href="{{$details_url}}">{{$blog->name}}</a></h2>
                                 </header>
                                 <div class="entry-content">
                                     <p>{{$blog->intro}}</p>
@@ -511,8 +512,7 @@
                             </div>
                         </article>
                     </div>
-                    @endforeach
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
