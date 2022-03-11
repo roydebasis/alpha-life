@@ -10,8 +10,8 @@
             @if(!$products->isEmpty())
             <div class="row row-flex" style="padding-top: 20px; padding-bottom: 20px;">
                 @foreach($products as $product)
-                    <div class="col-md-4 service-box-container">
-                        <div style="background-color: white; height: 100%; overflow: hidden; border-left: 1px solid #2a2a86; border-right: 1px solid #2a2a86;border-bottom: 1px solid #2a2a86; border-top-left-radius: 50px; border-bottom-right-radius: 50px;">
+                    <div class="col-xs-12 col-sm-6 col-md-4 blog-grid-item">
+                        <article class="post-wrapper" style="background-color: white; height: 100%; overflow: hidden; border-left: 1px solid #2a2a86; border-right: 1px solid #2a2a86;border-bottom: 1px solid #2a2a86; border-top-left-radius: 50px; border-bottom-right-radius: 50px;">
                             @if($product->featured_image)
                             <div>
                                 <img style="display: block; max-width: 100%; height: auto;" src="{{ url($product->featured_image) }}">
@@ -24,7 +24,7 @@
                                             href="{{ route('frontend.plans.show', ['slug' => $product->slug]) }}"><strong>More...</strong></a></p>
                                 </div>
                             </div>
-                        </div>
+                        </article>
                     </div>
                 @endforeach
             </div>
