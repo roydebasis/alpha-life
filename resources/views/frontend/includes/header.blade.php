@@ -43,8 +43,9 @@
                 <div class="col-sm-9 no-padding">
                     <div class="topNavLeft">
                         <marquee direction="left" onmouseover="this.stop();" onmouseout="this.start();">
-                            Email: info@alphalife.com.bd &nbsp; Hot line: 01787683517 (Policy Service Department),
-                            01787683520 (Group Insurance) IP Phone : 09612 400 200
+                            @foreach($bulletins as $bulletin)
+                                {{ $bulletin->name }}
+                            @endforeach
                         </marquee>
                     </div>
                 </div>

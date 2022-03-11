@@ -129,58 +129,6 @@
                         </div>
                     </div>
                 </div>
-{{--                <div class="row">--}}
-{{--                    <div class="col">--}}
-{{--                        <div class="form-group">--}}
-{{--                            <?php--}}
-{{--                            $field_name = 'linkedin';--}}
-{{--                            $field_lable = __("management::$module_name.$field_name");--}}
-{{--                            $field_placeholder = $field_lable;--}}
-{{--                            ?>--}}
-{{--                            {{ html()->label($field_lable, $field_name) }}--}}
-{{--                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control') }}--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col">--}}
-{{--                        <div class="form-group">--}}
-{{--                            <?php--}}
-{{--                            $field_name = 'twitter';--}}
-{{--                            $field_lable = __("management::$module_name.$field_name");--}}
-{{--                            $field_placeholder = $field_lable;--}}
-{{--                            ?>--}}
-{{--                            {{ html()->label($field_lable, $field_name) }}--}}
-{{--                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control') }}--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col">--}}
-{{--                        <div class="form-group">--}}
-{{--                            <?php--}}
-{{--                            $field_name = 'instagram';--}}
-{{--                            $field_lable = __("management::$module_name.$field_name");--}}
-{{--                            $field_placeholder = $field_lable;--}}
-{{--                            ?>--}}
-{{--                            {{ html()->label($field_lable, $field_name) }}--}}
-{{--                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control') }}--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col">--}}
-{{--                        <div class="form-group">--}}
-{{--                            <?php--}}
-{{--                            $field_name = 'youtube';--}}
-{{--                            $field_lable = __("management::$module_name.$field_name");--}}
-{{--                            $field_placeholder = $field_lable;--}}
-{{--                            ?>--}}
-{{--                            {{ html()->label($field_lable, $field_name) }}--}}
-{{--                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control') }}--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
             </div>
         </div>
     </div>

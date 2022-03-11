@@ -6,5 +6,6 @@
     "Page": true,
     "Media": true,
     "Management": true,
-    "Quote": true
+    "Quote": true,
+    "Bulletin": true
 }
