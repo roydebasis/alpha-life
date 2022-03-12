@@ -10,53 +10,14 @@
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
+                @foreach($sliders as $slider)
+                    <div class="item {{$loop->index === 0 ? 'active' : ''}}">
+                        <img src="{{ asset($slider->image) }}" alt="slider image" class="img-responsive">
+                        <div class="carousel-caption">
 
-                <div class="item active">
-                    <img src="{{ asset('assets/images/slider/slideshow1.jpg') }}" alt="First slide" class="img-responsive">
-                    <div class="carousel-caption">
-                        <!--  <h1 class="animated fadeInDown delay-1"> <span>Alpha Islami Life Insurance Limited  </span></h1>
-                        <p class="animated fadeInDown delay-3">Alpha Islami Life Insurance Limited </p> -->
-                        <!--    <a class="btn learnmore-btn animated fadeInUp delay-4" href="#">Learn More</a> -->
+                        </div>
                     </div>
-                </div>
-
-                <div class="item">
-                    <img src="{{ asset('assets/images/slider/slideshow2.jpg') }}" alt="Second slide" class="img-responsive">
-                    <div class="carousel-caption">
-                        <!--  <p class="animated fadeInDown delay-3">Alpha Islami Life Insurance Limited </p>
-                        <h1 class="animated fadeInDown delay-1"><span>Clean &amp; Modern</span></h1>
-                    <p class="animated fadeInDown delay-3">A simple, unique and beautiful theme! </p>
-                    <a class="btn learnmore-btn animated fadeInUp delay-4" href="#">Learn More</a>-->
-                    </div>
-                </div>
-
-                <div class="item">
-                    <img src="{{ asset('assets/images/slider/slideshow3.jpg') }}" alt="Third slide" class="img-responsive">
-                    <div class="carousel-caption">
-
-                    </div>
-                </div>
-
-                <div class="item">
-                    <img src="{{ asset('assets/images/slider/slideshow4.jpg') }}" alt="Third slide" class="img-responsive">
-                    <div class="carousel-caption">
-
-                    </div>
-                </div>
-
-                <div class="item">
-                    <img src="{{ asset('assets/images/slider/slideshow5.jpg') }}" alt="Third slide" class="img-responsive">
-                    <div class="carousel-caption">
-
-                    </div>
-                </div>
-
-                <div class="item">
-                    <img src="{{ asset('assets/images/slider/slideshow6.jpg') }}" alt="Third slide" class="img-responsive">
-                    <div class="carousel-caption">
-
-                    </div>
-                </div> <!-- /.carousel-inner -->
+                @endforeach
 
                 <!-- Controls -->
                 <a class="left carousel-control" href="#tt-home-carousel" role="button" data-slide="prev">

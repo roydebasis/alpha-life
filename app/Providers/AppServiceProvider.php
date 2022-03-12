@@ -6,7 +6,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use Modules\Bulletin\Entities\Bulletin;
+use Modules\Home\Entities\Bulletin;
 
 class AppServiceProvider extends ServiceProvider
 {
