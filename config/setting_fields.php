@@ -193,16 +193,7 @@ return [
                 'rules' => '', // validation rule of laravel
                 'class' => '', // any class for input
                 // 'value' => '123', // any class for input
-                'value' => '<!-- Global site tag (gtag.js) - Google Analytics -->
-                            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36770598-2"></script>
-                            <script>
-                            window.dataLayer = window.dataLayer || [];
-                            function gtag(){dataLayer.push(arguments);}
-                            gtag("js", new Date());
-
-                            gtag("config", "UA-36770598-2");
-                            </script>
-                            ', // default value if you want
+                'value' => '', // default value if you want
                 'help'     => 'Paste the tracking code in this field.', // Help text for the input field.
                 'display'  => 'raw', // Help text for the input field.
             ],
@@ -221,7 +212,6 @@ return [
                 'label' => 'Google Map', // you know what label it is
                 'rules' => '', // validation rule of laravel
                 'class' => '', // any class for input
-                // 'value' => '123', // any class for input
                 'value' => '', // default value if you want
                 'help'     => 'Paste Google Map Embed Code', // Help text for the input field.
                 'display'  => 'raw', // Help text for the input field.
