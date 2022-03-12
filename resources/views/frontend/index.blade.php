@@ -343,17 +343,8 @@
                 <div class="col-xs-6 col-sm-4 col-md-3">
                     <a href="{{ url('page/premium-calculator') }}">
                         <div class="process-box">
-                            <i class="flaticon-cup7"></i>
+                            <i class="flaticon-calculate6"></i>
                             <h3>Premium Calculator</h3>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xs-6 col-sm-4 col-md-3">
-                    <a href="{{ url('page/policy-information') }}">
-                        <div class="process-box">
-                            <i class="flaticon-light110"></i>
-                            <h3>Policy Information </h3>
                         </div>
                     </a>
                 </div>
@@ -363,6 +354,15 @@
                         <div class="process-box">
                             <i class="flaticon-paint104"></i>
                             <h3>Insurance Plan </h3>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-xs-6 col-sm-4 col-md-3">
+                    <a href="{{ url('plans') }}?category=2">
+                        <div class="process-box">
+                            <i class="flaticon-paint104"></i>
+                            <h3>Supplementary Plan </h3>
                         </div>
                     </a>
                 </div>
@@ -407,7 +407,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     @endforeach
                 </div>
