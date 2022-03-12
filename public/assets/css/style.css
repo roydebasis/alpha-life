@@ -438,6 +438,7 @@ ul {
 }
 .exclusive-plans .service-box-container {
     margin-bottom: 30px;
+    height: auto;
 }
 .supplementary-plan .plan-item img {
     border-top-left-radius: 20px;
@@ -5916,4 +5917,13 @@ ul.a {
     white-space: nowrap;
     overflow: hidden;
     margin-bottom: 20px;
+}
+
+.row-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.blog-grid-item {
+    height: auto;
 }

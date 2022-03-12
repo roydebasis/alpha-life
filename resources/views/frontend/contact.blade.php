@@ -109,13 +109,6 @@
                                 {{ html()->button($text = "Send Message", $type = 'submit')->class('btn btn-success') }}
                             </div>
                         </div>
-{{--                        <div class="col-6">--}}
-{{--                            <div class="float-right">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <button type="button" class="btn btn-warning" onclick="history.back(-1)"><i class="fas fa-reply"></i> Cancel</button>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
                     </div>
 
                     {{ html()->form()->close() }}

@@ -6,6 +6,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Modules\Bulletin\Entities\Bulletin;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,5 +30,10 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
 
         Blade::component('components.backend-breadcrumbs', 'backendBreadcrumbs');
+
+        view()->composer('frontend.includes.header', function($view) {
+            $bulletins = Bulletin::all();
+            $view->with('bulletins', $bulletins);
+        });
     }
 }

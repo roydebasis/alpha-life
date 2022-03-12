@@ -8,15 +8,14 @@
     <!-- Recent News Start-->
     <section class="blog-section blog-grid v2 ptb-90">
         <div class="container">
-            <div class="row">
-                <div id="blogGrid">
-                    @foreach ($$module_name as $$module_name_singular)
+            <div class="row row-flex">
+                @foreach ($$module_name as $$module_name_singular)
                     @php
                         $details_url = route("frontend.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
                     @endphp
                     <div class="col-xs-12 col-sm-6 col-md-4 blog-grid-item">
                         <article class="post-wrapper"
-                                 style="border-top-left-radius: 50px; border-bottom-right-radius: 50px;">
+                                 style="border-top-left-radius: 50px; border-bottom-right-radius: 50px; height: 100%;">
                             <header class="featured-wrapper">
 
                                 <a href="{{$details_url}}" class="author"><img src="{{ asset('assets/images/blog/blog-three/author-1.jpg') }}"
@@ -37,7 +36,7 @@
 
                             <div class="blog-content">
                                 <header class="entry-header">
-                                    <h2 class="entry-title"><a href="{{$details_url}}">{{$$module_name_singular->name}}</a></h2>
+                                    <h2 class="entry-title single-line"><a href="{{$details_url}}">{{$$module_name_singular->name}}</a></h2>
                                 </header><!-- /.entry-header -->
 
                                 <div class="entry-content">
@@ -54,7 +53,6 @@
                         </article>
                     </div><!-- /.col-md-4 -->
                     @endforeach
-                </div>
             </div><!-- /.row -->
             <div class="team-pagination">
                 {!! $$module_name->links() !!}

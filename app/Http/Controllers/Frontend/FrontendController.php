@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Modules\Article\Entities\Post;
+use Modules\Bulletin\Entities\Bulletin;
 use Modules\Page\Entities\Page;
 use Modules\Service\Entities\Service;
 
@@ -32,6 +33,7 @@ class FrontendController extends Controller
             ->orderBy('order', 'asc')
             ->take(6)
             ->get();
+        
         return view('frontend.index', compact('body_class', 'blogs', 'insurancePlans', 'suplementaryPlans'));
     }
 
