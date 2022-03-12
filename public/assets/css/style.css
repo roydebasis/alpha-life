@@ -2917,6 +2917,14 @@ ul#portfolio-grid > li {
     display: block;
     height: auto;
 }
+#portfolio-grid li .album-featured-photo {
+    height: 150px;
+}
+.albums #portfolio-grid li { padding: 0 10px }
+#portfolio-grid li .album-featured-photo img {
+    height: 100%;
+    object-fit: cover;
+}
 
 /*Five Column Portfolio*/
 ul#portfolio-grid.five-column > li {
