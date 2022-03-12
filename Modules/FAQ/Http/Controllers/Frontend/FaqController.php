@@ -32,16 +32,16 @@ class FaqController extends Controller
      */
     public function index()
     {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
+        $module_title   = $this->module_title;
+        $module_name    = $this->module_name;
+        $module_path    = $this->module_path;
+        $module_icon    = $this->module_icon;
+        $module_model   = $this->module_model;
         $module_name_singular = Str::singular($module_name);
 
         $module_action = 'List';
 
-        $$module_name = $module_model::latest()->paginate(6);
+        $$module_name = $module_model::latest()->paginate(9);
 
         return view(
             "faq::frontend.$module_path.index",
