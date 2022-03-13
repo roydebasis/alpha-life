@@ -2984,7 +2984,7 @@ ul#portfolio-grid.two-column > li {
 
 /* Portfolio overlay default
 /* ------------------------------ */
-.portfolio .tt-overlay {
+.portfolio .tt-overlay, .plan-item .tt-overlay {
     background-color: rgba(255, 42, 64, 0.9);
     position: absolute;
     width: 100%;
@@ -2997,7 +2997,7 @@ ul#portfolio-grid.two-column > li {
     -o-transition: opacity 0.2s ease-out;
     transition: opacity 0.2s ease-out;
 }
-.portfolio:hover .tt-overlay {
+.portfolio:hover .tt-overlay, .plan-item:hover .tt-overlay {
     opacity: 1;
     visibility: visible;
 }
@@ -3017,7 +3017,7 @@ ul#portfolio-grid.two-column > li {
     -o-transition: 0.3s;
     transition: 0.3s;
 }
-.portfolio:hover .portfolio-info .project-title {
+.portfolio:hover .portfolio-info .project-title, .plan-item:hover .portfolio-info .project-title {
     top: 35%;
     opacity: 1;
     visibility: visible;
@@ -3055,7 +3055,7 @@ ul#portfolio-grid.two-column > li {
 .hover-two .portfolio:hover .portfolio-info .links {
     top: 46%;
 }
-.hover-two .portfolio .tt-overlay {
+.hover-two .portfolio .tt-overlay, .hover-two .plan-item .tt-overlay {
     background-color: rgba(0, 0, 0, 0.7);
 }
 

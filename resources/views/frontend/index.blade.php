@@ -390,14 +390,18 @@
                 <div class="row ">
                     <div class="col-lg-12">
                         <div class="swiper mySwiper">
-                            <div class="swiper-wrapper">
+                            <div class="swiper-wrapper hover-two">
                                 @foreach($suplementaryPlans as $isuplementaryPlan)
                                     <div class="swiper-slide">
                                         <div class="plan-item">
                                             <a href="{{ route('frontend.plans.show', ['slug' => $isuplementaryPlan->slug]) }}">
+                                                <div class="tt-overlay"></div>
                                                 <img style="display: block; max-width: 100%; height: auto;"
                                                     src="{{ url($isuplementaryPlan->featured_image) }}"
                                                     alt="{{ $isuplementaryPlan->name }}" title="{{ $isuplementaryPlan->name }}"/>
+                                                <div class="portfolio-info">
+                                                    <h3 class="project-title">{{ $isuplementaryPlan->name }}</h3>
+                                                </div>
                                             </a>
                                         </div>
                                     </div>
