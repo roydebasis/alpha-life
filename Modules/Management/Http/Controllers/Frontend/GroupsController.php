@@ -208,11 +208,11 @@ class GroupsController extends Controller
         $$module_name_singular = $module_model::where('slug', $slug)->first();
 
         $first_member = $$module_name_singular->managements()->orderBy('order')->first();
-        if ($$module_name_singular->layout == 1) {
+
+        $members = [];
+        
+        if ($first_member) {
             $members = array_chunk($$module_name_singular->managements()->where('id', '!=', $first_member->id)->orderBy('order')->paginate(50)->toArray()['data'], 2);
-        }
-        else {
-            $members = $$module_name_singular->managements()->where('id', '!=', $first_member->id)->orderBy('order')->paginate(50);
         }
 
 

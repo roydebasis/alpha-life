@@ -11,7 +11,7 @@
             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
-    <div class="col-6 col-md-3">
+    <div class="col-6 col-md-4">
         <div class="form-group">
             <?php
             $field_name = 'slug';
@@ -23,7 +23,7 @@
             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
-    <div class="col-6 col-md-2">
+    <div class="col-6 col-md-4">
         <div class="form-group">
             <?php
             $field_name = 'order';
@@ -35,7 +35,7 @@
             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
-    <div class="col-3">
+    {{-- <div class="col-3">
         <div class="form-group">
             <?php
             $field_name = 'layout';
@@ -50,7 +50,7 @@
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
             {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
         </div>
-    </div>
+    </div> --}}
 </div>
 <div class="row">
     <div class="col-12">
