@@ -53,7 +53,7 @@
                                 Name
                             </th>
                             <th>
-                                Categoty
+                                Published At
                             </th>
                             <th class="text-right">
                                 Action
@@ -103,7 +103,7 @@
         columns: [
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
-            {data: 'category_name', name: 'category_name'},
+            {data: 'created_at', name: 'created_at'},
             {data: 'action', name: 'action', orderable: false, searchable: false}
         ]
     });

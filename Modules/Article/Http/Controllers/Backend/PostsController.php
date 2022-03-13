@@ -76,7 +76,7 @@ class PostsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::select('id', 'name', 'category_name', 'status', 'updated_at', 'published_at', 'is_featured');
+        $$module_name = $module_model::select('id', 'name', 'status', 'updated_at', 'created_at', 'is_featured');
 
         $data = $$module_name;
 
@@ -91,16 +91,8 @@ class PostsController extends Controller
 
                             return $data->name.' '.$data->status_formatted.' '.$is_featured;
                         })
-                        ->editColumn('updated_at', function ($data) {
-                            $module_name = $this->module_name;
-
-                            $diff = Carbon::now()->diffInHours($data->updated_at);
-
-                            if ($diff < 25) {
-                                return $data->updated_at->diffForHumans();
-                            } else {
-                                return $data->updated_at->isoFormat('LLLL');
-                            }
+                        ->editColumn('created_at', function ($data) {
+                            return $data->updated_at->isoFormat('LLLL');
                         })
                         ->rawColumns(['name', 'status', 'action'])
                         ->orderColumns(['id'], '-:column $1')
