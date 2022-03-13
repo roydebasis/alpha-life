@@ -455,7 +455,7 @@
                                 <div class="entry-meta clearfix">
                                     <ul>
                                         <li>
-                                            <span class="post-date"><a href="{{$details_url}}"><i class="fa fa-calendar"></i> {{ date_format($blog->published_at, 'd F, Y') }}</a></span>
+                                            <span class="post-date"><a href="{{$details_url}}"><i class="fa fa-calendar"></i> {{ date_format($blog->created_at, 'd F, Y') }}</a></span>
                                         </li>
                                     </ul>
                                 </div>
