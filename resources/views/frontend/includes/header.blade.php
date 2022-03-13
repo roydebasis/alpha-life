@@ -142,13 +142,13 @@
                                         {{--  second level dropdown--}}
                                         @if($child['child'])
                                             <li class="dropdown">
-                                                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">{{ $child['label'] }}</a>
+                                                <a href="{{ $child['link'] }}" class="dropdown-toggle" data-toggle="dropdown">{{ $child['label'] }}</a>
                                                 <ul class="dropdown-menu">
                                                     @foreach( $child['child'] as $subChild )
                                                         {{--  third level dropdown--}}
                                                         @if($subChild['child'])
                                                             <li class="dropdown">
-                                                                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">{{ $subChild['label'] }}</a>
+                                                                <a href="{{ $subChild['link'] }}" class="dropdown-toggle" data-toggle="dropdown">{{ $subChild['label'] }}</a>
                                                                 <ul class="dropdown-menu">
                                                                     @foreach( $subChild['child'] as $thirdLevel )
                                                                         <li><a href="{{ url($thirdLevel['link']) }}">{{ $thirdLevel['label'] }}</a></li>
