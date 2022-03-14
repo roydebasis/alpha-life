@@ -22,7 +22,7 @@ class Quote extends BaseModel
 
     protected static $logName = 'quotes';
     protected static $logOnlyDirty = true;
-    protected static $logAttributes = ['title', 'description', 'image', 'url', 'created_at', 'updated_at'];
+    protected static $logAttributes = ['title', 'description', 'image', 'intro', 'created_at', 'updated_at'];
 
 
 }

@@ -29,7 +29,7 @@ class QuotesRequest extends FormRequest
             'description'       => 'required',
             'image'    => 'required|max:191',
             'status'            => 'required',
-            'url'            => 'required',
+            'intro'            => 'required',
         ];
     }
 }

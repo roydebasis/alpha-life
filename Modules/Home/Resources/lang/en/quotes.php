@@ -7,6 +7,6 @@ return [
     'image'            => 'Image',
     'quote_by'      => 'Quoted By',
     'status'           => 'Status',
-    'url'       => 'Detail Page URL',
+    'intro'       => 'Intro',
 
 ];

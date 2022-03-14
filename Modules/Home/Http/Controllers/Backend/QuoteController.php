@@ -73,7 +73,7 @@ class QuoteController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::select('id', 'title', 'description', 'image', 'url', 'quote_by', 'status', 'updated_at');
+        $$module_name = $module_model::select('id', 'title', 'description', 'image', 'intro', 'quote_by', 'status', 'updated_at');
 
         $data = $$module_name;
 
@@ -94,7 +94,7 @@ class QuoteController extends Controller
                     return $data->updated_at->isoFormat('LLLL');
                 }
             })
-            ->rawColumns(['title', 'description', 'quote_by', 'action'])
+            ->rawColumns(['title', 'intro', 'quote_by', 'action'])
             ->orderColumns(['id'], '-:column $1')
             ->make(true);
     }

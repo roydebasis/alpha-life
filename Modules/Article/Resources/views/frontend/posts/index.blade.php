@@ -22,12 +22,12 @@
                                                                 alt=""></a>
                                 <a href="{{$details_url}}"><img src="{{$$module_name_singular->featured_image}}" class="img-responsive "
                                                  alt="Image"
-                                                 style="border-top-left-radius: 50px; border-bottom-right-radius: 50px; border: 1px solid #172a52  ;"></a>
+                                                 style="border-top-left-radius: 50px; border-bottom-right-radius: 50px; border: 1px solid #172a52; height: 200px;"></a>
 
                                 <div class="entry-meta clearfix">
                                     <ul>
                                         <li>
-                                            <span class="post-date"><a href="{{$details_url}}"><i class="fa fa-calendar"></i> {{ date_format($$module_name_singular->published_at, 'd F, Y') }}</a></span>
+                                            <span class="post-date"><a href="{{$details_url}}"><i class="fa fa-calendar"></i> {{ date_format($$module_name_singular->created_at, 'd F, Y') }}</a></span>
                                         </li>
 
                                     </ul>

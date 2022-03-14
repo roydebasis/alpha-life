@@ -2,6 +2,27 @@
 
 /*
 *
+* Frontend Routes
+*
+* --------------------------------------------------------------------
+*/
+Route::group(['namespace' => '\Modules\Home\Http\Controllers\Frontend', 'as' => 'frontend.', 'middleware' => 'web', 'prefix' => ''], function () {
+
+    /*
+     *
+     *  Quotes Routes
+     *
+     * ---------------------------------------------------------------------
+     */
+    $module_name = 'quotes';
+    $controller_name = 'QuoteController';
+    Route::get("quotes", ['as' => "$module_name.index", 'uses' => "$controller_name@index"]);
+    Route::get("quotes/{id}/{slug?}", ['as' => "$module_name.show", 'uses' => "$controller_name@show"]);
+
+});
+
+/*
+*
 * Backend Routes
 *
 * --------------------------------------------------------------------
