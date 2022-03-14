@@ -26,15 +26,41 @@
                 <br><br>
                 <div class="social-icon clearfix">
                     <ul class="list-inline">
-                        <li><a href="https://www.linkedin.com/company/alpha-islami-life-insurance-limited/"><img
-                                    src="{{ asset('assets/images/social/li1.png') }}" target="_blank"> </a></li>
-                        <li><a href="https://www.facebook.com/AlphaIslamiLifeInsuranceLimited"><img
-                                    src="{{ asset('assets/images/social/f1.png') }}" target="_blank"> </a></li>
-                        <li><a href="#"><img src="{{ asset('assets/images/social/ist1.png') }}" target="_blank"> </a></li>
-                        <li><a href="https://twitter.com/AlphaIslamilife" target="_blank"><img
-                                    src="{{ asset('assets/images/social/t1.png') }}"> </a></li>
-                        <li><a href="https://www.youtube.com/channel/UCvaACoqGf4sdo4858xHnwIQ" target="_blank"><img
-                                    src="{{ asset('assets/images/social/u1.png') }}"> </a></li>
+                        @if(\App\Models\Setting::has('linkedin_url'))
+                        <li>
+                            <a href="{{ \App\Models\Setting::get('linkedin_url') }}" target="_blank">
+                                <img src="{{ asset('assets/images/social/li1.png') }}">
+                            </a>
+                        </li>
+                        @endif
+                        @if(\App\Models\Setting::has('twitter_url'))
+                            <li>
+                                <a href="{{ \App\Models\Setting::get('twitter_url') }}" target="_blank">
+                                    <img src="{{ asset('assets/images/social/t1.png') }}">
+                                </a>
+                            </li>
+                        @endif
+                        @if(\App\Models\Setting::has('facebook_url'))
+                        <li>
+                            <a href="{{ \App\Models\Setting::get('facebook_url') }}" target="_blank">
+                                <img src="{{ asset('assets/images/social/f1.png') }}">
+                            </a>
+                        </li>
+                        @endif
+                        @if(\App\Models\Setting::has('instagram_url'))
+                        <li>
+                            <a href="{{ \App\Models\Setting::get('instagram_url') }}" target="_blank">
+                                <img src="{{ asset('assets/images/social/ist1.png') }}">
+                            </a>
+                        </li>
+                        @endif
+                        @if(\App\Models\Setting::has('youtube_url'))
+                        <li>
+                            <a href="{{ \App\Models\Setting::get('youtube_url') }}" target="_blank">
+                                <img src="{{ asset('assets/images/social/u1.png') }}">
+                            </a>
+                        </li>
+                        @endif
                     </ul>
                 </div>
             </div>
