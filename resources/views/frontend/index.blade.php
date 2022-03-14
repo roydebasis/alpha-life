@@ -64,64 +64,48 @@
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <!-- tab content for web design -->
-                    <div class="row tab-pane fade in active" id="web-design">
-                        <div class="col-sm-7">
-                            <h2>চেয়ারম্যান মহোদয়ের বাণী</h2>
-                            <p>বাংলাদেশের জীবন বীমার গতানুগতিক পদ্ধতির আমূল পরিবর্তন করার উদ্দেশ্য নিয়ে আলফা ইসলামী
-                                লাইফ ইন্স্যুরেন্স লিমিটেড গঠন করা হয়েছে। গণপ্রজাতন্ত্রী বাংলাদেশ সরকারের অর্থ
-                                মন্ত্রনালয়ের অধীন বীমা উন্নয়ন ও নিয়ন্ত্রণ কতৃর্পক্ষ থেকে ফেব্রুয়ারী ২৪,২০১৪ ইং
-                                তারিখে নিবন্ধন সনদ গ্রহন করে, যার নম্বর ১৩/২০১৪ইং এবং মে ২০১৪ইং তারিখ থেকে আনুষ্ঠানিক
-                                ব্যবসায়িক কার্যক্রম শুরু করে। এই কোম্পানি বিশিষ্ট শিল্পপতি, সমাজসেবক, শিক্ষানুরাগী এবং
-                                ধর্মানুরাগী ব্যক্তিবর্গের সমন্বয়ে গঠিত। কোম্পানীর পৃষ্ঠপোষকগণ নিজস্ব ব্যবসায়ের
-                                ক্ষেত্রে আস্থা অর্জন করে মার্কেটে প্রতিনিধিত্ব করছেন। তাদের ব্যবসায়িক কৌশল ও সুশাসনের
-                                জন্য এই সফলতা অর্জন সম্ভব হয়েছে। আলফা ইসলামী লাইফ ইন্স্যুরেন্স লিমিটেড তাদের
-                                পৃষ্ঠপোষকতায় গঠিত একটি জীবন বীমা কোম্পানি অভিষ্ট লক্ষ্যে পেঁৗছাবেই। ব্যবসা পরিচালনার
-                                নবম বছরে পদার্পণ করা আলফা ইসলামী লাইফ ইন্স্যুরেন্স কোম্পানি লিমিটেড গর্বের সাথে দাবি
-                                করতে পারে যে, এই প্রতিষ্ঠানটি গ্রাহক আস্থা অর্জনের জন্য নিরন্তর প্রচেষ্টা চালিয়ে
-                                যাচ্ছে। পাশাপাশি সকল শ্রেণী পেশার লোকদেরকে উন্নত বিমা সুবিধার আওতায় নিয়ে আসতে সবসময়
-                                নিরলসভাবে কাজ করে যাচ্ছে।
-                            </p>
-                            <a href="chairmanmessage.html" class="btn btn-primary"><i
-                                    class="fa fa-long-arrow-right"></i> বিস্তারিত...</a>
-                        </div>
-                        <div class="col-sm-4 col-sm-offset-1">
-                            <div class="mac-screenshot">
-                                <img class="img-responsive" src="{{ asset('assets/images/team/chairmanHome.jpg') }}" alt=""
-                                     style="border-bottom-left-radius: 50px; border-top-right-radius:  50px;">
-                            </div>
-                        </div>
-                    </div>
+                    @if(isset($quotes))
+                        @foreach($quotes as $quote)
+                            @php
+                                $details_url = route("frontend.quotes.show",[encode_id($quote->id), $quote->quote_by]);
+                            @endphp
+                            <!-- tab content for web design -->
+                            @if($quote->quote_by === 'chairman')
+                                <div class="row tab-pane fade in active" id="web-design">
+                                    <div class="col-sm-7">
+                                        <h2>{{ $quote->title }}</h2>
+                                        <p>{{ $quote->intro }}</P>
+                                        <a href="{{ $details_url }}" class="btn btn-primary"><i
+                                                class="fa fa-long-arrow-right"></i> বিস্তারিত...</a>
+                                    </div>
+                                    <div class="col-sm-4 col-sm-offset-1">
+                                        <div class="mac-screenshot">
+                                            <img class="img-responsive" src="{{ asset($quote->image) }}" alt="Chairman"
+                                                style="border-bottom-left-radius: 50px; border-top-right-radius:  50px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            @elseif($quote->quote_by === 'ceo')
+                                <div class="row tab-pane fade" id="apps-design">
+                                    <div class="col-sm-6">
+                                        <h2>{{ $quote->title }}</h2>
+                                        <p>{{ $quote->intro }}</P>
+                                        <a href="{{ $details_url }}" class="btn btn-primary"><i class="fa fa-long-arrow-right"></i>
+                                            বিস্তারিত...</a>
+                                    </div>
+                                    <div class="col-sm-5 col-sm-offset-1">
+                                        <div class="mac-screenshot">
+                                            <img class="img-responsive" src="{{ asset($quote->image) }}" alt="CEO"
+                                                style="border-bottom-left-radius: 50px; border-top-right-radius:  50px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                    @endif
 
                     <!-- tab content for application design -->
-                    <div class="row tab-pane fade" id="apps-design">
-                        <div class="col-sm-6">
-                            <h2>মুখ্য নির্বাহী কর্মকর্তার বানী</h2>
-                            <p>আলফা ইসলামী লাইফ ইনস্যুরেন্স লিমিটেড এর পক্ষ থেকে আপনাদের জানাচ্ছি নতুন বছরের শুভেচ্ছা ও
-                                অভিনন্দন। আমি
-                                ২০২০ইং সালের জানুয়ারী মাসে অত্র কোম্পানীতে যোগদান করি। আমার পথ চলার শুরুটা মসৃণ ছিলনা
-                                কারন তখন করোনা
-                                মহামারীর কারনে পুরো বিশ^ বিপর্যস্ত ছিল। আমি দায়িত্ব নেয়ার পরে ব্যবসায়িক প্রক্রিয়া
-                                এবং মান বৃদ্ধির উপর মনোযোগ দিয়েছি।
-                                আমার প্রান প্রিয় কর্মী ভাই বোনদের সাথে সার্বক্ষনিক যোগাযোগ রেখে সঠিক দিকনির্দেশনা
-                                দিয়েছি। করোনা মহামারী ভয়াবহতা
-                                উপেক্ষা করে কোম্পানীর নির্দেশনা মেনে যারা অক্লান্ত পরিশ্রম করে ২০২০ইং সালে ১৯ কোটি ও
-                                ২০২১ ইং সালে ৫২
-                                কোটি টাকার মোট প্রিমিয়াম আয় সহ টেকসই গতি বজায় রেখেছেন তাদেরকে জানাই হৃদয় নিংড়ানো
-                                ভালবাসা ও অভিবাদন।
-                                আপনাদের এই ক্রমাগত সফলতা আপনাদের প্রতি আমাদের বিশ্বাসকে শক্তিশালী করেছে, যা আমাদের আরও
-                                ভাল করার জন্য
-                                উৎসাহ </p>
-                            <a href="ceomessage.html" class="btn btn-primary"><i class="fa fa-long-arrow-right"></i>
-                                বিস্তারিত...</a>
-                        </div>
-                        <div class="col-sm-5 col-sm-offset-1">
-                            <div class="mac-screenshot">
-                                <img class="img-responsive" src="{{ asset('assets/images/team/ceo.jpg') }}" alt=""
-                                     style="border-bottom-left-radius: 50px; border-top-right-radius:  50px;">
-                            </div>
-                        </div>
-                    </div>
+                    
 
                     <!-- tab content for Premium Calculator -->
                     <div class="tab-pane fade premium-calculator" id="creative-ideas">

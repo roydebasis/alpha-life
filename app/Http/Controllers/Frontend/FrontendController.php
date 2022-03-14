@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Modules\Article\Entities\Post;
+use Modules\Home\Entities\Quote;
 use Modules\Home\Entities\Slider;
 use Modules\Page\Entities\Page;
 use Modules\Service\Entities\Service;
@@ -35,8 +36,10 @@ class FrontendController extends Controller
             ->get();
 
         $sliders = Slider::all();
+
+        $quotes = Quote::all();
         
-        return view('frontend.index', compact('body_class', 'blogs', 'insurancePlans', 'suplementaryPlans', 'sliders'));
+        return view('frontend.index', compact('body_class', 'blogs', 'insurancePlans', 'suplementaryPlans', 'sliders', 'quotes'));
     }
 
     /**

@@ -53,7 +53,7 @@
                                 Title
                             </th>
                             <th>
-                                Description
+                                Intro
                             </th>
                             <th>
                                 Quoted By
@@ -106,7 +106,7 @@
         columns: [
             {data: 'id', name: 'id'},
             {data: 'title', name: 'title'},
-            {data: 'description', name: 'description'},
+            {data: 'intro', name: 'intro'},
             {data: 'quote_by', name: 'quote_by'},
             {data: 'action', name: 'action', orderable: false, searchable: false}
         ]
