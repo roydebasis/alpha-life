@@ -10,6 +10,7 @@ return [
     'group_id'      => 'Group',
     'order'      => 'Order',
     'status'           => 'Status',
+    'details'       => 'Details',
 
     'email'       => 'Email Id',
     'facebook'    => 'Facebook Profile Url',

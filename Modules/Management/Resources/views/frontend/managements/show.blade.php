@@ -1,62 +1,24 @@
-@extends('backend.layouts.app')
+@extends('frontend.layouts.app')
 
-@section('title') {{ __($module_action) }} {{ $module_title }} @endsection
-
-@section('breadcrumbs')
-<x-backend-breadcrumbs>
-    <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}' >
-        {{ $module_title }}
-    </x-backend-breadcrumb-item>
-    <x-backend-breadcrumb-item type="active">{{ __($module_action) }}</x-backend-breadcrumb-item>
-</x-backend-breadcrumbs>
-@endsection
+@section('title') {{ $$module_name_singular->name }} @endsection
 
 @section('content')
-<div class="card">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-8">
-                <h4 class="card-title mb-0">
-                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">{{ __($module_action) }}</small>
-                </h4>
-                <div class="small text-muted">
-                    @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
-                </div>
-            </div>
-            <!--/.col-->
-            <div class="col-4">
-                <div class="float-right">
-                    <a href="{{ route("backend.$module_name.index") }}" class="btn btn-secondary mt-1 btn-sm" data-toggle="tooltip" title="{{ ucwords($module_name) }} List"><i class="fas fa-list"></i> List</a>
-                    @can('edit_'.$module_name)
-                    <a href="{{ route("backend.$module_name.edit", $$module_name_singular) }}" class="btn btn-primary mt-1 btn-sm" data-toggle="tooltip" title="Edit {{ Str::singular($module_name) }} "><i class="fas fa-wrench"></i> Edit</a>
-                    @endcan
-                </div>
-            </div>
-            <!--/.col-->
-        </div>
-        <!--/.row-->
+    <x-page-header pageTitle="{{ $$module_name_singular->title }}"/>
 
-        <hr>
+    <section class="hero-block-v1 section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
 
-        <div class="row mt-4">
-            <div class="col">
+                    <p style="text-align: justify; text-shadow: #172a52; font-size:medium ;   ">
+                        <img class="img-responsive" src="{{ asset($$module_name_singular->image) }}" alt=""
+                            style="border-bottom-right-radius: 30px; border-top-left-radius: 30px;  background-color: lightgray; float: left; padding: 10px; margin-right: 30px;margin-bottom: 30px;">
 
-                @include('backend.includes.show')
+                        {!! $$module_name_singular->details !!}
+                    </p>
 
-            </div>
-        </div>
-    </div>
-
-    <div class="card-footer">
-        <div class="row">
-            <div class="col">
-                <small class="float-right text-muted">
-                    Updated: {{$$module_name_singular->updated_at->diffForHumans()}},
-                    Created at: {{$$module_name_singular->created_at->isoFormat('LLLL')}}
-                </small>
-            </div>
-        </div>
-    </div>
-</div>
-
+                </div><!-- /.col-md-9 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section>
 @endsection

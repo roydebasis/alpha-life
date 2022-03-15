@@ -92,6 +92,21 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <?php
+            $field_name = 'details';
+            $field_lable = __("management::$module_name.$field_name");
+            $field_placeholder = $field_lable;
+            $required = "required";
+            ?>
+            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+        </div>
+    </div>
+</div>
+
 
 <div class="row">
     <div class="col">
@@ -190,13 +205,38 @@ $(function() {
     });
 });
 </script>
+<script src="https://cdn.tiny.cloud/1/ym8q5dj6b8ndg6fvncwdg374ihxv01btz4ygrazpj1uakc93/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
-<script type="text/javascript" src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
+{{-- <script type="text/javascript" src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script> --}}
 <script type="text/javascript" src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
 
 <script type="text/javascript">
 
-CKEDITOR.replace('content', {filebrowserImageBrowseUrl: '/file-manager/ckeditor', language:'{{App::getLocale()}}', defaultLanguage: 'en'});
+// CKEDITOR.replace('content', {filebrowserImageBrowseUrl: '/file-manager/ckeditor', language:'{{App::getLocale()}}', defaultLanguage: 'en'});
+
+tinymce.init({
+    selector: '#details',
+    plugins: ['advlist autolink lists link image charmap print preview hr anchor pagebreak', "searchreplace wordcount visualblocks visualchars code fullscreen", "insertdatetime media nonbreaking save table contextmenu directionality", "emotions template paste textcolor colorpicker textpattern"],
+    toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | link image media | copy cut paste',
+    setup: function (editor) {
+        editor.on('change', function (e) {
+            editor.save();
+        });
+    }
+});
+let setImageTo = '';
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('button-image').addEventListener('click', (event) => {
+        event.preventDefault();
+        setImageTo = 'featured_image';
+        window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
+    });
+    document.getElementById('button-banner').addEventListener('click', (event) => {
+        event.preventDefault();
+        setImageTo = 'banner_image';
+        window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
+    });
+});
 
 document.addEventListener("DOMContentLoaded", function() {
 

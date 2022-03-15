@@ -13,7 +13,7 @@
                     @php
                         $details_url = route("frontend.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
                     @endphp
-                    <div class="col-xs-12 col-sm-6 col-md-4 blog-grid-item">
+                    <div class="col-xs-12 col-sm-6 col-md-4 blog-grid-item" style="margin-bottom: 40px;">
                         <article class="post-wrapper"
                                  style="border-top-left-radius: 50px; border-bottom-right-radius: 50px; height: 100%;">
                             <header class="featured-wrapper">

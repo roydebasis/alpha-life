@@ -437,7 +437,7 @@
                                 </a>
                                 @if($blog->banner_image)
                                 <a href="{{ $details_url }}">
-                                    <img src="{{$blog->banner_image}}" class="img-responsive" alt="{{ $blog->name }}" style="border-top-left-radius: 50px; border-bottom-right-radius: 50px; border: 1px solid #172a52  ;">
+                                    <img src="{{$blog->featured_image}}" class="img-responsive" alt="{{ $blog->name }}" style="border-top-left-radius: 50px; border-bottom-right-radius: 50px; border: 1px solid #172a52; height: 200px;">
                                 </a>
                                 @endif
                                 <div class="entry-meta clearfix">
