@@ -61,7 +61,7 @@
                     <div class="box-cell">
                         <div class="team-member">
                             <div class="team-thumb">
-                                <a class="team-wrap-link" href="{{ route('frontend.managements.show', $first_member->id) }}">
+                                <a class="team-wrap-link" href="{{ route('frontend.managements.show', $member['id']) }}">
                                 <div class="thumb-overlay"></div>
                                 @if($member['image'])
                                     <img src="{{asset($member['image'])}}" alt="" class="bod">
@@ -71,7 +71,7 @@
                                 </a>
 
                                 <div class="member-info text-center">
-                                    <a class="team-wrap-link" href="{{ route('frontend.managements.show', $first_member->id) }}">
+                                    <a class="team-wrap-link" href="{{ route('frontend.managements.show', $member['id']) }}">
                                     <h3>{{ $member['name'] }}</h3>
 
                                     <span style="color: white;" class="title">{{ $member['designation'] }}</span>
