@@ -85,7 +85,7 @@
              style="background-color: #172a52; border-top:1px dotted #ffff; border-bottom-left-radius: 100px;border-bottom-right-radius: 100px; ">
             <div class="col-md-12" style="padding:1px ;">
                 <div class="copyright">
-                    <p>&copy; Copright 2021 Alpha Islami Life - Design & Development my Inspire32 Web Solution</p>
+                    <p>&copy; Copright 2021 Alpha Islami Life - Design & Development by Inspire32 Web Solution</p>
                     <br>
                 </div>
             </div>
