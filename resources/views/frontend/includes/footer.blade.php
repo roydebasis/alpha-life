@@ -85,7 +85,7 @@
              style="background-color: #172a52; border-top:1px dotted #ffff; border-bottom-left-radius: 100px;border-bottom-right-radius: 100px; ">
             <div class="col-md-12" style="padding:1px ;">
                 <div class="copyright">
-                    <p>&copy; Copyright {{ date('Y') }} Alpha Islami Life - Design & Development by <a href="http://inspire32.com" target="_blank">Inspire32</a> Web Solution</p>
+                    <p>Copyright &copy; {{ date('Y') }} Alpha Islami Life - Design & Development by <a href="http://inspire32.com" target="_blank">Inspire32</a> Web Solution</p>
                     <br>
                 </div>
             </div>
