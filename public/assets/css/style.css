@@ -5935,3 +5935,6 @@ ul.a {
 .blog-grid-item {
     height: auto;
 }
+.copyright a{color: #eee}
+.copyright a:hover{color: #5f4646}
+.blog-section.blog-grid article.post-wrapper{margin-bottom: 0}
