@@ -12,7 +12,7 @@
                 </div><!-- /.col-md-6 -->
                 <div class="col-lg-6 col-md-7 no-padding">
                     <div class="history-wrapper">
-                        @if(issset($aboutAlpha))
+                        @if(isset($aboutAlpha))
                             <h2>{{ $aboutAlpha->title }} </h2>
 
                             <div id="historyCarousel" class="carousel slide" data-ride="carousel">
