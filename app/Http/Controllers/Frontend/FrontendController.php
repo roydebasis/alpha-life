@@ -108,7 +108,8 @@ class FrontendController extends Controller
         }
         $content = Page::where('slug', $slug)->firstOrFail();
         if ($slug == 'about-alpha') {
-            return view('frontend.page-about', compact('content', 'meta_page_type'));
+            $aboutAlpha = About::first();
+            return view('frontend.page-about', compact('content', 'meta_page_type', 'aboutAlpha'));
         }
         return view('frontend.page', compact('content', 'meta_page_type'));
     }
