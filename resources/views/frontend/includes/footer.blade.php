@@ -68,13 +68,10 @@
                 <br>
                 <h3 style="color: white; text-align: center;">Important Link</h3>
                 <hr>
-                <a href="http://www.idra.org.bd/" style="color: white;" target="_blank">IDRA</a> <br>
-                <a href="https://nbr.gov.bd/" style="color: white;" target="_blank">NBR </a><br>
-                <a href="https://www.bb.org.bd/" style="color: white;" target="_blank">Bangladesh Bank </a><br>
-                <a href="https://bia.portal.gov.bd/" style="color: white;" target="_blank">Bangladesh Insurance
-                    Academy </a><br>
-                <a href="https://biabd.org/" style="color: white;" target="_blank">Bangladesh Insurance Association
-                </a><br>
+                @foreach($footerlinks as $footerlink)
+                    <a href="{{ $footerlink->link }}" style="color: white;" target="_blank">{{$footerlink->name}}</a> <br>
+                @endforeach
+                <br>
 
 
             </div>
@@ -85,7 +82,7 @@
              style="background-color: #172a52; border-top:1px dotted #ffff; border-bottom-left-radius: 100px;border-bottom-right-radius: 100px; ">
             <div class="col-md-12" style="padding:1px ;">
                 <div class="copyright">
-                    <p>&copy; Copright 2021 Alpha Islami Life - Design & Development by Inspire32 Web Solution</p>
+                    <p>&copy; Copright <?php echo date("Y"); ?> Alpha Islami Life - Design & Development by Inspire32 Web Solution</p>
                     <br>
                 </div>
             </div>

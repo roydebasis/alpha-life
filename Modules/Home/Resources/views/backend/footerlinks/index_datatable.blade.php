@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title') {{ $module_action }} {{ $module_title }} @endsection
+@section('title') {{ __($module_action) }} {{ $module_title }} @endsection
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
@@ -11,18 +11,61 @@
 @section('content')
 <div class="card">
     <div class="card-body">
+        {{ html()->form('POST', route("backend.$module_name.store"))->class('form')->open() }}
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group">
+                    <?php
+                    $field_name = 'name';
+                    $field_lable = __("home::$module_name.$field_name");
+                    $field_placeholder = $field_lable;
+                    $required = "required";
+                    ?>
+                    {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                    {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group">
+                    <?php
+                    $field_name = 'link';
+                    $field_lable = __("home::$module_name.$field_name");
+                    $field_placeholder = $field_lable;
+                    $required = "required";
+                    ?>
+                    {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                    {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8" style="display: flex; justify-content: end;">
+                <div class="form-group">
+                    {{ html()->button($text = "<i class='fas fa-plus-circle'></i> " . ucfirst("Create") . "", $type = 'submit')->class('btn btn-success') }}
+                </div>
+            </div>
+
+        </div>
+        {{ html()->form()->close() }}
+
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
         <div class="row">
             <div class="col-8">
                 <h4 class="card-title mb-0">
-                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">Data Table {{ $module_action }}</small>
+                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">Data Table {{ __($module_action) }}</small>
                 </h4>
                 <div class="small text-muted">
-                    {{ Str::title($module_name) }} Management Dashboard
+                    @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
                 </div>
             </div>
             <div class="col-4">
                 <div class="float-right">
-                    <x-buttons.create route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}"/>
+                    {{-- <x-buttons.create route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}"/> --}}
 
                     <div class="btn-group" role="group" aria-label="Toolbar button groups">
                         <div class="btn-group" role="group">
@@ -53,7 +96,7 @@
                                 Name
                             </th>
                             <th>
-                                Updated At
+                                Link
                             </th>
                             <th class="text-right">
                                 Action
@@ -103,7 +146,7 @@
         columns: [
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
-            {data: 'updated_at', name: 'updated_at'},
+            {data: 'link', name: 'link'},
             {data: 'action', name: 'action', orderable: false, searchable: false}
         ]
     });

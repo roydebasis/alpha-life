@@ -72,6 +72,32 @@ class GenerateMenus
                 ->link->attr([
                     'class' => 'c-sidebar-nav-link',
                 ]);
+
+            // Submenu: Quotes
+            $home_menu->add('<i class="c-sidebar-nav-icon fab fa-servicestack"></i> About Alpha', [
+                'route' => 'backend.about.edit',
+                'class' => 'c-sidebar-nav-item',
+            ])->data([
+                'order'         => 73,
+                'activematches' => 'admin/about*',
+                'permission'    => ['edit_about'],
+            ])
+                ->link->attr([
+                    'class' => 'c-sidebar-nav-link',
+                ]);
+
+            // Submenu: Quotes
+            $home_menu->add('<i class="c-sidebar-nav-icon fab fa-servicestack"></i> Footer Important Links', [
+                'route' => 'backend.footerlinks.index',
+                'class' => 'c-sidebar-nav-item',
+            ])->data([
+                'order'         => 73,
+                'activematches' => 'admin/footerLink*',
+                'permission'    => ['edit_about'],
+            ])
+                ->link->attr([
+                    'class' => 'c-sidebar-nav-link',
+                ]);
         })->sortBy('order');
 
         return $next($request);

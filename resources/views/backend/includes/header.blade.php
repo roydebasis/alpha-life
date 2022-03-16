@@ -15,12 +15,16 @@
 
         <li class="c-header-nav-item dropdown">
             <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <div class="c-avatar">
-                    <img class="c-avatar-img" src="{{ asset(auth()->user()->avatar) }}" alt="{{ auth()->user()->name }}">
-                </div>
+                @if(isset(auth()->user()->avatar))
+                    <div class="c-avatar">
+                        <img class="c-avatar-img" src="{{ asset(auth()->user()->avatar) }}" alt="{{ auth()->user()->name }}">
+                    </div>
+                @endif
             </a>
             <div class="dropdown-menu dropdown-menu-right pt-0">
                 <div class="dropdown-header bg-light py-2"><strong>@lang('Account')</strong></div>
+
+                @if(isset(Auth::user()->id))
 
                 <a class="dropdown-item" href="{{route('backend.users.profile', Auth::user()->id)}}">
                     <i class="c-icon cil-user"></i>&nbsp;
@@ -30,6 +34,7 @@
                     <i class="c-icon cil-at"></i>&nbsp;
                     {{ Auth::user()->email }}
                 </a>
+                @endif
 
                 <div class="dropdown-header bg-light py-2"><strong>@lang('Settings')</strong></div>
 

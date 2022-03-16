@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Modules\Home\Entities\Bulletin;
+use Modules\Home\Entities\FooterLink;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,6 +35,11 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('frontend.includes.header', function($view) {
             $bulletins = Bulletin::all();
             $view->with('bulletins', $bulletins);
+        });
+
+        view()->composer('frontend.includes.footer', function($view) {
+            $footerlinks = FooterLink::all();
+            $view->with('footerlinks', $footerlinks);
         });
     }
 }

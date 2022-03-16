@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title') {{ $module_action }} {{ $module_title }} @endsection
+@section('title') {{ __($module_action) }} {{ $module_title }} @endsection
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
@@ -14,20 +14,20 @@
         <div class="row">
             <div class="col-8">
                 <h4 class="card-title mb-0">
-                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">{{ $module_action }}</small>
+                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">{{ __($module_action) }}</small>
                 </h4>
                 <div class="small text-muted">
-                    {{ ucwords($module_name) }} Management Dashboard
+                    @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
                 </div>
             </div>
             <!--/.col-->
             <div class="col-4">
                 <div class="float-right">
                     <x-buttons.create route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}"/>
-                    
+
                     <div class="btn-group" role="group" aria-label="Toolbar button groups">
                         <div class="btn-group" role="group">
-                            <button id="btnGroupToolbar" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button id="btnGroupToolbar" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-cog"></i>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="btnGroupToolbar">
@@ -55,13 +55,13 @@
                                 Name
                             </th>
                             <th>
-                                Code
+                                Category
                             </th>
                             <th>
-                                Updated At
+                                Type
                             </th>
                             <th>
-                                Created By
+                                Image
                             </th>
                             <th class="text-right">
                                 Action
@@ -76,16 +76,18 @@
                                 {{ $module_name_singular->id }}
                             </td>
                             <td>
-                                <a href="{{ url("admin/$module_name", $module_name_singular->id) }}">{{ $module_name_singular->name }}</a>
+                                <strong>{{ $module_name_singular->name }}</strong>
+                                <br>
+                                <small class="text-muted">Updated At: {{ $module_name_singular->updated_at->diffForHumans() }}</small>
                             </td>
                             <td>
-                                {{ $module_name_singular->slug }}
+                                {{ $module_name_singular->category_name }}
                             </td>
                             <td>
-                                {{ $module_name_singular->updated_at->diffForHumans() }}
+                                {{ $module_name_singular->type }}
                             </td>
                             <td>
-                                {{ $module_name_singular->created_by }}
+                                <img src="{{ asset($module_name_singular->featured_image) }}" class="img-fluid img-thumbnail" style="max-width:200px;" alt="{{ $module_name_singular->name }}">
                             </td>
                             <td class="text-right">
                                 <a href='{!!route("backend.$module_name.edit", $module_name_singular)!!}' class='btn btn-sm btn-primary mt-1' data-toggle="tooltip" title="Edit {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-wrench"></i></a>
