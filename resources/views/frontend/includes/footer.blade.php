@@ -68,13 +68,10 @@
                 <br>
                 <h3 style="color: white; text-align: center;">Important Link</h3>
                 <hr>
-                <a href="http://www.idra.org.bd/" style="color: white;" target="_blank">IDRA</a> <br>
-                <a href="https://nbr.gov.bd/" style="color: white;" target="_blank">NBR </a><br>
-                <a href="https://www.bb.org.bd/" style="color: white;" target="_blank">Bangladesh Bank </a><br>
-                <a href="https://bia.portal.gov.bd/" style="color: white;" target="_blank">Bangladesh Insurance
-                    Academy </a><br>
-                <a href="https://biabd.org/" style="color: white;" target="_blank">Bangladesh Insurance Association
-                </a><br>
+                @foreach($footerlinks as $footerlink)
+                    <a href="{{ $footerlink->link }}" style="color: white;" target="_blank">{{$footerlink->name}}</a> <br>
+                @endforeach
+                <br>
 
 
             </div>

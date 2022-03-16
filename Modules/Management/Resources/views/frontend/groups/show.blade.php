@@ -88,10 +88,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="box-cell box2" style="margin-right: 10px;">
-                        <h3> {{ $member['name'] }}</h3>
-                        {{ $member['designation'] }}
-                    </div>
+
+                    <a class="team-wrap-link" href="{{ route('frontend.managements.show', $member['id']) }}">
+                        <div class="box-cell box2" style="margin-right: 10px;">
+                            <h3> {{ $member['name'] }}</h3>
+                            {{ $member['designation'] }}
+                        </div>
+                    </a>
 
                         @if(count($membersChunk) == 1)
                             <div class="box-row">

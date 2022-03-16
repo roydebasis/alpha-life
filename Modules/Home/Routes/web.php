@@ -78,4 +78,30 @@ Route::group(['namespace' => '\Modules\Home\Http\Controllers\Backend', 'as' => '
     Route::get("$module_name/trashed", ['as' => "$module_name.trashed", 'uses' => "$controller_name@trashed"]);
     Route::patch("$module_name/trashed/{id}", ['as' => "$module_name.restore", 'uses' => "$controller_name@restore"]);
     Route::resource("$module_name", "$controller_name");
+
+     /*
+     *
+     *  About Alpha Routes
+     *
+     * ---------------------------------------------------------------------
+     */
+
+    $module_name = 'about';
+    $controller_name = 'AboutController';
+    Route::get("$module_name/edit", ['as' => "$module_name.edit", 'uses' => "$controller_name@edit"]);
+    Route::patch("$module_name/update/{id}", ['as' => "$module_name.update", 'uses' => "$controller_name@update"]);
+
+        /*
+     *
+     *  Footer Links Routes
+     *
+     * ---------------------------------------------------------------------
+     */
+    $module_name = 'footerlinks';
+    $controller_name = 'FooterLinkController';
+    Route::get("$module_name/index_list", ['as' => "$module_name.index_list", 'uses' => "$controller_name@index_list"]);
+    Route::get("$module_name/index_data", ['as' => "$module_name.index_data", 'uses' => "$controller_name@index_data"]);
+    Route::get("$module_name/trashed", ['as' => "$module_name.trashed", 'uses' => "$controller_name@trashed"]);
+    Route::patch("$module_name/trashed/{id}", ['as' => "$module_name.restore", 'uses' => "$controller_name@restore"]);
+    Route::resource("$module_name", "$controller_name");
 });
