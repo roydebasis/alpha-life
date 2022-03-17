@@ -5938,3 +5938,15 @@ ul.a {
 .copyright a{color: #eee}
 .copyright a:hover{color: #5f4646}
 .blog-section.blog-grid article.post-wrapper{margin-bottom: 0}
+
+.footer-section .address p {
+    color: #ffff;
+    font-size: medium; line-height:140% ;
+    text-align: left;
+}
+
+.notice-table {
+    width: 97%;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
