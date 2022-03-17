@@ -287,37 +287,37 @@
         <div class="container">
             <div class="row text-center">
                 <div class="col-xs-6 col-sm-4 col-md-3">
-                    <a href="{{ url('page/premium-calculator') }}">
+                    <a href="{{ setting("button_one_link") }}">
                         <div class="process-box">
-                            <i class="flaticon-calculate6"></i>
-                            <h3>Premium Calculator</h3>
+                            <i class="{{ setting('button_one_icon') }}"></i>
+                            <h3>{{ setting('button_one_text') }}</h3>
                         </div>
                     </a>
                 </div>
 
                 <div class="col-xs-6 col-sm-4 col-md-3">
-                    <a href="{{ url('plans') }}?category=1">
+                    <a href="{{ setting("button_two_link") }}">
                         <div class="process-box">
-                            <i class="flaticon-paint104"></i>
-                            <h3>Insurance Plan </h3>
+                            <i class="{{ setting('button_two_icon') }}"></i>
+                            <h3>{{ setting('button_two_text') }}</h3>
                         </div>
                     </a>
                 </div>
 
                 <div class="col-xs-6 col-sm-4 col-md-3">
-                    <a href="{{ url('plans') }}?category=2">
+                    <a href="{{ setting("button_three_link") }}">
                         <div class="process-box">
-                            <i class="flaticon-paint104"></i>
-                            <h3>Supplementary Plan </h3>
+                            <i class="{{ setting('button_three_icon') }}"></i>
+                            <h3>{{ setting('button_three_text') }} </h3>
                         </div>
                     </a>
                 </div>
 
                 <div class="col-xs-6 col-sm-4 col-md-3">
-                    <a href="{{ url('news') }}">
+                    <a href="{{ setting("button_four_link") }}">
                         <div class="process-box">
-                            <i class="flaticon-paint104"></i>
-                            <h3>Recent News</h3>
+                            <i class="{{ setting('button_four_icon') }}"></i>
+                            <h3>{{ setting('button_four_text') }}</h3>
                         </div>
                     </a>
                 </div>
@@ -411,7 +411,7 @@
                     <div
                         style="border-top-left-radius: 50px; border-bottom-right-radius: 50px; overflow: hidden; border: 1px solid #2a2a86 ">
                         <a href="https://play.google.com/store/apps/details?id=com.sslwireless.alil"
-                           target="_blank"><img class="img-responsive" src="{{ asset('assets/images/mobileApp.png') }}"
+                           target="_blank"><img class="img-responsive" src="{{ asset(setting('mobile_app_image')) }}"
                                                 alt="Mobile Apps"> </a>
                     </div>
                 </div>
