@@ -49,11 +49,20 @@
                                 <p class="text-muted">{{ $fields['desc'] }}</p>
 
                                 <div class="row">
-                                    <div class="col">
+                                    @if(isset($fields['col']))
                                         @foreach($fields['elements'] as $field)
-                                            @includeIf('backend.settings.fields.' . $field['type'] )
+                                            <div class="col-{{$fields['col']}}">
+                                                @includeIf('backend.settings.fields.' . $field['type'] )
+                                            </div>
                                         @endforeach
-                                    </div>
+                                    @else
+                                        <div class="col">
+                                            @foreach($fields['elements'] as $field)
+                                                @includeIf('backend.settings.fields.' . $field['type'] )
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                    
                                 </div>
                             </div>
                         </div>

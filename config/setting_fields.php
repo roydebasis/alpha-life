@@ -43,6 +43,15 @@ return [
                 'class' => '', // any class for input
                 'value' => '', // default value if you want
             ],
+            [
+                'type'  => 'file', // input fields type
+                'data'  => 'string', // data type, string, int, boolean
+                'name'  => 'mobile_app_image', // unique name for field
+                'label' => 'Mobile App Image', // you know what label it is
+                'rules' => '', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '', // default value if you want
+            ],
         ],
     ],
     'email' => [
@@ -185,6 +194,123 @@ return [
                 'rules' => '', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => '', // default value if you want
+            ],
+        ],
+    ],
+    'buttons' => [
+        'title' => 'Home 4 Buttons',
+        'desc'  => 'Home 4 Buttons',
+        'icon'  => 'fas fa-home',
+        'col'   => 4,
+
+        'elements' => [
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'text', // data type, string, int, boolean
+                'name'  => 'button_one_icon', // unique name for field
+                'label' => 'Button One Icon Class', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'flaticon-calculate6', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'text', // data type, string, int, boolean
+                'name'  => 'button_one_text', // unique name for field
+                'label' => 'Button One Text', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'Premium Calculator', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'text', // data type, string, int, boolean
+                'name'  => 'button_one_link', // unique name for field
+                'label' => 'Button One Link', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'http://alphalife.com.bd/page/premium-calculator', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'text', // data type, string, int, boolean
+                'name'  => 'button_two_icon', // unique name for field
+                'label' => 'Button Two Icon Class', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'flaticon-paint104', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'text', // data type, string, int, boolean
+                'name'  => 'button_two_text', // unique name for field
+                'label' => 'Button Two Text', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'Insurance Plan', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'text', // data type, string, int, boolean
+                'name'  => 'button_two_link', // unique name for field
+                'label' => 'Button Two Link', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'http://alphalife.com.bd/plans?category=1', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'text', // data type, string, int, boolean
+                'name'  => 'button_three_icon', // unique name for field
+                'label' => 'Button Three Icon Class', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'flaticon-paint104', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'text', // data type, string, int, boolean
+                'name'  => 'button_three_text', // unique name for field
+                'label' => 'Button Three Text', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'Supplemantary Plan', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'text', // data type, string, int, boolean
+                'name'  => 'button_three_link', // unique name for field
+                'label' => 'Button Three Link', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'http://alphalife.com.bd/plans?category=2', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'text', // data type, string, int, boolean
+                'name'  => 'button_four_icon', // unique name for field
+                'label' => 'Button Four Icon Class', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'flaticon-paint104', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'text', // data type, string, int, boolean
+                'name'  => 'button_four_text', // unique name for field
+                'label' => 'Button Four Text', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'Recent News', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'text', // data type, string, int, boolean
+                'name'  => 'button_four_link', // unique name for field
+                'label' => 'Button Four Link', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'http://alphalife.com.bd/news', // default value if you want
             ],
         ],
     ],
