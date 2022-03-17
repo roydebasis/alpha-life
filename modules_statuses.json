@@ -8,5 +8,6 @@
     "Management": true,
     "Bulletin": true,
     "FAQ": true,
-    "Home": true
+    "Home": true,
+    "Notice": true
 }

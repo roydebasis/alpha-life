@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Modules\Article\Entities\Post;
 use Modules\Home\Entities\About;
 use Modules\Home\Entities\Quote;
 use Modules\Home\Entities\Slider;
+use Modules\Notice\Entities\Notice;
 use Modules\Page\Entities\Page;
 use Modules\Service\Entities\Service;
 
@@ -111,7 +113,30 @@ class FrontendController extends Controller
             $aboutAlpha = About::first();
             return view('frontend.page-about', compact('content', 'meta_page_type', 'aboutAlpha'));
         }
+        elseif ($slug == 'notice-board') {
+            $notices = Notice::all();
+            return view('frontend.page-notice-board', compact('content', 'meta_page_type', 'notices'));
+        }
         return view('frontend.page', compact('content', 'meta_page_type'));
+    }
+
+    public function getNoticeDownload(Request $request)
+    {
+        $fileURL = $request->query('attachment');
+
+        if (isset($fileURL)) {
+            //PDF file is stored under project/public/download/info.pdf
+            $file= public_path(). $fileURL;
+
+            $headers = array(
+                    'Content-Type: application/pdf',
+                    );
+
+            return response()->download($file, 'notice.pdf', $headers);
+        }
+
+
+        return back();
     }
 }
 

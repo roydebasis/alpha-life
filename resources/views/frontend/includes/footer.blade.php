@@ -7,17 +7,9 @@
                 <br>
                 <h3 style="color: white; text-align: center;"> Alpha Islami Life Insurance Limited </h3>
                 <hr>
-                <p style=" color: #ffff; ; font-size: medium; line-height:140% ; text-align: left;">
-                    A. J. Tower, Level # 8 and 9 <br>
-                    Sonargaon Link Road <br>
-                    4, Kawran BazarDhaka - 1215<br>
-                    Tel : 88 02 (55013304, 55013305, 55013306) <br>
-                    IP Phone : 09612 400 200<br>
-                    <u>Hotline</u> <br>
-                    01787683517 (Policy Servicing)<br>
-                    01787683520 (Group Life) <br>
-                    E-mail : info@alphalife.com.bd
-                </p>
+                <div class="address">
+                    {!! setting('address') !!}
+                </div>
             </div>
             <div class="col-md-4" style="padding:20px ;">
                 <br>

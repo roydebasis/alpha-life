@@ -20,3 +20,10 @@ $required_mark = ($required != "") ? '<span class="text-danger"> <strong>*</stro
     @if ($errors->has($field['name'])) <small class="invalid-feedback">{{ $errors->first($field['name']) }}</small> @endif
     @if(isset($field['help']))<small id="email-{{ $field['name'] }}" class="form-text text-muted">{{ $field['help'] }}</small> @endif
 </div>
+
+<script type="text/javascript" src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
+<script type="text/javascript" src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
+
+<script type="text/javascript">
+CKEDITOR.replace('address', {filebrowserImageBrowseUrl: '/file-manager/ckeditor', language:'{{App::getLocale()}}', defaultLanguage: 'en'});
+</script>
