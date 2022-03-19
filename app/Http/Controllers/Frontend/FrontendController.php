@@ -35,7 +35,6 @@ class FrontendController extends Controller
             ->where('status', 1)
             ->where('is_featured', 1)
             ->orderBy('order', 'asc')
-            ->take(6)
             ->get();
 
         $sliders = Slider::all();
