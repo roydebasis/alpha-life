@@ -29,7 +29,7 @@
                                 <img src="{{ $photo->url }}" alt="">
 
                                 <div class="portfolio-info">
-                                    <h3 class="project-title">{{ $photo->name }}</h3>
+                                    <h3 class="project-title">{{ $$module_name_singular->title }}</h3>
 
                                 </div><!-- /.project-info -->
 

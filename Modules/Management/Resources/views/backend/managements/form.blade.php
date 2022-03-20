@@ -214,16 +214,95 @@ $(function() {
 
 // CKEDITOR.replace('content', {filebrowserImageBrowseUrl: '/file-manager/ckeditor', language:'{{App::getLocale()}}', defaultLanguage: 'en'});
 
-tinymce.init({
-    selector: '#details',
-    plugins: ['advlist autolink lists link image charmap print preview hr anchor pagebreak', "searchreplace wordcount visualblocks visualchars code fullscreen", "insertdatetime media nonbreaking save table contextmenu directionality", "emotions template paste textcolor colorpicker textpattern"],
-    toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | link image media | copy cut paste',
-    setup: function (editor) {
-        editor.on('change', function (e) {
-            editor.save();
+tinymce.init(
+    {
+        selector: '#details',
+        branding: false,
+        plugins: 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
+        // imagetools_cors_hosts: ['picsum.photos'],
+        menubar: 'file edit view insert format tools table help',
+        toolbar: 'undo redo | code | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+        toolbar_sticky: false,
+        autosave_ask_before_unload: true,
+        autosave_interval: '30s',
+        autosave_prefix: '{path}{query}-{id}-',
+        autosave_restore_when_empty: false,
+        autosave_retention: '2m',
+        image_advtab: false,
+        importcss_append: true,
+        // images_upload_base_path: window.location.origin,
+        images_upload_url: '/admin/upload',
+        file_picker_types: 'image',
+        relative_urls: false,
+        remove_script_host: false,
+        convert_urls: true,
+        images_upload_handler: function (blobInfo, success, failure) {
+            let xhr, formData;
+            xhr = new XMLHttpRequest();
+            xhr.withCredentials = false;
+            xhr.open('POST', '/admin/upload');
+            var csrf_token = $('meta[name="csrf-token"]').attr('content');
+            xhr.setRequestHeader('X-CSRF-TOKEN', csrf_token);
+            xhr.onload = function () {
+                console.log(xhr, "success");
+
+                var json;
+                if (xhr.status != 200) {
+                    failure('HTTP Error: ' + xhr.status);
+                    return;
+                }
+                json = JSON.parse(xhr.responseText);
+                if (json.length == 1) {
+                    json = json[0];
+                }
+                if (!json || typeof json.file_name != 'string') {
+                    failure('Invalid JSON: ' + xhr.responseText);
+                    return;
+                }
+                success(window.location.origin + '/storage/' + json.file_name);
+            };
+            formData = new FormData();
+            formData.append('random_names', 'true');
+            formData.append('file[0]', blobInfo.blob(), blobInfo.filename());
+            xhr.send(formData);
+        },
+        file_picker_callback: function(cb, value, meta) {
+            var input = document.createElement('input');
+            input.setAttribute('type', 'file');
+            input.setAttribute('accept', 'image/*');
+            input.onchange = function() {
+                var file = this.files[0];
+
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function () {
+                    var id = 'blobid' + (new Date()).getTime();
+                    var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
+                    var base64 = reader.result.split(',')[1];
+                    var blobInfo = blobCache.create(id, file, base64);
+                    blobCache.add(blobInfo);
+                    cb(blobInfo.blobUri(), { title: file.name });
+                };
+            };
+            input.click();
+        },
+        automatic_uploads: true,
+        height: 400,
+        image_caption: true,
+        quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+        noneditable_noneditable_class: 'mceNonEditable',
+        toolbar_mode: 'sliding',
+        contextmenu: 'link image imagetools table',
+        skin: 'oxide',
+        content_css: 'default',
+        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+        forced_root_block: 'div',
+        setup: function (editor) {
+            editor.on('change', function (e) {
+                editor.save();
         });
     }
-});
+    });
 let setImageTo = '';
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('button-image').addEventListener('click', (event) => {
