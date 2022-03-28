@@ -113,7 +113,7 @@ class FrontendController extends Controller
             return view('frontend.page-about', compact('content', 'meta_page_type', 'aboutAlpha'));
         }
         elseif ($slug == 'notice-board') {
-            $notices = Notice::all();
+            $notices = Notice::orderBy('order', 'desc')->get();
             return view('frontend.page-notice-board', compact('content', 'meta_page_type', 'notices'));
         }
         return view('frontend.page', compact('content', 'meta_page_type'));

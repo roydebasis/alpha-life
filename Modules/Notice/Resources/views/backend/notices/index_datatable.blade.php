@@ -55,6 +55,9 @@
                             <th>
                                 Attachment
                             </th>
+                            <th>
+                                Order
+                            </th>
                             <th class="text-right">
                                 Action
                             </th>
@@ -104,6 +107,7 @@
             {data: 'id', name: 'id'},
             {data: 'title', name: 'title'},
             {data: 'attachment', name: 'attachment'},
+            {data: 'order', name: 'order'},
             {data: 'action', name: 'action', orderable: false, searchable: false}
         ]
     });
