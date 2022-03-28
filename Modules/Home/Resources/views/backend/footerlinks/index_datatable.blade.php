@@ -13,10 +13,22 @@
     <div class="card-body">
         {{ html()->form('POST', route("backend.$module_name.store"))->class('form')->open() }}
         <div class="row">
-            <div class="col-8">
+            <div class="col-6">
                 <div class="form-group">
                     <?php
                     $field_name = 'name';
+                    $field_lable = __("home::$module_name.$field_name");
+                    $field_placeholder = $field_lable;
+                    $required = "required";
+                    ?>
+                    {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                    {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group">
+                    <?php
+                    $field_name = 'order';
                     $field_lable = __("home::$module_name.$field_name");
                     $field_placeholder = $field_lable;
                     $required = "required";
@@ -98,6 +110,9 @@
                             <th>
                                 Link
                             </th>
+                            <th>
+                                Order
+                            </th>
                             <th class="text-right">
                                 Action
                             </th>
@@ -147,6 +162,7 @@
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
             {data: 'link', name: 'link'},
+            {data: 'order', name: 'order'},
             {data: 'action', name: 'action', orderable: false, searchable: false}
         ]
     });

@@ -38,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer('frontend.includes.footer', function($view) {
-            $footerlinks = FooterLink::all();
+            $footerlinks = FooterLink::orderBy('order', 'asc')->get();
             $view->with('footerlinks', $footerlinks);
         });
     }

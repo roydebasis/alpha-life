@@ -4,6 +4,7 @@ return [
 
     'title'             => 'Title',
     'description'             => 'Description',
-    'attachment' => 'Attachment'
+    'attachment' => 'Attachment',
+    'order' => 'Order',
 
 ];

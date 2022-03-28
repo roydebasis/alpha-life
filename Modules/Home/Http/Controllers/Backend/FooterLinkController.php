@@ -71,7 +71,7 @@ class FooterLinkController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::select('id', 'name', 'link', 'updated_at');
+        $$module_name = $module_model::select('id', 'name', 'link', 'order', 'updated_at')->orderBy('order', 'asc');
 
         $data = $$module_name;
 
@@ -92,7 +92,7 @@ class FooterLinkController extends Controller
                                 return $data->updated_at->isoFormat('LLLL');
                             }
                         })
-                        ->rawColumns(['name', 'action'])
+                        ->rawColumns(['name', 'link', 'order', 'action'])
                         ->orderColumns(['id'], ':column $1')
                         ->make(true);
     }

@@ -34,26 +34,6 @@
 <!-- / card -->
 <div class="row">
     <div class="col-sm-6 col-lg-3">
-        <a style="text-decoration: none;" href="{{ route('backend.services.index') }}">
-            <div class="card bg-info">
-                <div class="card-body">
-                    <div class="text-value-lg text-center text-white">Insurance Plan</div>
-                </div>
-            </div>
-        </a>
-    </div>
-
-    <div class="col-sm-6 col-lg-3">
-        <a style="text-decoration: none;" href="{{ route('backend.services.index') }}">
-            <div class="card bg-info">
-                <div class="card-body">
-                    <div class="text-value-lg text-center text-white">Supplementary Plan</div>
-                </div>
-            </div>
-        </a>
-    </div>
-
-    <div class="col-sm-6 col-lg-3">
         <a style="text-decoration: none;" href="{{ route('backend.posts.index') }}">
             <div class="card bg-info">
                 <div class="card-body">
@@ -64,10 +44,30 @@
     </div>
 
     <div class="col-sm-6 col-lg-3">
+        <a style="text-decoration: none;" href="{{ route('backend.notices.index') }}">
+            <div class="card bg-info">
+                <div class="card-body">
+                    <div class="text-value-lg text-center text-white">Notice</div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-sm-6 col-lg-3">
         <a style="text-decoration: none;" href="#">
             <div class="card bg-info">
                 <div class="card-body">
-                    <div class="text-value-lg text-center text-white">Hospital List</div>
+                    <div class="text-value-lg text-center text-white">Branch</div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-sm-6 col-lg-3">
+        <a style="text-decoration: none;" href="{{ route('backend.managements.index') }}">
+            <div class="card bg-info">
+                <div class="card-body">
+                    <div class="text-value-lg text-center text-white">Management</div>
                 </div>
             </div>
         </a>
@@ -77,10 +77,19 @@
 
 <div class="row">
     <div class="col-sm-6 col-lg-3">
-        <a style="text-decoration: none;" href="{{ route('backend.managements.index') }}">
+        <a style="text-decoration: none;" href="#">
             <div class="card bg-info">
                 <div class="card-body">
-                    <div class="text-value-lg text-center text-white">Board of Director</div>
+                    <div class="text-value-lg text-center text-white">Sales</div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <a style="text-decoration: none;" href="#">
+            <div class="card bg-info">
+                <div class="card-body">
+                    <div class="text-value-lg text-center text-white">Team</div>
                 </div>
             </div>
         </a>
@@ -89,16 +98,16 @@
         <a style="text-decoration: none;" href="{{ route('backend.albums.index') }}">
             <div class="card bg-info">
                 <div class="card-body">
-                    <div class="text-value-lg text-center text-white">Photo Gallery</div>
+                    <div class="text-value-lg text-center text-white">Gallery</div>
                 </div>
             </div>
         </a>
     </div>
     <div class="col-sm-6 col-lg-3">
-        <a style="text-decoration: none;" href="{{ route('backend.videos.index') }}">
+        <a style="text-decoration: none;" href="{{ route('backend.sliders.index') }}">
             <div class="card bg-info">
                 <div class="card-body">
-                    <div class="text-value-lg text-center text-white">Video Gallery</div>
+                    <div class="text-value-lg text-center text-white">Slide Show</div>
                 </div>
             </div>
         </a>

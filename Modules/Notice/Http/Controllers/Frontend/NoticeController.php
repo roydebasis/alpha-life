@@ -43,7 +43,7 @@ class NoticeController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::latest()->with(['category', 'tags', 'comments'])->paginate(6);
+        $$module_name = $module_model::latest()->orderBy('order', 'desc')->paginate(6);
 
         return view(
             "notice::frontend.$module_path.index",
