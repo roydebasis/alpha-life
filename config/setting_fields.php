@@ -15,7 +15,7 @@ return [
                 'rules' => 'required|min:2|max:50', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => 'Laravel Alpha', // default value if you want
-                'attribute' => ''
+                'attribute' => 'readonly'
             ],
             [
                 'type'  => 'text', // input fields type
@@ -141,7 +141,7 @@ return [
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => 'Awesome Laravel | A Laravel Starter Project', // default value if you want
-                'attribute' => ''
+                'attribute' => 'readonly'
             ],
             [
                 'type'  => 'text', // input fields type
@@ -151,7 +151,7 @@ return [
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => 'A CMS like modular starter application project built with Laravel.', // default value if you want
-                'attribute' => ''
+                'attribute' => 'readonly'
             ],
             [
                 'type'  => 'text', // input fields type
@@ -161,7 +161,7 @@ return [
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => 'Web Application, Laravel,Laravel starter,Bootstrap,Admin,Template,Open,Source, nasir khan, nasirkhan', // default value if you want
-                'attribute' => ''
+                'attribute' => 'readonly'
             ],
             [
                 'type'  => 'text', // input fields type
@@ -171,7 +171,7 @@ return [
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => 'img/default_banner.jpg', // default value if you want
-                'attribute' => ''
+                'attribute' => 'readonly'
             ],
             [
                 'type'  => 'text', // input fields type
@@ -181,7 +181,7 @@ return [
                 'rules' => '', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => '569561286532601', // default value if you want
-                'attribute' => ''
+                'attribute' => 'readonly'
             ],
             [
                 'type'  => 'text', // input fields type
@@ -191,7 +191,7 @@ return [
                 'rules' => '', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => '', // default value if you want
-                'attribute' => ''
+                'attribute' => 'readonly'
             ],
             [
                 'type'  => 'text', // input fields type
@@ -201,7 +201,7 @@ return [
                 'rules' => '', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => '', // default value if you want
-                'attribute' => ''
+                'attribute' => 'readonly'
             ],
         ],
     ],
