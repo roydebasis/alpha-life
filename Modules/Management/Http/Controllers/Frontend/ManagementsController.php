@@ -27,30 +27,6 @@ class ManagementsController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
-    {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
-
-        $module_action = 'List';
-
-        $$module_name = $module_model::latest()->with(['category', 'tags', 'comments'])->paginate();
-
-        return view(
-            "article::frontend.$module_path.index",
-            compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_action', 'module_name_singular')
-        );
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param int $id
