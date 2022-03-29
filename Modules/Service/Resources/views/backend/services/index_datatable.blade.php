@@ -53,6 +53,9 @@
                                 Name
                             </th>
                             <th>
+                                Category
+                            </th>
+                            <th>
                                 Order
                             </th>
                             <th class="text-right">
@@ -103,6 +106,7 @@
         columns: [
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
+            {data: 'product_category.name', name: 'product_category.name'},
             {data: 'order', name: 'order'},
             {data: 'action', name: 'action', orderable: false, searchable: false}
         ]

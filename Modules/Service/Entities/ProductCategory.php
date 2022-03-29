@@ -18,8 +18,14 @@ class ProductCategory extends BaseModel
 
     protected $fillable = ['name', 'slug'];
 
-    protected static function newFactory()
+    public function services()
     {
-        return \Modules\Service\Database\factories\ProductCategoryFactory::new();
+        return $this->hasMany('Modules\Service\Entities\Service', 'product_category_id', 'id');
     }
+
+
+    // protected static function newFactory()
+    // {
+    //     return \Modules\Service\Database\factories\ProductCategoryFactory::new();
+    // }
 }
