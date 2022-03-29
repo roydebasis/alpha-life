@@ -73,7 +73,8 @@ class ServiceController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::select('id', 'name',  'status', 'order', 'updated_at', 'published_at', 'is_featured')->orderBy('order', 'desc');
+        $$module_name = $module_model::select('id', 'name',  'status', 'order', 'updated_at', 'product_category_id', 'published_at', 'is_featured')->with('productCategory')->orderBy('order', 'desc');
+
 
         $data = $$module_name;
 

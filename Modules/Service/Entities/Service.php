@@ -37,6 +37,11 @@ class Service extends BaseModel
         'banner_image'
     ];
 
+    public function productCategory()
+    {
+        return $this->belongsTo('Modules\Service\Entities\ProductCategory', 'product_category_id', 'id');
+    }
+
     /**
      * @param $value
      */
