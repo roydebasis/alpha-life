@@ -102,6 +102,7 @@
         serverSide: true,
         autoWidth: true,
         responsive: true,
+        order: [[ 3 , "desc" ]],
         ajax: '{{ route("backend.$module_name.index_data") }}',
         columns: [
             {data: 'id', name: 'id'},

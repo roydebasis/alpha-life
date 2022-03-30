@@ -70,7 +70,7 @@ class NoticeController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::select('id', 'title', 'description', 'attachment', 'order')->orderBy('order', 'desc');
+        $$module_name = $module_model::select('id', 'title', 'description', 'attachment', 'order');
 
         $data = $$module_name;
 
@@ -81,7 +81,7 @@ class NoticeController extends Controller
                             return view('backend.includes.action_column', compact('module_name', 'data'));
                         })
                         ->rawColumns(['title', 'attachment', 'order', 'action'])
-                        ->orderColumns(['id'], '-:column $1')
+                        // ->orderColumns(['id'], '-:column $1')
                         ->make(true);
     }
 
