@@ -102,11 +102,12 @@
         serverSide: true,
         autoWidth: true,
         responsive: true,
+        order: [[ 3 , "desc" ]],
         ajax: '{{ route("backend.$module_name.index_data") }}',
         columns: [
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
-            {data: 'product_category.name', name: 'product_category.name'},
+            {data: 'product_category.name', name: 'product_category.name', orderable: false, searchable: false},
             {data: 'order', name: 'order'},
             {data: 'action', name: 'action', orderable: false, searchable: false}
         ]
