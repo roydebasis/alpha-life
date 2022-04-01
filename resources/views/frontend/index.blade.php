@@ -55,7 +55,7 @@
                     </li>
 
                     <li class="col-xs-4">
-                        <a id="calculatorActivator" href="#creative-ideas" role="tab" data-toggle="tab">
+                        <a id="calculatorActivator" href="http://alphalife.com.bd/page/premium-calculator">
                             <i class="flaticon-light110"></i>
                             <span>Premium Calculator</span>
                         </a>

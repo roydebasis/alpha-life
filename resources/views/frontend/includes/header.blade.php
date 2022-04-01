@@ -2,7 +2,7 @@
     <div id="sticky-sidebar">
         <ul>
             <li>
-                <a href="javascript:void(0)" onclick="activeCalculator()" class="text-center" data-toggle="tooltip"
+                <a href="http://alphalife.com.bd/page/premium-calculator" class="text-center" data-toggle="tooltip"
                    data-placement="left"
                    title="Premium Calculator">
                     <i class="fa fa-calculator"></i>
