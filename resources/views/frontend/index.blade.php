@@ -532,7 +532,7 @@
     <!-- end premium calculator modal-->
 @endsection
 
-@push('after-scripts')
+{{-- @push('after-scripts')
     <script type="text/javascript">
         var apiUrl = "{{ config('alpha.api_url') }}";
         jQuery(document).ready(function () {
@@ -709,4 +709,4 @@
             });
         }
     </script>
-@endpush
+@endpush --}}
