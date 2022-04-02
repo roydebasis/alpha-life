@@ -142,7 +142,7 @@
                                         {{--  second level dropdown--}}
                                         @if($child['child'])
                                             <li class="dropdown">
-                                                <a href="{{ $child['link'] }}" class="dropdown-toggle" data-toggle="dropdown">{{ $child['label'] }}</a>
+                                                <a href="{{ $child['link'] === '/page/premium-calculator' ? 'http://alphalife.com.bd' . $child['link'] : $child['link'] }}" class="dropdown-toggle" data-toggle="dropdown">{{ $child['label'] }}</a>
                                                 <ul class="dropdown-menu">
                                                     @foreach( $child['child'] as $subChild )
                                                         {{--  third level dropdown--}}
