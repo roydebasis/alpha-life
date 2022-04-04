@@ -10,7 +10,7 @@
                 <div class="col-md-12 service-box-container">
                     <div style="border-bottom-right-radius: 50px; border-top-left-radius: 50px; overflow: hidden; background-color: white; border-left: 1px solid #2a2a86; border-right: 1px solid #2a2a86; border-bottom: 1px solid #2a2a86;">
                         <div class="service-box text-center">
-                            <h2>{{ label_case($exception->getMessage()) }}</h2>
+                            <h2>{{ $exception->getMessage() ? label_case($exception->getMessage()) : 'Resource Not Found' }}</h2>
                             <button onclick="window.history.back();" class="btn btn-warning ml-1" data-toggle="tooltip" title="Return Back"> Return Back</button>
                         </div>
                     </div>
