@@ -1,9 +1,9 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'GeneralException' . " - " . config('app.name'))
+@section('title', '404 Error' . " - " . config('app.name'))
 
 @section('content')
-    <x-page-header pageTitle="GeneralException"/>
+    <x-page-header pageTitle="404 Error"/>
     <section class="service-section-v3 mb-80">
         <div class="container">
             <div class="row" style="padding-top: 20px; padding-bottom: 80px;">
@@ -19,3 +19,4 @@
         </div>
     </section>
 @endsection
+
