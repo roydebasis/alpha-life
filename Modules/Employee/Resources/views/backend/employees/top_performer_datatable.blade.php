@@ -193,27 +193,27 @@
     <script type="text/javascript" src="{{ asset('vendor/datatable/datatables.min.js') }}"></script>
 
     <script type="text/javascript">
-        $('#datatable').DataTable({
-            processing: true,
-            serverSide: true,
-            autoWidth: true,
-            responsive: true,
-            ajax: '{{ route("backend.$module_name.performance_data") }}',
-            columns: [{
-                    data: 'id',
-                    name: 'id'
-                },
-                {
-                    data: 'name',
-                    name: 'name'
-                },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false,
-                    searchable: false
-                }
-            ]
-        });
+        // $('#datatable').DataTable({
+        //     processing: true,
+        //     serverSide: true,
+        //     autoWidth: true,
+        //     responsive: true,
+        //     ajax: '{{ route("backend.$module_name.performance_data") }}',
+        //     columns: [{
+        //             data: 'id',
+        //             name: 'id'
+        //         },
+        //         {
+        //             data: 'name',
+        //             name: 'name'
+        //         },
+        //         {
+        //             data: 'action',
+        //             name: 'action',
+        //             orderable: false,
+        //             searchable: false
+        //         }
+        //     ]
+        // });
     </script>
 @endpush
