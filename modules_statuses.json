@@ -9,5 +9,6 @@
     "Bulletin": true,
     "FAQ": true,
     "Home": true,
-    "Notice": true
+    "Notice": true,
+    "Employee": true
 }
