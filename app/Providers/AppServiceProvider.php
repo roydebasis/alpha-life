@@ -6,6 +6,8 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Modules\Home\Entities\Bulletin;
+use Modules\Home\Entities\FooterLink;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,5 +31,15 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
 
         Blade::component('components.backend-breadcrumbs', 'backendBreadcrumbs');
+
+        view()->composer('frontend.includes.header', function($view) {
+            $bulletins = Bulletin::all();
+            $view->with('bulletins', $bulletins);
+        });
+
+        view()->composer('frontend.includes.footer', function($view) {
+            $footerlinks = FooterLink::orderBy('order', 'asc')->get();
+            $view->with('footerlinks', $footerlinks);
+        });
     }
 }

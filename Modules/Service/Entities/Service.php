@@ -4,12 +4,9 @@ namespace Modules\Service\Entities;
 
 use App\Models\BaseModel;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-use Modules\Article\Entities\Category;
-use Modules\Article\Entities\Presenters\PostPresenter;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Service extends BaseModel
@@ -23,7 +20,27 @@ class Service extends BaseModel
 
     protected static $logName = 'services';
     protected static $logOnlyDirty = true;
-    protected static $logAttributes = ['name', 'intro', 'content', 'is_featured', 'meta_title', 'meta_keywords', 'meta_description', 'published_at', 'moderated_at', 'moderated_by', 'status', 'created_by_alias'];
+    protected static $logAttributes = [
+        'name',
+        'intro',
+        'content',
+        'is_featured',
+        'meta_title',
+        'meta_keywords',
+        'meta_description',
+        'published_at',
+        'moderated_at',
+        'moderated_by',
+        'status',
+        'created_by_alias',
+        'product_category_id',
+        'banner_image'
+    ];
+
+    public function productCategory()
+    {
+        return $this->belongsTo('Modules\Service\Entities\ProductCategory', 'product_category_id', 'id');
+    }
 
     /**
      * @param $value

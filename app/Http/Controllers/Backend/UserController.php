@@ -400,7 +400,7 @@ class UserController extends Controller
 
             $media = $$module_name_singular->addMedia($request->file('avatar'))->toMediaCollection($module_name);
 
-            $$module_name_singular->avatar = $media->getUrl();
+            $$module_name_singular->avatar =  parse_url($media->getUrl(), PHP_URL_PATH);
 
             $$module_name_singular->save();
         }

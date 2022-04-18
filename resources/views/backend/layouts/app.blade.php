@@ -17,7 +17,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title') | {{ config('app.name') }}</title>
-
+    <style>
+        .c-sidebar-brand-full{
+            filter: brightness(0) invert(1)
+        }
+    </style>
     @stack('before-styles')
 
     <link rel="stylesheet" href="{{ mix('css/backend.css') }}">
@@ -72,8 +76,8 @@
 
         <!-- Scripts -->
         @stack('before-scripts')
-
         <script src="{{ mix('js/backend.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
         @livewireScripts
 

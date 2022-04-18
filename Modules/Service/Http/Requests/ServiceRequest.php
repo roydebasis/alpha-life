@@ -16,10 +16,10 @@ class ServiceRequest extends FormRequest
         $rules = [
             'name'              => 'required|max:191',
             'slug'              => 'nullable|max:191|unique:services,slug',
-            'intro'             => 'required',
+//            'intro'             => 'required',
             'content'           => 'required',
             'created_by_alias'  => 'nullable|max:191',
-            'featured_image'    => 'required|max:191',
+            'featured_image'    => 'nullable|max:191',
             'is_featured'       => 'required',
             'order'             => 'nullable|numeric',
             'status'            => 'required',

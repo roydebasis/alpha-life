@@ -1,146 +1,182 @@
-<header class="header-global">
-    <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg headroom py-lg-3 px-lg-6 navbar-dark navbar-theme-primary">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <img class="navbar-brand-dark common" src="{{asset('img/AILI.png')}}" height="35" alt="Logo light">
-                <img class="navbar-brand-light common" src="{{asset('img/AILI.png')}}" height="35" alt="Logo dark">
-            </a>
-            <div class="navbar-collapse collapse" id="navbar_global">
-                <div class="navbar-collapse-header">
-                    <div class="row">
-                        <div class="col-6 collapse-brand">
-                            <a href="/">
-                                <img src="{{asset('img/backend-logo.jpg')}}" height="35" alt="Logo Impact">
-                            </a>
-                        </div>
-                        <div class="col-6 collapse-close">
-                            <a href="#navbar_global" role="button" class="fas fa-times" data-toggle="collapse"
-                                data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false"
-                                aria-label="Toggle navigation"></a>
-                        </div>
+<header>
+    <div id="sticky-sidebar">
+        <ul>
+            <li>
+                <a href="http://alphalife.com.bd/page/premium-calculator" class="text-center" data-toggle="tooltip"
+                   data-placement="left"
+                   title="Premium Calculator">
+                    <i class="fa fa-calculator"></i>
+                </a>
+            </li>
+
+            <li>
+                <a href="javascript:void(0)" class="text-center" data-toggle="tooltip" data-placement="left"
+                   title="My Transactions">
+                    <i class="fa fa-money"></i>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" class="text-center" data-toggle="tooltip" data-placement="left"
+                   title="Policy Information">
+                    <i class="fa fa-book"></i>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" class="text-center" data-toggle="tooltip" data-placement="left"
+                   title="Book an Appointment">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                </a>
+            </li>
+
+            <li>
+                <a href="javascript:void(0)" class="text-center" data-toggle="tooltip" data-placement="left"
+                   title="Preferred Hospitals">
+                    <i class="fa fa-hospital-o" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- Top Nav Start -->
+    <section class="case-study-section topbar">
+        <div class="container-fluid">
+            <div class="row equal">
+                <div class="col-sm-9 no-padding">
+                    <div class="topNavLeft">
+                        <marquee direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+                            @if(!empty($bulletins))
+                                @foreach($bulletins as $bulletin)
+                                    {{ $bulletin->name }}
+                                @endforeach
+                            @else
+                                Please add bulletin text to show here
+                            @endif
+                        </marquee>
                     </div>
                 </div>
-                <ul class="navbar-nav navbar-nav-hover justify-content-center">
-                    <li class="nav-item">
-                        <a href="/" class="nav-link">
-                            <span class="fas fa-home mr-2"></span> Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('frontend.posts.index') }}" class="nav-link">
-                            <span class="fas fa-file-alt mr-1"></span> Posts
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link" data-toggle="dropdown" aria-controls="pages_submenu" aria-expanded="false" aria-label="Toggle pages menu item">
-                            <span class="nav-link-inner-text">
-                                <span class="fas fa-file-image mr-1"></span>
-                                Pages
-                            </span>
-                            <span class="fas fa-angle-down nav-link-arrow ml-2"></span>
-                        </a>
-                        <ul class="dropdown-menu" id="pages_submenu">
+                <div class="col-sm-3 no-padding">
+                    <div class="topNavRight">
+                        <ul class="top-social-icons">
+                            @if(\App\Models\Setting::has('linkedin_url'))
                             <li>
-                                <a class="dropdown-item" href="{{ route('frontend.posts.index') }}">
-                                    <span class="fas fa-file-alt mr-1"></span> Posts
+                                <a href="{{ \App\Models\Setting::get('linkedin_url') }}" target="_blank">
+                                    <img src="{{ asset('assets/images/ico/in.png') }}">
                                 </a>
                             </li>
+                            @endif
+                            @if(\App\Models\Setting::has('twitter_url'))
                             <li>
-                                <a class="dropdown-item" href="{{ route('frontend.categories.index') }}">
-                                    <span class="fas fa-sitemap mr-1"></span> Categories
+                                <a href="{{ \App\Models\Setting::get('twitter_url') }}" target="_blank">
+                                    <img src="{{ asset('assets/images/ico/twitter.png') }}">
                                 </a>
                             </li>
+                            @endif
+                            @if(\App\Models\Setting::has('facebook_url'))
                             <li>
-                                <a class="dropdown-item" href="{{ route('frontend.tags.index') }}">
-                                    <span class="fas fa-tags mr-1"></span> Tags
+                                <a href="{{ \App\Models\Setting::get('facebook_url') }}" target="_blank">
+                                    <img src="{{ asset('assets/images/ico/facebook.png') }}">
                                 </a>
                             </li>
+                            @endif
+                            @if(\App\Models\Setting::has('instagram_url'))
                             <li>
-                                <a class="dropdown-item" href="{{ route('frontend.comments.index') }}">
-                                    <span class="fas fa-comments mr-1"></span> Comments
+                                <a href="{{ \App\Models\Setting::get('instagram_url') }}" target="_blank">
+                                    <img src="{{ asset('assets/images/ico/ist.png') }}">
                                 </a>
                             </li>
+                            @endif
+                            @if(\App\Models\Setting::has('youtube_url'))
+                            <li>
+                                <a href="{{ \App\Models\Setting::get('youtube_url') }}" target="_blank">
+                                    <img src="{{ asset('assets/images/ico/u.png') }}">
+                                </a>
+                            </li>
+                            @endif
                         </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" aria-expanded="false" data-toggle="dropdown">
-                            <span class="nav-link-inner-text mr-1">
-                                <span class="fas fa-user mr-1"></span>
-                                Account
-                            </span>
-                            <i class="fas fa-angle-down nav-link-arrow"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-lg">
-                            <div class="col-auto px-0" data-dropdown-content>
-                                <div class="list-group list-group-flush">
-                                    @auth
-                                    <a href="{{ route('frontend.users.profile', auth()->user()->id) }}"
-                                        class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                        <span class="icon icon-sm icon-success"><i class="fas fa-user"></i></span>
-                                        <div class="ml-4">
-                                            <span class="text-dark d-block">
-                                                {{ Auth::user()->name }}
-                                            </span>
-                                            <span class="small">View profile details!</span>
-                                        </div>
-                                    </a>
-                                    <a href="{{ route('logout') }}"
-                                        class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4" onclick="event.preventDefault(); document.getElementById('account-logout-form').submit();">
-                                        <span class="icon icon-sm icon-secondary">
-                                            <i class="fas fa-sign-out-alt"></i>
-                                        </span>
-                                        <div class="ml-4">
-                                            <span class="text-dark d-block">
-                                                Logout
-                                            </span>
-                                            <span class="small">Logout from your account!</span>
-                                        </div>
-                                    </a>
-                                    <form id="account-logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                    @else
-                                    <a href="{{ route('login') }}"
-                                        class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                        <span class="icon icon-sm icon-secondary"><i class="fas fa-key"></i></span>
-                                        <div class="ml-4">
-                                            <span class="text-dark d-block">
-                                                Login
-                                            </span>
-                                            <span class="small">Login to the application</span>
-                                        </div>
-                                    </a>
-                                    @if(user_registration())
-                                    <a href="{{ route('register') }}"
-                                        class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                        <span class="icon icon-sm icon-primary">
-                                            <i class="fas fa-address-card"></i>
-                                        </span>
-                                        <div class="ml-4">
-                                            <span class="text-dark d-block">Register</span>
-                                            <span class="small">Join with us!</span>
-                                        </div>
-                                    </a>
-                                    @endif
-                                    @endauth
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Top Nav Start -->
+
+    <!-- Navigation start -->
+    <nav class="navbar navbar-custom tt-default-nav" role="navigation">
+        <div class="container">
+
+            <div class="search-box-wrap pull-right hidden-sm hidden-xs">
+                <div class="search-icon"></div>
+                <input id="search-box" placeholder="Search">
+            </div>
+
+            <div class="navbar-header">
+                <button type="button" id="btn-nav-toggler" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#custom-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img src="{{ url('assets/images/logoNew.png') }}" class="h-sm-100" alt="Alpha Islami Life Insurance">
+                </a>
+            </div>
+
+            @php
+                $public_menu = \WPMenu::getByName('Main Menu');
+            @endphp
+
+            {{--  TODO: Refactor menu generation to recursive to get submenus --}}
+
+            @if(!empty($public_menu))
+            <div class="collapse navbar-collapse" id="custom-collapse">
+
+                <ul class="nav navbar-nav navbar-right">
+                    @foreach($public_menu as $menu)
+                        {{--  first level dropdown--}}
+                        @if($menu['child'])
+                            <li class="dropdown">
+                                <a href="avascript:void(0)" class="dropdown-toggle menu-item" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">{{ $menu['label'] }}</a>
+                                <ul class="dropdown-menu">
+                                    @foreach( $menu['child'] as $child )
+                                        {{--  second level dropdown--}}
+                                        @if($child['child'])
+                                            <li class="dropdown">
+                                                <a href="{{ $child['link'] }}" class="dropdown-toggle" data-toggle="dropdown">{{ $child['label'] }}</a>
+                                                <ul class="dropdown-menu">
+                                                    @foreach( $child['child'] as $subChild )
+                                                        {{--  third level dropdown--}}
+                                                        @if($subChild['child'])
+                                                            <li class="dropdown">
+                                                                <a href="{{ $subChild['link'] }}" class="dropdown-toggle" data-toggle="dropdown">{{ $subChild['label'] }}</a>
+                                                                <ul class="dropdown-menu">
+                                                                    @foreach( $subChild['child'] as $thirdLevel )
+                                                                        <li><a href="{{ url($thirdLevel['link']) }}">{{ $thirdLevel['label'] }}</a></li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </li>
+                                                        @else
+                                                            <li><a href="{{ url($subChild['link']) }}">{{ $subChild['label'] }}</a></li>
+                                                        @endif
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+                                        @else
+                                            <li><a href="{{ $child['link'] === '/page/premium-calculator' ? 'http://alphalife.com.bd' . $child['link'] : url($child['link']) }}">{{ $child['label'] }}</a></li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </li>
+                        @else
+                            <li><a href="{{ url($menu['link']) }}" class="menu-item">{{ $menu['label']  }}</a></li>
+                        @endif
+                    @endforeach
+                    <li>&nbsp;</li>
                 </ul>
             </div>
-            <div class="d-none d-lg-block">
-                @can('view_backend')
-                <a href="{{ route('backend.dashboard') }}" class="btn btn-white animate-up-2 mr-3"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a>
-                @endcan
-
-                <a href="#" class="btn btn-outline-white animate-up-2 mr-3"><i class="fas fa-th-large mr-2"></i> Support</a>
-
-                <a href="#" target="_blank" class="btn btn-secondary animate-up-2"><i class="fas fa-paper-plane mr-2"></i> Contact</a>
-            </div>
-            <div class="d-flex d-lg-none align-items-center">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            </div>
+            @else
+                <p class="text-warning"><a href="{{ route('backend.menuGenerator') }}">Create Menu</a></p>
+            @endif
         </div>
     </nav>
 </header>

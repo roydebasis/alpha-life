@@ -34,102 +34,92 @@
 <!-- / card -->
 <div class="row">
     <div class="col-sm-6 col-lg-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="text-value-lg">89.9%</div>
-                <div>Widget title</div>
-                <div class="progress progress-xs my-2">
-                    <div class="progress-bar bg-gradient-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div><small class="text-muted">Widget helper text</small>
+        <a style="text-decoration: none;" href="{{ route('backend.posts.index') }}">
+            <div class="card bg-info">
+                <div class="card-body">
+                    <div class="text-value-lg text-center text-white">News</div>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
 
     <div class="col-sm-6 col-lg-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="text-value-lg">12.124</div>
-                <div>Widget title</div>
-                <div class="progress progress-xs my-2">
-                    <div class="progress-bar bg-gradient-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div><small class="text-muted">Widget helper text</small>
+        <a style="text-decoration: none;" href="{{ route('backend.notices.index') }}">
+            <div class="card bg-info">
+                <div class="card-body">
+                    <div class="text-value-lg text-center text-white">Notice</div>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
 
     <div class="col-sm-6 col-lg-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="text-value-lg">$98.111,00</div>
-                <div>Widget title</div>
-                <div class="progress progress-xs my-2">
-                    <div class="progress-bar bg-gradient-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div><small class="text-muted">Widget helper text</small>
+        <a style="text-decoration: none;" href="#">
+            <div class="card bg-info">
+                <div class="card-body">
+                    <div class="text-value-lg text-center text-white">Branch</div>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
 
     <div class="col-sm-6 col-lg-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="text-value-lg">2 TB</div>
-                <div>Widget title</div>
-                <div class="progress progress-xs my-2">
-                    <div class="progress-bar bg-gradient-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div><small class="text-muted">Widget helper text</small>
+        <a style="text-decoration: none;" href="{{ route('backend.managements.index') }}">
+            <div class="card bg-info">
+                <div class="card-body">
+                    <div class="text-value-lg text-center text-white">Management</div>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
 
 </div>
 
 <div class="row">
     <div class="col-sm-6 col-lg-3">
-        <div class="card text-white bg-gradient-primary">
-            <div class="card-body">
-                <div class="text-value-lg">89.9%</div>
-                <div>Widget title</div>
-                <div class="progress progress-white progress-xs my-2">
-                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div><small class="text-muted">Widget helper text</small>
+        <a style="text-decoration: none;" href="#">
+            <div class="card bg-info">
+                <div class="card-body">
+                    <div class="text-value-lg text-center text-white">Sales</div>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
-
     <div class="col-sm-6 col-lg-3">
-        <div class="card text-white bg-gradient-warning">
-            <div class="card-body">
-                <div class="text-value-lg">12.124</div>
-                <div>Widget title</div>
-                <div class="progress progress-white progress-xs my-2">
-                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div><small class="text-muted">Widget helper text</small>
+        <a style="text-decoration: none;" href="#">
+            <div class="card bg-info">
+                <div class="card-body">
+                    <div class="text-value-lg text-center text-white">Team</div>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
-
     <div class="col-sm-6 col-lg-3">
-        <div class="card text-white bg-gradient-danger">
-            <div class="card-body">
-                <div class="text-value-lg">$98.111,00</div>
-                <div>Widget title</div>
-                <div class="progress progress-white progress-xs my-2">
-                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div><small class="text-muted">Widget helper text</small>
+        <a style="text-decoration: none;" href="{{ route('backend.albums.index') }}">
+            <div class="card bg-info">
+                <div class="card-body">
+                    <div class="text-value-lg text-center text-white">Gallery</div>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
-
     <div class="col-sm-6 col-lg-3">
-        <div class="card text-white bg-gradient-info">
-            <div class="card-body">
-                <div class="text-value-lg">2 TB</div>
-                <div>Widget title</div>
-                <div class="progress progress-white progress-xs my-2">
-                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div><small class="text-muted">Widget helper text</small>
+        <a style="text-decoration: none;" href="{{ route('backend.sliders.index') }}">
+            <div class="card bg-info">
+                <div class="card-body">
+                    <div class="text-value-lg text-center text-white">Slide Show</div>
+                </div>
             </div>
-        </div>
+        </a>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <a style="text-decoration: none;" href="{{ route('backend.faqs.index') }}">
+            <div class="card bg-info">
+                <div class="card-body">
+                    <div class="text-value-lg text-center text-white">FAQ</div>
+                </div>
+            </div>
+        </a>
     </div>
 
 </div>

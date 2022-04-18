@@ -28,7 +28,10 @@ Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
     Route::get('home', 'FrontendController@index')->name('home');
     Route::get('privacy', 'FrontendController@privacy')->name('privacy');
     Route::get('terms', 'FrontendController@terms')->name('terms');
-    Route::get('page/{slug}', 'FrontendPageController@getPage')->name('page');
+    Route::get('contacts', 'FrontendController@contact')->name('contacts');
+    Route::get("notices/download", 'FrontendController@getNoticeDownload')->name('notices');
+    Route::get('page/{slug}', 'FrontendController@getPage')->name('page');
+
 
     Route::group(['middleware' => ['auth']], function () {
         /*
@@ -63,6 +66,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'backend.',
      */
     Route::get('/', 'BackendController@index')->name('home');
     Route::get('dashboard', 'BackendController@index')->name('dashboard');
+    Route::post('/upload', 'BackendController@upload')->name('upload');
 
     /*
      *
@@ -137,4 +141,15 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'backend.',
     Route::resource("$module_name", "$controller_name");
     Route::patch("$module_name/{id}/block", ['as' => "$module_name.block", 'uses' => "$controller_name@block", 'middleware' => ['permission:block_users']]);
     Route::patch("$module_name/{id}/unblock", ['as' => "$module_name.unblock", 'uses' => "$controller_name@unblock", 'middleware' => ['permission:block_users']]);
+
+    /*
+    *
+    *  Drag & drop menu Generation Routes
+    *
+    * ---------------------------------------------------------------------
+    */
+    Route::get('menu-generator', function() {
+        return view('backend.menu-generator');
+    })->name('menuGenerator');
 });
+

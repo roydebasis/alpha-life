@@ -1,4 +1,4 @@
-# Laravel Starter (based on Laravel 8.x)
+# Alpha Islami Life Insurance
 
 # Demo
 Check the following demo project. It is just a straight installation of the project without any modification.
@@ -37,57 +37,6 @@ this is a shortcut command clear all cache including config, route and more
 `composer fix-cs`
 
 apply the code style fix by this command.
-
-
-# Features
-
-It is a modular application, and a number of modules are installed by default. It will be helpful to use it as a base for the future applications.
-
-* Admin feature and public views are completely separated as `Backend` and `Frontend` namespace.
-* Major feature are developed as `Modules`. Module like Posts, Comments, Tags are separated from the core features like User, Role, Permission
-
-
-## Core Features
-
-* User Authentication
-* Social Login
-  * Google
-  * Facebook
- a * Github
-  * Build in a way adding more is much easy now
-* User Profile with Avatar
-  * Separate User Profile table
-* Role-Permissions for Users
-* Dynamic Menu System
-* Language Switcher
-* Localization enable across the porject
-* Backend Theme
-  * Bootstrap 4, CoreUI
-  * Fontawesome 5
-* Frontend Theme
-  * Bootstrap 4, Impact Design Kit
-  * Fontawesome 5
-* Article Module
-  * Posts
-  * Categories
-  * Tags
-  * Comments
-  * wysiwyg editor
-  * File browser
-* Application Settings
-* External Libraries
-  * Bootstrap 4
-  * Fontawesome 5
-  * CoreUI
-  * Impact Design Kit
-  * Datatables
-  * Select2
-  * Date Time Picker
-* Backup (Source, Files, Database as Zip)
-* Log Viewer
-* Notification
-  * Dashboard and details view
-* RSS Feed
 
 
 # User Guide

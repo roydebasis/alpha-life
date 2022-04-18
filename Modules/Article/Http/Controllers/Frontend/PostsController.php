@@ -11,7 +11,7 @@ class PostsController extends Controller
     public function __construct()
     {
         // Page Title
-        $this->module_title = 'Posts';
+        $this->module_title = 'News';
 
         // module name
         $this->module_name = 'posts';
@@ -42,7 +42,7 @@ class PostsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::latest()->with(['category', 'tags', 'comments'])->paginate();
+        $$module_name = $module_model::latest()->with(['category', 'tags', 'comments'])->paginate(6);
 
         return view(
             "article::frontend.$module_path.index",
