@@ -36,10 +36,15 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request->all());
+        dd('Under Construction');
         $request->validate([
             'first_name' => 'required|string|max:191',
-            'last_name'  => 'required|string|max:191',
+            'last_name' => 'required|string|max:191',
+            'designation' => 'required',
+            'employee_code' => 'required|string|max:191',
             'email'      => 'required|string|email|max:191|unique:users',
+            'mobile'      => 'required|string|email|max:191',
             'password'   => 'required|string|confirmed|min:8',
         ]);
 
