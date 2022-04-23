@@ -14,14 +14,26 @@
                         </div>
                         <div class="col-md-12 mt-30">
                             <div class="row">
-                                {{ html()->form('POST')->class('form')->open() }}
+                                {{ html()->form('POST', url('/register'))->class('form')->open() }}
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <?php
-                                            $field_name = 'name';
-                                            $field_lable = "Full Name";
+                                            $field_name = 'first_name';
+                                            $field_lable = "First Name";
                                             $field_placeholder = $field_lable;
                                             $required = "required";
+                                        ?>
+                                        {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                        {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <?php
+                                        $field_name = 'last_name';
+                                        $field_lable = "Last Name";
+                                        $field_placeholder = $field_lable;
+                                        $required = "required";
                                         ?>
                                         {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
                                         {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
