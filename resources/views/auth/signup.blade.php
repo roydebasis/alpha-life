@@ -6,7 +6,7 @@
     <x-page-header pageTitle="Sign Up"/>
     <section class="service-section-v3 sign-up">
         <div class="container">
-            <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
+            <div class="row" style="padding-top: 20px; padding-bottom: 80px;">
                 <div class="col-md-12 ">
                     <div class="container-border">
                         <div style="border-top-left-radius: 50px; overflow: hidden;">
