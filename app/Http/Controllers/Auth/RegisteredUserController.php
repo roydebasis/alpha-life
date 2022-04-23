@@ -20,7 +20,9 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        $meta_page_type = 'page';
+        $designations = config('alpha.designations');
+        return view('auth.signup', compact('meta_page_type', 'designations'));
     }
 
     /**

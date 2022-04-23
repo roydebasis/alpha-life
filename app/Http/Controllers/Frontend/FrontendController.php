@@ -42,7 +42,7 @@ class FrontendController extends Controller
         $quotes = Quote::all();
 
         $aboutAlpha = About::first();
-        
+
         return view('frontend.index', compact('body_class', 'blogs', 'insurancePlans', 'suplementaryPlans', 'sliders', 'quotes', 'aboutAlpha'));
     }
 
