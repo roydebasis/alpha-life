@@ -13,87 +13,107 @@
                             <img style="display: block; max-width: 100%; height: auto;" src="{{ url('/assets/images/signup-banner.jpeg') }}">
                         </div>
                         <div class="col-md-12 mt-30">
+                            {{ html()->form('POST', url('/register'))->class('form')->open() }}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-md-6">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <?php--}}
+{{--                                            $field_name = 'first_name';--}}
+{{--                                            $field_lable = "First Name";--}}
+{{--                                            $field_placeholder = $field_lable;--}}
+{{--                                            $required = "required";--}}
+{{--                                        ?>--}}
+{{--                                        {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}--}}
+{{--                                        {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}--}}
+{{--                                        @error('first_name')--}}
+{{--                                            <div class="error">{{ $message }}</div>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-6">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <?php--}}
+{{--                                        $field_name = 'last_name';--}}
+{{--                                        $field_lable = "Last Name";--}}
+{{--                                        $field_placeholder = $field_lable;--}}
+{{--                                        $required = "required";--}}
+{{--                                        ?>--}}
+{{--                                        {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}--}}
+{{--                                        {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}--}}
+{{--                                        @error('last_name')--}}
+{{--                                            <div class="error">{{ $message }}</div>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-md-6">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <?php--}}
+{{--                                            $field_name = 'designation';--}}
+{{--                                            $field_lable = "Select Designation";--}}
+{{--                                            $field_placeholder = $field_lable;--}}
+{{--                                            $required = "required";--}}
+{{--                                        ?>--}}
+{{--                                        {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}--}}
+{{--                                        {{ html()->select($field_name, $designations)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}--}}
+{{--                                        @error('designation')--}}
+{{--                                            <div class="error">{{ $message }}</div>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-6">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <?php--}}
+{{--                                        $field_name = 'employee_code';--}}
+{{--                                        $field_lable = "Employee Code";--}}
+{{--                                        $field_placeholder = $field_lable;--}}
+{{--                                        $required = "required";--}}
+{{--                                        ?>--}}
+{{--                                        {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}--}}
+{{--                                        {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}--}}
+{{--                                        @error('employee_code')--}}
+{{--                                            <div class="error">{{ $message }}</div>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+
+                            {{ html()->hidden('sign_up_as', $sign_up_as) }}
                             <div class="row">
-                                {{ html()->form('POST', url('/register'))->class('form')->open() }}
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <?php
-                                            $field_name = 'first_name';
-                                            $field_lable = "First Name";
+                                @if($sign_up_as == 'employee')
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <?php
+                                            $field_name = 'employee_code';
+                                            $field_lable = "Employee Code";
                                             $field_placeholder = $field_lable;
                                             $required = "required";
-                                        ?>
-                                        {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                                        {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                                        @error('first_name')
+                                            ?>
+                                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                                            @error('employee_code')
                                             <div class="error">{{ $message }}</div>
-                                        @enderror
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <?php
-                                        $field_name = 'last_name';
-                                        $field_lable = "Last Name";
-                                        $field_placeholder = $field_lable;
-                                        $required = "required";
-                                        ?>
-                                        {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                                        {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                                        @error('last_name')
-                                            <div class="error">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <?php
-                                            $field_name = 'designation';
-                                            $field_lable = "Select Designation";
+                                @else
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <?php
+                                            $field_name = 'policy_nbumber';
+                                            $field_lable = "Policy Number";
                                             $field_placeholder = $field_lable;
                                             $required = "required";
-                                        ?>
-                                        {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                                        {{ html()->select($field_name, $designations)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
-                                        @error('designation')
+                                            ?>
+                                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                                            @error('policy_nbumber')
                                             <div class="error">{{ $message }}</div>
-                                        @enderror
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <?php
-                                        $field_name = 'employee_code';
-                                        $field_lable = "Employee Code";
-                                        $field_placeholder = $field_lable;
-                                        $required = "required";
-                                        ?>
-                                        {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                                        {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                                        @error('employee_code')
-                                            <div class="error">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <?php
-                                            $field_name = 'email';
-                                            $field_lable = "Email";
-                                            $field_placeholder = "Email Address";
-                                            $required = "required";
-                                        ?>
-                                        {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                                        {{ html()->email($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                                        @error('email')
-                                            <div class="error">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
+                                @endif
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <?php
@@ -105,7 +125,7 @@
                                         {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
                                         {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                                         @error('mobile')
-                                            <div class="error">{{ $message }}</div>
+                                        <div class="error">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
@@ -120,31 +140,25 @@
                                         $required = "required";
                                         ?>
                                         {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                                        {{ html()->password($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                                        @error('password')
-                                            <div class="error">{{ $message }}</div>
-                                        @enderror
+                                        {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <?php
-                                            $field_name = 'password_confirmation';
-                                            $field_lable = "Confirm Password";
-                                            $field_placeholder = $field_lable;
-                                            $required = "required";
+                                        $field_name = 'confirm_password';
+                                        $field_lable = "Confirm Password";
+                                        $field_placeholder = $field_lable;
+                                        $required = "required";
                                         ?>
                                         {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                                        {{ html()->password($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                                        @error('password_confirmation')
-                                            <div class="error">{{ $message }}</div>
-                                        @enderror
+                                        {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group">
+                                    <div class="form-group text-center">
                                         {{ html()->button($text = "Sign Up", $type = 'submit')->class('btn btn-success') }}
                                     </div>
                                 </div>

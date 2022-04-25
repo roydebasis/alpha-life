@@ -17,7 +17,12 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        return view('auth.login');
+        $sign_in_as = \request()->sing_in_as ?? 'policy_holder';
+        if ($sign_in_as == 'administrator') {
+            return view('auth.login');
+        }
+
+        return view('auth.employee_policy_holder_signin', compact('sign_in_as'));
     }
 
     /**

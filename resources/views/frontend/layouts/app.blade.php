@@ -90,7 +90,7 @@
 <script src="{{ asset('assets/js/jquery.BlackAndWhite.min.js') }}"></script>
 <script src="{{ asset('assets/owl-carousel/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('assets/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js"></script>
+{{--<script src="https://maps.googleapis.com/maps/api/js"></script>--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>
 <!-- Swiper JS -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

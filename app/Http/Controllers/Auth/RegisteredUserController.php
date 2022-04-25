@@ -23,7 +23,8 @@ class RegisteredUserController extends Controller
     {
         $meta_page_type = 'page';
         $designations = config('alpha.designations');
-        return view('auth.signup', compact('meta_page_type', 'designations'));
+        $sign_up_as = \request()->sing_up_as ?? 'policy_holder';
+        return view('auth.signup', compact('meta_page_type', 'designations','sign_up_as'));
     }
 
     /**
@@ -37,7 +38,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $rules = [
             'first_name'    => 'required|string|max:191',
             'last_name'     => 'required|string|max:191',
             'designation'   => 'required|integer',
@@ -46,7 +47,9 @@ class RegisteredUserController extends Controller
             'mobile'        => 'required|string|max:191',
             'password'      => ['required', 'confirmed', Password::min(8) ->letters()->numbers()],
             'password_confirmation' => ['required'],
-        ]);
+        ];
+
+        $request->validate($rules);
 
         $user = User::create([
             'first_name'    => $request->first_name,
