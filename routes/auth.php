@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 // Check if registration is enabled
 if (user_registration()) {
-    Route::get('/signup', [RegisteredUserController::class, 'create'])
+    Route::get('/signup/{sing_up_as?}', [RegisteredUserController::class, 'create'])
                     ->middleware('guest')
                     ->name('register');
 
@@ -20,7 +20,7 @@ if (user_registration()) {
                     ->middleware('guest');
 }
 
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])
+Route::get('/login/{sing_in_as?}', [AuthenticatedSessionController::class, 'create'])
                 ->middleware('guest')
                 ->name('login');
 

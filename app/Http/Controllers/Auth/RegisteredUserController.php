@@ -10,6 +10,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class RegisteredUserController extends Controller
 {
@@ -22,7 +23,8 @@ class RegisteredUserController extends Controller
     {
         $meta_page_type = 'page';
         $designations = config('alpha.designations');
-        return view('auth.signup', compact('meta_page_type', 'designations'));
+        $sign_up_as = \request()->sing_up_as ?? 'policy_holder';
+        return view('auth.signup', compact('meta_page_type', 'designations','sign_up_as'));
     }
 
     /**
@@ -36,24 +38,27 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->all());
-        dd('Under Construction');
-        $request->validate([
-            'first_name' => 'required|string|max:191',
-            'last_name' => 'required|string|max:191',
-            'designation' => 'required',
+        $rules = [
+            'first_name'    => 'required|string|max:191',
+            'last_name'     => 'required|string|max:191',
+            'designation'   => 'required|integer',
             'employee_code' => 'required|string|max:191',
-            'email'      => 'required|string|email|max:191|unique:users',
-            'mobile'      => 'required|string|email|max:191',
-            'password'   => 'required|string|confirmed|min:8',
-        ]);
+            'email'         => 'required|string|email|max:191|unique:users',
+            'mobile'        => 'required|string|max:191',
+            'password'      => ['required', 'confirmed', Password::min(8) ->letters()->numbers()],
+            'password_confirmation' => ['required'],
+        ];
+
+        $request->validate($rules);
 
         $user = User::create([
-            'first_name' => $request->first_name,
-            'last_name'  => $request->last_name,
-            'name'       => $request->first_name.' '.$request->last_name,
-            'email'      => $request->email,
-            'password'   => Hash::make($request->password),
+            'first_name'    => $request->first_name,
+            'last_name'     => $request->last_name,
+            'name'          => $request->first_name.' '.$request->last_name,
+            'email'         => $request->email,
+            'designation'   => $request->designation,
+            'employee_code' => $request->employee_code,
+            'password'      => Hash::make($request->password),
         ]);
 
         // username
@@ -63,8 +68,8 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        event(new Registered($user));
-        event(new UserRegistered($user));
+//        event(new Registered($user));
+//        event(new UserRegistered($user));
 
         return redirect(RouteServiceProvider::HOME);
     }
