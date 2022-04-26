@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Laracasts\Flash\Flash;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -45,6 +48,22 @@ class AuthenticatedSessionController extends Controller
         } else {
             return redirect(RouteServiceProvider::HOME);
         }
+    }
+
+    public function employeeLogin(Request $request)
+    {
+        if($request->sign_in_as == 'employee') {
+            $user = User::where('employee_code', $request->employee_code)->first();
+        } else {
+            $user = User::where('policy_number', $request->policy_nbumber)->first();
+        }
+
+        if ($user && Hash::check( $request->password, $user->password)) {
+            Auth::login($user);
+            return redirect('/user/dashboard');
+        }
+        Flash::success("Credential does not match")->important();
+        return redirect()->back();
     }
 
     /**

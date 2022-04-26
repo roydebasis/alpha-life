@@ -78,7 +78,6 @@
 {{--                                    </div>--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
-
                             {{ html()->hidden('sign_up_as', $sign_up_as) }}
                             <div class="row">
                                 @if($sign_up_as == 'employee')
@@ -101,14 +100,14 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <?php
-                                            $field_name = 'policy_nbumber';
+                                            $field_name = 'policy_number';
                                             $field_lable = "Policy Number";
                                             $field_placeholder = $field_lable;
                                             $required = "required";
                                             ?>
                                             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
                                             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                                            @error('policy_nbumber')
+                                            @error('policy_number')
                                             <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -140,19 +139,25 @@
                                         $required = "required";
                                         ?>
                                         {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                                        {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                                        {{ html()->password($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                                        @error('password')
+                                            <div class="error">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <?php
-                                        $field_name = 'confirm_password';
+                                        $field_name = 'password_confirmation';
                                         $field_lable = "Confirm Password";
                                         $field_placeholder = $field_lable;
                                         $required = "required";
                                         ?>
                                         {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                                        {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                                        {{ html()->password($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                                        @error('password_confirmation')
+                                            <div class="error">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
