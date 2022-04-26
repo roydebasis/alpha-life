@@ -221,7 +221,8 @@ class UserController extends Controller
         } else {
             $data_array = Arr::add($data_array, 'email_verified_at', null);
         }
-
+        print_r($request['roles']);
+        dd($request['permissions']);
         $$module_name_singular = User::create($data_array);
 
         $roles = $request['roles'];
@@ -260,7 +261,7 @@ class UserController extends Controller
             $$module_name_singular->notify(new UserAccountCreated($data));
 
             Flash::success(icon('fas fa-envelope')." Account Credentials Sent to User.")->important();
-        }        
+        }
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
 

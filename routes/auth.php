@@ -27,6 +27,9 @@ Route::get('/login/{sing_in_as?}', [AuthenticatedSessionController::class, 'crea
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
                 ->middleware('guest');
 
+Route::post('/employee-login', [AuthenticatedSessionController::class, 'employeeLogin'])
+    ->middleware('guest');
+
 Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
                 ->middleware('guest')
                 ->name('password.request');

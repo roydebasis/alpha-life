@@ -13,9 +13,11 @@
                             <img style="display: block; max-width: 100%; height: auto;" src="{{ url('/assets/images/login-banner.jpeg') }}">
                         </div>
                         <div class="col-md-12 mt-30">
-                            {{ html()->form('POST', url('/register'))->class('form')->open() }}
+                            @include('flash::message')
 
-                            {{ html()->hidden('sign_up_as', $sign_in_as) }}
+                            {{ html()->form('POST', url('/employee-login'))->class('form')->open() }}
+
+                            {{ html()->hidden('sign_in_as', $sign_in_as) }}
                             <div class="row">
                                 @if($sign_in_as == 'employee')
                                     <div class="col-md-6">
@@ -59,7 +61,7 @@
                                         $required = "required";
                                         ?>
                                         {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                                        {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                                        {{ html()->password($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                                     </div>
                                 </div>
                             </div>

@@ -17,6 +17,7 @@ class AlterUsersTable extends Migration
             $table->string('name')->nullable()->change();
             $table->string('first_name')->nullable()->change();
             $table->string('last_name')->nullable()->change();
+            $table->string('email')->nullable()->change();
             $table->string('employee_code', 191)->unique()->nullable()->after('date_of_birth');
             $table->string('policy_number', 191)->unique()->nullable()->after('employee_code');
         });
@@ -33,6 +34,7 @@ class AlterUsersTable extends Migration
             $table->string('name')->nullable(false)->change();
             $table->string('first_name')->nullable(false)->change();
             $table->string('last_name')->nullable(false)->change();
+            $table->string('email')->nullable(false)->change();
             $table->dropColumn('employee_code');
             $table->dropColumn('policy_number');
         });

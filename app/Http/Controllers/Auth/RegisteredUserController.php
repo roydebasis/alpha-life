@@ -4,13 +4,17 @@ namespace App\Http\Controllers\Auth;
 
 use App\Events\Frontend\UserRegistered;
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
+use Laracasts\Flash\Flash;
 
 class RegisteredUserController extends Controller
 {
@@ -39,29 +43,33 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'first_name'    => 'required|string|max:191',
-            'last_name'     => 'required|string|max:191',
-            'designation'   => 'required|integer',
-            'employee_code' => 'required|string|max:191',
-            'email'         => 'required|string|email|max:191|unique:users',
             'mobile'        => 'required|string|max:191',
             'password'      => ['required', 'confirmed', Password::min(8) ->letters()->numbers()],
             'password_confirmation' => ['required'],
         ];
+        $data = [
+            'mobile'        => $request->mobile,
+            'password'      => Hash::make($request->password),
+            'email_verified_at' => Carbon::now()
+        ];
+        if ($request->sign_up_as == 'employee') {
+            $rules['employee_code'] = 'required|string|max:191';
+            $data['employee_code']  = $request->employee_code;
+        } else {
+            $rules['policy_number'] = 'required|string|max:191';
+            $data['policy_number']  = $request->policy_number;
+        }
 
         $request->validate($rules);
+        $assignRole  =  $request->sign_up_as == 'employee'  ? 'employee' : 'policy-holder';
+        $role = Role::where('name',  $assignRole)->first();
+        if (!$role) {
+            abort(404, 'Role not found');
+        }
+        $user = User::create($data);
+        $user->syncRoles([$assignRole]);
+        $user->syncPermissions(['view_backend']);
 
-        $user = User::create([
-            'first_name'    => $request->first_name,
-            'last_name'     => $request->last_name,
-            'name'          => $request->first_name.' '.$request->last_name,
-            'email'         => $request->email,
-            'designation'   => $request->designation,
-            'employee_code' => $request->employee_code,
-            'password'      => Hash::make($request->password),
-        ]);
-
-        // username
         $username = config('app.initial_username') + $user->id;
         $user->username = $username;
         $user->save();
@@ -71,6 +79,7 @@ class RegisteredUserController extends Controller
 //        event(new Registered($user));
 //        event(new UserRegistered($user));
 
-        return redirect(RouteServiceProvider::HOME);
+        Flash::success("<i class='fas fa-check'></i> Sign up successful")->important();
+        return redirect('user/dashboard');
     }
 }
