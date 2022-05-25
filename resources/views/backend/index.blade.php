@@ -55,21 +55,31 @@
         </a>
     </div>
     <div class="col-sm-6 col-lg-3">
-        <a style="text-decoration: none;" href="#">
-            <div class="card bg-info">
-                <div class="card-body">
-                    <div class="text-value-lg text-center text-white">Branch</div>
-                </div>
-            </div>
-        </a>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-6 col-lg-3">
         <a style="text-decoration: none;" href="{{ route('backend.managements.index') }}">
             <div class="card bg-info">
                 <div class="card-body">
                     <div class="text-value-lg text-center text-white">Management</div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-sm-6 col-lg-3">
+        <a style="text-decoration: none;" href="{{ route('backend.sliders.index') }}">
+            <div class="card bg-info">
+                <div class="card-body">
+                    <div class="text-value-lg text-center text-white">Slide Show</div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <a style="text-decoration: none;" href="{{ route('backend.albums.index') }}">
+            <div class="card bg-info">
+                <div class="card-body">
+                    <div class="text-value-lg text-center text-white">Gallery</div>
                 </div>
             </div>
         </a>
@@ -84,6 +94,29 @@
         </a>
     </div>
     <div class="col-sm-6 col-lg-3">
+        <a style="text-decoration: none;" href="{{ route('backend.faqs.index') }}">
+            <div class="card bg-info">
+                <div class="card-body">
+                    <div class="text-value-lg text-center text-white">FAQ</div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+</div>
+<div class="row">
+
+
+    <div class="col-sm-6 col-lg-3">
+        <a style="text-decoration: none;" href="#">
+            <div class="card bg-info">
+                <div class="card-body">
+                    <div class="text-value-lg text-center text-white">Branch</div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-sm-6 col-lg-3">
         <a style="text-decoration: none;" href="#">
             <div class="card bg-info">
                 <div class="card-body">
@@ -93,33 +126,15 @@
         </a>
     </div>
     <div class="col-sm-6 col-lg-3">
-        <a style="text-decoration: none;" href="{{ route('backend.albums.index') }}">
+        <a style="text-decoration: none;" href="{{ route('backend.pages.index') }}">
             <div class="card bg-info">
                 <div class="card-body">
-                    <div class="text-value-lg text-center text-white">Gallery</div>
+                    <div class="text-value-lg text-center text-white">Pages</div>
                 </div>
             </div>
         </a>
     </div>
-</div>
-<div class="row">
-    <div class="col-sm-6 col-lg-3">
-        <a style="text-decoration: none;" href="{{ route('backend.sliders.index') }}">
-            <div class="card bg-info">
-                <div class="card-body">
-                    <div class="text-value-lg text-center text-white">Slide Show</div>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="col-sm-6 col-lg-3">
-        <a style="text-decoration: none;" href="{{ route('backend.faqs.index') }}">
-            <div class="card bg-info">
-                <div class="card-body">
-                    <div class="text-value-lg text-center text-white">FAQ</div>
-                </div>
-            </div>
-        </a>
-    </div>
+
+
 </div>
 @endsection
