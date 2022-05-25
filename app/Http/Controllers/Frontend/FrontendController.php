@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Modules\Article\Entities\Post;
+use Modules\Claim\Entities\Claim;
 use Modules\Home\Entities\About;
 use Modules\Home\Entities\Quote;
 use Modules\Home\Entities\Slider;
@@ -115,6 +116,10 @@ class FrontendController extends Controller
         elseif ($slug == 'notice-board') {
             $notices = Notice::orderBy('order', 'desc')->get();
             return view('frontend.page-notice-board', compact('content', 'meta_page_type', 'notices'));
+        }
+        elseif ($slug == 'claim-information') {
+            $claims = Claim::orderBy('order', 'desc')->get();
+            return view('frontend.page-claim', compact('content', 'meta_page_type', 'claims'));
         }
         return view('frontend.page', compact('content', 'meta_page_type'));
     }
