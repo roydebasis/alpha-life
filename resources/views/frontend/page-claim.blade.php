@@ -33,10 +33,10 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($claims as $claim)
-                                        
+
                                         <tr>
                                             <td> <a href="{{ route('frontend.claim.show', $claim->id) }}">{{ $claim->id }} </a></td>
-                                            <td class="claim-desc"> <a href="{{ route('frontend.claim.show', $claim->id) }}">{!! $claim->description !!} </a> </td>
+                                            <td class="claim-desc"> <a href="{{ route('frontend.claim.show', $claim->id) }}">{!! \Illuminate\Support\Str::limit($claim->description, 200, '...') !!} </a> </td>
                                             <td class="text-center"><a href="{{ route('frontend.claim.show', $claim->id) }}">{{ date('d M, Y', strtotime($claim->date)) }} </a></td>
                                         </tr>
                                     @endforeach

@@ -11,10 +11,7 @@
                 <div class="col-md-12">
                     <h4>Date:  <span>{{ date('d M, Y', strtotime($$module_name_singular->date)) }}</span></h4>
                 </div>
-            </div>
-            <div class="row" style="margin-bottom: 20px;">
                 <div class="col-md-12">
-                    <h4>Description </h4>
                     {!! $$module_name_singular->description !!}
 
                 </div>
@@ -27,13 +24,13 @@
                 </div>
             </div>
             @isset($$module_name_singular)
-                <div class="row" style="margin-bottom: 20px; margin-left: 0;">
+                <div class="row" >
                     <div class="col-md-12">
                         <h4>Album </h4>
-                        <div class="row" style="display: flex;">
+                        <div class="row">
                             @foreach($$module_name_singular->photos as $photo)
-                                <div class="col-4" style="margin: 10px">
-                                    <image src="{{ asset($photo->url) }}" class="img-thumbnail"></image>
+                                <div class="col-md-4 mb-20">
+                                    <image src="{{ asset($photo->url) }}" class="img-thumbnail album-thumb"></image>
                                 </div>
                             @endforeach
                         </div>
@@ -43,3 +40,18 @@
         </div><!-- /.container -->
     </section>
 @endsection
+
+@push('after-styles')
+    <style>
+        .mb-20{
+            margin-bottom: 20px;
+        }
+        @media (min-width: 786px) {
+            .album-thumb {
+                height: 150px;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+    </style>
+@endpush
