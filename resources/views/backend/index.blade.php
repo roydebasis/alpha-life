@@ -46,20 +46,20 @@
         </div>
 
         <div class="col-sm-6 col-lg-3">
-            <a style="text-decoration: none;" href="{{ route('backend.notices.index') }}">
+            <a style="text-decoration: none;" href="{{ route('backend.claim.index') }}">
                 <div class="card bg-info">
                     <div class="card-body">
-                        <div class="text-value-lg text-center text-white">Notice</div>
+                        <div class="text-value-lg text-center text-white">Claim</div>
                     </div>
                 </div>
             </a>
         </div>
 
         <div class="col-sm-6 col-lg-3">
-            <a style="text-decoration: none;" href="#">
+            <a style="text-decoration: none;" href="{{ route('backend.notices.index') }}">
                 <div class="card bg-info">
                     <div class="card-body">
-                        <div class="text-value-lg text-center text-white">Branch</div>
+                        <div class="text-value-lg text-center text-white">Notice</div>
                     </div>
                 </div>
             </a>
@@ -78,20 +78,12 @@
     </div>
 
     <div class="row">
+       
         <div class="col-sm-6 col-lg-3">
-            <a style="text-decoration: none;" href="#">
+            <a style="text-decoration: none;" href="{{ route('backend.sliders.index') }}">
                 <div class="card bg-info">
                     <div class="card-body">
-                        <div class="text-value-lg text-center text-white">Sales</div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-6 col-lg-3">
-            <a style="text-decoration: none;" href="#">
-                <div class="card bg-info">
-                    <div class="card-body">
-                        <div class="text-value-lg text-center text-white">Team</div>
+                        <div class="text-value-lg text-center text-white">Slide Show</div>
                     </div>
                 </div>
             </a>
@@ -105,20 +97,54 @@
                 </div>
             </a>
         </div>
+
         <div class="col-sm-6 col-lg-3">
-            <a style="text-decoration: none;" href="{{ route('backend.sliders.index') }}">
+            <a style="text-decoration: none;" href="#">
                 <div class="card bg-info">
                     <div class="card-body">
-                        <div class="text-value-lg text-center text-white">Slide Show</div>
+                        <div class="text-value-lg text-center text-white">Sales</div>
                     </div>
                 </div>
             </a>
         </div>
+        
         <div class="col-sm-6 col-lg-3">
             <a style="text-decoration: none;" href="{{ route('backend.faqs.index') }}">
                 <div class="card bg-info">
                     <div class="card-body">
                         <div class="text-value-lg text-center text-white">FAQ</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-lg-3">
+            <a style="text-decoration: none;" href="#">
+                <div class="card bg-info">
+                    <div class="card-body">
+                        <div class="text-value-lg text-center text-white">Branch</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <a style="text-decoration: none;" href="#">
+                <div class="card bg-info">
+                    <div class="card-body">
+                        <div class="text-value-lg text-center text-white">Team</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="col-sm-6 col-lg-3">
+            <a style="text-decoration: none;" href="{{ route('backend.pages.index') }}">
+                <div class="card bg-info">
+                    <div class="card-body">
+                        <div class="text-value-lg text-center text-white">Page</div>
                     </div>
                 </div>
             </a>

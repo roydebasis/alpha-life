@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Modules\Article\Entities\Presenters\PostPresenter;
+use Modules\Claim\Entities\Claim;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Photo extends BaseModel
@@ -27,6 +28,11 @@ class Photo extends BaseModel
     public function albums()
     {
         return $this->belongsToMany(Album::class);
+    }
+
+    public function claims()
+    {
+        return $this->belongsToMany(Claim::class);
     }
 
     /**
