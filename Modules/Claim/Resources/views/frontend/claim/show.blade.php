@@ -16,17 +16,16 @@
 
                 </div>
             </div>
-            <div class="row" style="margin-bottom: 40px;">
-                <div class="col-md-12">
-                    <h4>Check Image </h4>
-                    <image src="{{ asset($$module_name_singular->check_image) }}" class="img-thumbnail"></image>
-
+            @if($$module_name_singular->check_image)
+                <div class="row" style="margin-bottom: 40px;">
+                    <div class="col-md-12">
+                        <image src="{{ asset($$module_name_singular->check_image) }}" class="img-thumbnail"></image>
+                    </div>
                 </div>
-            </div>
+            @endif
             @isset($$module_name_singular)
                 <div class="row" >
                     <div class="col-md-12">
-                        <h4>Album </h4>
                         <div class="row">
                             @foreach($$module_name_singular->photos as $photo)
                                 <div class="col-md-4 mb-20">
