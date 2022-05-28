@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use http\Client\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Modules\Article\Entities\Post;
@@ -43,7 +45,7 @@ class FrontendController extends Controller
         $quotes = Quote::all();
 
         $aboutAlpha = About::first();
-        
+
         return view('frontend.index', compact('body_class', 'blogs', 'insurancePlans', 'suplementaryPlans', 'sliders', 'quotes', 'aboutAlpha'));
     }
 
@@ -121,6 +123,18 @@ class FrontendController extends Controller
             $claims = Claim::orderBy('order', 'desc')->get();
             return view('frontend.page-claim', compact('content', 'meta_page_type', 'claims'));
         }
+        elseif ($slug == 'business-promotion') {
+            $employees = Http::get(config('alpha.api_url').'public/bd-employees/');
+            $jsonData = $employees->json();
+            if ($jsonData['status'] == 200) {
+                $employees = $jsonData['data']['bdEmployees'];
+            } else {
+                $employees = [];
+            }
+
+            return view('frontend.page-business-development', compact('content', 'meta_page_type', 'employees'));
+        }
+
         return view('frontend.page', compact('content', 'meta_page_type'));
     }
 
@@ -138,7 +152,6 @@ class FrontendController extends Controller
 
             return response()->download($file, 'notice.pdf', $headers);
         }
-
 
         return back();
     }
