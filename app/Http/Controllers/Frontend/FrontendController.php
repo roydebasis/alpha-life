@@ -123,16 +123,8 @@ class FrontendController extends Controller
             $claims = Claim::orderBy('order', 'desc')->get();
             return view('frontend.page-claim', compact('content', 'meta_page_type', 'claims'));
         }
-        elseif ($slug == 'business-promotion') {
-            $employees = Http::get(config('alpha.api_url').'public/bd-employees/');
-            $jsonData = $employees->json();
-            if ($jsonData['status'] == 200) {
-                $employees = $jsonData['data']['bdEmployees'];
-            } else {
-                $employees = [];
-            }
-
-            return view('frontend.page-business-development', compact('content', 'meta_page_type', 'employees'));
+        elseif ($slug == 'business-development') {
+            return view('frontend.page-business-development', compact('content', 'meta_page_type'));
         }
 
         return view('frontend.page', compact('content', 'meta_page_type'));
