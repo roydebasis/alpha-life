@@ -57,8 +57,11 @@
         .notice-table td {
             vertical-align: middle !important;
         }
-        .development-table{
+        .development-table {
             padding: 0 20px 20px
+        }
+        .development-table table.dataTable {
+            border-collapse: collapse;
         }
         .loader {
             border: 5px solid #f3f3f3;
