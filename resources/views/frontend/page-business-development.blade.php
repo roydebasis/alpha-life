@@ -21,8 +21,9 @@
                                 {!! $content->content !!}
                             </div>
                         @endif
-                        <div class="table-responsive">
-                            <table class="table table-bordered notice-table" id="tbl-employees">
+                        <div class="development-table">
+                            <div class="table-responsive">
+                            <table class="table table-bordered notice-table hide" id="tbl-employees">
                                 <thead>
                                     <tr>
                                         <th class="text-center">SL</th>
@@ -38,6 +39,7 @@
                             </table>
                             <div class="loader mb-30" id="loader"></div>
                         </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -46,6 +48,7 @@
 @endsection
 
 @push('after-styles')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/ju/dt-1.12.1/datatables.min.css"/>
     <style>
         .profile-pic{
             height: 60px;
@@ -53,6 +56,12 @@
         }
         .notice-table td {
             vertical-align: middle !important;
+        }
+        .development-table {
+            padding: 0 20px 20px
+        }
+        .development-table table.dataTable {
+            border-collapse: collapse;
         }
         .loader {
             border: 5px solid #f3f3f3;
@@ -79,6 +88,7 @@
     </style>
 @endpush
 @push('after-scripts')
+    <script type="text/javascript" src="https://cdn.datatables.net/v/ju/dt-1.12.1/datatables.min.js"></script>
     <script>
         var apiUrl = "{{ config('alpha.api_url') }}";
         jQuery(document).ready(function () {
@@ -105,6 +115,11 @@
                     }
                     $('#loader').hide();
                     $('#tbl-employees tbody').append(data);
+                    $('#tbl-employees').removeClass('hide');
+                    $('#tbl-employees').DataTable({
+                        searching: false,
+                        ordering: false,
+                    });
                 }
             }).fail(function(xhr, status, error) {
                 $('#loader').hide();
