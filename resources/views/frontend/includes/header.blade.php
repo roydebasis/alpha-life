@@ -156,7 +156,7 @@
                                                                 </ul>
                                                             </li>
                                                         @else
-                                                            <li><a href="{{ \Illuminate\Support\Str::contains( $subChild['link'], 'business-development') ? 'http://alphalife.com.bd' . $subChild['link'] : url($subChild['link']) }}">{{ $subChild['label'] }} - {{$subChild['link']}}</a></li>
+                                                            <li><a href="{{ \Illuminate\Support\Str::contains( $subChild['link'], 'business-development') ? 'http://alphalife.com.bd' . $subChild['link'] : url($subChild['link']) }}">{{ $subChild['label'] }}</a></li>
                                                         @endif
                                                     @endforeach
                                                 </ul>
