@@ -120,8 +120,9 @@ class FrontendController extends Controller
             return view('frontend.page-notice-board', compact('content', 'meta_page_type', 'notices'));
         }
         elseif ($slug == 'claim-information') {
-            $claims = Claim::orderBy('order', 'desc')->get();
-            return view('frontend.page-claim', compact('content', 'meta_page_type', 'claims'));
+            $paid_claims = Claim::where('claim_status', '1')->orderBy('order', 'desc')->get();
+            $pending_claims = Claim::where('claim_status', '2')->orderBy('order', 'desc')->get();
+            return view('frontend.page-claim', compact('content', 'meta_page_type', 'paid_claims', 'pending_claims'));
         }
         elseif ($slug == 'business-development') {
             return view('frontend.page-business-development', compact('content', 'meta_page_type'));

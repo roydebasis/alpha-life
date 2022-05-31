@@ -19,25 +19,65 @@
                                     src="{{ url($content->featured_image) }}">
                             </div>
                         @endif
-                        <div class="service-box">
+                        {{-- <div class="service-box">
                             {!! $content->content !!}
-                        </div>
-                        <div class="table-responsive">
+                        </div> --}}
+                        <div class="table-responsive" style="margin-top: 25px;">
+                            <h4 style="margin: 15px 20px">Claim Information ( Paid )</h4>
                             <table class="table table-bordered notice-table">
                                 <thead>
                                     <tr>
                                         <th class="text-center">Serial</th>
-                                        <th class="text-center">Description</th>
-                                        <th class="text-center">Date</th>
+                                        <th class="text-center">Short Description</th>
+                                        <th width="15%" class="text-center">Claim Category</th>
+                                        <th width="15%" class="text-center">Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($claims as $claim)
-
+                                    @foreach ($paid_claims as $claim)
                                         <tr>
-                                            <td> <a href="{{ route('frontend.claim.show', $claim->id) }}">{{ $claim->id }} </a></td>
-                                            <td class="claim-desc"> <a href="{{ route('frontend.claim.show', $claim->id) }}">{!! \Illuminate\Support\Str::limit($claim->description, 200, '...') !!} </a> </td>
-                                            <td class="text-center"><a href="{{ route('frontend.claim.show', $claim->id) }}">{{ date('d M, Y', strtotime($claim->date)) }} </a></td>
+                                            <td> <a href="{{ route('frontend.claim.show', $claim->id) }}">{{ $claim->id }}
+                                                </a></td>
+                                            <td class="claim-desc"> <a
+                                                    href="{{ route('frontend.claim.show', $claim->id) }}">{!! \Illuminate\Support\Str::limit($claim->description, 200, '...') !!}
+                                                </a> </td>
+                                            <td class="text-center"><a
+                                                    href="{{ route('frontend.claim.show', $claim->id) }}">{{ $claim->category }}
+                                                </a></td>
+                                            <td class="text-center"><a
+                                                href="{{ route('frontend.claim.show', $claim->id) }}">{{ date('d M, Y', strtotime($claim->date)) }}
+                                            </a></td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="table-responsive">
+                            <h4 style="margin: 15px 20px">Claim Information ( Pending )</h4>
+                            <table class="table table-bordered notice-table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Serial</th>
+                                        <th class="text-center">Short Description</th>
+                                        <th width="15%" class="text-center">Claim Category</th>
+                                        <th width="15%" class="text-center">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($pending_claims as $claim)
+                                        <tr>
+                                            <td> <a href="{{ route('frontend.claim.show', $claim->id) }}">{{ $claim->id }}
+                                                </a></td>
+                                            <td class="claim-desc"> <a
+                                                    href="{{ route('frontend.claim.show', $claim->id) }}">{!! \Illuminate\Support\Str::limit($claim->description, 200, '...') !!}
+                                                </a> </td>
+                                            <td class="text-center"><a
+                                                href="{{ route('frontend.claim.show', $claim->id) }}">{{ $claim->category }}
+                                            </a></td>
+                                            <td class="text-center"><a
+                                                    href="{{ route('frontend.claim.show', $claim->id) }}">{{ date('d M, Y', strtotime($claim->date)) }}
+                                                </a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>

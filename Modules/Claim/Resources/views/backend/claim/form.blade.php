@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-5">
+    <div class="col-4">
         <div class="form-group">
             <?php
             $field_name = 'date';
@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div class="col-5">
+    <div class="col-4">
         <div class="form-group">
             <?php
             $field_name = 'check_image';
@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-    <div class="col-2">
+    <div class="col-4">
         <div class="form-group">
             <?php
             $field_name = 'order';
@@ -44,6 +44,61 @@
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-4">
+        <div class="form-group">
+            <?php
+            $field_name = 'status';
+            $field_lable = __("claim::$module_name.$field_name");
+            $field_placeholder = __("Select an option");
+            $required = "required";
+            $select_options = [
+                '1'=>'Published',
+                '0'=>'Unpublished',
+            ];
+            ?>
+            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+            <?php
+            $field_name = 'claim_status';
+            $field_lable = __("claim::$module_name.$field_name");
+            $field_placeholder = __("Select an option");
+            $required = "required";
+            $select_options = [
+                '1'=>'Paid',
+                '2'=>'Pending',
+            ];
+            ?>
+            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="form-group">
+            <?php
+            $field_name = 'category';
+            $field_lable = __("claim::$module_name.$field_name");
+            $field_placeholder = __("Select an option");
+            $required = "required";
+            $select_options = [
+                'Death'=>'Death',
+                'Maturity'=>'Maturity',
+                'Supplementary'=>'Supplementary',
+                'Surrender'=>'Surrender',
+                'Survival Benefit'=>'Survival Benefit',
+            ];
+            ?>
+            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
         </div>
     </div>
 </div>
