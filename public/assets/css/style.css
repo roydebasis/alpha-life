@@ -5950,3 +5950,9 @@ ul.a {
     margin: 0 auto;
     margin-bottom: 30px;
 }
+
+.claim-desc p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 60px;
+}

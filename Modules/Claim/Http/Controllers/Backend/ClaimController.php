@@ -1,48 +1,39 @@
 <?php
 
-namespace Modules\Media\Http\Controllers\Backend;
+namespace Modules\Claim\Http\Controllers\Backend;
 
 use App\Authorizable;
-use Carbon\Carbon;
-use Illuminate\Contracts\Support\Renderable;
+use App\Http\Controllers\Controller;
+use Auth;
+use Flash;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Laracasts\Flash\Flash;
-use Modules\Article\Entities\Category;
-use Modules\Article\Events\PostCreated;
-use Modules\Article\Events\PostUpdated;
-use Modules\Article\Http\Requests\Backend\PostsRequest;
+use Log;
+use Modules\Claim\Http\Requests\Backend\ClaimRequest;
 use Modules\Media\Entities\Photo;
-use Modules\Media\Http\Requests\Backend\AlbumRequest;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\DataTables\DataTables;
-use function view;
 
-class AlbumsController extends Controller
+class ClaimController extends Controller
 {
-//    use Authorizable;
+    use Authorizable;
 
     public function __construct()
     {
         // Page Title
-        $this->module_title = 'Albums';
+        $this->module_title = 'Claim';
 
         // module name
-        $this->module_name = 'albums';
+        $this->module_name = 'claim';
 
         // directory path of the module
-        $this->module_path = 'albums';
+        $this->module_path = 'claim';
 
         // module icon
         $this->module_icon = 'fas fa-file-alt';
 
         // module model name, path
-        $this->module_model = "Modules\Media\Entities\Album";
+        $this->module_model = "Modules\Claim\Entities\Claim";
     }
 
     /**
@@ -61,12 +52,10 @@ class AlbumsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::latest()->paginate();
-
-//        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        $$module_name = $module_model::latest()->orderBy('order', 'desc')->paginate();
 
         return view(
-            "media::backend.$module_path.index_datatable",
+            "claim::backend.$module_path.index_datatable",
             compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
         );
     }
@@ -82,28 +71,19 @@ class AlbumsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::select('id', 'title', 'place', 'date', 'updated_at');
+        $$module_name = $module_model::select('id', 'date', 'description', 'check_image', 'order');
+
+        $data = $$module_name;
 
         return Datatables::of($$module_name)
-            ->addColumn('action', function ($data) {
-                $module_name = $this->module_name;
+                        ->addColumn('action', function ($data) {
+                            $module_name = $this->module_name;
 
-                return view('backend.includes.action_column', compact('module_name', 'data'));
-            })
-            ->editColumn('updated_at', function ($data) {
-                $module_name = $this->module_name;
-
-                $diff = Carbon::now()->diffInHours($data->updated_at);
-
-                if ($diff < 25) {
-                    return $data->updated_at->diffForHumans();
-                } else {
-                    return $data->updated_at->isoFormat('LLLL');
-                }
-            })
-            ->rawColumns(['title', 'place', 'action'])
-            ->orderColumns(['id'], '-:column $1')
-            ->make(true);
+                            return view('backend.includes.action_column', compact('module_name', 'data'));
+                        })
+                        ->rawColumns(['datea', 'description', 'order', 'action'])
+                        // ->orderColumns(['id'], '-:column $1')
+                        ->make(true);
     }
 
     /**
@@ -128,7 +108,7 @@ class AlbumsController extends Controller
             return response()->json([]);
         }
 
-        $query_data = $module_model::where('title', 'LIKE', "%$term%")->published()->limit(10)->get();
+        $query_data = $module_model::where('name', 'LIKE', "%$term%")->published()->limit(10)->get();
 
         $$module_name = [];
 
@@ -158,12 +138,8 @@ class AlbumsController extends Controller
 
         $module_action = 'Create';
 
-//        $categories = Category::pluck('name', 'id');
-
-//        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
-
         return view(
-            "media::backend.$module_name.create",
+            "claim::backend.$module_name.create",
             compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular')
         );
     }
@@ -175,7 +151,7 @@ class AlbumsController extends Controller
      *
      * @return Response
      */
-    public function store(AlbumRequest $request)
+    public function store(ClaimRequest $request)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -185,7 +161,9 @@ class AlbumsController extends Controller
         $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Store';
+
         $data = $request->all();
+        $data['created_by_name'] = auth()->user()->name;
 
         $$module_name_singular = $module_model::create($data);
 
@@ -197,11 +175,9 @@ class AlbumsController extends Controller
             $$module_name_singular->photos()->save($newImage);
         }
 
-//        event(new PostCreated($$module_name_singular));
 
         Flash::success("<i class='fas fa-check'></i> New '".Str::singular($module_title)."' Added")->important();
 
-//        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
         return redirect("admin/$module_name");
     }
 
@@ -223,19 +199,16 @@ class AlbumsController extends Controller
 
         $module_action = 'Show';
 
-        $$module_name_singular = $module_model::withTrashed()->with('photos')->findOrFail($id);
-        Log::info($$module_name_singular);
+        $$module_name_singular = $module_model::withTrashed()->findOrFail($id);
 
         $activities = Activity::where('subject_type', '=', $module_model)
-            ->where('log_name', '=', $module_name)
-            ->where('subject_id', '=', $id)
-            ->latest()
-            ->paginate();
-
-        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
+                                ->where('log_name', '=', $module_name)
+                                ->where('subject_id', '=', $id)
+                                ->latest()
+                                ->paginate();
 
         return view(
-            "media::backend.$module_name.show",
+            "claim::backend.$module_name.show",
             compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular", 'activities')
         );
     }
@@ -260,13 +233,9 @@ class AlbumsController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        $categories = Category::pluck('name', 'id');
-
-        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
-
         return view(
-            "media::backend.$module_name.edit",
-            compact('categories', 'module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular")
+            "claim::backend.$module_name.edit",
+            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular")
         );
     }
 
@@ -278,7 +247,7 @@ class AlbumsController extends Controller
      *
      * @return Response
      */
-    public function update(AlbumRequest $request, $id)
+    public function update(ClaimRequest $request, $id)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -301,9 +270,9 @@ class AlbumsController extends Controller
             $$module_name_singular->photos()->save($newImage);
         }
 
+
         Flash::success("<i class='fas fa-check'></i> '".Str::singular($module_title)."' Updated Successfully")->important();
 
-        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return redirect("admin/$module_name");
     }
@@ -332,32 +301,8 @@ class AlbumsController extends Controller
 
         Flash::success('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Deleted Successfully!')->important();
 
-        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return redirect("admin/$module_name");
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
-    public function deletePhoto($albumId, $id)
-    {
-        $module_name = $this->module_name;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
-
-
-        $$module_name_singular = $module_model::findOrFail($albumId);
-
-        $$module_name_singular->photos()->detach($id);
-
-        Flash::success('<i class="fas fa-check"></i> '.label_case("Photo").' Deleted Successfully!')->important();
-
-        return redirect("admin/$module_name/$albumId/edit");
     }
 
     /**
@@ -379,10 +324,8 @@ class AlbumsController extends Controller
 
         $$module_name = $module_model::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate();
 
-        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name);
-
         return view(
-            "media::backend.$module_name.trash",
+            "notice::backend.$module_name.trash",
             compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
         );
     }
@@ -414,5 +357,28 @@ class AlbumsController extends Controller
         Log::info(label_case($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return redirect("admin/$module_name");
+    }
+
+      /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function deletePhoto($albumId, $id)
+    {
+        $module_name = $this->module_name;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+
+        $$module_name_singular = $module_model::findOrFail($albumId);
+
+        $$module_name_singular->photos()->detach($id);
+
+        Flash::success('<i class="fas fa-check"></i> '.label_case("Photo").' Deleted Successfully!')->important();
+
+        return redirect("admin/$module_name/$albumId/edit");
     }
 }
