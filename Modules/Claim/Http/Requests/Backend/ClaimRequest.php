@@ -17,7 +17,10 @@ class ClaimRequest extends FormRequest
             'date'             => 'nullable|date',
             'description'            => 'nullable',
             'check_image'            => 'max:191',
-            'url'            => 'max:191'
+            'url'            => 'max:191',
+            'status'            => 'required',
+            'claim_status'            => 'required',
+            'category'            => 'required',
         ];
     }
 
