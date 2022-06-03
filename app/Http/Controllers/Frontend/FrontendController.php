@@ -127,6 +127,9 @@ class FrontendController extends Controller
         elseif ($slug == 'business-development') {
             return view('frontend.page-business-development', compact('content', 'meta_page_type'));
         }
+        elseif ($slug == 'hospital-network') {
+            return view('frontend.page-hospital-network', compact('content', 'meta_page_type'));
+        }
 
         return view('frontend.page', compact('content', 'meta_page_type'));
     }
