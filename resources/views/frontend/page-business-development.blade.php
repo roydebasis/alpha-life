@@ -23,7 +23,7 @@
                         @endif
                         <div class="development-table">
                             <div class="table-responsive">
-                            <table class="table table-bordered notice-table hide" id="tbl-employees">
+                            <table class="table table-bordered hide" id="tbl-employees">
                                 <thead>
                                     <tr>
                                         <th class="text-center">SL</th>
@@ -58,7 +58,7 @@
             vertical-align: middle !important;
         }
         .development-table {
-            padding: 0 20px 20px
+            margin: 20px;
         }
         .development-table table.dataTable {
             border-collapse: collapse;
