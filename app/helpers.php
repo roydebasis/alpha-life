@@ -519,3 +519,26 @@ if (!function_exists('get_video_id')) {
         return $url;
     }
 }
+
+/*
+ *
+ * Return Video Id
+ *
+ * ------------------------------------------------------------------------
+ */
+if (!function_exists('generate_page_link')) {
+
+    /**
+     * Return non ssl url based on condition
+     */
+    function generate_page_link($url)
+    {
+        if (Str::contains( $url, 'business-development')
+            || Str::contains($url, 'hospital-network')
+            || Str::contains($url, 'premium-calculator')) {
+            return 'http://alphalife.com.bd' . $url;
+        }
+
+        return url($url);;
+    }
+}

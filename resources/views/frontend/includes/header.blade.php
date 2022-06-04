@@ -135,40 +135,44 @@
                         {{--  first level dropdown--}}
                         @if($menu['child'])
                             <li class="dropdown">
-                                <a href="avascript:void(0)" class="dropdown-toggle menu-item" data-toggle="dropdown" role="button"
+                                <a href="javascript:void(0)" class="dropdown-toggle menu-item" data-toggle="dropdown" role="button"
                                    aria-haspopup="true" aria-expanded="false">{{ $menu['label'] }}</a>
                                 <ul class="dropdown-menu">
                                     @foreach( $menu['child'] as $child )
                                         {{--  second level dropdown--}}
                                         @if($child['child'])
                                             <li class="dropdown">
-                                                <a href="{{ $child['link'] }}" class="dropdown-toggle" data-toggle="dropdown">{{ $child['label'] }}</a>
+                                                <a href="{{ generate_page_link($child['link']) }}" class="dropdown-toggle" data-toggle="dropdown">{{ $child['label'] }}</a>
                                                 <ul class="dropdown-menu">
                                                     @foreach( $child['child'] as $subChild )
                                                         {{--  third level dropdown--}}
                                                         @if($subChild['child'])
                                                             <li class="dropdown">
-                                                                <a href="{{ $subChild['link'] }}" class="dropdown-toggle" data-toggle="dropdown">{{ $subChild['label'] }}</a>
+                                                                <a href="{{ generate_page_link($subChild['link']) }}" class="dropdown-toggle" data-toggle="dropdown">{{ $subChild['label'] }}</a>
                                                                 <ul class="dropdown-menu">
                                                                     @foreach( $subChild['child'] as $thirdLevel )
-                                                                        <li><a href="{{ url($thirdLevel['link']) }}">{{ $thirdLevel['label'] }}</a></li>
+                                                                        <li><a href="{{ generate_page_link($thirdLevel['link']) }}">{{ $thirdLevel['label'] }}</a></li>
                                                                     @endforeach
                                                                 </ul>
                                                             </li>
                                                         @else
-                                                            <li><a href="{{ \Illuminate\Support\Str::contains( $subChild['link'], 'business-development') ? 'http://alphalife.com.bd' . $subChild['link'] : url($subChild['link']) }}">{{ $subChild['label'] }}</a></li>
+                                                            <li><a href="{{ generate_page_link($subChild['link']) }}">{{ $subChild['label'] }}</a></li>
                                                         @endif
                                                     @endforeach
                                                 </ul>
                                             </li>
                                         @else
-                                            <li><a href="{{ $child['link'] === '/page/premium-calculator' ? 'http://alphalife.com.bd' . $child['link'] : url($child['link']) }}">{{ $child['label'] }}</a></li>
+                                            <li>
+                                                <a href="{{ generate_page_link($child['link']) }}">
+                                                    {{ $child['label'] }}
+                                                </a>
+                                            </li>
                                         @endif
                                     @endforeach
                                 </ul>
                             </li>
                         @else
-                            <li><a href="{{ url($menu['link']) }}" class="menu-item">{{ $menu['label']  }}</a></li>
+                            <li><a href="{{ generate_page_link($menu['link']) }}" class="menu-item">{{ $menu['label']  }}</a></li>
                         @endif
                     @endforeach
                     <li>&nbsp;</li>

@@ -23,16 +23,17 @@
                         @endif
                         <div class="development-table">
                             <div class="table-responsive">
-                            <table class="table table-bordered hide" id="tbl-employees">
+                            <table class="table table-bordered hide" id="tbl-hospitals">
                                 <thead>
                                     <tr>
                                         <th class="text-center">SL</th>
-                                        <th class="text-center">Image</th>
                                         <th class="text-center">Name</th>
-                                        <th class="text-center">Designation</th>
-                                        <th class="text-center">Work Area</th>
-                                        <th class="text-center">Code</th>
-                                        <th class="text-center">Mobile</th>
+                                        <th class="text-center">Address</th>
+                                        <th class="text-center">Contact</th>
+                                        <th class="text-center">Contact No</th>
+                                        <th class="text-center">OPD Facility</th>
+                                        <th class="text-center">Credit Availability</th>
+                                        <th class="text-center">Location</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -50,11 +51,7 @@
 @push('after-styles')
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/ju/dt-1.12.1/datatables.min.css"/>
     <style>
-        .profile-pic{
-            height: 60px;
-            object-fit: cover;
-        }
-        .notice-table td {
+        .development-table td {
             vertical-align: middle !important;
         }
         .development-table {
@@ -92,38 +89,39 @@
     <script>
         var apiUrl = "{{ config('alpha.api_url') }}";
         jQuery(document).ready(function () {
-            getBusinessDevelopmentEmployees();
+            getHospitals();
         });
-
-        function getBusinessDevelopmentEmployees() {
+        // our-hospitals
+        function getHospitals() {
             $.ajax({
-                url: apiUrl + 'public/bd-employees',
+                url: apiUrl + 'public/our-hospitals',
                 method: 'GET',
                 dataType: 'JSON',
             }).done(function(response) {
                 if (response.status == 200) {
-                    let employees =  response.data.bdEmployees;
+                    let hospitals =  response.data.hospitals;
                     let data = '';
-                    if (employees.length <= 0) {
-                        data = '<tr><td colspan="6" class="text-center">No data found</td></tr>';
+                    if (hospitals.length <= 0) {
+                        data = '<tr><td colspan="7" class="text-center">No data found</td></tr>';
                     } else {
-                        employees.forEach(function (item, index) {
-                            let idx = (index + 1);
-                            let img = (item.image) ? '<img src="data:image/png;base64,' + item.image + '" class="profile-pic img-fluid" />' : '...';
-                            data = data + '<tr><td>' + idx + '</td><td>' + img + '</td><td>' + item.name + '</td><td>' + item.designation + '</td><td>' + item.work_area + '</td><td>' + item.code + '</td><td>' + item.contact + '</td></tr>';
+                        hospitals.forEach(function (item, index) {
+                            let idx = index + 1;
+                            let contactNo = (item.contact_no) ? item.contact_no.join('<br/>') : '...';
+                            console.log( item.contact_no.join(','));
+                            data = data + '<tr><td>' + idx + '</td><td>' + item.name + '</td><td>' + item.address + '</td><td>' + item.contact + '</td><td>' + contactNo + '</td><td>' + item.opd_facility + '</td><td>' + item.credit_availability + '</td><td>' + item.location + '</td></tr>';
                         });
                     }
                     $('#loader').hide();
-                    $('#tbl-employees tbody').append(data);
-                    $('#tbl-employees').removeClass('hide');
-                    $('#tbl-employees').DataTable({
+                    $('#tbl-hospitals tbody').append(data);
+                    $('#tbl-hospitals').removeClass('hide');
+                    $('#tbl-hospitals').DataTable({
                         searching: false,
                         ordering: false,
                     });
                 }
             }).fail(function(xhr, status, error) {
                 $('#loader').hide();
-                $('#tbl-employees tbody').append('<tr><td colspan="6" class="text-center">Something went wrong</td></tr>');
+                $('#tbl-hospitals tbody').append('<tr><td colspan="6" class="text-center">Something went wrong</td></tr>');
                 console.log(error)
                 alert('Cant process your  request right  now. Please try again later.');
             });
