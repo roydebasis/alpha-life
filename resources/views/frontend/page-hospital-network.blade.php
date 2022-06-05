@@ -71,7 +71,9 @@
             margin-left: auto;
             margin-right: auto;
         }
-
+        .development-table .dataTables_filter input {
+            padding: 0 5px;
+        }
         /* Safari */
         @-webkit-keyframes spin {
             0% { -webkit-transform: rotate(0deg); }
@@ -88,6 +90,9 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/ju/dt-1.12.1/datatables.min.js"></script>
     <script>
         var apiUrl = "{{ config('alpha.api_url') }}";
+        var datatableConfig = {
+            ordering: false,
+        };
         jQuery(document).ready(function () {
             getHospitals();
         });
@@ -114,10 +119,7 @@
                     $('#loader').hide();
                     $('#tbl-hospitals tbody').append(data);
                     $('#tbl-hospitals').removeClass('hide');
-                    $('#tbl-hospitals').DataTable({
-                        searching: false,
-                        ordering: false,
-                    });
+                    $('#tbl-hospitals').DataTable(datatableConfig);
                 }
             }).fail(function(xhr, status, error) {
                 $('#loader').hide();
