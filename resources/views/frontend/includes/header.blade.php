@@ -123,7 +123,6 @@
 
             @php
                 $public_menu = \WPMenu::getByName('Main Menu');
-                $domain = 'http://alphalife.com.bd';
             @endphp
 
             {{--  TODO: Refactor menu generation to recursive to get submenus --}}
