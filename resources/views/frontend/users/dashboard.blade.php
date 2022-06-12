@@ -46,153 +46,153 @@
             </a>
         </div>
 
-        <div class="col-sm-6 col-lg-3">
-            <a style="text-decoration: none;" href="javascript:;">
-                <div class="card bg-info">
-                    <div class="card-body">
-                        <div class="text-value-lg text-center text-white">Performance</div>
-                    </div>
-                </div>
-            </a>
-        </div>
+{{--        <div class="col-sm-6 col-lg-3">--}}
+{{--            <a style="text-decoration: none;" href="javascript:;">--}}
+{{--                <div class="card bg-info">--}}
+{{--                    <div class="card-body">--}}
+{{--                        <div class="text-value-lg text-center text-white">Performance</div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </a>--}}
+{{--        </div>--}}
 
-        <div class="col-sm-6 col-lg-3">
-            <a style="text-decoration: none;" href="javascript:;">
-                <div class="card bg-info">
-                    <div class="card-body">
-                        <div class="text-value-lg text-center text-white">Allowance</div>
-                    </div>
-                </div>
-            </a>
-        </div>
+{{--        <div class="col-sm-6 col-lg-3">--}}
+{{--            <a style="text-decoration: none;" href="javascript:;">--}}
+{{--                <div class="card bg-info">--}}
+{{--                    <div class="card-body">--}}
+{{--                        <div class="text-value-lg text-center text-white">Allowance</div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </a>--}}
+{{--        </div>--}}
 
-        <div class="col-sm-6 col-lg-3">
-            <a style="text-decoration: none;" href="javascript:;">
-                <div class="card bg-info">
-                    <div class="card-body">
-                        <div class="text-value-lg text-center text-white">Top Performer</div>
-                    </div>
-                </div>
-            </a>
-        </div>
+{{--        <div class="col-sm-6 col-lg-3">--}}
+{{--            <a style="text-decoration: none;" href="javascript:;">--}}
+{{--                <div class="card bg-info">--}}
+{{--                    <div class="card-body">--}}
+{{--                        <div class="text-value-lg text-center text-white">Top Performer</div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </a>--}}
+{{--        </div>--}}
 
-    </div>
-    <div class="row">
-        <div class="col-sm-6 col-lg-3">
-            <a style="text-decoration: none;" href="javascript:;">
-                <div class="card bg-info">
-                    <div class="card-body">
-                        <div class="text-value-lg text-center text-white">Policy Info</div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-6 col-lg-3">
-            <a style="text-decoration: none;" href="javascript:;">
-                <div class="card bg-info">
-                    <div class="card-body">
-                        <div class="text-value-lg text-center text-white">Policy List</div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-6 col-lg-3">
-            <a style="text-decoration: none;" href="javascript:;">
-                <div class="card bg-info">
-                    <div class="card-body">
-                        <div class="text-value-lg text-center text-white">Premium Due List</div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-sm-6 col-lg-3">
-            <a style="text-decoration: none;" href="#">
-                <div class="card bg-info">
-                    <div class="card-body">
-                        <div class="text-value-lg text-center text-white">Pending Policy List</div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-    @else
-        <div class="row">
-            <div class="col-sm-6 col-lg-3">
-                <a style="text-decoration: none;" href="javascript:;">
-                    <div class="card bg-info">
-                        <div class="card-body">
-                            <div class="text-value-lg text-center text-white">Profile Info</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <a style="text-decoration: none;" href="#">
-                    <div class="card bg-info">
-                        <div class="card-body">
-                            <div class="text-value-lg text-center text-white">Policy Info</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <a style="text-decoration: none;" href="javascript:;">
-                    <div class="card bg-info">
-                        <div class="card-body">
-                            <div class="text-value-lg text-center text-white">Policy Ledger</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
+{{--    </div>--}}
+{{--    <div class="row">--}}
+{{--        <div class="col-sm-6 col-lg-3">--}}
+{{--            <a style="text-decoration: none;" href="javascript:;">--}}
+{{--                <div class="card bg-info">--}}
+{{--                    <div class="card-body">--}}
+{{--                        <div class="text-value-lg text-center text-white">Policy Info</div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </a>--}}
+{{--        </div>--}}
+{{--        <div class="col-sm-6 col-lg-3">--}}
+{{--            <a style="text-decoration: none;" href="javascript:;">--}}
+{{--                <div class="card bg-info">--}}
+{{--                    <div class="card-body">--}}
+{{--                        <div class="text-value-lg text-center text-white">Policy List</div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </a>--}}
+{{--        </div>--}}
+{{--        <div class="col-sm-6 col-lg-3">--}}
+{{--            <a style="text-decoration: none;" href="javascript:;">--}}
+{{--                <div class="card bg-info">--}}
+{{--                    <div class="card-body">--}}
+{{--                        <div class="text-value-lg text-center text-white">Premium Due List</div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </a>--}}
+{{--        </div>--}}
+{{--        <div class="col-sm-6 col-lg-3">--}}
+{{--            <a style="text-decoration: none;" href="#">--}}
+{{--                <div class="card bg-info">--}}
+{{--                    <div class="card-body">--}}
+{{--                        <div class="text-value-lg text-center text-white">Pending Policy List</div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </a>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--    @else--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-sm-6 col-lg-3">--}}
+{{--                <a style="text-decoration: none;" href="javascript:;">--}}
+{{--                    <div class="card bg-info">--}}
+{{--                        <div class="card-body">--}}
+{{--                            <div class="text-value-lg text-center text-white">Profile Info</div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--            <div class="col-sm-6 col-lg-3">--}}
+{{--                <a style="text-decoration: none;" href="#">--}}
+{{--                    <div class="card bg-info">--}}
+{{--                        <div class="card-body">--}}
+{{--                            <div class="text-value-lg text-center text-white">Policy Info</div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--            <div class="col-sm-6 col-lg-3">--}}
+{{--                <a style="text-decoration: none;" href="javascript:;">--}}
+{{--                    <div class="card bg-info">--}}
+{{--                        <div class="card-body">--}}
+{{--                            <div class="text-value-lg text-center text-white">Policy Ledger</div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </a>--}}
+{{--            </div>--}}
 
-            <div class="col-sm-6 col-lg-3">
-                <a style="text-decoration: none;" href="javascript:;">
-                    <div class="card bg-info">
-                        <div class="card-body">
-                            <div class="text-value-lg text-center text-white">Nominee Info</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
+{{--            <div class="col-sm-6 col-lg-3">--}}
+{{--                <a style="text-decoration: none;" href="javascript:;">--}}
+{{--                    <div class="card bg-info">--}}
+{{--                        <div class="card-body">--}}
+{{--                            <div class="text-value-lg text-center text-white">Nominee Info</div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </a>--}}
+{{--            </div>--}}
 
-        </div>
-        <div class="row">
-            <div class="col-sm-6 col-lg-3">
-                <a style="text-decoration: none;" href="javascript:;">
-                    <div class="card bg-info">
-                        <div class="card-body">
-                            <div class="text-value-lg text-center text-white">Benefit</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <a style="text-decoration: none;" href="javascript:;">
-                    <div class="card bg-info">
-                        <div class="card-body">
-                            <div class="text-value-lg text-center text-white">Maturity Details</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <a style="text-decoration: none;" href="javascript:;">
-                    <div class="card bg-info">
-                        <div class="card-body">
-                            <div class="text-value-lg text-center text-white">Payment History</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <a style="text-decoration: none;" href="javascript:;">
-                    <div class="card bg-info">
-                        <div class="card-body">
-                            <div class="text-value-lg text-center text-white">My Application</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
+{{--        </div>--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-sm-6 col-lg-3">--}}
+{{--                <a style="text-decoration: none;" href="javascript:;">--}}
+{{--                    <div class="card bg-info">--}}
+{{--                        <div class="card-body">--}}
+{{--                            <div class="text-value-lg text-center text-white">Benefit</div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--            <div class="col-sm-6 col-lg-3">--}}
+{{--                <a style="text-decoration: none;" href="javascript:;">--}}
+{{--                    <div class="card bg-info">--}}
+{{--                        <div class="card-body">--}}
+{{--                            <div class="text-value-lg text-center text-white">Maturity Details</div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--            <div class="col-sm-6 col-lg-3">--}}
+{{--                <a style="text-decoration: none;" href="javascript:;">--}}
+{{--                    <div class="card bg-info">--}}
+{{--                        <div class="card-body">--}}
+{{--                            <div class="text-value-lg text-center text-white">Payment History</div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--            <div class="col-sm-6 col-lg-3">--}}
+{{--                <a style="text-decoration: none;" href="javascript:;">--}}
+{{--                    <div class="card bg-info">--}}
+{{--                        <div class="card-body">--}}
+{{--                            <div class="text-value-lg text-center text-white">My Application</div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </a>--}}
+{{--            </div>--}}
         </div>
    @endif
 @endsection
