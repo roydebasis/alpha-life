@@ -13,7 +13,7 @@
                             <img style="display: block; max-width: 100%; height: auto;" src="{{ url('/assets/images/signup-banner.jpeg') }}">
                         </div>
                         <div class="col-md-12 mt-30">
-                            {{ html()->form('POST', url('/register'))->class('form')->open() }}
+                            {{ html()->form('POST', url('/register'))->class('form')->id('signup')->open() }}
 {{--                            <div class="row">--}}
 {{--                                <div class="col-md-6">--}}
 {{--                                    <div class="form-group">--}}
@@ -79,6 +79,7 @@
 {{--                                </div>--}}
 {{--                            </div>--}}
                             {{ html()->hidden('sign_up_as', $sign_up_as) }}
+                            {{ html()->hidden('employeeData') }}
                             <div class="row">
                                 @if($sign_up_as == 'employee')
                                     <div class="col-md-6">
@@ -195,4 +196,49 @@
         }
         .error { color: #F00; }
     </style>
+@endpush
+
+@push('after-scripts')
+    <script>
+        var signin_as = "{{$sign_up_as}}";
+        var apiUrl = "{{ config('alpha.api_url') }}";
+        jQuery(document).ready(function () {
+            $('#signup').submit( async function(e){
+                e.preventDefault();
+                if ($('#sign_up_as').val() != 'employee') {
+                    $(this).unbind('submit').submit();
+                }
+                var employeeCode = $('#employee_code').val();
+                if (!employeeCode) {
+                    alert('Enter Employee Code');
+                }
+                var profile = await getProfile($('#employee_code').val());
+                if (profile.status == 200 && (profile.data.profile && profile.data.profile.code == employeeCode)) {
+                    $('#employeeData').val(JSON.stringify(profile.data.profile));
+                    $(this).unbind('submit').submit();
+                } else {
+                    alert('Employee code does not match');
+                }
+            });
+        });
+
+        /**
+         * get employee profile by employee code number
+         * @param code
+         */
+        async function getProfile(code) {
+            return $.ajax({
+                url: apiUrl + "public/employee-profile/" + code,
+                method: 'GET',
+                dataType: 'JSON'
+            }).done(function(data) {
+                if (data.status == 200 ) {
+                    return data.profile;
+                }
+                return [];
+            }).fail(function() {
+                alert('error')
+            });
+        }
+    </script>
 @endpush

@@ -12,6 +12,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
 use Laracasts\Flash\Flash;
@@ -52,11 +53,12 @@ class RegisteredUserController extends Controller
             'password'      => Hash::make($request->password),
             'email_verified_at' => Carbon::now()
         ];
+
         if ($request->sign_up_as == 'employee') {
-            $rules['employee_code'] = 'required|string|max:191';
+            $rules['employee_code'] = 'required|string|max:191|unique:users,employee_code';
             $data['employee_code']  = $request->employee_code;
         } else {
-            $rules['policy_number'] = 'required|string|max:191';
+            $rules['policy_number'] = 'required|string|max:191|unique:users,policy_number';
             $data['policy_number']  = $request->policy_number;
         }
 
@@ -75,6 +77,8 @@ class RegisteredUserController extends Controller
         $user->save();
 
         Auth::login($user);
+
+        Session::put('profileData', $request->employeeData ?? null);
 
 //        event(new Registered($user));
 //        event(new UserRegistered($user));

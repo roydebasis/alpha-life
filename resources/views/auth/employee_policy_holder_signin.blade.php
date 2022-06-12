@@ -15,9 +15,10 @@
                         <div class="col-md-12 mt-30">
                             @include('flash::message')
 
-                            {{ html()->form('POST', url('/employee-login'))->class('form')->open() }}
+                            {{ html()->form('POST', url('/employee-login'))->class('form')->id('signin')->open() }}
 
                             {{ html()->hidden('sign_in_as', $sign_in_as) }}
+                            {{ html()->hidden('employeeData') }}
                             <div class="row">
                                 @if($sign_in_as == 'employee')
                                     <div class="col-md-6">
@@ -106,4 +107,51 @@
         }
         .error { color: #F00; }
     </style>
+@endpush
+
+@push('after-scripts')
+    <script>
+        var signin_as = "{{$sign_in_as}}";
+        var apiUrl = "{{ config('alpha.api_url') }}";
+        jQuery(document).ready(function () {
+            $('#signin').submit( async function(e){
+                e.preventDefault();
+                if ($('#sign_in_as').val() != 'employee') {
+                    $(this).unbind('submit').submit();
+                    return;
+                }
+                var employeeCode = $('#employee_code').val();
+                if (!employeeCode) {
+                    alert('Enter Employee Code');
+                }
+                var profile = await getProfile($('#employee_code').val());
+                if (profile.status == 200 && (profile.data.profile && profile.data.profile.code == employeeCode)) {
+                    console.log('profile: ', profile.data.profile);
+                    $('#employeeData').val(JSON.stringify(profile.data.profile));
+                    $(this).unbind('submit').submit();
+                } else {
+                    alert('Employee code does not match');
+                }
+            });
+        });
+
+        /**
+         * get employee profile by employee code number
+         * @param code
+         */
+        async function getProfile(code) {
+            return $.ajax({
+                url: apiUrl + "public/employee-profile/" + code,
+                method: 'GET',
+                dataType: 'JSON'
+            }).done(function(data) {
+                if (data.status == 200 ) {
+                    return data.profile;
+                }
+                return [];
+            }).fail(function() {
+                alert('error')
+            });
+        }
+    </script>
 @endpush

@@ -54,6 +54,10 @@ Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
             return view('frontend.users.dashboard');
         })->name('userdashboard');
 
+        Route::get('user/profile', function() {
+            return view('frontend.users.emp_profile');
+        })->name('userProfile');
+
     });
 });
 
