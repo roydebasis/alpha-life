@@ -9,6 +9,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Laracasts\Flash\Flash;
 
 class AuthenticatedSessionController extends Controller
@@ -60,6 +61,7 @@ class AuthenticatedSessionController extends Controller
 
         if ($user && Hash::check( $request->password, $user->password)) {
             Auth::login($user);
+            Session::put('profileData', $request->employeeData ?? null);
             return redirect('/user/dashboard');
         }
         Flash::success("Credential does not match")->important();

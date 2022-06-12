@@ -37,7 +37,7 @@
     @if(auth()->user()->employee_code)
     <div class="row">
         <div class="col-sm-6 col-lg-3">
-            <a style="text-decoration: none;" href="javascript:;">
+            <a style="text-decoration: none;" href="/user/profile">
                 <div class="card bg-info">
                     <div class="card-body">
                         <div class="text-value-lg text-center text-white">Profile Info</div>

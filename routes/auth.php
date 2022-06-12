@@ -11,14 +11,14 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 // Check if registration is enabled
-if (user_registration()) {
+//if (user_registration()) {
     Route::get('/signup/{sing_up_as?}', [RegisteredUserController::class, 'create'])
                     ->middleware('guest')
                     ->name('register');
 
     Route::post('/register', [RegisteredUserController::class, 'store'])
                     ->middleware('guest');
-}
+//}
 
 Route::get('/login/{sing_in_as?}', [AuthenticatedSessionController::class, 'create'])
                 ->middleware('guest')
