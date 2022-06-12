@@ -162,7 +162,14 @@
                                                 </ul>
                                             </li>
                                         @else
-                                            <li><a href="{{ $child['link'] === '/page/premium-calculator' ? 'http://alphalife.com.bd' . $child['link'] : url($child['link']) }}">{{ $child['label'] }}</a></li>
+                                            <li>
+                                                <a href="{{ ($child['link'] === '/page/premium-calculator'
+                                                        || $child['link'] === '/signup/employee'
+                                                        || $child['link'] === '/login/employee')
+                                                        ? 'http://alphalife.com.bd' . $child['link'] : url($child['link']) }}">
+                                                    {{ $child['label'] }}
+                                                </a>
+                                            </li>
                                         @endif
                                     @endforeach
                                 </ul>
