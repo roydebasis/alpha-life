@@ -123,6 +123,7 @@
 
             @php
                 $public_menu = \WPMenu::getByName('Main Menu');
+                $domain = 'http://alphalife.com.bd';
             @endphp
 
             {{--  TODO: Refactor menu generation to recursive to get submenus --}}
@@ -151,7 +152,7 @@
                                                                 <a href="{{ $subChild['link'] }}" class="dropdown-toggle" data-toggle="dropdown">{{ $subChild['label'] }}</a>
                                                                 <ul class="dropdown-menu">
                                                                     @foreach( $subChild['child'] as $thirdLevel )
-                                                                        <li><a href="{{ url($thirdLevel['link']) }}">{{ $thirdLevel['label'] }}</a></li>
+                                                                        <li><a href="{{ url($thirdLevel['link']) }}">{{ $thirdLevel['label'] }} ss</a></li>
                                                                     @endforeach
                                                                 </ul>
                                                             </li>
@@ -162,7 +163,14 @@
                                                 </ul>
                                             </li>
                                         @else
-                                            <li><a href="{{ $child['link'] === '/page/premium-calculator' ? 'http://alphalife.com.bd' . $child['link'] : url($child['link']) }}">{{ $child['label'] }}</a></li>
+                                            <li>
+                                                <a href="{{ ($child['link'] === '/page/premium-calculator'
+                                                        || $child['link'] === '/signup/employee'
+                                                        || $child['link'] === '/login/employee')
+                                                        ? 'http://alphalife.com.bd' . $child['link'] : url($child['link']) }}">
+                                                    {{ $child['label'] }}
+                                                </a>
+                                            </li>
                                         @endif
                                     @endforeach
                                 </ul>
