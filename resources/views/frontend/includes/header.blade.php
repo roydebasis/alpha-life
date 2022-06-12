@@ -151,7 +151,7 @@
                                                                 <a href="{{ $subChild['link'] }}" class="dropdown-toggle" data-toggle="dropdown">{{ $subChild['label'] }}</a>
                                                                 <ul class="dropdown-menu">
                                                                     @foreach( $subChild['child'] as $thirdLevel )
-                                                                        <li><a href="{{ url($thirdLevel['link']) }}">{{ $thirdLevel['label'] }} ss</a></li>
+                                                                        <li><a href="{{ url($thirdLevel['link']) }}">{{ $thirdLevel['label'] }}</a></li>
                                                                     @endforeach
                                                                 </ul>
                                                             </li>
