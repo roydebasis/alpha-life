@@ -163,10 +163,17 @@
                                             </li>
                                         @else
                                             <li>
-                                                <a href="{{ ($child['link'] === '/page/premium-calculator'
-                                                        || $child['link'] === '/signup/employee'
-                                                        || $child['link'] === '/login/employee')
-                                                        ? 'http://alphalife.com.bd' . $child['link'] : url($child['link']) }}">
+                                                @php
+                                                $childLink = '';
+                                                if($child['link'] === '/page/premium-calculator') {
+                                                    $childLink = 'http://alphalife.com.bd' . $child['link'];
+                                                }else if ($child['link'] === '/signup/employee' || $child['link'] === '/login/employee') {
+                                                    $childLink = 'http://dev.alphalife.com.bd' . $child['link'];
+                                                } else {
+                                                    $childLink = url($child['link']);
+                                                }
+                                                @endphp
+                                                <a href="{{ $childLink }}">
                                                     {{ $child['label'] }}
                                                 </a>
                                             </li>
