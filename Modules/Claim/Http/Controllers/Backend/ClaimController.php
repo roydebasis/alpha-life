@@ -167,7 +167,7 @@ class ClaimController extends Controller
 
         $$module_name_singular = $module_model::create($data);
 
-        if ($request->has("url")) {
+        if ($request->get("url")) {
             $sepItems = explode('/', $request->url);
             $imageName = time().'_'. $sepItems[3];
             $newImage = new Photo(array('name' => $imageName,

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use http\Client\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Modules\Article\Entities\Post;
@@ -118,9 +120,17 @@ class FrontendController extends Controller
             return view('frontend.page-notice-board', compact('content', 'meta_page_type', 'notices'));
         }
         elseif ($slug == 'claim-information') {
-            $claims = Claim::orderBy('order', 'desc')->get();
-            return view('frontend.page-claim', compact('content', 'meta_page_type', 'claims'));
+            $paid_claims = Claim::where('claim_status', '1')->orderBy('order', 'desc')->get();
+            $pending_claims = Claim::where('claim_status', '2')->orderBy('order', 'desc')->get();
+            return view('frontend.page-claim', compact('content', 'meta_page_type', 'paid_claims', 'pending_claims'));
         }
+        elseif ($slug == 'business-development') {
+            return view('frontend.page-business-development', compact('content', 'meta_page_type'));
+        }
+        elseif ($slug == 'hospital-network') {
+            return view('frontend.page-hospital-network', compact('content', 'meta_page_type'));
+        }
+
         return view('frontend.page', compact('content', 'meta_page_type'));
     }
 

@@ -46,9 +46,9 @@
             $field_name = 'content';
             $field_lable = __("page::$module_name.$field_name");
             $field_placeholder = $field_lable;
-            $required = "required";
+            $required = "";
             ?>
-            {{ html()->label($field_lable, $field_name) }} {!! fielf_required("required") !!}
+            {{ html()->label($field_lable, $field_name) }}
             {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required", "id" => "content"]) }}
         </div>
     </div>

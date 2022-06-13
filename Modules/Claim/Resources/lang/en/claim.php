@@ -6,5 +6,8 @@ return [
     'description'             => 'Description',
     'check_image' => 'Check Image',
     'order' => 'Order',
-    'url'  => 'Add Images'
+    'url'  => 'Add Images',
+    'claim_status'  => 'Claim Status',
+    'category'  => 'Claim Category',
+    'status'  => 'Status'
 ];

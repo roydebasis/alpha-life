@@ -142,47 +142,33 @@
                                         {{--  second level dropdown--}}
                                         @if($child['child'])
                                             <li class="dropdown">
-                                                <a href="{{ $child['link'] }}" class="dropdown-toggle" data-toggle="dropdown">{{ $child['label'] }}</a>
+                                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">{{ $child['label'] }}</a>
                                                 <ul class="dropdown-menu">
                                                     @foreach( $child['child'] as $subChild )
                                                         {{--  third level dropdown--}}
                                                         @if($subChild['child'])
                                                             <li class="dropdown">
-                                                                <a href="{{ $subChild['link'] }}" class="dropdown-toggle" data-toggle="dropdown">{{ $subChild['label'] }}</a>
+                                                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">{{ $subChild['label'] }}</a>
                                                                 <ul class="dropdown-menu">
                                                                     @foreach( $subChild['child'] as $thirdLevel )
-                                                                        <li><a href="{{ url($thirdLevel['link']) }}">{{ $thirdLevel['label'] }}</a></li>
+                                                                        <li><a href="{{ generate_page_link($thirdLevel['link']) }}">{{ $thirdLevel['label'] }}</a></li>
                                                                     @endforeach
                                                                 </ul>
                                                             </li>
                                                         @else
-                                                            <li><a href="{{ url($subChild['link']) }}">{{ $subChild['label'] }}</a></li>
+                                                            <li><a href="{{ generate_page_link($subChild['link']) }}">{{ $subChild['label'] }}</a></li>
                                                         @endif
                                                     @endforeach
                                                 </ul>
                                             </li>
                                         @else
-                                            <li>
-                                                @php
-                                                $childLink = '';
-                                                if($child['link'] === '/page/premium-calculator') {
-                                                    $childLink = 'http://alphalife.com.bd' . $child['link'];
-                                                }else if ($child['link'] === '/signup/employee' || $child['link'] === '/login/employee') {
-                                                    $childLink = 'http://dev.alphalife.com.bd' . $child['link'];
-                                                } else {
-                                                    $childLink = url($child['link']);
-                                                }
-                                                @endphp
-                                                <a href="{{ $childLink }}">
-                                                    {{ $child['label'] }}
-                                                </a>
-                                            </li>
+                                            <li><a href="{{ generate_page_link($child['link']) }}">{{ $child['label'] }}</a></li>
                                         @endif
                                     @endforeach
                                 </ul>
                             </li>
                         @else
-                            <li><a href="{{ url($menu['link']) }}" class="menu-item">{{ $menu['label']  }}</a></li>
+                            <li><a href="{{ generate_page_link($menu['link']) }}" class="menu-item">{{ $menu['label']  }}</a></li>
                         @endif
                     @endforeach
                     <li>&nbsp;</li>
