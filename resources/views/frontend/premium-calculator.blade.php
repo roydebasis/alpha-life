@@ -12,18 +12,17 @@
                         <img style="display: block; max-width: 100%; height: auto;" src="{{ asset('assets/images/banner_premium_calculator.png') }}">
                     </div>
                     <div class="premium-calculator" id="creative-ideas">
-
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <label for="effective_date">Effective Date</label>
-                                    <input type="text" onchange="onDateChange()" name="effective_date" class="date-field form-control" id="effective_date" placeholder="Effective Date">
+                                    <label for="birth_date">Birth Date</label>
+                                    <input type="text" onchange="onDateChange()" name="birth_date" class="date-field form-control" id="birth_date" placeholder="Today's Date">
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <label for="current_date">Today's Date</label>
-                                    <input type="text" onchange="onDateChange()" name="current_date" class="date-field form-control" id="current_date" placeholder="Today's Date">
+                                    <label for="effective_date">Effective Date</label>
+                                    <input type="text" onchange="onDateChange()" name="effective_date" class="date-field form-control" id="effective_date" placeholder="Effective Date">
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -147,16 +146,13 @@
                 dateFormat: "dd/mm/yy",
                 changeYear: true,
                 changeMonth: true,
-                yearRange: "-100:+0",
+                yearRange: "-100:+10",
                 onSelect: function(dateText) {
                     $(this).change();
                 }
             });
-            $('#current_date').datepicker('setDate', new Date());
-            $('#effective_date').change(function() {
-                let date = $('#effective_date').val();
-                if (date) $('#current_date').datepicker('option', 'minDate', date);
-            });
+            $('#birth_date').datepicker('option', 'maxDate', new Date());
+            $('#effective_date').datepicker('option', 'minDate', new Date());
         });
 
         /**
@@ -164,11 +160,11 @@
          */
         function onDateChange() {
             let effective_date = $('#effective_date').val();
-            let current_date = $('#current_date').val();
-            if (current_date && effective_date) {
-                let today = moment(current_date,'DD/MM/YYYY');
-                let ed = moment(effective_date,'DD/MM/YYYY');
-                let age = today.diff(ed, 'years');
+            let birth_date = $('#birth_date').val();
+            if (birth_date && effective_date) {
+                birth_date = moment(birth_date,'DD/MM/YYYY');
+                effective_date = moment(effective_date,'DD/MM/YYYY');
+                let age = effective_date.diff(birth_date, 'years');
                 if (age < 18) { alert('Minimum age should be 18 years'); return; }
                 $('#age').text(age + ' Years').attr('data-age', age);
                 $('#plan').removeAttr('disabled');
