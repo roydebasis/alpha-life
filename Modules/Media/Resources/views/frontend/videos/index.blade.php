@@ -12,29 +12,27 @@
         </div>
     </div>
 </section>
-<!-- page-title-section end -->
 
-
-<!-- page-title-section end -->
 <section class="recent-project-section section-padding">
     <div class="container">
-        <div class="row">
-            @foreach ($$module_name as $$module_name_singular)
-            <div class="col-sm-4 single-line">
-                {{ $$module_name_singular->name }}
-                <div class="video-wrap">
-                    <iframe width="260" height="180" src="https://www.youtube.com/embed/{{get_video_id($$module_name_singular->url)}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        @if($$module_name->isNotEmpty())
+            <div class="row">
+                @foreach ($$module_name as $$module_name_singular)
+                <div class="col-sm-4 single-line">
+                    {{ $$module_name_singular->name }}
+                    <div class="video-wrap">
+                        <iframe width="260" height="180" src="https://www.youtube.com/embed/{{get_video_id($$module_name_singular->url)}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
-        </div>
-
+            <div class="col-12 text-center mb-4">
+                {{ $$module_name->links() }}
+            </div>
+        @else
+            <p class="text-center">No Video found</p>
+        @endif
     </div>
-
-
-    </div><!-- /.container -->
-
-
-</section><!-- /.recent-project-section -->
+</section>
 
 @endsection
