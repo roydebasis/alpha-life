@@ -28,10 +28,10 @@
                 <div class="row" style="margin-bottom: 60px;">
                     <div class="col-md-2"></div>
                     <div class="col-md-8" style="text-align: center;">
-                        <img src="{{ asset($$module_name_singular->check_image) }}" class="img-thumbnail"/>                    
+                        <img src="{{ asset($$module_name_singular->check_image) }}" class="img-thumbnail"/>
                     </div>
                     <div class="col-md-2"></div>
-                    
+
                 </div>
             @endif
             @isset($$module_name_singular)

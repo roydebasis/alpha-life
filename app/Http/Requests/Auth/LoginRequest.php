@@ -28,10 +28,11 @@ class LoginRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'email'    => 'required|string|email',
             'password' => 'required|string',
         ];
+        return $rules;
     }
 
     /**

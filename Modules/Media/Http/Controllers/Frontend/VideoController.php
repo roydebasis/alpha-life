@@ -42,7 +42,7 @@ class VideoController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::latest()->paginate();
+        $$module_name = $module_model::latest()->paginate(15);
 
         return view(
             "media::frontend.$module_path.index",

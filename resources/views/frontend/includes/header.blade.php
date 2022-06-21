@@ -135,20 +135,20 @@
                         {{--  first level dropdown--}}
                         @if($menu['child'])
                             <li class="dropdown">
-                                <a href="javascript:void(0)" class="dropdown-toggle menu-item" data-toggle="dropdown" role="button"
+                                <a href="avascript:void(0)" class="dropdown-toggle menu-item" data-toggle="dropdown" role="button"
                                    aria-haspopup="true" aria-expanded="false">{{ $menu['label'] }}</a>
                                 <ul class="dropdown-menu">
                                     @foreach( $menu['child'] as $child )
                                         {{--  second level dropdown--}}
                                         @if($child['child'])
                                             <li class="dropdown">
-                                                <a href="{{ generate_page_link($child['link']) }}" class="dropdown-toggle" data-toggle="dropdown">{{ $child['label'] }}</a>
+                                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">{{ $child['label'] }}</a>
                                                 <ul class="dropdown-menu">
                                                     @foreach( $child['child'] as $subChild )
                                                         {{--  third level dropdown--}}
                                                         @if($subChild['child'])
                                                             <li class="dropdown">
-                                                                <a href="{{ generate_page_link($subChild['link']) }}" class="dropdown-toggle" data-toggle="dropdown">{{ $subChild['label'] }}</a>
+                                                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">{{ $subChild['label'] }}</a>
                                                                 <ul class="dropdown-menu">
                                                                     @foreach( $subChild['child'] as $thirdLevel )
                                                                         <li><a href="{{ generate_page_link($thirdLevel['link']) }}">{{ $thirdLevel['label'] }}</a></li>
@@ -162,11 +162,7 @@
                                                 </ul>
                                             </li>
                                         @else
-                                            <li>
-                                                <a href="{{ generate_page_link($child['link']) }}">
-                                                    {{ $child['label'] }}
-                                                </a>
-                                            </li>
+                                            <li><a href="{{ generate_page_link($child['link']) }}">{{ $child['label'] }}</a></li>
                                         @endif
                                     @endforeach
                                 </ul>

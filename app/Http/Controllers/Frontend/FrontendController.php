@@ -149,6 +149,7 @@ class FrontendController extends Controller
             return response()->download($file, 'notice.pdf', $headers);
         }
 
+
         return back();
     }
 }

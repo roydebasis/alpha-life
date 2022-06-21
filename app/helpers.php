@@ -30,7 +30,6 @@ if (!function_exists('user_registration')) {
     function user_registration()
     {
         $user_registration = false;
-
         if (env('USER_REGISTRATION') == 'true') {
             $user_registration = true;
         }
@@ -535,10 +534,12 @@ if (!function_exists('generate_page_link')) {
     {
         if (Str::contains( $url, 'business-development')
             || Str::contains($url, 'hospital-network')
-            || Str::contains($url, 'premium-calculator')) {
-            return 'http://alphalife.com.bd' . $url;
+            || Str::contains($url, 'premium-calculator')
+            || Str::contains($url, 'signup')
+            || Str::contains($url, 'login')) {
+            return 'http://'.request()->getHost().$url;
         }
 
-        return url($url);;
+        return url($url);
     }
 }

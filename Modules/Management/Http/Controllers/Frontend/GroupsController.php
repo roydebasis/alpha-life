@@ -56,12 +56,12 @@ class GroupsController extends Controller
 
         $$module_name_singular = $module_model::where('slug', $slug)->first();
 
-        $first_member = $$module_name_singular->managements()->orderBy('order')->first();
+        $first_member = $$module_name_singular->managements()->where('status', 1)->orderBy('order')->first();
 
         $members = [];
         
         if ($first_member) {
-            $members = array_chunk($$module_name_singular->managements()->where('id', '!=', $first_member->id)->orderBy('order')->paginate(50)->toArray()['data'], 2);
+            $members = array_chunk($$module_name_singular->managements()->where('id', '!=', $first_member->id)->where('status', 1)->orderBy('order')->paginate(50)->toArray()['data'], 2);
         }
 
 
