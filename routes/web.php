@@ -58,12 +58,8 @@ Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
         })->name('userProfile');
 
         Route::get('user/premium-collection', function() {
-            return view('frontend.users.premium-calculator');
+            return view('frontend.users.premium-collection');
         })->name('userProfile');
-
-//        Route::get('page-profile', function() {
-//            return view('frontend.page-profile');
-//        })->name('userProfile');
     });
 });
 

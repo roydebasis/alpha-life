@@ -29,13 +29,13 @@
         $designation = $profile->designation;
         $image = $profile->image;
         $code = $profile->code;
-        $address = $profile->address;
+        $address = $profile->address ? $profile->address : '---';
         $contact = $profile->contact;
         $bank_name= $profile->bank_name;
         $bank_branch = $profile->bank_branch;
         $account = $profile->account;
         $joining_date = $profile->joining_date;
-        $work_branch = $profile->work_branch;
+        $work_branch = $profile->work_branch ? $profile->work_branch  : '---' ;
         $service_period = $profile->service_period;
     }
 @endphp
@@ -49,55 +49,69 @@
             <div class="row " style="padding-top: 20px; padding-bottom: 20px;">
                 <div class="col-md-12 service-box-container mb-80">
                    <div class="table-responsive">
-                       <table class="table table-bordered">
+                       <table class="table table-bordered table-profile-info">
                            <tr>
-                               <td rowspan="2" width="20%">@if($image) <img src="data:image/png;base64,{{ $image }}" style="max-width: 100%"> @else --- @endif</td>
+                               <td rowspan="5" width="20%">@if($image) <img  class='emp-profile' src="data:image/png;base64,{{ $image }}"> @else --- @endif</td>
                                <td>
-                                   <p>Name</p>
+                                   <p class="bottomZero">Name</p>
                                    <span class="text-muted">{{$name}}</span>
                                </td>
                                <td>
-                                   <p>Designation</p>
+                                   <p class="bottomZero">Designation</p>
                                    <span class="text-muted">{{$designation}}</span>
                                </td>
                                <td>
-                                   <p>Employee code</p>
+                                   <p class="bottomZero">Employee code</p>
                                    <span class="text-muted">{{$code}}</span>
                                </td>
                            </tr>
 
                            <tr>
                                <td>
-                                   <p>Father</p>
+                                   <p class="bottomZero">Father</p>
                                    <span class="text-muted">{{$father}}</span>
                                </td>
                                <td>
-                                   <p>Mother</p>
+                                   <p class="bottomZero">Mother</p>
                                    <span class="text-muted">{{$mother}}</span>
                                </td>
                                <td>
-                                   <p>Contact</p>
+                                   <p class="bottomZero">Contact</p>
                                    <span class="text-muted">{{$contact}}</span>
                                </td>
                            </tr>
                            <tr>
                                <td colspan="3">
-                                   <p>Address</p>
+                                   <p class="bottomZero">Address</p>
                                    <span class="text-muted">{{$address}}</span>
                                </td>
                            </tr>
                            <tr>
-                               <td colspan="3">
-                                   <p>Bank Name</p>
+                               <td >
+                                   <p class="bottomZero">Bank Name</p>
                                    <span class="text-muted">{{$bank_name}}</span>
                                </td>
-                               <td colspan="3">
-                                   <p>Bank Branch</p>
+                               <td>
+                                   <p class="bottomZero">Bank Branch</p>
                                    <span class="text-muted">{{$bank_branch}}</span>
                                </td>
-                               <td colspan="3">
-                                   <p>A/C No.</p>
+                               <td>
+                                   <p class="bottomZero">A/C No.</p>
                                    <span class="text-muted">{{$account}}</span>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td >
+                                   <p class="bottomZero">Joining Date</p>
+                                   <span class="text-muted">{{Carbon\Carbon::parse($joining_date)->format('d F Y')}}</span>
+                               </td>
+                               <td>
+                                   <p class="bottomZero">Work Branch</p>
+                                   <span class="text-muted">{{$work_branch}}</span>
+                               </td>
+                               <td>
+                                   <p class="bottomZero">Service Period</p>
+                                   <span class="text-muted">{{$service_period}}</span>
                                </td>
                            </tr>
                        </table>

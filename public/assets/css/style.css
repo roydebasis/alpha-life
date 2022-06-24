@@ -5956,3 +5956,8 @@ ul.a {
     text-overflow: ellipsis;
     max-height: 60px;
 }
+.emp-profile {
+    max-width: 100%;
+}
+.table-profile-info p{ margin-bottom: 0}
+.table-profile-info td{ font-size: 13px}
