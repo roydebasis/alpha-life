@@ -62,6 +62,7 @@ class AuthenticatedSessionController extends Controller
         if ($user && Hash::check( $request->password, $user->password)) {
             Auth::login($user);
             Session::put('profileData', $request->employeeData ?? null);
+            Session::put('subDesig', $request->subDesig ?? null);
             return redirect('/user/dashboard');
         }
         Flash::success("Credential does not match")->important();

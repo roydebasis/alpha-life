@@ -106,6 +106,11 @@ class FrontendController extends Controller
      */
     public function getPage($slug) {
         $meta_page_type = 'page';
+        if ($slug == 'profile') {
+            if(!auth()->check()) return redirect('/');
+            $content = Page::where('slug', $slug)->first();
+            return view('frontend.page-profile', compact('content', 'meta_page_type'));
+        }
         //redirect to static page
         if ($slug == 'premium-calculator') {
             return view('frontend.premium-calculator', compact('meta_page_type'));

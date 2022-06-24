@@ -19,6 +19,7 @@
 
                             {{ html()->hidden('sign_in_as', $sign_in_as) }}
                             {{ html()->hidden('employeeData') }}
+                            {{ html()->hidden('subDesig') }}
                             <div class="row">
                                 @if($sign_in_as == 'employee')
                                     <div class="col-md-6">
@@ -126,8 +127,9 @@
                 }
                 var profile = await getProfile($('#employee_code').val());
                 if (profile.status == 200 && (profile.data.profile && profile.data.profile.code == employeeCode)) {
-                    console.log('profile: ', profile.data.profile);
+                    var subDesig = await getSubordinatesDesignation(profile.data.profile.designation);
                     $('#employeeData').val(JSON.stringify(profile.data.profile));
+                    $('#subDesig').val(JSON.stringify(subDesig.data.getSubordinateDesignations));
                     $(this).unbind('submit').submit();
                 } else {
                     alert('Employee code does not match');
@@ -147,6 +149,21 @@
             }).done(function(data) {
                 if (data.status == 200 ) {
                     return data.profile;
+                }
+                return [];
+            }).fail(function() {
+                alert('error')
+            });
+        }
+
+        async function getSubordinatesDesignation(designation) {
+            return $.ajax({
+                url: apiUrl + "public/sub-designations/" + designation,
+                method: 'GET',
+                dataType: 'JSON'
+            }).done(function(data) {
+                if (data.status == 200 ) {
+                    return data.data.getSubordinateDesignations;
                 }
                 return [];
             }).fail(function() {

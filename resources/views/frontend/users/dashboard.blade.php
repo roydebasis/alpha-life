@@ -37,7 +37,7 @@
     @if(auth()->user()->employee_code)
     <div class="row">
         <div class="col-sm-6 col-lg-3">
-            <a style="text-decoration: none;" href="/user/profile">
+            <a class="text-decoration-none" href="/page/profile" target="_blank">
                 <div class="card bg-info">
                     <div class="card-body">
                         <div class="text-value-lg text-center text-white">Profile Info</div>
@@ -46,15 +46,38 @@
             </a>
         </div>
 
-{{--        <div class="col-sm-6 col-lg-3">--}}
-{{--            <a style="text-decoration: none;" href="javascript:;">--}}
-{{--                <div class="card bg-info">--}}
-{{--                    <div class="card-body">--}}
-{{--                        <div class="text-value-lg text-center text-white">Performance</div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </a>--}}
-{{--        </div>--}}
+        <div class="col-sm-6 col-lg-3">
+            <div class="card bg-info">
+                <a class="text-decoration-none" href="javascript:;" data-toggle="modal" data-target="#performanceModal">
+                    <div class="card-body">
+                        <div class="text-value-lg text-center text-white">Performance</div>
+                    </div>
+                </a>
+                <!-- Modal -->
+                <div class="modal fade" id="performanceModal" tabindex="-1" role="dialog" aria-labelledby="performanceModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Performance</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="mb-0"> <a class="text-decoration-none" href="/user/premium-collection">Premium Collection</a></p>
+                                {{--                                    <p class="mb-0"> <a class="text-decoration-none" href="avascript:;">Ranking</a></p>--}}
+                                {{--                                    <p class="mb-0"> <a class="text-decoration-none" href="javascript:;">Earning</a></p>--}}
+                                {{--                                    <p class="mb-0"> <a class="text-decoration-none" href="javascript:;">Persistency</a></p>--}}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                {{--                                        <button type="button" class="btn btn-primary">Save changes</button>--}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 {{--        <div class="col-sm-6 col-lg-3">--}}
 {{--            <a style="text-decoration: none;" href="javascript:;">--}}

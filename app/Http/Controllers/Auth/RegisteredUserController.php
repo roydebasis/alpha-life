@@ -79,6 +79,7 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         Session::put('profileData', $request->employeeData ?? null);
+        Session::put('subDesig', $request->subDesig ?? null);
 
 //        event(new Registered($user));
 //        event(new UserRegistered($user));

@@ -50,7 +50,6 @@ Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
         Route::patch('profile/changePassword/{username}', ['as' => "$module_name.changePasswordUpdate", 'uses' => "$controller_name@changePasswordUpdate"]);
         Route::delete('users/userProviderDestroy', ['as' => 'users.userProviderDestroy', 'uses' => 'UserController@userProviderDestroy']);
         Route::get('user/dashboard', function(){
-//            dd(auth()->user()->permissions);
             return view('frontend.users.dashboard');
         })->name('userdashboard');
 
@@ -58,6 +57,9 @@ Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
             return view('frontend.users.emp_profile');
         })->name('userProfile');
 
+        Route::get('user/premium-collection', function() {
+            return view('frontend.users.premium-collection');
+        })->name('userProfile');
     });
 });
 
