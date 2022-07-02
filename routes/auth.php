@@ -24,6 +24,10 @@ Route::get('/login/{sing_in_as?}', [AuthenticatedSessionController::class, 'crea
                 ->middleware('guest')
                 ->name('login');
 
+Route::get('/login/administrator', [AuthenticatedSessionController::class, 'adminLogin'])
+->middleware('guest')
+->name('admin-login');              
+
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
                 ->middleware('guest');
 
