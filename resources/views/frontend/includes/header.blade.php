@@ -171,6 +171,25 @@
                             <li><a href="{{ generate_page_link($menu['link']) }}" class="menu-item">{{ $menu['label']  }}</a></li>
                         @endif
                     @endforeach
+                    @auth
+                    @else
+                    <li class="dropdown">
+                        <a href="avascript:void(0)" class="dropdown-toggle menu-item" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">Sign Up</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ generate_page_link('/signup/employee') }}">Employee</a></li>
+                            <li><a href="{{ generate_page_link('/signup/policy-holder') }}">Policy Holder</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="avascript:void(0)" class="dropdown-toggle menu-item" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">Sign In</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ generate_page_link('/login/employee') }}">Employee</a></li>
+                            <li><a href="{{ generate_page_link('/login/policy-holder') }}">Policy Holder</a></li>
+                        </ul>
+                    </li>
+                    @endauth
                     <li>&nbsp;</li>
                 </ul>
             </div>
