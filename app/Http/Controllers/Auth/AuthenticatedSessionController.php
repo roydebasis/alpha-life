@@ -51,6 +51,10 @@ class AuthenticatedSessionController extends Controller
         }
     }
 
+    public function adminLogin() {
+        return view('auth.login');
+    }
+
     public function employeeLogin(Request $request)
     {
         if($request->sign_in_as == 'employee') {
@@ -63,7 +67,7 @@ class AuthenticatedSessionController extends Controller
             Auth::login($user);
             Session::put('profileData', $request->employeeData ?? null);
             Session::put('subDesig', $request->subDesig ?? null);
-            return redirect('/user/dashboard');
+            return redirect('/account');
         }
         Flash::success("Credential does not match")->important();
         return redirect()->back();
