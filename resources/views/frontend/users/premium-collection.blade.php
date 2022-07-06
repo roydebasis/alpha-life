@@ -11,10 +11,7 @@
     <x-page-header pageTitle="{{ $title }}"/>
     <section class="service-section-v3">
         <div class="container">
-            <div class="card bg-white border-light shadow-soft flex-md-row no-gutters p-4" style="margin: 100px; 0">
-                {{-- <div style="border-top-left-radius: 50px; overflow: hidden;">
-                    <img style="display: block; max-width: 100%; height: auto;" src="{{ asset('assets/images/banner_premium_calculator.png') }}">
-                </div> --}}
+            <div class="card bg-white border-light shadow-soft flex-md-row no-gutters" style="margin-top: 80px;">
                 <div class="card-body p-0 premium-calculator">
                     <h4 class="card-title mb-3">
                         <i class="fas fa-coins"></i> Premium Collection
@@ -43,31 +40,32 @@
                                 <option>Yearly</option>
                             </select>
                         </div>
-        
+
                         <div class="form-group col-md-4">
                             <label for="type">Type</label>
                             <select class="form-control" id="type">
                                 <option value="summery" selected>Summery</option>
                             </select>
                         </div>
-        
+
                         <div class="form-group col-md-4">
                             <label for="startDate">Start Date</label>
                             <input type="date" class="form-control" id="startDate">
                         </div>
-        
+
                         <div class="form-group col-md-4">
                             <label for="endDate">End Date</label>
                             <input type="date" class="form-control" id="endDate">
                         </div>
-        
+
                         <div class="form-group col-md-12 text-center">
                             <button class="btn btn-primary" data-toggle="modal" data-target="#premiumCollectionModal" type="button">Apply</button>
                         </div>
                     </div>
                 </div>
             </div>
-        
+
+            <div class="col-md-12 mb-80"><a href="{{ url()->previous() }}"><i class="fa fa-chevron-circle-left"></i> Back</a> </div>
             <!-- Modal -->
             <div class="modal fade" id="premiumCollectionModal" tabindex="-1" role="dialog" aria-labelledby="premiumCollectionModal" aria-hidden="true">
                 <div class="modal-dialog" role="document">

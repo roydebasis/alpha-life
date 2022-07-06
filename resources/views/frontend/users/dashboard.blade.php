@@ -1,57 +1,40 @@
 @extends('frontend.layouts.app')
 
 @section('title')
-    @lang("Dashboard")
+    @lang("My Account")
 @endsection
 
-{{-- @section('breadcrumbs')
-    <x-backend-breadcrumbs />
-@endsection --}}
-
 @section('content')
+    <x-page-header pageTitle="My Account"/>
     <div class="container">
         <div class="card" style="margin-top: 100px;">
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-8">
-                        <h4 class="card-title mb-0">Welcome to AILI {{ auth()->user()->employee_code ? 'Employee' : 'Policy Holder' }} Dashboard</h4>
+                        <h4 class="card-title mb-0">Welcome {{ auth()->user()->name }}</h4>
                         <div class="small text-muted">{{ date_today() }}</div>
                     </div>
-    
-                    {{-- <div class="col-sm-4 hidden-sm-down">
-                        <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                            <button type="button" class="btn btn-info float-right">
-                                <i class="c-icon cil-bullhorn"></i>
-                            </button>
-                        </div>
-                    </div> --}}
                 </div>
                 <hr>
-    
-                <!-- Dashboard Content Area -->
-    
-                <!-- / Dashboard Content Area -->
-    
             </div>
         </div>
         <!-- / card -->
         @if(auth()->user()->employee_code)
         <div class="row" style="margin-bottom: 100px;">
             <div class="col-sm-6 col-lg-3">
-                <a class="text-decoration-none" href="/accounts/profile-info">
+                <a class="text-decoration-none" href="/account/profile-info">
                     <div class="card bg-info">
                         <div class="card-body">
-                            <div class="text-value-lg text-center text-white">Profile Info</div>
+                            <div class="text-value-lg text-center text-white user-dashboard-button">Profile Info</div>
                         </div>
                     </div>
                 </a>
             </div>
-    
             <div class="col-sm-6 col-lg-3">
                 <div class="card bg-info">
                     <a class="text-decoration-none" href="javascript:;" data-toggle="modal" data-target="#performanceModal">
                         <div class="card-body">
-                            <div class="text-value-lg text-center text-white">Performance</div>
+                            <div class="text-value-lg text-center text-white user-dashboard-button">Performance</div>
                         </div>
                     </a>
                     <!-- Modal -->
@@ -65,7 +48,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <p class="mb-0"> <a class="text-decoration-none" href="/accounts/premium-collection">Premium Collection</a></p>
+                                    <p class="mb-0"> <a class="text-decoration-none" href="/account/premium-collection">Premium Collection</a></p>
                                     {{--                                    <p class="mb-0"> <a class="text-decoration-none" href="avascript:;">Ranking</a></p>--}}
                                     {{--                                    <p class="mb-0"> <a class="text-decoration-none" href="javascript:;">Earning</a></p>--}}
                                     {{--                                    <p class="mb-0"> <a class="text-decoration-none" href="javascript:;">Persistency</a></p>--}}
@@ -80,7 +63,7 @@
                 </div>
             </div>
     </div>
-    
+
 
 {{--        <div class="col-sm-6 col-lg-3">--}}
 {{--            <a style="text-decoration: none;" href="javascript:;">--}}
@@ -220,5 +203,20 @@
 {{--                </a>--}}
 {{--            </div>--}}
         </div>
+    @else
+        <div class="row" style="margin-bottom: 100px;">
+            <div class="col-sm-6 col-lg-3">
+                Under construction
+            </div>
+        </div>
    @endif
 @endsection
+
+@push('after-styles')
+    <style>
+        .user-dashboard-button{
+            padding: 10px 5px;
+        }
+    </style>
+
+@endpush
