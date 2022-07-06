@@ -217,6 +217,9 @@
         .user-dashboard-button{
             padding: 10px 5px;
         }
+        #performanceModal .modal-header .close {
+            margin-top: -22px;
+        }
     </style>
 
 @endpush
