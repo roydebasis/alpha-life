@@ -47,7 +47,7 @@
     <section class="history-section">
         <div class="container">
             <div class="row " style="padding-top: 20px; padding-bottom: 20px;">
-                <div class="col-md-12 service-box-container mb-80">
+                <div class="col-md-12 service-box-container">
                    <div class="table-responsive">
                        <table class="table table-bordered table-profile-info">
                            <tr>
@@ -117,8 +117,8 @@
                        </table>
                    </div>
                 </div>
-
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+                <div class="col-md-12 mb-80"><a href="{{ url()->previous() }}"><i class="fa fa-chevron-circle-left"></i> Back</a> </div>
+            </div>
+        </div>
     </section>
 @endsection

@@ -69,8 +69,9 @@ class RegisteredUserController extends Controller
             abort(404, 'Role not found');
         }
         $user = User::create($data);
-        $user->syncRoles([$assignRole]);
-        $user->syncPermissions(['view_backend']);
+        $user->assignRole('employee');
+//        $user->syncRoles([$assignRole]);
+//        $user->syncPermissions(['view_backend']);
 
         $username = config('app.initial_username') + $user->id;
         $user->username = $username;
@@ -85,6 +86,6 @@ class RegisteredUserController extends Controller
 //        event(new UserRegistered($user));
 
         Flash::success("<i class='fas fa-check'></i> Sign up successful")->important();
-        return redirect('user/dashboard');
+        return redirect('/account');
     }
 }

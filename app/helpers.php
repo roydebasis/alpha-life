@@ -520,8 +520,7 @@ if (!function_exists('get_video_id')) {
 }
 
 /*
- *
- * Return Video Id
+ * Return generated non ssl link
  *
  * ------------------------------------------------------------------------
  */
@@ -541,5 +540,27 @@ if (!function_exists('generate_page_link')) {
         }
 
         return url($url);
+    }
+}
+
+/*
+ * Return generated dashboard link based on role
+ *
+ * ------------------------------------------------------------------------
+ */
+if (!function_exists('generate_dashboard_link')) {
+    function generate_dashboard_link()
+    {
+        if (!auth()->check()) {
+            return '/';
+        }
+        $user = auth()->user();
+        if (!empty($user->employee_code) || !empty($user->policy_number)) {
+            return '/account';
+        }
+
+        if (empty($user->employee_code) && empty($user->policy_number)) {
+            return '/admin';
+        }
     }
 }

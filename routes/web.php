@@ -49,15 +49,18 @@ Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
         Route::get('profile/changePassword/{username}', ['as' => "$module_name.changePassword", 'uses' => "$controller_name@changePassword"]);
         Route::patch('profile/changePassword/{username}', ['as' => "$module_name.changePasswordUpdate", 'uses' => "$controller_name@changePasswordUpdate"]);
         Route::delete('users/userProviderDestroy', ['as' => 'users.userProviderDestroy', 'uses' => 'UserController@userProviderDestroy']);
-        Route::get('accounts', function(){
+        Route::get('account', function() {
+//            dd(\App\Models\Role::where('name', 'employee')->first());
+//            $user = \Auth::user();
+//            dd($user->hasRole('employee', 'web'));
             return view('frontend.users.dashboard');
         })->name('userdashboard');
 
-        Route::get('accounts/profile-info', function() {
+        Route::get('account/profile-info', function() {
             return view('frontend.users.emp_profile');
         })->name('userProfile');
 
-        Route::get('accounts/premium-collection', function() {
+        Route::get('account/premium-collection', function() {
             return view('frontend.users.premium-collection');
         })->name('userProfile');
     });
