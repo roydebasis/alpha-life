@@ -221,5 +221,4 @@
             margin-top: -22px;
         }
     </style>
-
 @endpush

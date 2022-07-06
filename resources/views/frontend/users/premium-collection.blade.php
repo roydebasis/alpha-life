@@ -105,6 +105,13 @@
     </section>
 @endsection
 
+@push('after-styles')
+    <style>
+        #premiumCollectionModal .modal-header .close {
+            margin-top: -22px;
+        }
+    </style>
+@endpush
 @push ("after-scripts")
 <script src="https://cdn.jsdelivr.net/npm/sharer.js@latest/sharer.min.js"></script>
 @endpush
