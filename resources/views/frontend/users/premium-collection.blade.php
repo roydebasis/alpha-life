@@ -65,6 +65,42 @@
                 </div>
             </div>
 
+            <div class="row mb-30">
+                <div class="col-md-4">
+                    <h4 class="header-with-bg">New Business Name</h4>
+                    <p class="no-bottom-margin fb">MD. SHOHAG MIYA</p>
+                    <p class="no-bottom-margin">Policy No - 4748937373</p>
+                    <p class="no-bottom-margin ">Mobile - 093838383838</p>
+                    <p class="no-bottom-margin">MOP - MOnthly</p>
+                    <p class="no-bottom-margin">Installation No - 78</p>
+                    <p class="no-bottom-margin">Deferred Premium - 7883393</p>
+                    <p class="no-bottom-margin">Paid Amount - 7883393</p>
+                    <p class="no-bottom-margin">Paid Amount - 7883393</p>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="header-with-bg">Deferred Details</h4>
+                    <p class="no-bottom-margin fb">MD. SHOHAG MIYA</p>
+                    <p class="no-bottom-margin">Policy No - 4748937373</p>
+                    <p class="no-bottom-margin ">Mobile - 093838383838</p>
+                    <p class="no-bottom-margin">MOP - MOnthly</p>
+                    <p class="no-bottom-margin">Installation No - 78</p>
+                    <p class="no-bottom-margin">Deferred Premium - 7883393</p>
+                    <p class="no-bottom-margin">Paid Amount - 7883393</p>
+                    <p class="no-bottom-margin">Paid Amount - 7883393</p>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="header-with-bg">Renewal Details</h4>
+                    <p class="no-bottom-margin fb">MD. SHOHAG MIYA</p>
+                    <p class="no-bottom-margin">Policy No - 4748937373</p>
+                    <p class="no-bottom-margin ">Mobile - 093838383838</p>
+                    <p class="no-bottom-margin">MOP - MOnthly</p>
+                    <p class="no-bottom-margin">Installation No - 78</p>
+                    <p class="no-bottom-margin">Deferred Premium - 7883393</p>
+                    <p class="no-bottom-margin">Paid Amount - 7883393</p>
+                    <p class="no-bottom-margin">Paid Amount - 7883393</p>
+                </div>
+            </div>
+
             <div class="col-md-12 mb-80"><a href="{{ url()->previous() }}"><i class="fa fa-chevron-circle-left"></i> Back</a> </div>
             <!-- Modal -->
             <div class="modal fade" id="premiumCollectionModal" tabindex="-1" role="dialog" aria-labelledby="premiumCollectionModal" aria-hidden="true">

@@ -5961,3 +5961,16 @@ ul.a {
 }
 .table-profile-info p{ margin-bottom: 0}
 .table-profile-info td{ font-size: 13px}
+
+.header-with-bg{
+    background-color: #72be43;
+    /*background-color: #1b3a68;*/
+    padding: 10px;
+    color: white;
+}
+.fb{
+    font-weight: bold;
+}
+.no-bottom-margin{
+    margin-bottom: 0
+}
