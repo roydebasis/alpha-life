@@ -146,6 +146,7 @@
                     employee_id: $('#employeeCode').val(),
                     selected_designation_key: $('#designation').val(),
                     start_date: $('#startDate').val(),
+                    mode: $('#mode').val()
                 }
 
                 if (reportType != 'premium_collection') {
@@ -159,7 +160,6 @@
                     }
                     data.login_designation_key = loggedInDesigkey,
                     data.end_date   = $('#endDate').val(),
-                    data.mode       = $('#mode').val()
                     data.type       = $('#type').val();
                 }
 
