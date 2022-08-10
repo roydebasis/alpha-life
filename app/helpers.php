@@ -535,7 +535,8 @@ if (!function_exists('generate_page_link')) {
             || Str::contains($url, 'hospital-network')
             || Str::contains($url, 'premium-calculator')
             || Str::contains($url, 'signup')
-            || Str::contains($url, 'login')) {
+            || Str::contains($url, 'login')
+            || Str::contains($url, 'account')) {
             return 'http://'.request()->getHost().$url;
         }
 
@@ -562,5 +563,39 @@ if (!function_exists('generate_dashboard_link')) {
         if (empty($user->employee_code) && empty($user->policy_number)) {
             return '/admin';
         }
+    }
+}
+
+/*
+ * Get logged in users profile data
+ *
+ * ------------------------------------------------------------------------
+ */
+if (!function_exists('getEmpProfile')) {
+    function getEmpProfile($returnType = 'array')
+    {
+        $profile = \Illuminate\Support\Facades\Session::get('profileData');
+        if(empty($profile)) {
+            return[];
+        }
+        $profile = json_decode($profile);
+        $data = [
+            "name"           => isset($profile->name) ? $profile->name : '',
+            "father"         => isset($profile->father) ? $profile->father : '',
+            "mother"         => isset($profile->mother) ? $profile->mother : '',
+            "dob"            => isset($profile->dob) ? $profile->dob : '',
+            "designation"    => isset($profile->designation) ? $profile->designation : '',
+            "image"          => isset($profile->image) ? $profile->image : '',
+            "code"          => isset($profile->code) ? $profile->code : '',
+            "address"        => isset($profile->address) ? $profile->address : '',
+            "contact"        => isset($profile->contact) ? $profile->contact : '',
+            "bank_name"      => isset($profile->bank_name) ? $profile->bank_name : '',
+            "bank_branch"    => isset($profile->bank_branch) ? $profile->bank_branch : '',
+            "account"        => isset($profile->account) ? $profile->account : '',
+            "joining_date"   => isset($profile->joining_date) ? $profile->joining_date : '',
+            "work_branch"    => isset($profile->work_branch) ? $profile->work_branch  : '',
+            "service_period" => isset($profile->service_period) ? $profile->service_period : '',
+        ];
+        return $returnType == 'json' ? json_encode($data) : $data;
     }
 }
