@@ -67,7 +67,7 @@
 {{--                                <option value="Weekly">Weekly</option>--}}
                                 <option value="monthly">Monthly</option>
                                 <option value="quarterly">Quarterly</option>
-{{--                                <option value="Half Yearly">Half Yearly</option>--}}
+                                <option value="half yearly">Half Yearly</option>
                                 <option value="yearly">Yearly</option>
                             </select>
                         </div>
@@ -142,11 +142,12 @@
                 $('#loader').removeClass('hide');
                 let reportType = $('#reportType').val();
                 let loggedInDesig = $('#employeeDesignation').val();
+                let mode
                 let data = {
                     employee_id: $('#employeeCode').val(),
                     selected_designation_key: $('#designation').val(),
                     start_date: $('#startDate').val(),
-                    mode: $('#mode').val()
+                    mode: $('#mode').val().replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
                 }
 
                 if (reportType != 'premium_collection') {
