@@ -147,7 +147,7 @@
                     employee_id: $('#employeeCode').val(),
                     selected_designation_key: $('#designation').val(),
                     start_date: $('#startDate').val(),
-                    mode: $('#mode').val().replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
+                    mode: (reportType != 'premium_collection') ? $('#mode').val().replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) : $('#mode').val()
                 }
 
                 if (reportType != 'premium_collection') {
