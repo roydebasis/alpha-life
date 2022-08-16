@@ -18,7 +18,7 @@
     </style>
 @endpush
 @php
-    $title = 'Premium Calculation';
+    $title = 'Premium Collection';
     $subDesig = \Illuminate\Support\Facades\Session::get('subDesig');
     $subDesig = !empty($subDesig) ? json_decode($subDesig) : '';
     $empProfile = getEmpProfile();
@@ -30,24 +30,12 @@
     <x-page-header pageTitle="{{ $title }}"/>
     <section class="service-section-v3">
         <div class="container">
-            <div class="card bg-white border-light shadow-soft flex-md-row no-gutters" style="margin-top: 80px;">
+            <div class="card bg-white border-light shadow-soft flex-md-row no-gutters" style="margin-top: 40px;">
                 <div class="card-body p-0 premium-calculator">
-                    <h4 class="card-title mb-3">
-                        <i class="fas fa-coins"></i> Premium Calculation
-                    </h4>
                     <form id="reportFilterForm">
                         <input type="hidden" id='employeeCode' value="{{$empProfile['code']}}">
                         <input type="hidden" id='employeeDesignation' value="{{$empProfile['designation']}}">
                         <div class="row">
-                        <div class="form-group col-md-4">
-                            <label for="reportType">Collection Report</label>
-                            <select class="form-control" id="reportType" required>
-                                <option disabled>Select Type</option>
-                                <option value="premium_collection" selected>Premium Collection</option>
-                                <option value="deferred">Deferred Details</option>
-                                <option value="renewal">Renewal Details</option>
-                            </select>
-                        </div>
                         <div class="form-group col-md-4">
                             <label for="designation">Designation</label>
                             <select class="form-control" id="designation" required>
@@ -81,16 +69,15 @@
 
                         <div class="form-group col-md-4">
                             <label for="startDate">Start Date</label>
-                            <input type="date" class="form-control" id="startDate" required>
+                            <input type="text" onchange="onDateChange()" class="form-control date-field" id="startDate" placeholder="Select Start Date" required>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="endDate">End Date</label>
-                            <input type="date" class="form-control" id="endDate" required>
+                            <input type="text" onchange="onDateChange()" class="form-control date-field" id="endDate" placeholder="Select End Date" required>
                         </div>
 
                         <div class="form-group col-md-12 text-center">
-{{--                            <button class="btn btn-primary" data-toggle="modal" data-target="#premiumCollectionModal" type="button">Apply</button>--}}
                             <button class="btn btn-primary" type="submit">Apply</button>
                         </div>
                     </div>
@@ -99,11 +86,6 @@
             </div>
             <div class="row mb-30 relativePos">
                 <div class="hide" id="loader"><div class="loader"></div></div>
-                <table class="table table-bordered hide" id="reportDetails">
-                    <thead>
-                    </thead>
-                    <tbody></tbody>
-                </table>
                 <table class="table table-bordered hide" id="premiumReportDetails">
                     <thead>
                         <tr>
@@ -118,6 +100,7 @@
                             <th>Ren Pre</th>
                             <th>Supervisor</th>
                             <th>TotPrePre</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -137,122 +120,67 @@
             ordering: false,
         };
         jQuery(document).ready(function () {
+            $('.date-field').datepicker({
+                dateFormat: "yy-mm-dd",
+                changeYear: true,
+                changeMonth: true,
+                yearRange: "-100:+10",
+                onSelect: function(dateText) {
+                    $(this).change();
+                }
+            });
             $('#reportFilterForm').submit(async function (e) {
                 e.preventDefault();
                 $('#loader').removeClass('hide');
-                let reportType = $('#reportType').val();
                 let loggedInDesig = $('#employeeDesignation').val();
                 let mode
                 let data = {
                     employee_id: $('#employeeCode').val(),
                     selected_designation_key: $('#designation').val(),
                     start_date: $('#startDate').val(),
-                    mode: (reportType != 'premium_collection') ? $('#mode').val().replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) : $('#mode').val()
+                    end_date:  $('#endDate').val(),
+                    mode: $('#mode').val(),
+                    type: $('#type').val()
                 }
 
-                if (reportType != 'premium_collection') {
-                    data.details_type = reportType;
-                } else {
-                    let listOfDesignations = window.designaions;
-                    let loggedInDesigkey = Object.keys(window.designaions).find(key => listOfDesignations[key] == loggedInDesig);
-                    if (!loggedInDesigkey) {
-                        alert('Please try again sometime later.');
-                        return;
-                    }
-                    data.login_designation_key = loggedInDesigkey,
-                    data.end_date   = $('#endDate').val(),
-                    data.type       = $('#type').val();
+                let listOfDesignations = window.designaions;
+                let loggedInDesigkey = Object.keys(window.designaions).find(key => listOfDesignations[key] == loggedInDesig);
+                if (!loggedInDesigkey) {
+                    alert('Please try again sometime later.');
+                    console.log('Logged in users designations list not found!!');
+                    return;
                 }
+                data.login_designation_key = loggedInDesigkey;
 
-                let response = await getReport(reportType, data);
+                let response = await getReport(data);
                 let result = '';
-                let tHead = '';
+                response.data.report.forEach(function (item, index) {
+                    let sl = index + 1;
+                        result += '<tr>';
+                        result += '<td>' + sl + '</td>';
+                        result += '<td>' + item.EName + '&nbsp;<span class="d-block">' +  item.Code + '</span></td>';
+                        result += '<td>' + item.DeffPre + '</td>';
+                        result += '<td>' + item.FYPre + '</td>';
+                        result += '<td>' + item.Month + '</td>';
+                        result += '<td>' + item.NewPre + '</td>';
+                        result += '<td>' + item.Persistency + '</td>';
+                        result += '<td>' + item.PolicyQty + '</td>';
+                        result += '<td>' + item.RenPre + '</td>';
+                        result += '<td>' + item.Supervisor + '</td>';
+                        result += '<td>' + item.TotPrePre + '</td>';
+                        result += '<td>';
+                        result += '<a href="/account/premium-collection/details/'+item.Code+'?&start_date='+data.start_date+'&details_type=deferred&selected_designation_key='+data.selected_designation_key+'&mode='+data.mode+'" class="btn btn-sm btn-primary action-sm" data-type="deferred" data-empCode="'+ item.Code+'">Def Details</a>';
+                        result += '<a href="/account/premium-collection/details/'+item.Code+'?&start_date='+data.start_date+'&details_type=renewal&selected_designation_key='+data.selected_designation_key+'&mode='+data.mode+'" class="btn btn-sm btn-info action-sm" data-type="renewal" data-empCode="'+ item.Code+'">Ren Details</a>';
+                        result += '</td>';
+                        result += '</tr>';
+                });
 
-                if(reportType != 'premium_collection') {
-                    tHead += '<tr>';
-                    tHead += '<th>SL</th>';
-                    tHead += '<th>Name</th>';
-                    tHead += '<th>Policy No</th>';
-                    tHead += '<th>MOP</th>';
-                    tHead += '<th>Installment No</th>';
-                    tHead += '<th>' + (reportType == 'deferred' ? 'Deferred' : 'Renewal') + ' Premium</th>';
-                    tHead += '<th>Paid Installment</th>';
-                    tHead += '<th>Paid Amount</th>';
-                    tHead += '<th>ComDt</th>';
-                    tHead += '<th>NDD</th>';
-                    tHead += '</tr>';
-                    $('#reportDetails thead').empty().html(tHead);
+                if ($.fn.dataTable.isDataTable('#premiumReportDetails') ) {
+                    $('#premiumReportDetails').DataTable().clear().destroy();
                 }
-
-                if (response.data.report && response.data.report.length <= 0) {
-                    if ($.fn.dataTable.isDataTable('#premiumReportDetails') ) {
-                        $('#premiumReportDetails').DataTable().clear().destroy();
-                        $('#reportDetails tbody').empty();
-                    }
-                    if ($.fn.dataTable.isDataTable('#reportDetails') ) {
-                        $('#reportDetails').DataTable().clear().destroy();
-                        $('#reportDetails tbody').empty();
-                    }
-                    alert('No data found.');
-                } else {
-                    response.data.report.forEach(function (item, index) {
-                        let sl = index + 1;
-                        if(reportType == 'premium_collection') {
-                            result += '<tr>';
-                            result += '<td>' + sl + '</td>';
-                            result += '<td>' + item.EName + '<span class="d-block">' +  item.Code + '</span></td>';
-                            result += '<td>' + item.DeffPre + '</td>';
-                            result += '<td>' + item.FYPre + '</td>';
-                            result += '<td>' + item.Month + '</td>';
-                            result += '<td>' + item.NewPre + '</td>';
-                            result += '<td>' + item.Persistency + '</td>';
-                            result += '<td>' + item.PolicyQty + '</td>';
-                            result += '<td>' + item.RenPre + '</td>';
-                            result += '<td>' + item.Supervisor + '</td>';
-                            result += '<td>' + item.TotPrePre + '</td>';
-                            result += '</tr>';
-                        } else {
-                            result += '<tr>';
-                            result += '<td>' + sl + '</td>';
-                            result += '<td>' + item.PHName + '<span class="d-block"> ' +item.Mobile + '</span></td>';
-                            result += '<td>' + item.PolicyNo + '</td>';
-                            result += '<td>' + item.MOP + '</td>';
-                            result += '<td>' + item.Isntallment_No + '</td>';
-                            result += '<td>' + (reportType == 'deferred' ? item.Deffered_Pre: item.Renewal_Pre) + '</td>';
-                            result += '<td>' + item.PaidInstallment + '</td>';
-                            result += '<td>' + item.PaidAmt + '</td>';
-                            result += '<td>' + item.ComDt + '</td>';
-                            result += '<td>' + item.NDD + '</td>';
-                            result += '</tr>';
-                        }
-                    });
-                }
-
-                if(reportType == 'premium_collection') {
-                    if ($.fn.dataTable.isDataTable('#premiumReportDetails') ) {
-                        $('#premiumReportDetails').DataTable().clear().destroy();
-                    }
-                    $('#premiumReportDetails tbody').empty().html(result);
-                    if ($.fn.dataTable.isDataTable('#reportDetails') ) {
-                        $('#reportDetails').DataTable().clear().destroy();
-                        $('#reportDetails tbody').empty()
-                    }
-                    $('#premiumReportDetails').removeClass('hide');
-                    $('#reportDetails').addClass('hide');
-                    $('#premiumReportDetails').DataTable(datatableConfig);
-                }else {
-                    if ($.fn.dataTable.isDataTable('#reportDetails') ) {
-                        $('#reportDetails').DataTable().clear().destroy();
-                    }
-                    $('#reportDetails tbody').empty().html(result);
-                    if ($.fn.dataTable.isDataTable('#premiumReportDetails') ) {
-                        $('#premiumReportDetails').DataTable().clear().destroy();
-                        $('#premiumReportDetails tbody').empty().html(result);
-                    }
-                    $('#reportDetails').removeClass('hide');
-                    $('#premiumReportDetails').addClass('hide');
-                    $('#reportDetails').DataTable(datatableConfig);
-                }
+                $('#premiumReportDetails tbody').empty().html(result);
+                $('#premiumReportDetails').removeClass('hide');
+                $('#premiumReportDetails').DataTable(datatableConfig);
                 $('#loader').addClass('hide');
             });
         });
@@ -263,10 +191,9 @@
          * get report data.
          * @param data
          */
-        async function getReport(reportType, params) {
-            let url = reportType == 'premium_collection' ? 'premium-collection-report' : 'premium-collection-details';
+        async function getReport(params) {
             return $.ajax({
-                url: apiUrl + "public/" + url,
+                url: apiUrl + "public/premium-collection-report",
                 method: 'POST',
                 dataType: 'JSON',
                 data: params
@@ -299,6 +226,23 @@
             }).fail(function() {
                 alert('error')
             });
+        }
+
+        /**
+         * date select event
+         */
+        function onDateChange() {
+            let start = $('#startDate').val();
+            let end = $('#endDate').val();
+            console.log(start)
+            console.log(end)
+
+            if (start) {
+                $('#endDate').datepicker('option', 'minDate', new Date(start));
+            }
+            if (end) {
+                $('#startDate').datepicker('option', 'maxDate', new Date(end));
+            }
         }
     </script>
 @endpush

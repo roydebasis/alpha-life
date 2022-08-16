@@ -5996,3 +5996,7 @@ ul.a {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+.action-sm {
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
