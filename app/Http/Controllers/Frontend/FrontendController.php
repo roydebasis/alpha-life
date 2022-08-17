@@ -163,7 +163,6 @@ class FrontendController extends Controller
     }
 
     public function rankings(Request $request) {
-        $currentUserProfile = getEmpProfile();
         $empProfile =  getEmpProfile();
         return view('frontend.users.ranking', compact('empProfile'));
     }
