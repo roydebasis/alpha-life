@@ -55,11 +55,7 @@
                         <div class="form-group col-sm-4">
                             <label for="type">Type</label>
                             <select class="form-control" id="type" required>
-                                <option value="">Select Type</option>
-                                <option value="New Policy">New Policy</option>
-                                <option value="First Year">First Year</option>
-                                <option value="Renewal">Renewal</option>
-                                <option value="Total Premium">Total Premium</option>
+                                <option value="summary" selected>Summary</option>
                             </select>
                         </div>
 
@@ -83,7 +79,15 @@
         <div class="row mb-30 relativePos">
             <div class="hide" id="loader"><div class="loader"></div></div>
             <table class="table table-bordered hide" id="rankingTbl">
-                <thead></thead>
+                <thead>
+                    <tr>
+                        <th>SL</th>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Total Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
                 <tbody></tbody>
             </table>
         </div>
@@ -139,37 +143,28 @@
                 result += '<tr>';
                 result += '<td>' + (index + 1) + '</td>';
                 result += '<td>' + item.Code + '</td>';
-                result += '<td>' + item.EName + '</td>';
-                if (data.type == 'New Policy') {
-                    result += '<td>' + item.NewPol + '</td>';
-                }
-                if (data.type == 'First Year') {
-                    result += '<td>' + item.NewPre + '</td>';
-                    result += '<td>' + item.DeffPre + '</td>';
-                    result += '<td>' + item.FYPre + '</td>';
-                }
-                if (data.type == 'Renewal') {
-                    result += '<td>' + item.Renewal + '</td>';
-                }
-                if (data.type == 'Total Premium') {
-                    result += '<td>' + item.TotPre + '</td>';
-                }
-                result += '<td>' + item.ORank + '</td>';
-                result += '<td>' + item.LRank + '</td>';
-                result += '<td>' + item.ChainSetup + '</td>';
+                result += '<td>' + item.EmpName + '</td>';
+                result += '<td>' + item.TotPayable + '</td>';
+                result += '<td>';
+                result += '<button class="btn btn-sm btn-primary action-sm show-more" type="button" data='+JSON.stringify(item)+'>More</button>';
+                result += '<input type="hidden" value=\"'+JSON.stringify(item)+'\">';
+                result += '</td>';
                 result += '</tr>';
             });
 
             if ($.fn.dataTable.isDataTable('#rankingTbl') ) {
                 $('#rankingTbl').DataTable().clear().destroy();
             }
-            let tHead = getTHead(data.type);
-            $('#rankingTbl thead').empty().html(tHead);
             $('#rankingTbl tbody').empty().html(result);
             $('#rankingTbl').removeClass('hide');
             $('#rankingTbl').DataTable(datatableConfig);
             $('#loader').addClass('hide');
         });
+
+        $(document).on('click', '.show-more', function () {
+            alert('under construction')
+            console.log($(this).closest('td').find('input'));
+        })
     });
 
     document.addEventListener("DOMContentLoaded", getDesignations);
@@ -180,7 +175,7 @@
      */
     async function getReport(params) {
         return $.ajax({
-            url: apiUrl + "public/rankings-report",
+            url: apiUrl + "public/earnings-report",
             method: 'POST',
             dataType: 'JSON',
             data: params
@@ -189,8 +184,8 @@
                 return data.data.report;
             }
             return [];
-        }).fail(function () {
-            alert('error')
+        }).fail(function (error) {
+            alert(error)
         });
     }
 
@@ -229,30 +224,8 @@
         }
     }
 
-    function getTHead(type) {
-        let head = '<tr>';
-        head += '<th>SL </th>';
-        head += '<th>Code</th>';
-        head += '<th>Name</th>';
-        if (type == 'New Policy') {
-            head += '<th>NewPol</th>';
-        }
-        if (type == 'First Year') {
-            head += '<th>NewPre</th>';
-            head += '<th>Deffered</th>';
-            head += '<th>Total First Year</th>';
-        }
-        if (type == 'Renewal') {
-            head += '<th>Renewal</th>';
-        }
-        if (type == 'Total Premium') {
-            head += '<th>Total Pre</th>';
-        }
-        head += '<th>OverallRanking</th>';
-        head += '<th>OrganizationRanking</th>';
-        head += '<th>Chain Setup</th>';
-        head += '</tr>';
-        return head;
+    function showDetailsModal(data) {
+      console.log(data);
     }
 </script>
 @endpush
