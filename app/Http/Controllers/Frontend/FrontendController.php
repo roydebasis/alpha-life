@@ -158,10 +158,13 @@ class FrontendController extends Controller
         return back();
     }
 
-    public function premiumCollectionDetails(Request $request, $employeeCode)
-    {
-
+    public function premiumCollectionDetails(Request $request, $employeeCode) {
         return view('frontend.users.premium-collection-details', compact('employeeCode'));
+    }
+
+    public function rankings(Request $request) {
+        $empProfile =  getEmpProfile();
+        return view('frontend.users.ranking', compact('empProfile'));
     }
 }
 

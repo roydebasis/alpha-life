@@ -48,8 +48,8 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <p class="mb-0"> <a class="text-decoration-none" href="/account/premium-collection">Premium Collection</a></p>
-                                    {{--                                    <p class="mb-0"> <a class="text-decoration-none" href="avascript:;">Ranking</a></p>--}}
+                                    <p class="mb-0"> <a class="text-decoration-none" href="account/premium-collection">Premium Collection</a></p>
+                                    <p class="mb-0"> <a class="text-decoration-none" href="account/rankings">Ranking</a></p>
                                     {{--                                    <p class="mb-0"> <a class="text-decoration-none" href="javascript:;">Earning</a></p>--}}
                                     {{--                                    <p class="mb-0"> <a class="text-decoration-none" href="javascript:;">Persistency</a></p>--}}
                                 </div>
