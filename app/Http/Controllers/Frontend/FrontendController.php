@@ -157,5 +157,11 @@ class FrontendController extends Controller
 
         return back();
     }
+
+    public function premiumCollectionDetails(Request $request, $employeeCode)
+    {
+
+        return view('frontend.users.premium-collection-details', compact('employeeCode'));
+    }
 }
 
