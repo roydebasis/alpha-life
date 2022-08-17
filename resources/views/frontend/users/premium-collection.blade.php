@@ -133,7 +133,6 @@
                 e.preventDefault();
                 $('#loader').removeClass('hide');
                 let loggedInDesig = $('#employeeDesignation').val();
-                let mode
                 let data = {
                     employee_id: $('#employeeCode').val(),
                     selected_designation_key: $('#designation').val(),
