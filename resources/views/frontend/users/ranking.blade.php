@@ -35,7 +35,7 @@
                     <input type="hidden" id='employeeCode' value="{{$empProfile['code']}}">
                     <input type="hidden" id='employeeDesignation' value="{{$empProfile['designation']}}">
                     <div class="row">
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-4">
                             <label for="designation">Designation</label>
                             <select class="form-control" id="designation" required>
                                 <option value="">Select Designation</option>
@@ -46,7 +46,13 @@
                                 @endif
                             </select>
                         </div>
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-4">
+                            <label for="mode">Mode</label>
+                            <select class="form-control" id="mode" required>
+                                <option value="monthly" selected>Monthly</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-4">
                             <label for="type">Type</label>
                             <select class="form-control" id="type" required>
                                 <option value="">Select Type</option>
@@ -57,7 +63,7 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-4">
                             <label for="startDate">Start Date</label>
                             <input type="text" onchange="onDateChange()" class="form-control date-field" id="startDate" placeholder="Select Start Date" required>
                         </div>
@@ -114,7 +120,7 @@
                 selected_designation_key: $('#designation').val(),
                 start_date: $('#startDate').val(),
                 end_date:  $('#endDate').val(),
-                mode: 'monthly',
+                mode: $('#mode').val(),
                 type: $('#type').val()
             }
 
