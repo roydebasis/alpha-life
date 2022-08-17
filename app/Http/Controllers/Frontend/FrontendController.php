@@ -166,5 +166,10 @@ class FrontendController extends Controller
         $empProfile =  getEmpProfile();
         return view('frontend.users.ranking', compact('empProfile'));
     }
+
+    public function earnings(Request $request) {
+        $empProfile =  getEmpProfile();
+        return view('frontend.users.earnings', compact('empProfile'));
+    }
 }
 

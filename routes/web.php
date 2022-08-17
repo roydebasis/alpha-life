@@ -65,6 +65,7 @@ Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
         Route::get('account/premium-collection/details/{employeeCode}', 'FrontendController@premiumCollectionDetails')->name('userPremiumCollectionDetails')->name('premiumCollectionDetails');
         //rankings
         Route::get('account/rankings', 'FrontendController@rankings')->name('rankings');
+        Route::get('account/earnings', 'FrontendController@earnings')->name('earnings');
     });
 });
 

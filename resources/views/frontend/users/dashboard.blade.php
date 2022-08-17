@@ -42,15 +42,15 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Performance</h5>
+                                    <h4 class="modal-title" id="exampleModalLabel">Performance</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <p class="mb-0"> <a class="text-decoration-none" href="account/premium-collection">Premium Collection</a></p>
-                                    <p class="mb-0"> <a class="text-decoration-none" href="account/rankings">Ranking</a></p>
-                                    {{--                                    <p class="mb-0"> <a class="text-decoration-none" href="javascript:;">Earning</a></p>--}}
+                                    <p style="margin-bottom: 0"><a class="text-decoration-none" href="account/premium-collection">Premium Collection</a></p>
+                                    <p style="margin-bottom: 0"><a class="text-decoration-none" href="account/rankings">Ranking</a></p>
+                                     <p style="margin-bottom: 0"><a class="text-decoration-none" href="account/earnings">Earning</a></p>
                                     {{--                                    <p class="mb-0"> <a class="text-decoration-none" href="javascript:;">Persistency</a></p>--}}
                                 </div>
                                 <div class="modal-footer">
