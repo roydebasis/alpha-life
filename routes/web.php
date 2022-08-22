@@ -66,6 +66,7 @@ Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
         //rankings
         Route::get('account/rankings', 'FrontendController@rankings')->name('rankings');
         Route::get('account/earnings', 'FrontendController@earnings')->name('earnings');
+        Route::get('account/persistency', 'FrontendController@persistency')->name('persistency');
     });
 });
 
