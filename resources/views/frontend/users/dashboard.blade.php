@@ -51,7 +51,7 @@
                                     <p style="margin-bottom: 0"><a class="text-decoration-none" href="account/premium-collection">Premium Collection</a></p>
                                     <p style="margin-bottom: 0"><a class="text-decoration-none" href="account/rankings">Ranking</a></p>
                                      <p style="margin-bottom: 0"><a class="text-decoration-none" href="account/earnings">Earning</a></p>
-                                    {{--                                    <p class="mb-0"> <a class="text-decoration-none" href="javascript:;">Persistency</a></p>--}}
+                                     <p class="mb-0"><a class="text-decoration-none" href="account/persistency">Persistency</a></p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

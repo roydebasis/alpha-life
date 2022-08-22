@@ -18,7 +18,7 @@
 </style>
 @endpush
 @php
-    $title = 'Earnings';
+    $title = 'Persistency';
     $subDesig = \Illuminate\Support\Facades\Session::get('subDesig');
     $subDesig = !empty($subDesig) ? json_decode($subDesig) : '';
 @endphp
@@ -31,7 +31,7 @@
     <div class="container">
         <div class="card bg-white border-light shadow-soft flex-md-row no-gutters" style="margin-top: 40px;">
             <div class="card-body p-0 premium-calculator">
-                <form id="rankingFilterForm">
+                <form id="persistencyFilterForm">
                     <input type="hidden" id='employeeCode' value="{{$empProfile['code']}}">
                     <input type="hidden" id='employeeDesignation' value="{{$empProfile['designation']}}">
                     <div class="row">
@@ -46,31 +46,31 @@
                                 @endif
                             </select>
                         </div>
-                        <div class="form-group col-sm-4">
-                            <label for="mode">Mode</label>
-                            <select class="form-control" id="mode" required>
-                                <option value="monthly" selected>Monthly</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-sm-4">
-                            <label for="type">Type</label>
-                            <select class="form-control" id="type" required>
-                                <option value="summary" selected>Summary</option>
-                            </select>
-                        </div>
+{{--                        <div class="form-group col-sm-4">--}}
+{{--                            <label for="mode">Mode</label>--}}
+{{--                            <select class="form-control" id="mode" required>--}}
+{{--                                <option value="monthly" selected>Monthly</option>--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group col-sm-4">--}}
+{{--                            <label for="type">Type</label>--}}
+{{--                            <select class="form-control" id="type" required>--}}
+{{--                                <option value="summary" selected>Summary</option>--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
 
-                        <div class="form-group col-sm-4">
-                            <label for="startDate">Start Date</label>
-                            <input type="text" onchange="onDateChange()" class="form-control date-field" id="startDate" placeholder="Select Start Date" required>
-                        </div>
+{{--                        <div class="form-group col-sm-4">--}}
+{{--                            <label for="startDate">Start Date</label>--}}
+{{--                            <input type="text" onchange="onDateChange()" class="form-control date-field" id="startDate" placeholder="Select Start Date" required>--}}
+{{--                        </div>--}}
 
-                        <div class="form-group col-sm-3">
-                            <label for="endDate">End Date</label>
-                            <input type="text" onchange="onDateChange()" class="form-control date-field" id="endDate" placeholder="Select End Date" required>
-                        </div>
+{{--                        <div class="form-group col-sm-3">--}}
+{{--                            <label for="endDate">End Date</label>--}}
+{{--                            <input type="text" onchange="onDateChange()" class="form-control date-field" id="endDate" placeholder="Select End Date" required>--}}
+{{--                        </div>--}}
 
                         <div class="form-group col-md-12 text-center">
-                            <button class="btn btn-primary" type="submit">Apply</button>
+                            <button class="btn btn-primary btn-sm" type="submit">Apply</button>
                         </div>
                     </div>
                 </form>
@@ -78,13 +78,17 @@
         </div>
         <div class="row mb-30 relativePos">
             <div class="hide" id="loader"><div class="loader"></div></div>
-            <table class="table table-bordered hide" id="rankingTbl">
+            <table class="table table-bordered hide" id="persistencyTbl">
                 <thead>
                     <tr>
                         <th>SL</th>
                         <th>Code</th>
                         <th>Name</th>
-                        <th>Total Amount</th>
+                        <th>Desig</th>
+                        <th>TotalPersistency</th>
+                        <th>RenPersistency</th>
+                        <th>DeffPersis</th>
+                        <th>ChainSetup</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -99,13 +103,13 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel">Earning Details</h4>
+                    <h4 class="modal-title" id="exampleModalLabel">Persistency Details</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-bordered " id="earningDetailsTbl">
+                    <table class="table table-bordered " id="persistencyDetailsTbl">
                         <tbody></tbody>
                     </table>
                 </div>
@@ -141,17 +145,13 @@
         /**
          * Load report
          * */
-        $('#rankingFilterForm').submit(async function (e) {
+        $('#persistencyFilterForm').submit(async function (e) {
             e.preventDefault();
             $('#loader').removeClass('hide');
             let loggedInDesig = $('#employeeDesignation').val();
             let data = {
                 employee_id: $('#employeeCode').val(),
                 selected_designation_key: $('#designation').val(),
-                start_date: $('#startDate').val(),
-                end_date:  $('#endDate').val(),
-                mode: $('#mode').val(),
-                type: $('#type').val()
             }
 
             let listOfDesignations = window.designaions;
@@ -169,30 +169,52 @@
                 result += '<tr>';
                 result += '<td>' + (index + 1) + '</td>';
                 result += '<td>' + item.Code + '</td>';
-                result += '<td>' + item.EmpName + '</td>';
-                result += '<td>' + item.TotPayable + '</td>';
+                result += '<td>' + item.EName + '</td>';
+                result += '<td>' + item.Desig + '</td>';
+                result += '<td>' + item.TotalPersistency + '</td>';
+                result += '<td>' + item.RenPersistency + '</td>';
+                result += '<td>' + item.DeffPersis + '</td>';
+                result += '<td>' + item.ChainSetup + '</td>';
                 result += '<td>';
                 result += '<button class="btn btn-sm btn-primary action-sm show-more" type="button" data='+item.Code+'>More</button>';
                 result += '</td>';
                 result += '</tr>';
             });
             reportData = response.data.report;
-            if ($.fn.dataTable.isDataTable('#rankingTbl') ) {
-                $('#rankingTbl').DataTable().clear().destroy();
+            if ($.fn.dataTable.isDataTable('#persistencyTbl') ) {
+                $('#persistencyTbl').DataTable().clear().destroy();
             }
-            $('#rankingTbl tbody').empty().html(result);
-            $('#rankingTbl').removeClass('hide');
-            $('#rankingTbl').DataTable(datatableConfig);
+            $('#persistencyTbl tbody').empty().html(result);
+            $('#persistencyTbl').removeClass('hide');
+            $('#persistencyTbl').DataTable(datatableConfig);
             $('#loader').addClass('hide');
         });
 
-        $(document).on('click', '.show-more', function () {
-            $('#earningDetailsTbl tbody').empty();
+        $(document).on('click', '.show-more', async function () {
+            $('#loader').removeClass('hide');
+            $('#persistencyDetailsTbl tbody').empty();
             let findReportId = $(this).attr('data');
+            let loggedInDesig = $('#employeeDesignation').val();
             let tableRows = '';
-            let report = reportData.find(item => item.Code == findReportId);
-            if(report ) {
-                for (const key in report) {
+            let data = {
+                employee_id: $('#employeeCode').val(),
+                selected_designation_key: $('#designation').val(),
+            }
+
+            let listOfDesignations = window.designaions;
+            let loggedInDesigkey = Object.keys(window.designaions).find(key => listOfDesignations[key] == loggedInDesig);
+            if (!loggedInDesigkey) {
+                alert('Please try again sometime later.');
+                console.log('Logged in users designations list not found!!');
+                return;
+            }
+            data.login_designation_key = loggedInDesigkey;
+            let response = await getReportDetails(findReportId, data);
+            let report = response.data.report[0];
+            console.log('report: ', response);
+
+            if (response.data.report) {
+                for (const key in  report) {
                     tableRows += '<tr>';
                     tableRows += '<td>' + `${key}` + '</td>';
                     tableRows += '<td>' + `${report[key]}` + '</td>';
@@ -201,8 +223,9 @@
             } else {
                 tableRows = '<tr><td>No Data Found</td></tr>';
             }
-            $('#earningDetailsTbl tbody').html(tableRows);
+            $('#persistencyDetailsTbl tbody').html(tableRows);
             $('#earningDetails').modal({ show: true});
+            $('#loader').addClass('hide');
         })
     });
 
@@ -214,7 +237,7 @@
      */
     async function getReport(params) {
         return $.ajax({
-            url: apiUrl + "public/earnings-report",
+            url: apiUrl + "public/persistency-report",
             method: 'POST',
             dataType: 'JSON',
             data: params
@@ -229,7 +252,27 @@
     }
 
     /**
-     * get al designations.
+     * get report details.
+     * @param data
+     */
+    async function getReportDetails(empCode, params) {
+        return $.ajax({
+            url: apiUrl + "public/persistency-report/" + empCode,
+            method: 'POST',
+            dataType: 'JSON',
+            data: params
+        }).done(function(data) {
+            if (data.status == 200 ) {
+                return data.data.report;
+            }
+            return [];
+        }).fail(function() {
+            alert('error')
+        });
+    }
+
+    /**
+     * get all designations.
      * @param data
      */
     async function getDesignations() {
