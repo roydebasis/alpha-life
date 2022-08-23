@@ -99,7 +99,7 @@
         <div class="col-md-12 mb-80"><a href="{{ url()->previous() }}"><i class="fa fa-chevron-circle-left"></i> Back</a> </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="earningDetails" tabindex="-1" role="dialog" aria-labelledby="performanceModalLabel" aria-hidden="true">
+    <div class="modal fade" id="persistencyDetails" tabindex="-1" role="dialog" aria-labelledby="performanceModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -109,6 +109,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <ul class="inline-ul-list">
+                        <li><a class="btn btn-sm action-sm btn-primary policy-list" data-type="Renewal" href="javascript:;">Renewal Policy List</a></li>
+                        <li><a class="btn btn-sm action-sm btn-info policy-list" data-type="Deffered" href="javascript:;">Deferred Policy List</a></li>
+                        <li><a class="btn btn-sm action-sm btn-danger policy-list" data-type="Total" href="javascript:;">Total Policy List</a></li>
+                    </ul>
                     <table class="table table-bordered " id="persistencyDetailsTbl">
                         <tbody></tbody>
                     </table>
@@ -130,6 +135,7 @@
         ordering: false,
     };
     var reportData = '';
+    var selectedEmployeeId = '';
 
     jQuery(document).ready(function () {
         $('.date-field').datepicker({
@@ -211,9 +217,9 @@
             data.login_designation_key = loggedInDesigkey;
             let response = await getReportDetails(findReportId, data);
             let report = response.data.report[0];
-            console.log('report: ', response);
 
             if (response.data.report) {
+                selectedEmployeeId = report.Code;
                 for (const key in  report) {
                     tableRows += '<tr>';
                     tableRows += '<td>' + `${key}` + '</td>';
@@ -224,9 +230,30 @@
                 tableRows = '<tr><td>No Data Found</td></tr>';
             }
             $('#persistencyDetailsTbl tbody').html(tableRows);
-            $('#earningDetails').modal({ show: true});
+            $('#persistencyDetails').modal({ show: true});
             $('#loader').addClass('hide');
         })
+
+        $(document).on('click', '.policy-list', function () {
+            let data = {
+                employee_id: $('#employeeCode').val(),
+                selected_designation_key: $('#designation').val(),
+                type: $(this).data('type')
+            }
+            let loggedInDesig = $('#employeeDesignation').val();
+            let listOfDesignations = window.designaions;
+            let loggedInDesigkey = Object.keys(window.designaions).find(key => listOfDesignations[key] == loggedInDesig);
+            if (!loggedInDesigkey) {
+                alert('Please try again sometime later.');
+                console.log('Logged in users designations list not found!!');
+                return;
+            }
+            data.login_designation_key = loggedInDesigkey;
+            let url = window.location.origin + '/account/persistency/policy-list/' + selectedEmployeeId
+                + '?employee_id=' + data.employee_id + '&selected_designation_key=' + data.selected_designation_key
+                + '&login_designation_key=' + data.login_designation_key + '&type=' + data.type;
+            window.open(url, "_blank");
+        });
     });
 
     document.addEventListener("DOMContentLoaded", getDesignations);
@@ -310,8 +337,11 @@
 
 @push('after-styles')
     <style>
-        #earningDetails .modal-header .close {
+        #persistencyDetails .modal-header .close {
             margin-top: -22px;
+        }
+        #persistencyDetailsTbl{
+            margin-top: 10px;
         }
     </style>
 @endpush

@@ -6000,3 +6000,14 @@ ul.a {
     padding: 5px 10px;
     margin-bottom: 10px;
 }
+.inline-ul-list {
+    list-style: none;
+    text-align: center;
+}
+.inline-ul-list li {
+    display: inline-block;
+    margin-left: 10px;
+}
+.inline-ul-list li:first-child{
+    margin-left: 0;
+}

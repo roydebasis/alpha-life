@@ -176,5 +176,16 @@ class FrontendController extends Controller
         $empProfile =  getEmpProfile();
         return view('frontend.users.persistency', compact('empProfile'));
     }
+
+    public function persistencyPolicy(Request $request, $selectedEmployeeId) {
+        $params = [
+            'employee_id' => $request->employee_id,
+            'selected_designation_key' => $request->selected_designation_key,
+            'login_designation_key' => $request->login_designation_key,
+            'selected_employee_id' => $selectedEmployeeId,
+            'type' => $request->type
+        ];
+        return view('frontend.users.persistency-policy-list', compact('params'));
+    }
 }
 
