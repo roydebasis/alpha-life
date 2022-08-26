@@ -241,31 +241,19 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function changePasswordUpdate(Request $request, $username)
+    public function changePasswordUpdate(Request $request)
     {
-        if ($username != auth()->user()->username) {
-            return redirect()->route('frontend.users.profile', $username);
-        }
-
         $this->validate($request, [
-            'password' => 'required|confirmed|min:6',
+            'password' => 'required|min:6',
         ]);
+        $user = auth()->user();
+        $user->update(['password' => Hash::make($request->password)]);
 
-        $module_name = $this->module_name;
-        $module_name_singular = Str::singular($this->module_name);
-
-        $$module_name_singular = auth()->user();
-
-        $request_data = $request->only('password');
-        $request_data['password'] = Hash::make($request_data['password']);
-
-        $$module_name_singular->update($request_data);
-
-        return redirect()->route('frontend.users.profile', auth()->user()->id)->with('flash_success', 'Update successful!');
+        return redirect()->back()->with('msg', 'Password Updated Successfully');
     }
 
     /**
@@ -422,5 +410,15 @@ class UserController extends Controller
                 return redirect()->back();
             }
         }
+    }
+
+    public function resetPassword() {
+        if (!auth()->check()) {
+            abort('422', 'Permission Denied');
+        }
+        $user = auth()->user();
+        $user->update(['password' => Hash::make('1234')]);
+
+        return redirect()->back()->with('msg', 'Password Reset Successfully. New Password is: <b>1234</b>');
     }
 }

@@ -52,14 +52,12 @@
                             <select class="form-control" id="mode" required>
                                 <option value="">Select Mode</option>
                                 <option value="daily">Daily</option>
-{{--                                <option value="Weekly">Weekly</option>--}}
                                 <option value="monthly">Monthly</option>
                                 <option value="quarterly">Quarterly</option>
                                 <option value="half yearly">Half Yearly</option>
                                 <option value="yearly">Yearly</option>
                             </select>
                         </div>
-{{--                            monthly,yearly,quarterly,daily--}}
                         <div class="form-group col-md-4">
                             <label for="type">Type</label>
                             <select class="form-control" id="type" required>
@@ -90,16 +88,16 @@
                     <thead>
                         <tr>
                             <th>SL</th>
-                            <th>EName</th>
-                            <th>Def Pre</th>
-                            <th>FY Pre</th>
-                            <th>Month</th>
-                            <th>New Pre</th>
+                            <th>E Name</th>
+                            <th>New</th>
+                            <th>Def</th>
+                            <th>FY</th>
+                            <th>Ren</th>
+                            <th>Total</th>
+                            <th>Policy</th>
                             <th>Persistency</th>
-                            <th>Policy Qty</th>
-                            <th>Ren Pre</th>
                             <th>Supervisor</th>
-                            <th>TotPrePre</th>
+                            <th>Month</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -154,19 +152,24 @@
                 let response = await getReport(data);
                 let result = '';
                 response.data.report.forEach(function (item, index) {
+                    let supervisors = '';
+                    if (item.Supervisor) {
+                        supervisors = item.Supervisor.split(',');
+                        supervisors = supervisors.join('<br/>');
+                    }
                     let sl = index + 1;
                         result += '<tr>';
                         result += '<td>' + sl + '</td>';
                         result += '<td>' + item.EName + '&nbsp;<span class="d-block">' +  item.Code + '</span></td>';
-                        result += '<td>' + item.DeffPre + '</td>';
-                        result += '<td>' + item.FYPre + '</td>';
-                        result += '<td>' + item.Month + '</td>';
-                        result += '<td>' + item.NewPre + '</td>';
-                        result += '<td>' + item.Persistency + '</td>';
+                        result += '<td>' + parseFloat(item.NewPre).toFixed(2) + '</td>';
+                        result += '<td>' + parseFloat(item.DeffPre).toFixed(2) + '</td>';
+                        result += '<td>' + parseFloat(item.FYPre).toFixed(2) + '</td>';
+                        result += '<td>' + parseFloat(item.RenPre).toFixed(2) + '</td>';
+                        result += '<td>' + parseFloat(item.TotPrePre).toFixed(2) + '</td>';
                         result += '<td>' + item.PolicyQty + '</td>';
-                        result += '<td>' + item.RenPre + '</td>';
-                        result += '<td>' + item.Supervisor + '</td>';
-                        result += '<td>' + item.TotPrePre + '</td>';
+                        result += '<td>' + item.Persistency + '</td>';
+                        result += '<td class="text-nowrap">' + supervisors + '</td>';
+                        result += '<td>' + item.Month + '</td>';
                         result += '<td>';
                         result += '<a href="/account/premium-collection/details/'+item.Code+'?&start_date='+data.start_date+'&details_type=deferred&selected_designation_key='+data.selected_designation_key+'&mode='+data.mode+'" class="btn btn-sm btn-primary action-sm" data-type="deferred" data-empCode="'+ item.Code+'">Def Details</a>';
                         result += '<a href="/account/premium-collection/details/'+item.Code+'?&start_date='+data.start_date+'&details_type=renewal&selected_designation_key='+data.selected_designation_key+'&mode='+data.mode+'" class="btn btn-sm btn-info action-sm" data-type="renewal" data-empCode="'+ item.Code+'">Ren Details</a>';
@@ -233,9 +236,6 @@
         function onDateChange() {
             let start = $('#startDate').val();
             let end = $('#endDate').val();
-            console.log(start)
-            console.log(end)
-
             if (start) {
                 $('#endDate').datepicker('option', 'minDate', new Date(start));
             }

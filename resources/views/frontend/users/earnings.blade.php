@@ -170,7 +170,7 @@
                 result += '<td>' + (index + 1) + '</td>';
                 result += '<td>' + item.Code + '</td>';
                 result += '<td>' + item.EmpName + '</td>';
-                result += '<td>' + item.TotPayable + '</td>';
+                result += '<td>' + parseFloat(item.TotPayable).toFixed(2) + '</td>';
                 result += '<td>';
                 result += '<button class="btn btn-sm btn-primary action-sm show-more" type="button" data='+item.Code+'>More</button>';
                 result += '</td>';
@@ -191,11 +191,18 @@
             let findReportId = $(this).attr('data');
             let tableRows = '';
             let report = reportData.find(item => item.Code == findReportId);
+            let amtFields = ['SumAssured', 'TotComm', 'NetComm', 'TotPayable', 'TotTax', 'NetEarning'];
             if(report ) {
+                let value = '';
                 for (const key in report) {
+                    value = `${report[key]}`;
+                    if (amtFields.includes(key)) {
+                        value = `${report[key]}`;
+                        value = parseFloat(value).toFixed(2);
+                    }
                     tableRows += '<tr>';
                     tableRows += '<td>' + `${key}` + '</td>';
-                    tableRows += '<td>' + `${report[key]}` + '</td>';
+                    tableRows += '<td>' + value + '</td>';
                     tableRows += '</tr>';
                 }
             } else {
