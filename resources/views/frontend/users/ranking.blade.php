@@ -136,27 +136,32 @@
             let response = await getReport(data);
             let result = '';
             response.data.report.forEach(function (item, index) {
+                let ChainSetup = '';
+                if (item.ChainSetup) {
+                    ChainSetup = item.ChainSetup.split(',');
+                    ChainSetup = ChainSetup.join('<br/>');
+                }
                 result += '<tr>';
                 result += '<td>' + (index + 1) + '</td>';
                 result += '<td>' + item.Code + '</td>';
-                result += '<td>' + item.EName + '</td>';
+                result += '<td class="text-nowrap">' + item.EName + '</td>';
                 if (data.type == 'New Policy') {
-                    result += '<td>' + item.NewPol + '</td>';
+                    result += '<td class="text-center">' + item.NewPol + '</td>';
                 }
                 if (data.type == 'First Year') {
-                    result += '<td>' + item.NewPre + '</td>';
-                    result += '<td>' + item.DeffPre + '</td>';
-                    result += '<td>' + item.FYPre + '</td>';
+                    result += '<td class="text-right">' + parseFloat(item.NewPre).toFixed(2) + '</td>';
+                    result += '<td class="text-right">' + parseFloat(item.DeffPre).toFixed(2) + '</td>';
+                    result += '<td class="text-right">' + parseFloat(item.FYPre).toFixed(2) + '</td>';
                 }
                 if (data.type == 'Renewal') {
-                    result += '<td>' + item.Renewal + '</td>';
+                    result += '<td class="text-right">' + parseFloat(item.Renewal).toFixed(2) + '</td>';
                 }
                 if (data.type == 'Total Premium') {
-                    result += '<td>' + item.TotPre + '</td>';
+                    result += '<td class="text-right">' + parseFloat(item.TotPre).toFixed(2) + '</td>';
                 }
-                result += '<td>' + item.ORank + '</td>';
-                result += '<td>' + item.LRank + '</td>';
-                result += '<td>' + item.ChainSetup + '</td>';
+                result += '<td class="text-center">' + item.ORank + '</td>';
+                result += '<td class="text-center">' + item.LRank + '</td>';
+                result += '<td class="text-nowrap">' + ChainSetup + '</td>';
                 result += '</tr>';
             });
 
@@ -235,21 +240,21 @@
         head += '<th>Code</th>';
         head += '<th>Name</th>';
         if (type == 'New Policy') {
-            head += '<th>NewPol</th>';
+            head += '<th>New</th>';
         }
         if (type == 'First Year') {
-            head += '<th>NewPre</th>';
+            head += '<th>New</th>';
             head += '<th>Deffered</th>';
-            head += '<th>Total First Year</th>';
+            head += '<th>Total</th>';
         }
         if (type == 'Renewal') {
             head += '<th>Renewal</th>';
         }
         if (type == 'Total Premium') {
-            head += '<th>Total Pre</th>';
+            head += '<th>Total</th>';
         }
-        head += '<th>OverallRanking</th>';
-        head += '<th>OrganizationRanking</th>';
+        head += '<th>Overall Ranking</th>';
+        head += '<th>Org. Ranking</th>';
         head += '<th>Chain Setup</th>';
         head += '</tr>';
         return head;

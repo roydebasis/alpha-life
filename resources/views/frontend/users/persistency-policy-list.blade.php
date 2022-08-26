@@ -105,11 +105,18 @@
             let policyId = $(this).attr('data');
             let tableRows = '';
             let report = reportData.find(item => item.PolicyNo == policyId);
+            let amtFields = ['SumAssured', 'Premium', 'Suspense', 'DuePremium', 'DueInstallment', 'LateFee', 'NetDuePremium', 'PaidAmount'];
             if (report) {
+                let value = '';
                 for (const key in  report) {
+                    value = `${report[key]}`;
+                    if (amtFields.includes(key)) {
+                        value = `${report[key]}`;
+                        value = parseFloat(value).toFixed(2);
+                    }
                     tableRows += '<tr>';
                     tableRows += '<td>' + `${key}` + '</td>';
-                    tableRows += '<td>' + `${report[key]}` + '</td>';
+                    tableRows += '<td>' + value + '</td>';
                     tableRows += '</tr>';
                 }
             } else {
@@ -139,12 +146,17 @@
         let result = '';
         reportData = response.data.report;
         response.data.report.forEach(function (item, index) {
+            let ChainSetup = '';
+            if (item.ChainSetup) {
+                ChainSetup = item.ChainSetup.split(',');
+                ChainSetup = ChainSetup.join('<br/>');
+            }
             result += '<tr>';
             result += '<td>' + (index + 1) + '</td>';
             result += '<td>' + item.PolicyNo + '</td>';
             result += '<td>' + item.PHName + '</td>';
             result += '<td>' + item.Mobile + '</td>';
-            result += '<td>' + item.ChainSetup + '</td>';
+            result += '<td class="text-nowrap">' + ChainSetup + '</td>';
             result += '<td>';
             result += '<button class="btn btn-sm btn-primary action-sm show-more" type="button" data='+item.PolicyNo+'>More</button>';
             result += '</td>';

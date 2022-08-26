@@ -105,6 +105,7 @@
                         return;
                     }
                     report.forEach(function (item, index) {
+                        let RenAmt = (params.details_type == 'deferred' ? item.Deffered_Pre: item.Renewal_Pre);
                         let sl = index + 1;
                         result += '<tr>';
                         result += '<td>' + sl + '</td>';
@@ -112,9 +113,9 @@
                         result += '<td>' + item.PolicyNo + '</td>';
                         result += '<td>' + item.MOP + '</td>';
                         result += '<td>' + item.Isntallment_No + '</td>';
-                        result += '<td>' + (params.details_type == 'deferred' ? item.Deffered_Pre: item.Renewal_Pre) + '</td>';
+                        result += '<td>' + parseFloat(RenAmt).toFixed(2) + '</td>';
                         result += '<td>' + item.PaidInstallment + '</td>';
-                        result += '<td>' + item.PaidAmt + '</td>';
+                        result += '<td>' + parseFloat(item.PaidAmt).toFixed(2) + '</td>';
                         result += '<td>' + item.ComDt + '</td>';
                         result += '<td>' + item.NDD + '</td>';
                         result += '</tr>';

@@ -85,9 +85,9 @@
                         <th>Code</th>
                         <th>Name</th>
                         <th>Desig</th>
-                        <th>TotalPersistency</th>
-                        <th>RenPersistency</th>
-                        <th>DeffPersis</th>
+                        <th>Total</th>
+                        <th>Ren</th>
+                        <th>Deff</th>
                         <th>ChainSetup</th>
                         <th>Action</th>
                     </tr>
@@ -172,15 +172,20 @@
             let response = await getReport(data);
             let result = '';
             response.data.report.forEach(function (item, index) {
+                let ChainSetup = '';
+                if (item.ChainSetup) {
+                    ChainSetup = item.ChainSetup.split(',');
+                    ChainSetup = ChainSetup.join('<br/>');
+                }
                 result += '<tr>';
                 result += '<td>' + (index + 1) + '</td>';
                 result += '<td>' + item.Code + '</td>';
-                result += '<td>' + item.EName + '</td>';
+                result += '<td class="text-nowrap">' + item.EName + '</td>';
                 result += '<td>' + item.Desig + '</td>';
-                result += '<td>' + item.TotalPersistency + '</td>';
-                result += '<td>' + item.RenPersistency + '</td>';
-                result += '<td>' + item.DeffPersis + '</td>';
-                result += '<td>' + item.ChainSetup + '</td>';
+                result += '<td>' + parseFloat(item.TotalPersistency).toFixed(2) + '</td>';
+                result += '<td>' + parseFloat(item.RenPersistency).toFixed(2) + '</td>';
+                result += '<td>' + parseFloat(item.DeffPersis).toFixed(2) + '</td>';
+                result += '<td class="text-nowrap">' + ChainSetup + '</td>';
                 result += '<td>';
                 result += '<button class="btn btn-sm btn-primary action-sm show-more" type="button" data='+item.Code+'>More</button>';
                 result += '</td>';
@@ -217,13 +222,21 @@
             data.login_designation_key = loggedInDesigkey;
             let response = await getReportDetails(findReportId, data);
             let report = response.data.report[0];
-
+            let amtFields = ['DeffPersis', 'TotalPersistency', 'RenPersistency'];
             if (response.data.report) {
                 selectedEmployeeId = report.Code;
                 for (const key in  report) {
+                    let value = '';
+                    if (amtFields.includes(key)) {
+                        value = `${report[key]}`;
+                        value = parseFloat(value).toFixed(2);
+                    } else {
+                        value = `${report[key]}`;
+                    }
+                    console.log(value)
                     tableRows += '<tr>';
                     tableRows += '<td>' + `${key}` + '</td>';
-                    tableRows += '<td>' + `${report[key]}` + '</td>';
+                    tableRows += '<td>' + value + '</td>';
                     tableRows += '</tr>';
                 }
             } else {
