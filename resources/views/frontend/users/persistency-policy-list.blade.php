@@ -36,23 +36,28 @@
         <input type="hidden" id='type' value="{{$params['type']}}">
 
         <div class="row mb-30 relativePos" style="margin-top: 40px;">
-            <div class="hide" id="loader"><div class="loader"></div></div>
-            <table class="table table-bordered" id="persistencyTbl">
-                <thead>
-                    <tr>
-                        <th>SL</th>
-                        <th>PolicyNo</th>
-                        <th>PHName</th>
-                        <th>Mobile</th>
-                        <th>ChainSetup</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+            <div class="col-md-12"><a href="{{ url()->previous() }}" class="btn btn-sm btn-primary action-sm"><i class="fa fa-chevron-circle-left"></i> Back</a> </div>
+            <div class="col-md-12">
+                <div class="hide" id="loader"><div class="loader"></div></div>
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="persistencyTbl">
+                        <thead>
+                            <tr>
+                                <th>SL</th>
+                                <th>PolicyNo</th>
+                                <th>PHName</th>
+                                <th>Mobile</th>
+                                <th>ChainSetup</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
-        <div class="col-md-12 mb-80"><a href="{{ url()->previous() }}"><i class="fa fa-chevron-circle-left"></i> Back</a> </div>
+        <div class="mb-80"><a href="{{ url()->previous() }}" class="btn btn-sm btn-primary action-sm"><i class="fa fa-chevron-circle-left"></i> Back</a> </div>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="policyDetails" tabindex="-1" role="dialog" aria-labelledby="performanceModalLabel" aria-hidden="true">

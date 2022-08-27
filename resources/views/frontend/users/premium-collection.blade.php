@@ -32,6 +32,7 @@
         <div class="container">
             <div class="card bg-white border-light shadow-soft flex-md-row no-gutters" style="margin-top: 40px;">
                 <div class="card-body p-0 premium-calculator">
+                    <div><a href="{{ url()->previous() }}" class="btn btn-sm action-sm btn-primary"><i class="fa fa-chevron-circle-left"></i> Back</a> </div>
                     <form id="reportFilterForm">
                         <input type="hidden" id='employeeCode' value="{{$empProfile['code']}}">
                         <input type="hidden" id='employeeDesignation' value="{{$empProfile['designation']}}">
@@ -76,15 +77,17 @@
                         </div>
 
                         <div class="form-group col-md-12 text-center">
-                            <button class="btn btn-primary" type="submit">Apply</button>
+                            <button class="btn btn-primary btn-sm action-sm" type="submit">Apply</button>
                         </div>
                     </div>
                     </form>
                 </div>
             </div>
             <div class="row mb-30 relativePos">
-                <div class="hide" id="loader"><div class="loader"></div></div>
-                <table class="table table-bordered hide" id="premiumReportDetails">
+                <div class="col-md-12">
+                    <div class="hide" id="loader"><div class="loader"></div></div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered hide" id="premiumReportDetails">
                     <thead>
                         <tr>
                             <th>SL</th>
@@ -103,9 +106,11 @@
                     </thead>
                     <tbody></tbody>
                 </table>
+                    </div>
+                </div>
             </div>
 
-            <div class="col-md-12 mb-80"><a href="{{ url()->previous() }}"><i class="fa fa-chevron-circle-left"></i> Back</a> </div>
+            <div class="mb-80"><a href="{{ url()->previous() }}" class="btn btn-sm action-sm btn-primary"><i class="fa fa-chevron-circle-left"></i> Back</a> </div>
         </div>
     </section>
 @endsection
@@ -160,7 +165,7 @@
                     let sl = index + 1;
                         result += '<tr>';
                         result += '<td>' + sl + '</td>';
-                        result += '<td>' + item.EName + '&nbsp;<span class="d-block">' +  item.Code + '</span></td>';
+                        result += '<td class="text-nowrap">' + item.Code + ' - ' + item.EName + '&nbsp;<span class="d-block">' + '</span></td>';
                         result += '<td>' + parseFloat(item.NewPre).toFixed(2) + '</td>';
                         result += '<td>' + parseFloat(item.DeffPre).toFixed(2) + '</td>';
                         result += '<td>' + parseFloat(item.FYPre).toFixed(2) + '</td>';
