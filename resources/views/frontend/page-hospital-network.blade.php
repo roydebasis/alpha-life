@@ -112,7 +112,6 @@
                         hospitals.forEach(function (item, index) {
                             let idx = index + 1;
                             let contactNo = (item.contact_no) ? item.contact_no.join('<br/>') : '...';
-                            console.log( item.contact_no.join(','));
                             data = data + '<tr><td>' + idx + '</td><td>' + item.name + '</td><td>' + item.address + '</td><td>' + item.contact + '</td><td>' + contactNo + '</td><td>' + item.opd_facility + '</td><td>' + item.credit_availability + '</td><td>' + item.location + '</td></tr>';
                         });
                     }

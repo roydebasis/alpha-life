@@ -157,5 +157,35 @@ class FrontendController extends Controller
 
         return back();
     }
+
+    public function premiumCollectionDetails(Request $request, $employeeCode) {
+        return view('frontend.users.premium-collection-details', compact('employeeCode'));
+    }
+
+    public function rankings(Request $request) {
+        $empProfile =  getEmpProfile();
+        return view('frontend.users.ranking', compact('empProfile'));
+    }
+
+    public function earnings(Request $request) {
+        $empProfile =  getEmpProfile();
+        return view('frontend.users.earnings', compact('empProfile'));
+    }
+
+    public function persistency(Request $request) {
+        $empProfile =  getEmpProfile();
+        return view('frontend.users.persistency', compact('empProfile'));
+    }
+
+    public function persistencyPolicy(Request $request, $selectedEmployeeId) {
+        $params = [
+            'employee_id' => $request->employee_id,
+            'selected_designation_key' => $request->selected_designation_key,
+            'login_designation_key' => $request->login_designation_key,
+            'selected_employee_id' => $selectedEmployeeId,
+            'type' => $request->type
+        ];
+        return view('frontend.users.persistency-policy-list', compact('params'));
+    }
 }
 

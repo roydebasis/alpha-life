@@ -48,6 +48,7 @@
         <div class="container">
             <div class="row " style="padding-top: 20px; padding-bottom: 20px;">
                 <div class="col-md-12 service-box-container">
+                    <div><a href="{{ url()->previous() }}" class="btn btn-sm action-sm btn-primary"><i class="fa fa-chevron-circle-left"></i> Back</a> </div>
                    <div class="table-responsive">
                        <table class="table table-bordered table-profile-info">
                            <tr>
@@ -65,7 +66,6 @@
                                    <span class="text-muted">{{$code}}</span>
                                </td>
                            </tr>
-
                            <tr>
                                <td>
                                    <p class="bottomZero">Father</p>
@@ -117,7 +117,7 @@
                        </table>
                    </div>
                 </div>
-                <div class="col-md-12 mb-80"><a href="{{ url()->previous() }}"><i class="fa fa-chevron-circle-left"></i> Back</a> </div>
+                <div class="col-md-12 mb-80"><a href="{{ url()->previous() }}" class="btn btn-sm action-sm btn-primary"><i class="fa fa-chevron-circle-left"></i> Back</a> </div>
             </div>
         </div>
     </section>

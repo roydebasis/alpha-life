@@ -49,10 +49,8 @@ Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
         Route::get('profile/changePassword/{username}', ['as' => "$module_name.changePassword", 'uses' => "$controller_name@changePassword"]);
         Route::patch('profile/changePassword/{username}', ['as' => "$module_name.changePasswordUpdate", 'uses' => "$controller_name@changePasswordUpdate"]);
         Route::delete('users/userProviderDestroy', ['as' => 'users.userProviderDestroy', 'uses' => 'UserController@userProviderDestroy']);
+
         Route::get('account', function() {
-//            dd(\App\Models\Role::where('name', 'employee')->first());
-//            $user = \Auth::user();
-//            dd($user->hasRole('employee', 'web'));
             return view('frontend.users.dashboard');
         })->name('userdashboard');
 
@@ -62,7 +60,16 @@ Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
 
         Route::get('account/premium-collection', function() {
             return view('frontend.users.premium-collection');
-        })->name('userProfile');
+        })->name('userPremiumCollection');
+
+        Route::get('account/premium-collection/details/{employeeCode}', 'FrontendController@premiumCollectionDetails')->name('userPremiumCollectionDetails')->name('premiumCollectionDetails');
+        //rankings
+        Route::get('account/rankings', 'FrontendController@rankings')->name('rankings');
+        Route::get('account/earnings', 'FrontendController@earnings')->name('earnings');
+        Route::get('account/persistency', 'FrontendController@persistency')->name('persistency');
+        Route::get('account/persistency/policy-list/{selectedEmployeeId}', 'FrontendController@persistencyPolicy')->name('persistency.policy.list');
+        Route::post('account/reset', 'UserController@resetPassword')->name('reset.password');
+        Route::post('account/change-password', 'UserController@changePasswordUpdate')->name('changePasswordUpdate');
     });
 });
 

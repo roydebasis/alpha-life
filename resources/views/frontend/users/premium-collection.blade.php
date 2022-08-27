@@ -1,8 +1,27 @@
 @extends('frontend.layouts.app')
+@push('after-styles')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/ju/dt-1.12.1/datatables.min.css"/>
+    <style>
+        #loader {
+            position: absolute;
+            z-index: 1;
+            left: 0;
+            right: 0;
+            background: #f7f0f096;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            min-height: 50px;
+        }
+        .relativePos{position: relative}
+    </style>
+@endpush
 @php
+    $title = 'Premium Collection';
     $subDesig = \Illuminate\Support\Facades\Session::get('subDesig');
     $subDesig = !empty($subDesig) ? json_decode($subDesig) : '';
-    $title = 'Premium Collection';
+    $empProfile = getEmpProfile();
 @endphp
 
 @section('title') {{ $title }} @endsection
@@ -11,16 +30,17 @@
     <x-page-header pageTitle="{{ $title }}"/>
     <section class="service-section-v3">
         <div class="container">
-            <div class="card bg-white border-light shadow-soft flex-md-row no-gutters" style="margin-top: 80px;">
+            <div class="card bg-white border-light shadow-soft flex-md-row no-gutters" style="margin-top: 40px;">
                 <div class="card-body p-0 premium-calculator">
-                    <h4 class="card-title mb-3">
-                        <i class="fas fa-coins"></i> Premium Collection
-                    </h4>
-                    <div class="row">
+                    <div><a href="{{ url()->previous() }}" class="btn btn-sm action-sm btn-primary"><i class="fa fa-chevron-circle-left"></i> Back</a> </div>
+                    <form id="reportFilterForm">
+                        <input type="hidden" id='employeeCode' value="{{$empProfile['code']}}">
+                        <input type="hidden" id='employeeDesignation' value="{{$empProfile['designation']}}">
+                        <div class="row">
                         <div class="form-group col-md-4">
                             <label for="designation">Designation</label>
-                            <select class="form-control" id="designation">
-                                <option selected disabled>Select Designation</option>
+                            <select class="form-control" id="designation" required>
+                                <option value="">Select Designation</option>
                                 @if(!empty($subDesig))
                                     @foreach($subDesig as $desig)
                                         <option value="{{$desig->key}}">{{$desig->name}}</option>
@@ -30,89 +50,204 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="mode">Mode</label>
-                            <select class="form-control" id="mode">
-                                <option selected disabled>Select Mode</option>
-                                <option>Daily</option>
-                                <option>Weekly</option>
-                                <option>Quarterly</option>
-                                <option>Monthly</option>
-                                <option>Half Yearly</option>
-                                <option>Yearly</option>
+                            <select class="form-control" id="mode" required>
+                                <option value="">Select Mode</option>
+                                <option value="daily">Daily</option>
+                                <option value="monthly">Monthly</option>
+                                <option value="quarterly">Quarterly</option>
+                                <option value="half yearly">Half Yearly</option>
+                                <option value="yearly">Yearly</option>
                             </select>
                         </div>
-
                         <div class="form-group col-md-4">
                             <label for="type">Type</label>
-                            <select class="form-control" id="type">
-                                <option value="summery" selected>Summery</option>
+                            <select class="form-control" id="type" required>
+                                <option value="summary" selected>Summary</option>
                             </select>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="startDate">Start Date</label>
-                            <input type="date" class="form-control" id="startDate">
+                            <input type="text" onchange="onDateChange()" class="form-control date-field" id="startDate" placeholder="Select Start Date" required>
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="endDate">End Date</label>
-                            <input type="date" class="form-control" id="endDate">
+                            <input type="text" onchange="onDateChange()" class="form-control date-field" id="endDate" placeholder="Select End Date" required>
                         </div>
 
                         <div class="form-group col-md-12 text-center">
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#premiumCollectionModal" type="button">Apply</button>
+                            <button class="btn btn-primary btn-sm action-sm" type="submit">Apply</button>
                         </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row mb-30 relativePos">
+                <div class="col-md-12">
+                    <div class="hide" id="loader"><div class="loader"></div></div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered hide" id="premiumReportDetails">
+                    <thead>
+                        <tr>
+                            <th>SL</th>
+                            <th>E Name</th>
+                            <th>New</th>
+                            <th>Def</th>
+                            <th>FY</th>
+                            <th>Ren</th>
+                            <th>Total</th>
+                            <th>Policy</th>
+                            <th>Persistency</th>
+                            <th>Supervisor</th>
+                            <th>Month</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-12 mb-80"><a href="{{ url()->previous() }}"><i class="fa fa-chevron-circle-left"></i> Back</a> </div>
-            <!-- Modal -->
-            <div class="modal fade" id="premiumCollectionModal" tabindex="-1" role="dialog" aria-labelledby="premiumCollectionModal" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Premium Collection</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <table class="table table-borderless">
-                                <tr><th colspan="2" class="py-1">MD. ARIF HOSSAIN</th></tr>
-                                <tr>
-                                    <td class="py-1">Code - 124738938</td>
-                                    <td class="py-1">New Business - 22390</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1">Policy Qty. 12</td>
-                                    <td class="py-1">Deferred - 78452</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1">Persistency 60</td>
-                                    <td class="py-1">Renewal - 78452</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-        {{--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
-                            <button type="button" class="btn btn-info">Deferred Details</button>
-                            <button type="button" class="btn btn-primary">Renewal Details</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="mb-80"><a href="{{ url()->previous() }}" class="btn btn-sm action-sm btn-primary"><i class="fa fa-chevron-circle-left"></i> Back</a> </div>
         </div>
     </section>
 @endsection
 
-@push('after-styles')
-    <style>
-        #premiumCollectionModal .modal-header .close {
-            margin-top: -22px;
-        }
-    </style>
-@endpush
 @push ("after-scripts")
-<script src="https://cdn.jsdelivr.net/npm/sharer.js@latest/sharer.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/ju/dt-1.12.1/datatables.min.js"></script>
+    <script>
+        var apiUrl = "{{ config('alpha.api_url') }}";
+        var datatableConfig = {
+            ordering: false,
+        };
+        jQuery(document).ready(function () {
+            $('.date-field').datepicker({
+                dateFormat: "yy-mm-dd",
+                changeYear: true,
+                changeMonth: true,
+                yearRange: "-100:+10",
+                onSelect: function(dateText) {
+                    $(this).change();
+                }
+            });
+            $('#reportFilterForm').submit(async function (e) {
+                e.preventDefault();
+                $('#loader').removeClass('hide');
+                let loggedInDesig = $('#employeeDesignation').val();
+                let data = {
+                    employee_id: $('#employeeCode').val(),
+                    selected_designation_key: $('#designation').val(),
+                    start_date: $('#startDate').val(),
+                    end_date:  $('#endDate').val(),
+                    mode: $('#mode').val(),
+                    type: $('#type').val()
+                }
+
+                let listOfDesignations = window.designaions;
+                let loggedInDesigkey = Object.keys(window.designaions).find(key => listOfDesignations[key] == loggedInDesig);
+                if (!loggedInDesigkey) {
+                    alert('Please try again sometime later.');
+                    console.log('Logged in users designations list not found!!');
+                    return;
+                }
+                data.login_designation_key = loggedInDesigkey;
+
+                let response = await getReport(data);
+                let result = '';
+                response.data.report.forEach(function (item, index) {
+                    let supervisors = '';
+                    if (item.Supervisor) {
+                        supervisors = item.Supervisor.split(',');
+                        supervisors = supervisors.join('<br/>');
+                    }
+                    let sl = index + 1;
+                        result += '<tr>';
+                        result += '<td>' + sl + '</td>';
+                        result += '<td class="text-nowrap">' + item.Code + ' - ' + item.EName + '&nbsp;<span class="d-block">' + '</span></td>';
+                        result += '<td>' + parseFloat(item.NewPre).toFixed(2) + '</td>';
+                        result += '<td>' + parseFloat(item.DeffPre).toFixed(2) + '</td>';
+                        result += '<td>' + parseFloat(item.FYPre).toFixed(2) + '</td>';
+                        result += '<td>' + parseFloat(item.RenPre).toFixed(2) + '</td>';
+                        result += '<td>' + parseFloat(item.TotPrePre).toFixed(2) + '</td>';
+                        result += '<td>' + item.PolicyQty + '</td>';
+                        result += '<td>' + item.Persistency + '</td>';
+                        result += '<td class="text-nowrap">' + supervisors + '</td>';
+                        result += '<td>' + item.Month + '</td>';
+                        result += '<td>';
+                        result += '<a href="/account/premium-collection/details/'+item.Code+'?&start_date='+data.start_date+'&details_type=deferred&selected_designation_key='+data.selected_designation_key+'&mode='+data.mode+'" class="btn btn-sm btn-primary action-sm" data-type="deferred" data-empCode="'+ item.Code+'">Def Details</a>';
+                        result += '<a href="/account/premium-collection/details/'+item.Code+'?&start_date='+data.start_date+'&details_type=renewal&selected_designation_key='+data.selected_designation_key+'&mode='+data.mode+'" class="btn btn-sm btn-info action-sm" data-type="renewal" data-empCode="'+ item.Code+'">Ren Details</a>';
+                        result += '</td>';
+                        result += '</tr>';
+                });
+
+                if ($.fn.dataTable.isDataTable('#premiumReportDetails') ) {
+                    $('#premiumReportDetails').DataTable().clear().destroy();
+                }
+                $('#premiumReportDetails tbody').empty().html(result);
+                $('#premiumReportDetails').removeClass('hide');
+                $('#premiumReportDetails').DataTable(datatableConfig);
+                $('#loader').addClass('hide');
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", getDesignations);
+
+        /**
+         * get report data.
+         * @param data
+         */
+        async function getReport(params) {
+            return $.ajax({
+                url: apiUrl + "public/premium-collection-report",
+                method: 'POST',
+                dataType: 'JSON',
+                data: params
+            }).done(function (data) {
+                if (data.status == 200) {
+                    return data.data.report;
+                }
+                return [];
+            }).fail(function () {
+                alert('error')
+            });
+        }
+
+        /**
+         * get al designations.
+         * @param data
+         */
+        async function getDesignations() {
+            return $.ajax({
+                url: apiUrl + "public/designations",
+                method: 'GET',
+                dataType: 'JSON'
+            }).done(function(data) {
+                if (data.status == 200 ) {
+                    designations = data.data.designations;
+                    window.designaions = data.data.designations;
+                    return data.data.designations;
+                }
+                return [];
+            }).fail(function() {
+                alert('error')
+            });
+        }
+
+        /**
+         * date select event
+         */
+        function onDateChange() {
+            let start = $('#startDate').val();
+            let end = $('#endDate').val();
+            if (start) {
+                $('#endDate').datepicker('option', 'minDate', new Date(start));
+            }
+            if (end) {
+                $('#startDate').datepicker('option', 'maxDate', new Date(end));
+            }
+        }
+    </script>
 @endpush
 
