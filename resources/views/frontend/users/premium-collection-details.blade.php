@@ -31,28 +31,33 @@
     <x-page-header pageTitle="{{ $title }}"/>
     <section class="service-section-v3">
         <div class="container">
-            <div class="row mb-30 relativePos mt-30">
-                <input type="hidden" id="employeeCode" value="{{$employeeCode}}">
-                <div class="hide" id="loader"><div class="loader"></div></div>
-                <table class="table table-bordered hide" id="reportDetails">
-                    <thead>
-                        <tr>
-                            <th>SL</th>
-                            <th>Name</th>
-                            <th>Policy No</th>
-                            <th>MOP</th>
-                            <th>Installment No</th>
-                            <th>{{ucfirst($detailsType)}} Premium</th>
-                            <th>Paid Installment</th>
-                            <th>Paid Amount</th>
-                            <th>ComDt</th>
-                            <th>NDD</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+            <div class="row mb-30 mt-30">
+                <div class="col-md-12">
+                    <div><a href="{{ url()->previous() }}" class="btn btn-sm btn-primary action-sm"><i class="fa fa-chevron-circle-left"></i> Back</a> </div>
+                    <input type="hidden" id="employeeCode" value="{{$employeeCode}}">
+                    <div class="hide" id="loader"><div class="loader"></div></div>
+                    <div class="table-responsive" style="margin-bottom: 10px">
+                        <table class="table table-bordered hide" id="reportDetails">
+                            <thead>
+                                <tr>
+                                    <th>SL</th>
+                                    <th>Name</th>
+                                    <th>Policy No</th>
+                                    <th>MOP</th>
+                                    <th>Installment No</th>
+                                    <th>{{ucfirst($detailsType)}} Premium</th>
+                                    <th>Paid Installment</th>
+                                    <th>Paid Amount</th>
+                                    <th>ComDt</th>
+                                    <th>NDD</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="mb-80"><a href="{{ url()->previous() }}" class="btn btn-sm btn-primary action-sm"><i class="fa fa-chevron-circle-left"></i> Back</a></div>
+                </div>
             </div>
-            <div class="col-md-12 mb-80"><a href="{{ url()->previous() }}"><i class="fa fa-chevron-circle-left"></i> Back</a> </div>
         </div>
     </section>
 @endsection
@@ -76,8 +81,6 @@
             }
             getReport(data);
         });
-
-        // document.addEventListener("DOMContentLoaded", getDesignations);
 
         /**
          * get report data.
@@ -135,27 +138,6 @@
         }
 
         /**
-         * get al designations.
-         * @param data
-         */
-        async function getDesignations() {
-            return $.ajax({
-                url: apiUrl + "public/designations",
-                method: 'GET',
-                dataType: 'JSON'
-            }).done(function(data) {
-                if (data.status == 200 ) {
-                    designations = data.data.designations;
-                    window.designaions = data.data.designations;
-                    return data.data.designations;
-                }
-                return [];
-            }).fail(function() {
-                alert('error')
-            });
-        }
-
-        /**
          * get all url params
          * @param k
          * @returns {*}
@@ -167,4 +149,3 @@
         }
     </script>
 @endpush
-

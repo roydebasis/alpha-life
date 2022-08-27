@@ -31,6 +31,7 @@
     <div class="container">
         <div class="card bg-white border-light shadow-soft flex-md-row no-gutters" style="margin-top: 40px;">
             <div class="card-body p-0 premium-calculator">
+                <div><a href="{{ url()->previous() }}" class="btn btn-sm action-sm btn-primary"><i class="fa fa-chevron-circle-left"></i> Back</a> </div>
                 <form id="persistencyFilterForm">
                     <input type="hidden" id='employeeCode' value="{{$empProfile['code']}}">
                     <input type="hidden" id='employeeDesignation' value="{{$empProfile['designation']}}">
@@ -46,57 +47,38 @@
                                 @endif
                             </select>
                         </div>
-{{--                        <div class="form-group col-sm-4">--}}
-{{--                            <label for="mode">Mode</label>--}}
-{{--                            <select class="form-control" id="mode" required>--}}
-{{--                                <option value="monthly" selected>Monthly</option>--}}
-{{--                            </select>--}}
-{{--                        </div>--}}
-{{--                        <div class="form-group col-sm-4">--}}
-{{--                            <label for="type">Type</label>--}}
-{{--                            <select class="form-control" id="type" required>--}}
-{{--                                <option value="summary" selected>Summary</option>--}}
-{{--                            </select>--}}
-{{--                        </div>--}}
-
-{{--                        <div class="form-group col-sm-4">--}}
-{{--                            <label for="startDate">Start Date</label>--}}
-{{--                            <input type="text" onchange="onDateChange()" class="form-control date-field" id="startDate" placeholder="Select Start Date" required>--}}
-{{--                        </div>--}}
-
-{{--                        <div class="form-group col-sm-3">--}}
-{{--                            <label for="endDate">End Date</label>--}}
-{{--                            <input type="text" onchange="onDateChange()" class="form-control date-field" id="endDate" placeholder="Select End Date" required>--}}
-{{--                        </div>--}}
-
                         <div class="form-group col-md-12 text-center">
-                            <button class="btn btn-primary btn-sm" type="submit">Apply</button>
+                            <button class="btn btn-primary btn-sm action-sm" type="submit">Apply</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
         <div class="row mb-30 relativePos">
-            <div class="hide" id="loader"><div class="loader"></div></div>
-            <table class="table table-bordered hide" id="persistencyTbl">
-                <thead>
-                    <tr>
-                        <th>SL</th>
-                        <th>Code</th>
-                        <th>Name</th>
-                        <th>Desig</th>
-                        <th>Total</th>
-                        <th>Ren</th>
-                        <th>Deff</th>
-                        <th>ChainSetup</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+            <div class="col-md-12">
+                <div class="hide" id="loader"><div class="loader"></div></div>
+                <div class="table-responsive">
+                    <table class="table table-bordered hide" id="persistencyTbl">
+                    <thead>
+                        <tr>
+                            <th>SL</th>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Desig</th>
+                            <th>Total</th>
+                            <th>Ren</th>
+                            <th>Deff</th>
+                            <th>ChainSetup</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                </div>
+            </div>
         </div>
 
-        <div class="col-md-12 mb-80"><a href="{{ url()->previous() }}"><i class="fa fa-chevron-circle-left"></i> Back</a> </div>
+        <div class="mb-80"><a href="{{ url()->previous() }}" class="btn btn-sm action-sm btn-primary"><i class="fa fa-chevron-circle-left"></i> Back</a> </div>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="persistencyDetails" tabindex="-1" role="dialog" aria-labelledby="performanceModalLabel" aria-hidden="true">
