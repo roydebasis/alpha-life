@@ -90,7 +90,7 @@
                         <table class="table table-bordered hide" id="premiumReportDetails">
                     <thead>
                         <tr>
-                            <th>SL</th>
+                            <th>Action</th>
                             <th>E Name</th>
                             <th>New</th>
                             <th>Def</th>
@@ -101,7 +101,6 @@
                             <th>Persistency</th>
                             <th>Supervisor</th>
                             <th>Month</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -164,7 +163,10 @@
                     }
                     let sl = index + 1;
                         result += '<tr>';
-                        result += '<td>' + sl + '</td>';
+                        result += '<td>';
+                        result += '<a href="/account/premium-collection/details/'+item.Code+'?&start_date='+data.start_date+'&details_type=deferred&selected_designation_key='+data.selected_designation_key+'&mode='+data.mode+'" class="btn btn-sm btn-primary action-sm" data-type="deferred" data-empCode="'+ item.Code+'">Def Details</a>';
+                        result += '<a href="/account/premium-collection/details/'+item.Code+'?&start_date='+data.start_date+'&details_type=renewal&selected_designation_key='+data.selected_designation_key+'&mode='+data.mode+'" class="btn btn-sm btn-info action-sm" data-type="renewal" data-empCode="'+ item.Code+'">Ren Details</a>';
+                        result += '</td>';
                         result += '<td class="text-nowrap">' + item.Code + ' - ' + item.EName + '&nbsp;<span class="d-block">' + '</span></td>';
                         result += '<td>' + parseFloat(item.NewPre).toFixed(2) + '</td>';
                         result += '<td>' + parseFloat(item.DeffPre).toFixed(2) + '</td>';
@@ -175,10 +177,6 @@
                         result += '<td>' + item.Persistency + '</td>';
                         result += '<td class="text-nowrap">' + supervisors + '</td>';
                         result += '<td>' + item.Month + '</td>';
-                        result += '<td>';
-                        result += '<a href="/account/premium-collection/details/'+item.Code+'?&start_date='+data.start_date+'&details_type=deferred&selected_designation_key='+data.selected_designation_key+'&mode='+data.mode+'" class="btn btn-sm btn-primary action-sm" data-type="deferred" data-empCode="'+ item.Code+'">Def Details</a>';
-                        result += '<a href="/account/premium-collection/details/'+item.Code+'?&start_date='+data.start_date+'&details_type=renewal&selected_designation_key='+data.selected_designation_key+'&mode='+data.mode+'" class="btn btn-sm btn-info action-sm" data-type="renewal" data-empCode="'+ item.Code+'">Ren Details</a>';
-                        result += '</td>';
                         result += '</tr>';
                 });
 
