@@ -205,8 +205,16 @@
                         value = `${report[key]}`;
                         value = parseFloat(value).toFixed(2);
                     }
+                    let column = `${key}`;
+                    if (column == 'DCCode') { column = 'ASMCode'; }
+                    if (column == 'DCName') { column = 'ASMName'; }
+                    if (column == 'RCCode') { column = 'SMCode'; }
+                    if (column == 'RCName') { column = 'SMName'; }
+                    if (column == 'DVCCode') { column = 'SSMCode'; }
+                    if (column == 'DVCName') { column = 'SSMName'; }
+
                     tableRows += '<tr>';
-                    tableRows += '<td>' + `${key}` + '</td>';
+                    tableRows += '<td>' + column + '</td>';
                     tableRows += '<td>' + value + '</td>';
                     tableRows += '</tr>';
                 }
