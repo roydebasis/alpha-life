@@ -197,9 +197,12 @@
             let tableRows = '';
             let report = reportData.find(item => item.Code == findReportId);
             let amtFields = ['SumAssured', 'TotComm', 'NetComm', 'TotPayable', 'TotTax', 'NetEarning'];
-            if(report ) {
+            let excludeFields = ['DesigSl', 'BYY'];
+
+            if (report ) {
                 let value = '';
                 for (const key in report) {
+                    if (excludeFields.includes(key)) continue;
                     value = `${report[key]}`;
                     if (amtFields.includes(key)) {
                         value = `${report[key]}`;

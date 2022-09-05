@@ -47,6 +47,7 @@
                                 <th>PolicyNo</th>
                                 <th>PHName</th>
                                 <th>Mobile</th>
+                                <th>Status</th>
                                 <th>ChainSetup</th>
                                 <th>Action</th>
                             </tr>
@@ -161,6 +162,7 @@
             result += '<td>' + item.PolicyNo + '</td>';
             result += '<td>' + item.PHName + '</td>';
             result += '<td>' + item.Mobile + '</td>';
+            result += '<td>' + item.Status + '</td>';
             result += '<td class="text-nowrap">' + ChainSetup + '</td>';
             result += '<td>';
             result += '<button class="btn btn-sm btn-primary action-sm show-more" type="button" data='+item.PolicyNo+'>More</button>';
