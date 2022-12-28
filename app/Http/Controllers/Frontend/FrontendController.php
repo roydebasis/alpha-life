@@ -94,8 +94,8 @@ class FrontendController extends Controller
     public function contact()
     {
         $body_class = '';
-
-        return view('frontend.contact', compact('body_class'));
+        $content = Page::where('slug', 'contact')->firstOrFail();
+        return view('frontend.contact', compact('body_class', 'content'));
     }
 
 

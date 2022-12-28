@@ -47,10 +47,10 @@
 
         <livewire:users-index />
 
-        
+
     </div>
     <div class="card-footer">
-        
+
     </div>
 </div>
 
