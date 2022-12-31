@@ -441,7 +441,6 @@ class UserController extends Controller
         $module_name_singular = Str::singular($this->module_name);
         $module_icon = $this->module_icon;
         $module_action = 'Edit';
-
         $$module_name_singular = User::findOrFail($id);
 
         return view("backend.$module_name.changeProfilePassword", compact('module_name', 'module_title', "$module_name_singular", 'module_icon', 'module_action'));
@@ -508,12 +507,12 @@ class UserController extends Controller
         if (!auth()->user()->can('edit_users')) {
             $id = auth()->user()->id;
         }
-
+        $isEditingEmpPolicyHolder = request()->isEditingEmpPolicyHolder;
         $$module_name_singular = $module_model::findOrFail($id);
 
         return view(
             "backend.$module_name.changePassword",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular")
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'isEditingEmpPolicyHolder')
         );
     }
 
@@ -550,6 +549,10 @@ class UserController extends Controller
         $$module_name_singular->update($request_data);
 
         Flash::success("<i class='fas fa-check'></i> '".Str::singular($module_title)."' Updated Successfully")->important();
+
+        if ($request->isEditingEmpPolicyHolder) {
+            return redirect("admin/employee-policy-holders");
+        }
 
         return redirect("admin/$module_name");
     }
@@ -931,5 +934,35 @@ class UserController extends Controller
                 return redirect()->back();
             }
         }
+    }
+
+
+    /**
+     * Display a listing of  employees or policy holders.
+     *
+     * @return Response
+     */
+    public function empPolicyHolders()
+    {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'List';
+
+        $page_heading = 'Employees/Policy Holders';
+        $title = $page_heading.' '.ucfirst($module_action);
+
+        $$module_name = $module_model::paginate();
+
+        Log::info("'$title' viewed by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
+
+        return view(
+            "backend.emp-policy-holders.index",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title')
+        );
     }
 }

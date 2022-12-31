@@ -48,14 +48,6 @@
                 </strong>
                 {{ $$module_name_singular->email }}
             </div>
-            @if($$module_name_singular->employee_code || $$module_name_singular->policy_number)
-            <div class="col">
-                <strong>
-                    Employee code / Policy No.:
-                </strong>
-                {{ $$module_name_singular->employee_code ?? $$module_name_singular->policy_number}}
-            </div>
-            @endif
         </div>
         <div class="row mt-4 mb-4">
             <div class="col">
@@ -88,7 +80,6 @@
                         <div class="row">
                             <div class="col-4">
                                 <div class="form-group">
-                                    {{ html()->input('hidden', 'isEditingEmpPolicyHolder', $isEditingEmpPolicyHolder) }}
                                     {{ html()->button($text = "<i class='fas fa-save'></i> Save", $type = 'submit')->class('btn btn-success') }}
                                 </div>
                             </div>

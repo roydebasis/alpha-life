@@ -1,4 +1,8 @@
-@extends('backend.layouts.app')
+@extends ('backend.layouts.app')
+
+<?php
+$module_name_singular = Str::singular($module_name);
+?>
 
 @section('title') {{ __($module_action) }} {{ $module_title }} @endsection
 
@@ -8,7 +12,7 @@
         {{ $module_title }}
     </x-backend-breadcrumb-item>
 
-    <x-backend-breadcrumb-item type="active">{{ __($module_action) }}</x-backend-breadcrumb-item>
+    <x-backend-breadcrumb-item type="active">{{__('Change Password')}}</x-backend-breadcrumb-item>
 </x-backend-breadcrumbs>
 @endsection
 
@@ -18,7 +22,7 @@
         <div class="row">
             <div class="col-8">
                 <h4 class="card-title mb-0">
-                    <i class="{{$module_icon}}"></i> @lang('User')
+                    <i class="{{$module_icon}}"></i> Profile
                     <small class="text-muted">@lang('Change Password') </small>
                 </h4>
                 <div class="small text-muted">
@@ -48,18 +52,10 @@
                 </strong>
                 {{ $$module_name_singular->email }}
             </div>
-            @if($$module_name_singular->employee_code || $$module_name_singular->policy_number)
-            <div class="col">
-                <strong>
-                    Employee code / Policy No.:
-                </strong>
-                {{ $$module_name_singular->employee_code ?? $$module_name_singular->policy_number}}
-            </div>
-            @endif
         </div>
         <div class="row mt-4 mb-4">
             <div class="col">
-                {{ html()->form('PATCH', route('backend.users.changePasswordUpdate', $$module_name_singular->id))->class('form-horizontal')->open() }}
+                {{ html()->form('PATCH', route('backend.users.changeProfilePasswordUpdate', $user->id))->class('form-horizontal')->open() }}
 
                 <div class="form-group row">
                     {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-2 form-control-label')->for('password') }}
@@ -88,7 +84,6 @@
                         <div class="row">
                             <div class="col-4">
                                 <div class="form-group">
-                                    {{ html()->input('hidden', 'isEditingEmpPolicyHolder', $isEditingEmpPolicyHolder) }}
                                     {{ html()->button($text = "<i class='fas fa-save'></i> Save", $type = 'submit')->class('btn btn-success') }}
                                 </div>
                             </div>

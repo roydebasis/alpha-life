@@ -23,23 +23,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
-                    <h3>Contact Info</h3>
-                    <p>
-                        A. J. Tower, Level # 8 and 9 <br>
-                        Sonargaon Link Road , 4, Kawran BazarDhaka - 1215<br>
-                        Tel : 88 02 (55013304, 55013305, 55013306) <br>
-                        IP Phone : 09612 400 200
-                    <h3>Hotline</h3>
-                    01787683517 (Policy Servicing)<br>
-                    01787683520 (Group Life) <br>
-                    <strong>IP Phone: 09612 400 200</strong> <br>
-                    <strong> E-mail :</strong> info@alphalife.com.bd
-                    </p>
-                    <h3>Business Hours</h3>
-                    <p>
-                        <span>Sun - Thu: 9am to 6pm</span>
-
-                    </p>
+                    {!! $content->content !!}
                 </div>
                 <div class="col-md-7">
                     <h3>Contact Form</h3>

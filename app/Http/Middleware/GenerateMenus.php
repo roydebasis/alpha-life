@@ -124,6 +124,20 @@ class GenerateMenus
                 'class' => 'c-sidebar-nav-link',
             ]);
 
+            // Submenu: Employees/Policy Holders
+            $accessControl->add('<i class="c-sidebar-nav-icon cil-people"></i> Emp/Policy Holders', [
+                'route' => 'backend.users.empPolicyHolders',
+                'class' => 'nav-item',
+            ])
+                ->data([
+                    'order'         => 105,
+                    'activematches' => 'admin/employee-policy-holders*',
+                    'permission'    => ['view_users'],
+                ])
+                ->link->attr([
+                    'class' => 'c-sidebar-nav-link',
+                ]);
+
             // Submenu: Roles
             $accessControl->add('<i class="c-sidebar-nav-icon cil-people"></i> Roles', [
                 'route' => 'backend.roles.index',
