@@ -115,6 +115,10 @@ class FrontendController extends Controller
         if ($slug == 'premium-calculator') {
             return view('frontend.premium-calculator', compact('meta_page_type'));
         }
+        if ($slug == 'policy-holder-information') {
+            return view('frontend.policy-holder-information', compact('meta_page_type'));
+        }
+        #end static page redirect
         $content = Page::where('slug', $slug)->firstOrFail();
         if ($slug == 'about-alpha') {
             $aboutAlpha = About::first();
