@@ -4,168 +4,318 @@
 
 @section('content')
     <x-page-header pageTitle="Policy Holder Information"/>
-    <section class="service-section-v3">
-{{--        <div class="container">--}}
-{{--            <div class="row">--}}
-{{--                <div class="col-lg-12 col-md-12 service-box-container curved-border no-padding">--}}
-{{--                    <div style="border-top-left-radius: 50px; overflow: hidden;">--}}
-{{--                        <img style="display: block; max-width: 100%; height: auto;" src="{{ asset('assets/images/banner_premium_calculator.png') }}">--}}
-{{--                    </div>--}}
-{{--                    <div class="premium-calculator" id="creative-ideas">--}}
-{{--                        <div class="row">--}}
-{{--                            <div class="col-md-5">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="birth_date">Birth Date</label>--}}
-{{--                                    <input type="text" onchange="onDateChange()" name="birth_date" class="date-field form-control" id="birth_date" placeholder="Today's Date">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-5">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="effective_date">Effective Date</label>--}}
-{{--                                    <input type="text" onchange="onDateChange()" name="effective_date" class="date-field form-control" id="effective_date" placeholder="Effective Date">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-2">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="">Result</label>--}}
-{{--                                    <p><span id="age" data-age="" class="text-capitalize text-warning fon">N/A</span></p>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
-{{--                            <div class="col-md-12">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="plan">Select Plan</label>--}}
-{{--                                    <select name="plan" class="form-control" id="plan" disabled onchange="onPlanChange()">--}}
-{{--                                        <option value="">Select Plan</option>--}}
-{{--                                    </select>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="row" id="plan-selected">--}}
-{{--                            <div class="col-md-4">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="term" >Term</label>--}}
-{{--                                    <select name="term" class="form-control" id="term">--}}
-{{--                                        <option value="">Select Term</option>--}}
-{{--                                    </select>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
-{{--                            <div class="col-md-4">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="payment_mode">Mode of Payment</label>--}}
-{{--                                    <select name="payment_mode" class="form-control" id="payment_mode">--}}
-{{--                                        <option value="">Select Payment Mode</option>--}}
-{{--                                    </select>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
-{{--                            <div class="col-md-4">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="sum_assured">Sum Assured</label>--}}
-{{--                                    <input type="number" min="50000" placeholder="Assured Amount" name="sum_assured" class="form-control" id="sum_assured" />--}}
-{{--                                    <small>Minimum Amount 50,000</small>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
-{{--                            <button type="button" class="btn btn-primary btn-md text-center ml-auto" onclick="calculate()">Calculate</button>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
+    <section class="service-section-v3 policy-holder-info">
         <div class="container">
-            <div class="stepwizard">
-                <div class="stepwizard-row setup-panel">
-                    <div class="stepwizard-step col-xs-3">
-                        <a href="#step-1" type="button" class="btn btn-success btn-circle">1</a>
-                        <p><small>Policy Holder Information</small></p>
-                    </div>
-                    <div class="stepwizard-step col-xs-3">
-                        <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-                        <p><small>Policy Information</small></p>
-                    </div>
-                    <div class="stepwizard-step col-xs-3">
-                        <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
-                        <p><small>Chain Setup</small></p>
-                    </div>
-                    <div class="stepwizard-step col-xs-3">
-                        <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
-                        <p><small>PR Information</small></p>
+            <div class="row">
+                <div class="stepwizard">
+                    <div class="stepwizard-row setup-panel">
+                        <div class="stepwizard-step col-xs-3">
+                            <a href="#step-1" type="button" class="btn btn-success btn-circle">1</a>
+                            <p><small>Policy Holder Information</small></p>
+                        </div>
+                        <div class="stepwizard-step col-xs-3">
+                            <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                            <p><small>Policy Information</small></p>
+                        </div>
+                        <div class="stepwizard-step col-xs-3">
+                            <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                            <p><small>Chain Setup</small></p>
+                        </div>
+                        <div class="stepwizard-step col-xs-3">
+                            <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+                            <p><small>PR Information</small></p>
+                        </div>
                     </div>
                 </div>
+                <form role="form">
+                    <div class="panel panel-primary setup-content" id="step-1">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Policy Holder Information</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group col-md-3">
+                                <label class="control-label">Proposal No</label>
+                                <input maxlength="100" disabled type="text" required="required" class="form-control" placeholder="Proposal No" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="commDate">Comm. Date</label>
+                                <input name="commDate" id="commDate" type="text" required="required" class="form-control date-field" placeholder="Comm. Date" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="type">Type</label>
+                                <select name="type" required="required" class="form-control" id="type">
+                                    <option value="">Select Type</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="businessMonth">Business Month</label>
+                                <select name="businessMonth" required="required" class="form-control" id="businessMonth">
+                                    <option value="">Select Type</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="proposalDate">Proposal Date</label>
+                                <input name="proposalDate" id="proposalDate" type="text" required="required" class="form-control date-field" placeholder="Proposal Date" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="riskDate">Risk Date</label>
+                                <input name="riskDate" id="riskDate" type="text" required="required" class="form-control date-field" placeholder="Risk Date" />
+                            </div>
+                            <div class="col-md-12"></div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label">Name</label>
+                                <input name="name" id="name" type="text" required="required" class="form-control" placeholder="Name" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="image">Image</label>
+                                <input type="file" name="image" id="image" required="required" class="form-control" placeholder="Upload" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="father">Father's Name</label>
+                                <input name="father" id="father" type="text" required="required" class="form-control" placeholder="Father's Name" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="mother">Mother's Name</label>
+                                <input name="mother" id="mother" type="text" required="required" class="form-control" placeholder="Mother's Name" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="spouseName">Spouse Name</label>
+                                <input name="spouseName" id="spouseName" type="text" required="required" class="form-control" placeholder="Spouse Name" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="occupation">Occupation</label>
+                                <select name="occupation" required="required" class="form-control" id="occupation">
+                                    <option value="">Select Type</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="nationality">Nationality</label>
+                                <input name="nationality" id="nationality" type="text" readonly required="required" value="Bangladesh" class="form-control" placeholder="Nationality" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="urbanRural">Urban\Rural</label>
+                                <select name="urban_rural" required="required" class="form-control" id="urbanRural">
+                                    <option value="">Select</option>
+                                    <option value="URBAN">URBAN</option>
+                                    <option value="RURAL">RURAL</option>
+                                    <option value="ABROAD">ABROAD</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 fontItalic">Address</div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="division">Division</label>
+                                <select name="division" required="required" class="form-control" id="division">
+                                    <option value="">Select</option>
+                                    <option value="URBAN">URBAN</option>
+                                    <option value="RURAL">RURAL</option>
+                                    <option value="ABROAD">ABROAD</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="district">District</label>
+                                <select name="district" required="required" class="form-control" id="district">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="upazilla">Upazilla/PS</label>
+                                <select name="upazilla" required="required" class="form-control" id="upazilla">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="mobile">Mobile</label>
+                                <input type="text" name="mobile" id="mobile" required="required" class="form-control" placeholder="Mobile Number" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="email">Email ID</label>
+                                <input type="text" name="email" id="email" required="required" class="form-control" placeholder="Email" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="dob">DOB</label>
+                                <input type="text" name="dob" id="dob" required="required" class="form-control date-field" placeholder="DOB" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="age">Age</label>
+                                <input type="text" name="age" id="age" required="required" class="form-control" placeholder="Age" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="ageProof">Age Proof</label>
+                                <select name="ageProof" id="ageProof" required="required" class="form-control">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="education">Education</label>
+                                <select name="education" id="education" required="required" class="form-control">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="religion">Religion</label>
+                                <select name="religion" id="religion" required="required" class="form-control">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="sex">Sex</label>
+                                <select name="sex" id="sex" required="required" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Hermaphrodite">Hermaphrodite</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="nationalId">National ID</label>
+                                <select name="nationalId" id="nationalId" required="required" class="form-control">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12"></div>
+{{--                            <div class="form-group col-md-3">--}}
+{{--                                <label class="control-label" for="policyNo">Policy No</label>--}}
+{{--                                <input type="text" name="policyNo" id="policyNo" required="required" class="form-control" placeholder="Policy No" />--}}
+{{--                            </div>--}}
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="sumAssured">Sum Assured</label>
+                                <input type="text" name="sumAssured" id="sumAssured" required="required" class="form-control" placeholder="Sum Assured" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="plan">Plan</label>
+                                <select name="plan" id="plan" required="required" class="form-control" onchange="onPlanChange()">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="term">Term</label>
+                                <select name="term" id="term" required="required" class="form-control">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 fontItalic">Nominee(s)</div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="nomineeName">Nominee Name</label>
+                                <input name="nomineeName" id="nomineeName" type="text" required="required" class="form-control" placeholder="Nominee Name" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="nomineeAge">Nominee Age</label>
+                                <input name="nomineeAge" id="nomineeAge" type="text" required="required" class="form-control" placeholder="Nominee Age" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="nomineePercentage">%</label>
+                                <input name="nomineePercentage" id="nomineePercentage" type="text" required="required" class="form-control" placeholder="%" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="nomineeRelation">Relation</label>
+                                <select name="nomineeRelation" id="nomineeRelation" required="required" class="form-control">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 text-center form-group"><button class="btn-info btn-sm">Add Nominee</button></div>
+                            <div class="col-md-12 fontItalic">Guardian</div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="guardianName">Guardian Name</label>
+                                <input type="text" name="guardianName" id="guardianName" required="required" class="form-control" placeholder="Guardina Name" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="guardianAge">Guardian Age</label>
+                                <input type="text" name="guardianAge" id="guardianAge" required="required" class="form-control" placeholder="Guardina Age" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="guardianRelation">Relation</label>
+                                <select name="guardianRelation" id="guardianRelation" required="required" class="form-control">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 fontItalic">Child</div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="childName">Child Name</label>
+                                <input type="text" name="childName" id="childName" required="required" class="form-control" placeholder="Child Name" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="childDob">DOB</label>
+                                <input type="text" name="childDob" id="childDob" required="required" class="form-control date-field" placeholder="Child DOB" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="childAge">Age</label>
+                                <input type="text" name="childAge" id="childAge" required="required" class="form-control" placeholder="Child Age" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="childAgeProof">Age Proof</label>
+                                <input type="text" name="childAgeProof" id="childAgeProof" required="required" class="form-control" placeholder="Child Age Proof" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="childClass">Class</label>
+{{--                                <input type="text" name="childClass" id="childClass" required="required" class="form-control" placeholder="Class" />--}}
+                                <select name="childClass" id="childClass" required="required" class="form-control">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="relationWithPayee">Relation With Payee</label>
+                                <select name="relationWithPayee" id="relationWithPayee" required="required" class="form-control">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-primary setup-content" id="step-2">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Policy Information</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="control-label">Company Name</label>
+                                <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Name" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Company Address</label>
+                                <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Address" />
+                            </div>
+                            <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-primary setup-content" id="step-3">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Chain Setup</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="control-label">Company Name</label>
+                                <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Name" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Company Address</label>
+                                <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Address" />
+                            </div>
+                            <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-primary setup-content" id="step-4">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">PR Information</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="control-label">Company Name</label>
+                                <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Name" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Company Address</label>
+                                <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Address" />
+                            </div>
+                            <button class="btn btn-success pull-right" type="submit">Finish!</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-
-            <form role="form">
-                <div class="panel panel-primary setup-content" id="step-1">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Policy Holder Information</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <label class="control-label">First Name</label>
-                            <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter First Name" />
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Last Name</label>
-                            <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Last Name" />
-                        </div>
-                        <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
-                    </div>
-                </div>
-
-                <div class="panel panel-primary setup-content" id="step-2">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Policy Information</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <label class="control-label">Company Name</label>
-                            <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Name" />
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Company Address</label>
-                            <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Address" />
-                        </div>
-                        <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
-                    </div>
-                </div>
-
-                <div class="panel panel-primary setup-content" id="step-3">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Chain Setup</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <label class="control-label">Company Name</label>
-                            <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Name" />
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Company Address</label>
-                            <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Address" />
-                        </div>
-                        <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
-                    </div>
-                </div>
-
-                <div class="panel panel-primary setup-content" id="step-4">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">PR Information</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <label class="control-label">Company Name</label>
-                            <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Name" />
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Company Address</label>
-                            <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Address" />
-                        </div>
-                        <button class="btn btn-success pull-right" type="submit">Finish!</button>
-                    </div>
-                </div>
-            </form>
         </div>
 {{--        https://bootsnipp.com/snippets/j6rkb--}}
     </section>
@@ -217,18 +367,12 @@
 @endsection
 @push('after-styles')
     <style>
-        .service-box-container { margin: 20px 0 80px; }
-        .curved-border {
-            border-bottom-right-radius: 50px;
-            border-top-left-radius: 50px;
-            overflow: hidden;
-            background-color: white;
-            border-left: 1px solid #2a2a86;
-            border-right: 1px solid #2a2a86;
-            border-bottom: 1px solid #2a2a86;
+        .fontItalic {
+            font-style: italic;
         }
-        .premium-calculator { padding: 30px; }
-
+        .policy-holder-info .has-error .form-control {
+            border-color: #a94442;
+        }
         .stepwizard-step p {
             margin-top: 0px;
             color:#666;
@@ -240,6 +384,7 @@
             display: table;
             width: 100%;
             position: relative;
+            margin-top: 30px;
         }
         .stepwizard-step button[disabled] {
             /*opacity: 1 !important;
@@ -265,6 +410,9 @@
             display: table-cell;
             text-align: center;
             position: relative;
+        }
+        form {
+            margin-bottom: 80px;
         }
         .btn-circle {
             width: 30px;
@@ -292,10 +440,11 @@
                     $(this).change();
                 }
             });
-            $('#birth_date').datepicker('option', 'maxDate', new Date());
-            $('#effective_date').datepicker('option', 'minDate', new Date());
+            let currDate = new Date();
+            $('#dob, #childDob, #riskDate, #proposalDate, #commDate').datepicker('option', 'maxDate', currDate);
+            // $('#effective_date').datepicker('option', 'minDate', new Date());
 
-            // Step wise form
+            // Step wise form start
             var navListItems = $('div.setup-panel div a'),
                 allWells = $('.setup-content'),
                 allNextBtn = $('.nextBtn');
@@ -335,6 +484,7 @@
             });
 
             $('div.setup-panel div a.btn-success').trigger('click');
+            // Step wise form end
         });
 
         /**
