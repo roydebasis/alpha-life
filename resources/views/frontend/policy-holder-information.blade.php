@@ -44,7 +44,7 @@
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="type">Type</label>
                                 <select name="type" required="required" class="form-control" id="type">
-                                    <option value="">Select Type</option>
+                                    <option value="Standard" selected>Standard</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
@@ -56,10 +56,6 @@
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="proposalDate">Proposal Date</label>
                                 <input name="proposalDate" id="proposalDate" type="text" required="required" class="form-control date-field" placeholder="Proposal Date" />
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="riskDate">Risk Date</label>
-                                <input name="riskDate" id="riskDate" type="text" required="required" class="form-control date-field" placeholder="Risk Date" />
                             </div>
                             <div class="col-md-12"></div>
                             <div class="form-group col-md-3">
@@ -99,28 +95,6 @@
                                     <option value="URBAN">URBAN</option>
                                     <option value="RURAL">RURAL</option>
                                     <option value="ABROAD">ABROAD</option>
-                                </select>
-                            </div>
-                            <div class="col-md-12 fontItalic">Address</div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="division">Division</label>
-                                <select name="division" required="required" class="form-control" id="division">
-                                    <option value="">Select</option>
-                                    <option value="URBAN">URBAN</option>
-                                    <option value="RURAL">RURAL</option>
-                                    <option value="ABROAD">ABROAD</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="district">District</label>
-                                <select name="district" required="required" class="form-control" id="district">
-                                    <option value="">Select</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="upazilla">Upazilla/PS</label>
-                                <select name="upazilla" required="required" class="form-control" id="upazilla">
-                                    <option value="">Select</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
@@ -167,31 +141,34 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label class="control-label" for="nationalId">National ID</label>
-                                <select name="nationalId" id="nationalId" required="required" class="form-control">
-                                    <option value="">Select</option>
-                                </select>
+                                <label class="control-label" for="nidBRegPass">NID/Birth Reg./Passport</label>
+                                <input name="nidBRegPass" id="nidBRegPass" type="file" required="required" class="form-control" />
                             </div>
-                            <div class="col-md-12"></div>
-{{--                            <div class="form-group col-md-3">--}}
-{{--                                <label class="control-label" for="policyNo">Policy No</label>--}}
-{{--                                <input type="text" name="policyNo" id="policyNo" required="required" class="form-control" placeholder="Policy No" />--}}
-{{--                            </div>--}}
+                            <div class="col-md-12 fontItalic">Address</div>
                             <div class="form-group col-md-3">
-                                <label class="control-label" for="sumAssured">Sum Assured</label>
-                                <input type="text" name="sumAssured" id="sumAssured" required="required" class="form-control" placeholder="Sum Assured" />
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="plan">Plan</label>
-                                <select name="plan" id="plan" required="required" class="form-control" onchange="onPlanChange()">
+                                <label class="control-label" for="division">Division</label>
+                                <select name="division" required="required" class="form-control" id="division">
                                     <option value="">Select</option>
+                                    <option value="URBAN">URBAN</option>
+                                    <option value="RURAL">RURAL</option>
+                                    <option value="ABROAD">ABROAD</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label class="control-label" for="term">Term</label>
-                                <select name="term" id="term" required="required" class="form-control">
+                                <label class="control-label" for="district">District</label>
+                                <select name="district" required="required" class="form-control" id="district">
                                     <option value="">Select</option>
                                 </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="upazilla">Upazilla/PS</label>
+                                <select name="upazilla" required="required" class="form-control" id="upazilla">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="address">Address</label>
+                                <textarea rows="2" name="address" id="address" required="required" class="form-control" placeholder="Address"></textarea>
                             </div>
                             <div class="col-md-12 fontItalic">Nominee(s)</div>
                             <div class="form-group col-md-3">
@@ -212,7 +189,11 @@
                                     <option value="">Select</option>
                                 </select>
                             </div>
-                            <div class="col-md-12 text-center form-group"><button class="btn-info btn-sm">Add Nominee</button></div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="nomineeImage">Image</label>
+                                <input name="nomineeImage" id="nomineeImage" type="file" required="required" class="form-control" />
+                            </div>
+                            <div class="col-md-12 text-center form-group"><button type="button" class="btn-info btn-sm">Add Nominee</button></div>
                             <div class="col-md-12 fontItalic">Guardian</div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="guardianName">Guardian Name</label>
@@ -246,6 +227,10 @@
                                 <input type="text" name="childAgeProof" id="childAgeProof" required="required" class="form-control" placeholder="Child Age Proof" />
                             </div>
                             <div class="form-group col-md-3">
+                                <label class="control-label" for="childImage">Image</label>
+                                <input type="file" name="childImage" id="childImage" required="required" class="form-control" />
+                            </div>
+                            <div class="form-group col-md-3">
                                 <label class="control-label" for="childClass">Class</label>
 {{--                                <input type="text" name="childClass" id="childClass" required="required" class="form-control" placeholder="Class" />--}}
                                 <select name="childClass" id="childClass" required="required" class="form-control">
@@ -269,15 +254,152 @@
                             <h3 class="panel-title">Policy Information</h3>
                         </div>
                         <div class="panel-body">
-                            <div class="form-group">
-                                <label class="control-label">Company Name</label>
-                                <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Name" />
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="sumAssured">Sum Assured</label>
+                                <input type="text" name="sumAssured" id="sumAssured" required="required" class="form-control" placeholder="Sum Assured" />
                             </div>
-                            <div class="form-group">
-                                <label class="control-label">Company Address</label>
-                                <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Address" />
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="plan">Plan</label>
+                                <select name="plan" id="plan" required="required" class="form-control" onchange="onPlanChange()">
+                                    <option value="">Select</option>
+                                </select>
                             </div>
-                            <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="term">Term</label>
+                                <select name="term" id="term" required="required" class="form-control">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="paymentMethod">Payment Method</label>
+                                <select name="paymentMethod" id="paymentMethod" required="required" class="form-control">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="pensionAmount">Pension Amount</label>
+                                <input type="number" name="pensionAmount" id="pensionAmount" required="required" class="form-control" placeholder="Pension Amount" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="pensionAge">Pension Age</label>
+                                <select name="pensionAge" id="pensionAge" required="required" class="form-control">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="stipendTerm">Stipend Term</label>
+                                <input type="number" name="stipendTerm" id="stipendTerm" required="required" class="form-control" placeholder="Stipend Term" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="stipendUnit">Stipend Unit</label>
+                                <input type="number" name="stipendUnit" id="stipendUnit" required="required" class="form-control" placeholder="Stipend Unit"/>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="stipendAmount">Stipend Amount</label>
+                                <input type="number" name="stipendAmount" id="stipendAmount" required="required" class="form-control" placeholder="Stipend Amount" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="sumRisk">Sum At Risk</label>
+                                <input type="number" name="sumRisk" id="sumRisk" required="required" class="form-control" placeholder="Sum At Risk"/>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="premiumRate">Premium Rate</label>
+                                <input type="number" name="premiumRate" id="premiumRate" required="required" class="form-control" placeholder="Premium Rate"/>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="pensionAge">Supple. Name</label>
+                                <select name="pensionAge" id="pensionAge" required="required" class="form-control">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="suppPreRate">Supp Pre Rate</label>
+                                <input type="number" name="suppPreRate" id="suppPreRate" required="required" class="form-control" placeholder="Supp Pre Rate" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="suppAge">Supp Age</label>
+                                <input type="number" name="suppAge" id="suppAge" required="required" class="form-control" placeholder="Supp Age" />
+                            </div>
+{{--                            <div class="form-group col-md-3">--}}
+{{--                                <label class="control-label" for="supSumAssured"></label>--}}
+{{--                                <input type="number" name="supSumAssured" id="supSumAssured" required="required" class="form-control" placeholder="Sum Assured"/>--}}
+{{--                            </div>--}}
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="limit">Limit</label>
+                                <input type="number" name="limit" id="limit" required="required" class="form-control" placeholder="Limit" />
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="healthInsurance">Health Insurance</label>
+                                <select name="healthInsurance" id="healthInsurance" required="required" class="form-control">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="clauseName">Clause Name</label>
+                                <select name="clauseName" id="clauseName" required="required" class="form-control">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="clauseCode">Clause Code</label>
+                                <input type="number" name="clauseCode" id="clauseCode" required="required" class="form-control" placeholder="Clause Code"/>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="extraName">Extra Name</label>
+                                <select name="extraName" id="extraName" required="required" class="form-control">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="extraCode">Extra Code</label>
+                                <input type="number" name="extraCode" id="extraCode" required="required" class="form-control" placeholder="Extra Code"/>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="extraPreRate">Extra Pre Rate</label>
+                                <input type="number" name="extraPreRate" id="extraPreRate" required="required" class="form-control" placeholder="Extra Pre Rate"/>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="lienYear">Lien Year</label>
+                                <input type="number" name="lienYear" id="lienYear" required="required" class="form-control" placeholder="Lien Year"/>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="lienPercent">Lien Percent</label>
+                                <input type="number" name="lienPercent" id="lienPercent" required="required" class="form-control" placeholder="Lien Percent"/>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="lienType">Lien Type</label>
+                                <select name="lienType" id="lienType" required="required" class="form-control">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="basicPremium">Basic Premium</label>
+                                <input type="number" name="basicPremium" id="basicPremium" required="required" class="form-control" placeholder="Basic Premium"/>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="suppPremium">Supp. Premium</label>
+                                <input type="number" name="suppPremium" id="suppPremium" required="required" class="form-control" placeholder="Supp. Premium"/>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="fePremium">FE Premium</label>
+                                <input type="number" name="fePremium" id="fePremium" required="required" class="form-control" placeholder="FE Premium"/>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="oePremium">OE Premium</label>
+                                <input type="number" name="oePremium" id="oePremium" required="required" class="form-control" placeholder="OE Premium"/>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="hExtraLoading">H. Extra/Loading</label>
+                                <input type="number" name="hExtraLoading" id="hExtraLoading" required="required" class="form-control" placeholder="H. Extra/Loading"/>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="totalPremium">Total Premium</label>
+                                <input type="number" name="totalPremium" id="totalPremium" required="required" class="form-control" placeholder="Total Premium"/>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+                            </div>
                         </div>
                     </div>
 
@@ -321,48 +443,48 @@
     </section>
 
     <!-- premium calculator modal-->
-    <div class="modal fade" id="premiumModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <span class="modal-title" id="exampleModalLongTitle">Your Premium Calculation</span>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <tr>
-                                <td>Premium Rate</td>
-                                <td id='premiumRate'></td>
-                            </tr>
+{{--    <div class="modal fade" id="premiumModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">--}}
+{{--        <div class="modal-dialog modal-dialog-centered" role="document">--}}
+{{--            <div class="modal-content">--}}
+{{--                <div class="modal-header">--}}
+{{--                    <span class="modal-title" id="exampleModalLongTitle">Your Premium Calculation</span>--}}
+{{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+{{--                        <span aria-hidden="true">&times;</span>--}}
+{{--                    </button>--}}
+{{--                </div>--}}
+{{--                <div class="modal-body">--}}
+{{--                    <div class="table-responsive">--}}
+{{--                        <table class="table table-bordered">--}}
+{{--                            <tr>--}}
+{{--                                <td>Premium Rate</td>--}}
+{{--                                <td id='premiumRate'></td>--}}
+{{--                            </tr>--}}
 
-                            <tr>
-                                <td>Basic Premium Rate</td>
-                                <td id='basicPremium'></td>
-                            </tr>
-                            <tr>
-                                <td>Total Premium</td>
-                                <td id='totalPremium'></td>
-                            </tr>
-                            <tr>
-                                <td>Sum Assured</td>
-                                <td id='sumAssured'></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <hr>
-                    <small>Premium calculator is an informative tool intended for use as a guide tool only and the calculations above are based on the information you have provided.
-                        The figures and calculation used here may vary slightly and change at any time without notice.</small>
+{{--                            <tr>--}}
+{{--                                <td>Basic Premium Rate</td>--}}
+{{--                                <td id='basicPremium'></td>--}}
+{{--                            </tr>--}}
+{{--                            <tr>--}}
+{{--                                <td>Total Premium</td>--}}
+{{--                                <td id='totalPremium'></td>--}}
+{{--                            </tr>--}}
+{{--                            <tr>--}}
+{{--                                <td>Sum Assured</td>--}}
+{{--                                <td id='sumAssured'></td>--}}
+{{--                            </tr>--}}
+{{--                        </table>--}}
+{{--                    </div>--}}
+{{--                    <hr>--}}
+{{--                    <small>Premium calculator is an informative tool intended for use as a guide tool only and the calculations above are based on the information you have provided.--}}
+{{--                        The figures and calculation used here may vary slightly and change at any time without notice.</small>--}}
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Try Again</button>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--                </div>--}}
+{{--                <div class="modal-footer">--}}
+{{--                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Try Again</button>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <!-- end premium calculator modal-->
 @endsection
 @push('after-styles')
