@@ -320,10 +320,6 @@
                                 <label class="control-label" for="suppAge">Supp Age</label>
                                 <input type="number" name="suppAge" id="suppAge" required="required" class="form-control" placeholder="Supp Age" />
                             </div>
-{{--                            <div class="form-group col-md-3">--}}
-{{--                                <label class="control-label" for="supSumAssured"></label>--}}
-{{--                                <input type="number" name="supSumAssured" id="supSumAssured" required="required" class="form-control" placeholder="Sum Assured"/>--}}
-{{--                            </div>--}}
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="limit">Limit</label>
                                 <input type="number" name="limit" id="limit" required="required" class="form-control" placeholder="Limit" />
@@ -408,15 +404,81 @@
                             <h3 class="panel-title">Chain Setup</h3>
                         </div>
                         <div class="panel-body">
-                            <div class="form-group">
-                                <label class="control-label">Company Name</label>
-                                <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Name" />
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="agencyCode">Agency Code</label>
+                                <input name="agencyCode" id="agencyCode" type="text" required="required" class="form-control" placeholder="Agency Code" />
                             </div>
-                            <div class="form-group">
-                                <label class="control-label">Company Address</label>
-                                <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Address" />
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="agencyName">Agency Name</label>
+                                <input name="agencyName" id="agencyName" type="text" required="required" class="form-control" placeholder="Agency Name" />
                             </div>
-                            <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="organizationCode">Organization Code</label>
+                                <input name="organizationCode" id="organizationCode" type="text" required="required" class="form-control" placeholder="Organization Code" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="organizationName">Organization Name</label>
+                                <input name="organizationName" id="organizationName" type="text" required="required" class="form-control" placeholder="Organization Name" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="serviceCellCode">Service Cell Code</label>
+                                <input name="serviceCellCode" id="serviceCellCode" type="text" required="required" class="form-control" placeholder="Service Cell Code" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="serviceCellName">Service Cell Name</label>
+                                <input name="serviceCellName" id="serviceCellName" type="text" required="required" class="form-control" placeholder="Service Cell Name" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="businessWing">Business Wing</label>
+                                <input name="businessWing" id="businessWing" type="text" required="required" class="form-control" placeholder="Business Wing" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="finanicalAssociate">Financial Associate</label>
+                                <input name="finanicalAssociate" id="finanicalAssociate" type="text" required="required" class="form-control" placeholder="Finanical Associate" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="finanicalAssociate">Financial Associate</label>
+                                <input name="finanicalAssociate" id="finanicalAssociate" type="text" required="required" class="form-control" placeholder="Finanical Associate" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="faCodeName">FA Code and Name</label>
+                                <input name="faCodeName" id="faCodeName" type="text" required="required" class="form-control" placeholder="FA Code and Name" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="umCodeName">UM Code and Name</label>
+                                <input name="umCodeName" id="umCodeName" type="text" required="required" class="form-control" placeholder="UM Code and Name" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="bmCodeName">BM Code and Name</label>
+                                <input name="bmCodeName" id="bmCodeName" type="text" required="required" class="form-control" placeholder="BM Code and Name" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="asmCodeName">ASM Code and Name</label>
+                                <input name="asmCodeName" id="asmCodeName" type="text" required="required" class="form-control" placeholder="ASM Code and Name" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="smCodeName">SM Code and Name</label>
+                                <input name="smCodeName" id="smCodeName" type="text" required="required" class="form-control" placeholder="SM Code and Name" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="ssmCodeName">SSM Code and Name</label>
+                                <input name="ssmCodeName" id="ssmCodeName" type="text" required="required" class="form-control" placeholder="SSM Code and Name" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="amCodeName">AM Code and Name</label>
+                                <input name="amCodeName" id="amCodeName" type="text" required="required" class="form-control" placeholder="AM Code and Name" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="dcmoCodeName">DCMO Code and Name</label>
+                                <input name="dcmoCodeName" id="dcmoCodeName" type="text" required="required" class="form-control" placeholder="DCMO Code and Name" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="cmoCodeName">CMO Code and Name</label>
+                                <input name="cmoCodeName" id="cmoCodeName" type="text" required="required" class="form-control" placeholder="CMO Code and Name" />
+                            </div>
+                            <div class="form-group col-md-12">
+                                <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+                            </div>
                         </div>
                     </div>
 
@@ -425,15 +487,21 @@
                             <h3 class="panel-title">PR Information</h3>
                         </div>
                         <div class="panel-body">
-                            <div class="form-group">
-                                <label class="control-label">Company Name</label>
-                                <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Name" />
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="prNumber">PR Number</label>
+                                <input name="prNumber" id="prNumber" type="text" required="required" class="form-control" placeholder="PR Number" />
                             </div>
-                            <div class="form-group">
-                                <label class="control-label">Company Address</label>
-                                <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Address" />
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="prDate">PR Date</label>
+                                <input name="prDate" id="prDate" type="text" required="required" class="form-control date-field" placeholder="PR Date" />
                             </div>
-                            <button class="btn btn-success pull-right" type="submit">Finish!</button>
+                            <div class="form-group col-md-3">
+                                <label class="control-label" for="prAmount">PR Amount</label>
+                                <input name="prAmount" id="prAmount" type="text" required="required" class="form-control" placeholder="PR Amount" />
+                            </div>
+                            <div class="form-group col-md-12">
+                                <button class="btn btn-success pull-right" type="submit">Finish!</button>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -591,7 +659,8 @@
                 var curStep = $(this).closest(".setup-content"),
                     curStepBtn = curStep.attr("id"),
                     nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
-                    curInputs = curStep.find("input[type='text'],input[type='url']"),
+                    // curInputs = curStep.find("input[type='text'],input[type='url'], input[type='file'], textarea, select"),
+                    curInputs = curStep.find("input[type='text'],input[type='url'], textarea"),
                     isValid = true;
 
                 $(".form-group").removeClass("has-error");
