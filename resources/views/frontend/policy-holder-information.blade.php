@@ -224,7 +224,9 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="childAgeProof">Age Proof</label>
-                                <input type="text" name="childAgeProof" id="childAgeProof" required="required" class="form-control" placeholder="Child Age Proof" />
+                                <select name="childAgeProof" id="childAgeProof" required="required" class="form-control">
+                                    <option value="">Select</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="childImage">Image</label>

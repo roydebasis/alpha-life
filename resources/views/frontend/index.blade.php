@@ -105,7 +105,7 @@
                     @endif
 
                     <!-- tab content for application design -->
-                    
+
 
                     <!-- tab content for Premium Calculator -->
                     <div class="tab-pane fade premium-calculator" id="creative-ideas">
@@ -286,7 +286,7 @@
     <section class="process-section section-padding">
         <div class="container">
             <div class="row text-center">
-                <div class="col-xs-6 col-sm-4 col-md-3">
+                <div class="col-xs-6 col-sm-4 col-md-4 mb-30">
                     <a href="{{ setting("button_one_link") }}">
                         <div class="process-box">
                             <i class="{{ setting('button_one_icon') }}"></i>
@@ -295,7 +295,7 @@
                     </a>
                 </div>
 
-                <div class="col-xs-6 col-sm-4 col-md-3">
+                <div class="col-xs-6 col-sm-4 col-md-4 mb-30">
                     <a href="{{ setting("button_two_link") }}">
                         <div class="process-box">
                             <i class="{{ setting('button_two_icon') }}"></i>
@@ -304,7 +304,7 @@
                     </a>
                 </div>
 
-                <div class="col-xs-6 col-sm-4 col-md-3">
+                <div class="col-xs-6 col-sm-4 col-md-4 mb-30">
                     <a href="{{ setting("button_three_link") }}">
                         <div class="process-box">
                             <i class="{{ setting('button_three_icon') }}"></i>
@@ -312,8 +312,15 @@
                         </div>
                     </a>
                 </div>
-
-                <div class="col-xs-6 col-sm-4 col-md-3">
+                <div class="col-xs-6 col-sm-4 col-md-4 mb-30">
+                    <a href="/page/policy-holder-information">
+                        <div class="process-box">
+                            <i class="flaticon-user163"></i>
+                            <h3>Policy Holder</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 mb-30">
                     <a href="{{ setting("button_four_link") }}">
                         <div class="process-box">
                             <i class="{{ setting('button_four_icon') }}"></i>
