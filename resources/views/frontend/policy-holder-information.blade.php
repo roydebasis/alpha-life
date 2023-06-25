@@ -49,9 +49,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="businessMonth">Business Month</label>
-                                <select name="businessMonth" required="required" class="form-control" id="businessMonth">
-                                    <option value="">Select Type</option>
-                                </select>
+                                <select name="businessMonth" required="required" class="form-control" id="businessMonth"></select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="proposalDate">Proposal Date</label>
@@ -81,7 +79,7 @@
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="occupation">Occupation</label>
                                 <select name="occupation" required="required" class="form-control" id="occupation">
-                                    <option value="">Select Type</option>
+                                    <option value="" disabled selected>Select Type</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
@@ -621,8 +619,12 @@
     <script type="text/javascript">
         var apiUrl = "{{ config('alpha.api_url') }}";
         jQuery(document).ready(function () {
-            getPlans();
+            // getPlans();
             onDateChange();
+            //default data api
+            businessMonths();
+            getOccupations();
+            // loadAllData();
             $('.date-field').datepicker({
                 dateFormat: "dd/mm/yy",
                 changeYear: true,
@@ -665,13 +667,13 @@
                     curInputs = curStep.find("input[type='text'],input[type='url'], textarea"),
                     isValid = true;
 
-                $(".form-group").removeClass("has-error");
-                for (var i = 0; i < curInputs.length; i++) {
-                    if (!curInputs[i].validity.valid) {
-                        isValid = false;
-                        $(curInputs[i]).closest(".form-group").addClass("has-error");
-                    }
-                }
+                // $(".form-group").removeClass("has-error");
+                // for (var i = 0; i < curInputs.length; i++) {
+                //     if (!curInputs[i].validity.valid) {
+                //         isValid = false;
+                //         $(curInputs[i]).closest(".form-group").addClass("has-error");
+                //     }
+                // }
 
                 if (isValid) nextStepWizard.removeAttr('disabled').trigger('click');
             });
@@ -701,12 +703,12 @@
          * plan change event
          */
         function onPlanChange() {
-            let planId = $('#plan').val();
-            if (planId) {
-                getPlanConfig(planId);
-                return;
-            }
-            $('#plan-selected').hide();
+            // let planId = $('#plan').val();
+            // if (planId) {
+            //     getPlanConfig(planId);
+            //     return;
+            // }
+            // $('#plan-selected').hide();
         }
         function onSuplementaryChange() {
             $('#health-insurance').show();
@@ -834,5 +836,63 @@
                 alert('error: Cant process your  request right  now. Please try some time later.')
             });
         }
+
+        function businessMonths() {
+            $.ajax({
+                url: apiUrl + "public/get-business-month",
+                method: 'GET',
+                dataType: 'JSON',
+            }).done(function(response) {
+                if (response.status == 200) {
+                    generateDropdownOptions(response.data, 'businessMonth');
+                }
+            }).fail(function() {
+                console.error('Could not load businessMonths')
+            });
+        }
+
+        function generateDropdownOptions(data, elemId, isAppend = false) {
+            let i = 0;
+            let total = data.length;
+            let options;
+            for(i; i < total; i++) {
+                options += "<option value='"+data[i]+"'>"+data[i]+"</option>";
+            }
+            if(isAppend) {
+                $('#'+elemId).append(options);
+                return;
+            }
+            $('#'+elemId).html(options);
+        }
+
+        function getOccupations() {
+            $.ajax({
+                url: apiUrl + "public/get-occupations",
+                method: 'GET',
+                dataType: 'JSON',
+            }).done(function(response) {
+                if (response.status == 200) {
+                    generateDropdownOptions(response.data, 'occupation', true);
+                }
+            }).fail(function() {
+                console.error('Could not load occupations')
+            });
+        }
+
+        // Promise.all([
+        //     fetch(apiUrl + "public/get-business-month"),
+        //     fetch( apiUrl + "public/get-occupations")
+        // ]).then(function (responses) {
+        //    console.log(responses[0].data);
+        // })
+        async function loadAllData() {
+            const res = await Promise.all([
+                fetch(apiUrl + "public/get-business-month"),
+                fetch( apiUrl + "public/get-occupations")
+            ]);
+            const data = res.map((res) => res.data);
+            console.log(data.flat());
+        }
+
     </script>
 @endpush
