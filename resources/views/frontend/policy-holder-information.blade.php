@@ -619,12 +619,13 @@
     <script type="text/javascript">
         var apiUrl = "{{ config('alpha.api_url') }}";
         jQuery(document).ready(function () {
-            // getPlans();
-            onDateChange();
-            //default data api
+            //default data
             businessMonths();
             getOccupations();
-            // loadAllData();
+            getDivisions();
+            getAgeProof();
+            // getPlans();
+            onDateChange();
             $('.date-field').datepicker({
                 dateFormat: "dd/mm/yy",
                 changeYear: true,
@@ -667,19 +668,32 @@
                     curInputs = curStep.find("input[type='text'],input[type='url'], textarea"),
                     isValid = true;
 
-                // $(".form-group").removeClass("has-error");
-                // for (var i = 0; i < curInputs.length; i++) {
-                //     if (!curInputs[i].validity.valid) {
-                //         isValid = false;
-                //         $(curInputs[i]).closest(".form-group").addClass("has-error");
-                //     }
-                // }
+                $(".form-group").removeClass("has-error");
+                for (var i = 0; i < curInputs.length; i++) {
+                    if (!curInputs[i].validity.valid) {
+                        isValid = false;
+                        $(curInputs[i]).closest(".form-group").addClass("has-error");
+                    }
+                }
 
                 if (isValid) nextStepWizard.removeAttr('disabled').trigger('click');
             });
 
             $('div.setup-panel div a.btn-success').trigger('click');
             // Step wise form end
+            $(document).on('change','#division',function(){
+                // $('#district').empty();
+                let division = $(this).find('option:selected').val();
+                if(!division) return;
+                getDistricts(division);
+            });
+
+            $(document).on('change','#district',function(){
+                // $('#upazilla').empty();
+                let district = $(this).find('option:selected').val();
+                if(!district) return;
+                getThana(district);
+            });
         });
 
         /**
@@ -851,16 +865,14 @@
             });
         }
 
-        function generateDropdownOptions(data, elemId, isAppend = false) {
+        function generateDropdownOptions(data, elemId, isAppend = false, valueKey = '', displayKey = '') {
             let i = 0;
             let total = data.length;
-            let options;
+            let options = '<option value="" >Select</option>';
             for(i; i < total; i++) {
-                options += "<option value='"+data[i]+"'>"+data[i]+"</option>";
-            }
-            if(isAppend) {
-                $('#'+elemId).append(options);
-                return;
+                options += (valueKey && displayKey) ?
+                    "<option value='"+data[i][valueKey]+"'>"+data[i][displayKey]+"</option>"
+                    : "<option value='"+data[i]+"'>"+data[i]+"</option>";
             }
             $('#'+elemId).html(options);
         }
@@ -879,19 +891,60 @@
             });
         }
 
-        // Promise.all([
-        //     fetch(apiUrl + "public/get-business-month"),
-        //     fetch( apiUrl + "public/get-occupations")
-        // ]).then(function (responses) {
-        //    console.log(responses[0].data);
-        // })
-        async function loadAllData() {
-            const res = await Promise.all([
-                fetch(apiUrl + "public/get-business-month"),
-                fetch( apiUrl + "public/get-occupations")
-            ]);
-            const data = res.map((res) => res.data);
-            console.log(data.flat());
+        function getDivisions() {
+            $.ajax({
+                url: apiUrl + "public/bd/divisions",
+                method: 'GET',
+                dataType: 'JSON',
+            }).done(function(response) {
+                if (response.status == 200) {
+                    generateDropdownOptions(response.data.divisions, 'division', true, 'id', 'name');
+                }
+            }).fail(function() {
+                console.error('Could not load division')
+            });
+        }
+
+        function getDistricts(divisionId) {
+            $.ajax({
+                url: apiUrl + "public/bd/districts/"+divisionId,
+                method: 'GET',
+                dataType: 'JSON',
+            }).done(function(response) {
+                if (response.status == 200) {
+                    generateDropdownOptions(response.data.districts, 'district', true, 'id', 'name');
+                }
+            }).fail(function() {
+                console.error('Could not load division')
+            });
+        }
+
+        function getThana(districtId) {
+            $.ajax({
+                url: apiUrl + "public/bd/upazilas/"+districtId,
+                method: 'GET',
+                dataType: 'JSON',
+            }).done(function(response) {
+                if (response.status == 200) {
+                    generateDropdownOptions(response.data.upazilas, 'upazilla', true, 'id', 'name');
+                }
+            }).fail(function() {
+                console.error('Could not load upazilas')
+            });
+        }
+
+        function getAgeProof() {
+            $.ajax({
+                url: apiUrl + "public/age-proof",
+                method: 'GET',
+                dataType: 'JSON',
+            }).done(function(response) {
+                if (response.status == 200) {
+                    generateDropdownOptions(response.data, 'ageProof', true);
+                }
+            }).fail(function() {
+                console.error('Could not load age proof')
+            });
         }
 
     </script>
