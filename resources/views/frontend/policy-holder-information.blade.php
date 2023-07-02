@@ -127,6 +127,10 @@
                                 <label class="control-label" for="religion">Religion</label>
                                 <select name="religion" id="religion" required="required" class="form-control">
                                     <option value="">Select</option>
+                                    <option value="Islam">Islam</option>
+                                    <option value="Hindu">Hindu</option>
+                                    <option value="Christian">Christian</option>
+                                    <option value="Buddist">Buddist</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
@@ -307,8 +311,8 @@
                                 <input type="number" name="premiumRate" id="premiumRate" required="required" class="form-control" placeholder="Premium Rate"/>
                             </div>
                             <div class="form-group col-md-3">
-                                <label class="control-label" for="pensionAge">Supple. Name</label>
-                                <select name="pensionAge" id="pensionAge" required="required" class="form-control">
+                                <label class="control-label" for="suppleName">Supple. Name</label>
+                                <select name="pensionAge" id="suppleName" required="required" class="form-control">
                                     <option value="">Select</option>
                                 </select>
                             </div>
@@ -624,6 +628,10 @@
             getOccupations();
             getDivisions();
             getAgeProof();
+            getEduList();
+            getRelationList();
+            getRelationListWithPayee();
+            getSuppName();
             // getPlans();
             onDateChange();
             $('.date-field').datepicker({
@@ -668,13 +676,13 @@
                     curInputs = curStep.find("input[type='text'],input[type='url'], textarea"),
                     isValid = true;
 
-                $(".form-group").removeClass("has-error");
-                for (var i = 0; i < curInputs.length; i++) {
-                    if (!curInputs[i].validity.valid) {
-                        isValid = false;
-                        $(curInputs[i]).closest(".form-group").addClass("has-error");
-                    }
-                }
+                // $(".form-group").removeClass("has-error");
+                // for (var i = 0; i < curInputs.length; i++) {
+                //     if (!curInputs[i].validity.valid) {
+                //         isValid = false;
+                //         $(curInputs[i]).closest(".form-group").addClass("has-error");
+                //     }
+                // }
 
                 if (isValid) nextStepWizard.removeAttr('disabled').trigger('click');
             });
@@ -865,7 +873,7 @@
             });
         }
 
-        function generateDropdownOptions(data, elemId, isAppend = false, valueKey = '', displayKey = '') {
+        function generateDropdownOptions(data, elemId, valueKey = '', displayKey = '') {
             let i = 0;
             let total = data.length;
             let options = '<option value="" >Select</option>';
@@ -884,7 +892,7 @@
                 dataType: 'JSON',
             }).done(function(response) {
                 if (response.status == 200) {
-                    generateDropdownOptions(response.data, 'occupation', true);
+                    generateDropdownOptions(response.data, 'occupation');
                 }
             }).fail(function() {
                 console.error('Could not load occupations')
@@ -898,7 +906,7 @@
                 dataType: 'JSON',
             }).done(function(response) {
                 if (response.status == 200) {
-                    generateDropdownOptions(response.data.divisions, 'division', true, 'id', 'name');
+                    generateDropdownOptions(response.data.divisions, 'division', 'id', 'name');
                 }
             }).fail(function() {
                 console.error('Could not load division')
@@ -912,7 +920,7 @@
                 dataType: 'JSON',
             }).done(function(response) {
                 if (response.status == 200) {
-                    generateDropdownOptions(response.data.districts, 'district', true, 'id', 'name');
+                    generateDropdownOptions(response.data.districts, 'district', 'id', 'name');
                 }
             }).fail(function() {
                 console.error('Could not load division')
@@ -926,7 +934,7 @@
                 dataType: 'JSON',
             }).done(function(response) {
                 if (response.status == 200) {
-                    generateDropdownOptions(response.data.upazilas, 'upazilla', true, 'id', 'name');
+                    generateDropdownOptions(response.data.upazilas, 'upazilla', 'id', 'name');
                 }
             }).fail(function() {
                 console.error('Could not load upazilas')
@@ -940,12 +948,69 @@
                 dataType: 'JSON',
             }).done(function(response) {
                 if (response.status == 200) {
-                    generateDropdownOptions(response.data, 'ageProof', true);
+                    generateDropdownOptions(response.data, 'ageProof');
+                    generateDropdownOptions(response.data, 'childAgeProof');
                 }
             }).fail(function() {
                 console.error('Could not load age proof')
             });
         }
 
+        function getEduList() {
+            $.ajax({
+                url: apiUrl + "public/misc/edu-classes",
+                method: 'GET',
+                dataType: 'JSON',
+            }).done(function(response) {
+                if (response.status == 200) {
+                    generateDropdownOptions(response.data.classLists, 'education', 'Sl', 'Class');
+                    generateDropdownOptions(response.data.classLists, 'childClass', 'Sl', 'Class');
+                }
+            }).fail(function() {
+                console.error('Could not load age proof')
+            });
+        }
+
+        function getRelationList() {
+            $.ajax({
+                url: apiUrl + "public/misc/relations",
+                method: 'GET',
+                dataType: 'JSON',
+            }).done(function(response) {
+                if (response.status == 200) {
+                    generateDropdownOptions(response.data.relations, 'nomineeRelation', 'key', 'name');
+                }
+            }).fail(function() {
+                console.error('Could not load relations')
+            });
+        }
+
+        function getRelationListWithPayee() {
+            $.ajax({
+                url: apiUrl + "public/relation-lists",
+                method: 'GET',
+                dataType: 'JSON',
+            }).done(function(response) {
+                if (response.status == 200) {
+                    generateDropdownOptions(response.data, 'relationWithPayee', '', '');
+                }
+            }).fail(function() {
+                console.error('Could not load RelationListWithPayee')
+            });
+        }
+
+        function getSuppName() {
+            $.ajax({
+                url: apiUrl + "public/misc/supple-name",
+                method: 'GET',
+                dataType: 'JSON',
+            }).done(function(response) {
+                if (response.status == 200) {
+                    generateDropdownOptions(response.data.suppleNames, 'suppleName', 'Code', 'SuppName');
+                }
+            }).fail(function() {
+                console.error('Could not load supple-name')
+            });
+        }
     </script>
 @endpush
