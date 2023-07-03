@@ -109,7 +109,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="age">Age</label>
-                                <input type="text" name="age" id="age" required="required" class="form-control" placeholder="Age" />
+                                <input type="text" onblur="onAgeChange()" name="age" id="age" required="required" class="form-control" placeholder="Age" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="ageProof">Age Proof</label>
@@ -222,7 +222,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="childAge">Age</label>
-                                <input type="text" name="childAge" id="childAge" required="required" class="form-control" placeholder="Child Age" />
+                                <input type="number" name="childAge" id="childAge" required="required" class="form-control" placeholder="Child Age" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="childAgeProof">Age Proof</label>
@@ -333,6 +333,7 @@
                                 <label class="control-label" for="healthInsurance">Health Insurance</label>
                                 <select name="healthInsurance" id="healthInsurance" required="required" class="form-control">
                                     <option value="">Select</option>
+                                    <option value="HI only">HI only</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
@@ -632,6 +633,8 @@
             getRelationList();
             getRelationListWithPayee();
             getSuppName();
+            getClauseName();
+            getExtraName();
             // getPlans();
             onDateChange();
             $('.date-field').datepicker({
@@ -979,6 +982,7 @@
             }).done(function(response) {
                 if (response.status == 200) {
                     generateDropdownOptions(response.data.relations, 'nomineeRelation', 'key', 'name');
+                    generateDropdownOptions(response.data.relations, 'guardianRelation', 'key', 'name');
                 }
             }).fail(function() {
                 console.error('Could not load relations')
@@ -987,12 +991,12 @@
 
         function getRelationListWithPayee() {
             $.ajax({
-                url: apiUrl + "public/relation-lists",
+                url: apiUrl + "public/misc/child-relations",
                 method: 'GET',
                 dataType: 'JSON',
             }).done(function(response) {
                 if (response.status == 200) {
-                    generateDropdownOptions(response.data, 'relationWithPayee', '', '');
+                    generateDropdownOptions(response.data.relations, 'relationWithPayee', '', '');
                 }
             }).fail(function() {
                 console.error('Could not load RelationListWithPayee')
@@ -1010,6 +1014,54 @@
                 }
             }).fail(function() {
                 console.error('Could not load supple-name')
+            });
+        }
+
+        function getClauseName() {
+            $.ajax({
+                url: apiUrl + "public/misc/clause-names",
+                method: 'GET',
+                dataType: 'JSON',
+            }).done(function(response) {
+                if (response.status == 200) {
+                    generateDropdownOptions(response.data.clauseNames, 'clauseName', '', '');
+                }
+            }).fail(function() {
+                console.error('Could not load getClauseName')
+            });
+        }
+
+        function getExtraName() {
+            $.ajax({
+                url: apiUrl + "public/misc/extra-names",
+                method: 'GET',
+                dataType: 'JSON',
+            }).done(function(response) {
+                if (response.status == 200) {
+                    generateDropdownOptions(response.data.extraNames, 'extraName', '', '');
+                }
+            }).fail(function() {
+                console.error('Could not load getExtraName')
+            });
+        }
+
+        function onAgeChange() {
+            let age = $('#age').val();
+            if (!age) { return; }
+            getPensionAge(age);
+        }
+
+        function getPensionAge(age) {
+            $.ajax({
+                url: apiUrl + "public/misc/pension-ages/" + age,
+                method: 'GET',
+                dataType: 'JSON',
+            }).done(function(response) {
+                if (response.status == 200) {
+                    generateDropdownOptions(response.data.pensionAges, 'pensionAge', 'Sl', 'PAge');
+                }
+            }).fail(function() {
+                console.error('Could not load getPensionAge')
             });
         }
     </script>
