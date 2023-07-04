@@ -693,7 +693,7 @@
             $('div.setup-panel div a.btn-success').trigger('click');
             // Step wise form end
             $(document).on('change','#division',function(){
-                // $('#district').empty();
+                $('#upazilla').html("<option value=''>Select</option>");
                 let division = $(this).find('option:selected').val();
                 if(!division) return;
                 getDistricts(division);
@@ -932,12 +932,12 @@
 
         function getThana(districtId) {
             $.ajax({
-                url: apiUrl + "public/bd/upazilas/"+districtId,
+                url: apiUrl + "public/misc/thana-by-district?district="+districtId,
                 method: 'GET',
                 dataType: 'JSON',
             }).done(function(response) {
                 if (response.status == 200) {
-                    generateDropdownOptions(response.data.upazilas, 'upazilla', 'id', 'name');
+                    generateDropdownOptions(response.data.thana, 'upazilla', '', '');
                 }
             }).fail(function() {
                 console.error('Could not load upazilas')
