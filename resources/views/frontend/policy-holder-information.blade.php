@@ -442,10 +442,6 @@
                                 <input name="finanicalAssociate" id="finanicalAssociate" type="text" required="required" class="form-control" placeholder="Finanical Associate" />
                             </div>
                             <div class="form-group col-md-3">
-                                <label class="control-label" for="finanicalAssociate">Financial Associate</label>
-                                <input name="finanicalAssociate" id="finanicalAssociate" type="text" required="required" class="form-control" placeholder="Finanical Associate" />
-                            </div>
-                            <div class="form-group col-md-3">
                                 <label class="control-label" for="faCodeName">FA Code and Name</label>
                                 <input name="faCodeName" id="faCodeName" type="text" required="required" class="form-control" placeholder="FA Code and Name" />
                             </div>
@@ -635,7 +631,7 @@
             getSuppName();
             getClauseName();
             getExtraName();
-            // getPlans();
+            getPlans();
             onDateChange();
             $('.date-field').datepicker({
                 dateFormat: "dd/mm/yy",
@@ -728,11 +724,11 @@
          * plan change event
          */
         function onPlanChange() {
-            // let planId = $('#plan').val();
-            // if (planId) {
-            //     getPlanConfig(planId);
-            //     return;
-            // }
+            let planId = $('#plan').val();
+            if (planId) {
+                getTerms(planId);
+                getMOP(planId);
+            }
             // $('#plan-selected').hide();
         }
         function onSuplementaryChange() {
@@ -743,9 +739,9 @@
          * get plans according to age
          * @param birth_date
          */
-        function getPlans(birth_date) {
+        function getPlans() {
             $.ajax({
-                url: apiUrl + "public/calc/plans",
+                url: apiUrl + "public/misc/policy-holder-plans",
                 method: 'GET',
                 dataType: 'JSON'
             }).done(function(data) {
@@ -753,11 +749,10 @@
                     $('#plan').find('option').not(':first').remove();
                     data.data.plans.forEach(function(item) {
                         $('<option>').val(item.plan_no).text(item.plan_name).appendTo('#plan');
-
                     });
                 }
             }).fail(function() {
-                alert('error')
+                console.log('Failed loading Plans');
             });
         }
 
@@ -765,23 +760,15 @@
          * get plans according to age
          * @param birth_date
          */
-        function getPlanConfig(planId) {
+        function getTerms(planId) {
             $.ajax({
-                url: apiUrl + "public/calc/plan-conf/" + planId,
+                url: apiUrl + "public/misc/policy-holder-terms/" + planId,
                 method: 'GET',
                 dataType: 'JSON'
-            }).done(function(data) {
-                if (data.status == 200) {
-                    if (data.data.terms) {
-                        setTerms(data.data.terms);
-                    }
-                    if (data.data.mode_of_payments) {
-                        setPaymentModes(data.data.mode_of_payments);
-                    }
-                    $('#plan-selected').show();
-                }
+            }).done(function(response) {
+                generateDropdownOptions(response.data.terms, 'term');
             }).fail(function() {
-                alert('error')
+                console.log('Failed loading terms');
             });
         }
 
@@ -789,13 +776,16 @@
          * set terms
          * @param terms
          */
-        function setTerms(terms) {
-            if (terms.length) {
-                $('#term').find('option').not(':first').remove();
-                terms.forEach(function (term) {
-                    $('<option>').val(term).text(term).appendTo('#term');
-                });
-            }
+        function getMOP(planId) {
+            $.ajax({
+                url: apiUrl + "public/misc/policy-holder-mop/" + planId,
+                method: 'GET',
+                dataType: 'JSON'
+            }).done(function(response) {
+                generateDropdownOptions(response.data.mop, 'paymentMethod');
+            }).fail(function() {
+                console.log('Failed loading MOP');
+            });
         }
 
         /**
@@ -879,13 +869,15 @@
         function generateDropdownOptions(data, elemId, valueKey = '', displayKey = '') {
             let i = 0;
             let total = data.length;
-            let options = '<option value="" >Select</option>';
+            // let options = '<option value="" >Select</option>';
+            $('#'+elemId).find('option').not(':first').remove();
+            let options = '';
             for(i; i < total; i++) {
                 options += (valueKey && displayKey) ?
                     "<option value='"+data[i][valueKey]+"'>"+data[i][displayKey]+"</option>"
                     : "<option value='"+data[i]+"'>"+data[i]+"</option>";
             }
-            $('#'+elemId).html(options);
+            $('#'+elemId).append(options);
         }
 
         function getOccupations() {
