@@ -4,7 +4,7 @@
 
 @section('content')
     <x-page-header pageTitle="Policy Holder Information"/>
-    <section class="service-section-v3 policy-holder-info">
+    <section id="app" class="service-section-v3 policy-holder-info">
         <div class="container">
             <div class="row">
                 <div class="stepwizard">
@@ -61,8 +61,8 @@
                                 <input name="name" id="name" type="text" required="required" class="form-control" placeholder="Name" />
                             </div>
                             <div class="form-group col-md-3">
-                                <label class="control-label" for="image">Image</label>
-                                <input type="file" name="image" id="image" required="required" class="form-control" placeholder="Upload" />
+                                <label class="control-label" for="image">Image[JPEG,JPG,PNG]<span class="text-danger">*</span></label>
+                                <input type="file" accept=".png,.jpg,.jpeg" name="image" id="image" onchange="handleFileInput(event, 'image')" required="required" class="form-control" placeholder="Upload" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="father">Father's Name</label>
@@ -143,8 +143,8 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label class="control-label" for="nidBRegPass">NID/Birth Reg./Passport</label>
-                                <input name="nidBRegPass" id="nidBRegPass" type="file" required="required" class="form-control" />
+                                <label class="control-label" for="nidBRegPass">NID/Birth Reg./Passport[JPEG,JPG,PNG]<span class="text-danger">*</span></label>
+                                <input name="nidBRegPass" accept=".jpg,.jpeg,.png" onchange="handleFileInput(event, 'nidBRegPass')" id="nidBRegPass" type="file" required="required" class="form-control" />
                             </div>
                             <div class="col-md-12 fontItalic">Address</div>
                             <div class="form-group col-md-3">
@@ -172,30 +172,11 @@
                                 <label class="control-label" for="address">Address</label>
                                 <textarea rows="2" name="address" id="address" required="required" class="form-control" placeholder="Address"></textarea>
                             </div>
-                            <div class="col-md-12 fontItalic">Nominee(s)</div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="nomineeName">Nominee Name</label>
-                                <input name="nomineeName" id="nomineeName" type="text" required="required" class="form-control" placeholder="Nominee Name" />
+                            <div class="col-md-12 fontItalic bold">Nominee(s)</div>
+
+                            <div class="col-md-12 text-center form-group">
+                                <button type="button" class="btn-info btn-sm" onclick="showNomineeModal()">Add Nominee</button>
                             </div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="nomineeAge">Nominee Age</label>
-                                <input name="nomineeAge" id="nomineeAge" type="text" required="required" class="form-control" placeholder="Nominee Age" />
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="nomineePercentage">%</label>
-                                <input name="nomineePercentage" id="nomineePercentage" type="text" required="required" class="form-control" placeholder="%" />
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="nomineeRelation">Relation</label>
-                                <select name="nomineeRelation" id="nomineeRelation" required="required" class="form-control">
-                                    <option value="">Select</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="nomineeImage">Image</label>
-                                <input name="nomineeImage" id="nomineeImage" type="file" required="required" class="form-control" />
-                            </div>
-                            <div class="col-md-12 text-center form-group"><button type="button" class="btn-info btn-sm">Add Nominee</button></div>
                             <div class="col-md-12 fontItalic">Guardian</div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="guardianName">Guardian Name</label>
@@ -232,7 +213,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="childImage">Image</label>
-                                <input type="file" name="childImage" id="childImage" required="required" class="form-control" />
+                                <input type="file" accept=".jpg,.jpeg,.png" onchange="handleFileInput(event, 'childImage')" name="childImage" id="childImage" required="required" class="form-control" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="childClass">Class</label>
@@ -508,53 +489,52 @@
                 </form>
             </div>
         </div>
-{{--        https://bootsnipp.com/snippets/j6rkb--}}
+
+        <button @click="showTestMsg">TEst vuejs 2</button>
     </section>
 
-    <!-- premium calculator modal-->
-{{--    <div class="modal fade" id="premiumModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">--}}
-{{--        <div class="modal-dialog modal-dialog-centered" role="document">--}}
-{{--            <div class="modal-content">--}}
-{{--                <div class="modal-header">--}}
-{{--                    <span class="modal-title" id="exampleModalLongTitle">Your Premium Calculation</span>--}}
-{{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                        <span aria-hidden="true">&times;</span>--}}
-{{--                    </button>--}}
-{{--                </div>--}}
-{{--                <div class="modal-body">--}}
-{{--                    <div class="table-responsive">--}}
-{{--                        <table class="table table-bordered">--}}
-{{--                            <tr>--}}
-{{--                                <td>Premium Rate</td>--}}
-{{--                                <td id='premiumRate'></td>--}}
-{{--                            </tr>--}}
-
-{{--                            <tr>--}}
-{{--                                <td>Basic Premium Rate</td>--}}
-{{--                                <td id='basicPremium'></td>--}}
-{{--                            </tr>--}}
-{{--                            <tr>--}}
-{{--                                <td>Total Premium</td>--}}
-{{--                                <td id='totalPremium'></td>--}}
-{{--                            </tr>--}}
-{{--                            <tr>--}}
-{{--                                <td>Sum Assured</td>--}}
-{{--                                <td id='sumAssured'></td>--}}
-{{--                            </tr>--}}
-{{--                        </table>--}}
-{{--                    </div>--}}
-{{--                    <hr>--}}
-{{--                    <small>Premium calculator is an informative tool intended for use as a guide tool only and the calculations above are based on the information you have provided.--}}
-{{--                        The figures and calculation used here may vary slightly and change at any time without notice.</small>--}}
-
-{{--                </div>--}}
-{{--                <div class="modal-footer">--}}
-{{--                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Try Again</button>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-    <!-- end premium calculator modal-->
+    <!-- nominee modal-->
+    <div class="modal fade" id="nomineeModal" tabindex="-1" role="dialog" aria-labelledby="nomineeModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title">Add Nominee</span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label" for="nomineeName">Nominee Name<span class="text-danger">*</span></label>
+                        <input name="nomineeName" id="nomineeName" type="text" required="required" class="form-control" placeholder="Nominee Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="nomineeAge">Nominee Age<span class="text-danger">*</span></label>
+                        <input name="nomineeAge" id="nomineeAge" type="text" required="required" class="form-control" placeholder="Nominee Age" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="nomineePercentage">%<span class="text-danger">*</span></label>
+                        <input name="nomineePercentage" id="nomineePercentage" type="text" required="required" class="form-control" placeholder="%" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="nomineeRelation">Relation<span class="text-danger">*</span></label>
+                        <select name="nomineeRelation" id="nomineeRelation" required="required" class="form-control">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="nomineeImage">Image[JPEG,JPG,PNG]<span class="text-danger">*</span></label>
+                        <input name="nomineeImage" accept=".jpg,.jpeg,.png" onchange="handleFileInput(event, 'nomineeImage')" id="nomineeImage" type="file" required="required" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+{{--                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Add</button>--}}
+                    <button type="button" class="btn btn-primary btn-sm" onclick="addNominee()">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end nominee modal-->
 @endsection
 @push('after-styles')
     <style>
@@ -613,6 +593,15 @@
             font-size: 12px;
             line-height: 1.428571429;
             border-radius: 15px;
+        }
+        #nomineeModal .form-control {
+            height: auto;
+            padding: 10px;
+            font-size: 14px;
+            line-height: 20px;
+        }
+        #nomineeModal .form-group {
+            margin-bottom: 10px
         }
     </style>
 @endpush
@@ -804,52 +793,8 @@
         /**
          * calculate premium
          */
-        function calculate() {
-            let age = $('#age').data('age');
-            let plan_no = $('#plan').val();
-            let term = $('#term').val();
-            let mode_of_payment = $('#payment_mode').val();
-            let sum_assured = $('#sum_assured').val();
-            let supplementary_covers = '';
-
-            if (!age) {
-                alert('Please Enter Age');
-                return;
-            }
-            if (!plan_no) {
-                alert('Please Select Plan');
-                return;
-            }
-            if (!term) {
-                alert('Please Select Term');
-                return;
-            }
-            if (!mode_of_payment) {
-                alert('Please Select Payment Mode');
-                return;
-            }
-            if (!sum_assured) {
-                alert('Please Enter Sum Assured');
-                return;
-            }
-
-            $.ajax({
-                url: apiUrl + "public/calc/calculate",
-                method: 'POST',
-                dataType: 'JSON',
-                data: {age: age, plan_no: plan_no, term: term, mode_of_payment: mode_of_payment, sum_assured: sum_assured, supplementary_covers: supplementary_covers}
-            }).done(function(response) {
-                if (response.status == 200) {
-                    let rate = response.data.rate ? parseInt(response.data.rate).toFixed(2) : '';
-                    $('#premiumModal #premiumRate').text(rate);
-                    $('#premiumModal #basicPremium').text(response.data.basic_premium);
-                    $('#premiumModal #totalPremium').text(response.data.total);
-                    $('#premiumModal #sumAssured').text(sum_assured);
-                    $('#premiumModal').modal('show');
-                }
-            }).fail(function() {
-                alert('error: Cant process your  request right  now. Please try some time later.')
-            });
+        function showNomineeModal() {
+            $('#nomineeModal').modal('show');
         }
 
         function businessMonths() {
@@ -1055,6 +1000,38 @@
             }).fail(function() {
                 console.error('Could not load getPensionAge')
             });
+        }
+
+        function handleFileInput(e, elmId) {
+            const file = e.target.files;
+            if (!file) return;
+            let size = (file[0].size/1024);//converted to KB.
+            let type = file[0].type.toLowerCase();
+            if (size > 300) { //300KB
+                document.getElementById(elmId).value = "";
+                alert('Allowed File Size: 300KB');
+            } else if (type !== "image/jpg" && type !== "image/jpeg" && type !== "image/png") {
+                document.getElementById(elmId).value = "";
+                alert('Invalid File Type. Allowed: JPG,PNG,JPEG');
+            } else {
+                console.log("file valid")
+            }
+        }
+
+        function addNominee() {
+            var curInputs = $('#nomineeModal .modal-body').find("input, select, textarea"),
+                isValid = true;
+            $(".form-group").removeClass("has-error");
+            for (var i = 0; i < curInputs.length; i++) {
+                if (!curInputs[i].validity.valid) {
+                    isValid = false;
+                    $(curInputs[i]).closest(".form-group").addClass("has-error");
+                }
+            }
+
+            if(isValid) {
+                alert('Valid Data');
+            }
         }
     </script>
 @endpush
