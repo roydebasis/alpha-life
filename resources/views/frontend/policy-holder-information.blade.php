@@ -436,7 +436,10 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="finanicalAssociate">Financial Associate</label>
-                                <input name="finanicalAssociate" id="finanicalAssociate" type="text" required="required" class="form-control" placeholder="Finanical Associate" />
+                                <select name="finanicalAssociate" onchange="getChainSetup()" id="finanicalAssociate" required="required" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="10000783">10000783</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="faCodeName">FA Code and Name</label>
@@ -1024,6 +1027,53 @@
             });
         }
 
+        function getChainSetup() {
+            var faCode = $('#finanicalAssociate option:selected').val();
+            console.log('faCode: ', faCode);
+            if (!faCode) {
+                setChainSetupData('empty', '');
+                return;
+            }
+            $.ajax({
+                url: apiUrl + "public/misc/chain-setup-data/" + faCode,
+                method: 'GET',
+                dataType: 'JSON',
+            }).done(function(response) {
+                if (response.status == 200) {
+                    setChainSetupData('set', response.data.chainSetup[0]);
+                }
+            }).fail(function() {
+                console.error('Could not load getChainSetup')
+            });
+        }
+
+        function setChainSetupData(action, data) {
+            if (action == 'set' && data) {
+                $('#faCodeName').val(data.FACode + '-' + data.FAName);
+                $('#umCodeName').val(data.UMCode + '-' + data.UMName);
+                $('#bmCodeName').val(data.BMCode + '-' + data.BMName);
+                $('#asmCodeName').val(data.ASMCode + '-' + data.ASMName);
+                $('#smCodeName').val(data.SMCode + '-' + data.SMName);
+                $('#ssmCodeName').val(data.SSMCode + '-' + data.SSMName);
+                //TODO::which data from to place to the following fields.
+                // $('#amCodeName').val();
+                // $('#dcmoCodeName').val();
+                // $('#cmoCodeName').val();
+            }
+
+            if (action == 'empty') {
+                $('#faCodeName').val();
+                $('#umCodeName').val();
+                $('#bmCodeName').val();
+                $('#asmCodeName').val();
+                $('#smCodeName').val();
+                $('#ssmCodeName').val();
+                $('#amCodeName').val();
+                $('#dcmoCodeName').val();
+                $('#cmoCodeName').val();
+            }
+        }
+
         function handleFileInput(e, elmId) {
             const file = e.target.files;
             if (!file) return;
@@ -1073,7 +1123,7 @@
             }
             reader.readAsDataURL(file);
         }
-         function closeNomineeModal() {
+        function closeNomineeModal() {
              $('#nomineeName').val('');
              $('#nomineeAge').val('');
              $('#nomineePercentage').val('');
@@ -1081,6 +1131,7 @@
              $('#nomineeImage').val('');
              $('#nomineeModal').modal('hide');
         }
+
         function listNominees(data) {
             var rows = '';
             data.forEach((item, index) => {
