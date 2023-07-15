@@ -536,6 +536,7 @@ if (!function_exists('generate_page_link')) {
             || Str::contains($url, 'premium-calculator')
             || Str::contains($url, 'signup')
             || Str::contains($url, 'login')
+            || Str::contains($url, 'policy-holder-information')
             || Str::contains($url, 'account')) {
             return 'http://'.request()->getHost().$url;
         }

@@ -313,7 +313,7 @@
                     </a>
                 </div>
                 <div class="col-xs-6 col-sm-4 col-md-4 mb-30">
-                    <a href="/page/policy-holder-information">
+                    <a href="{{generate_page_link('/page/policy-holder-information')}}">
                         <div class="process-box">
                             <i class="flaticon-folder25"></i>
                             <h3>Online Application</h3>

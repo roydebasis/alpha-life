@@ -1029,7 +1029,6 @@
 
         function getChainSetup() {
             var faCode = $('#finanicalAssociate option:selected').val();
-            console.log('faCode: ', faCode);
             if (!faCode) {
                 setChainSetupData('empty', '');
                 return;
