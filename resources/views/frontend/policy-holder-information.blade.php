@@ -175,6 +175,22 @@
                             <div class="col-md-12 fontItalic bold">Nominee(s)</div>
 
                             <div class="col-md-12 text-center form-group">
+                                <div id="nomineeList">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th width="10%">Image</th>
+                                                <th width="30%">Name</th>
+                                                <th width="10%">Age</th>
+                                                <th width="10%">%</th>
+                                                <th width="20%">Relation</th>
+                                                <th width="10%">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+
+                                </div>
                                 <button type="button" class="btn-info btn-sm" onclick="showNomineeModal()">Add Nominee</button>
                             </div>
                             <div class="col-md-12 fontItalic">Guardian</div>
@@ -489,8 +505,6 @@
                 </form>
             </div>
         </div>
-
-        <button @click="showTestMsg">TEst vuejs 2</button>
     </section>
 
     <!-- nominee modal-->
@@ -504,28 +518,30 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label class="control-label" for="nomineeName">Nominee Name<span class="text-danger">*</span></label>
-                        <input name="nomineeName" id="nomineeName" type="text" required="required" class="form-control" placeholder="Nominee Name" />
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="nomineeAge">Nominee Age<span class="text-danger">*</span></label>
-                        <input name="nomineeAge" id="nomineeAge" type="text" required="required" class="form-control" placeholder="Nominee Age" />
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="nomineePercentage">%<span class="text-danger">*</span></label>
-                        <input name="nomineePercentage" id="nomineePercentage" type="text" required="required" class="form-control" placeholder="%" />
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="nomineeRelation">Relation<span class="text-danger">*</span></label>
-                        <select name="nomineeRelation" id="nomineeRelation" required="required" class="form-control">
-                            <option value="">Select</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="nomineeImage">Image[JPEG,JPG,PNG]<span class="text-danger">*</span></label>
-                        <input name="nomineeImage" accept=".jpg,.jpeg,.png" onchange="handleFileInput(event, 'nomineeImage')" id="nomineeImage" type="file" required="required" class="form-control" />
-                    </div>
+                    <form id="nomineeAddForm">
+                        <div class="form-group">
+                            <label class="control-label" for="nomineeName">Nominee Name<span class="text-danger">*</span></label>
+                            <input name="nomineeName" id="nomineeName" type="text" required="required" class="form-control" placeholder="Nominee Name" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="nomineeAge">Nominee Age<span class="text-danger">*</span></label>
+                            <input name="nomineeAge" id="nomineeAge" type="number" required="required" class="form-control" placeholder="Nominee Age" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="nomineePercentage">%<span class="text-danger">*</span></label>
+                            <input name="nomineePercentage" id="nomineePercentage" type="number" max="100" required="required" class="form-control" placeholder="%" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="nomineeRelation">Relation<span class="text-danger">*</span></label>
+                            <select name="nomineeRelation" id="nomineeRelation" required="required" class="form-control">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="nomineeImage">Image[JPEG,JPG,PNG]<span class="text-danger">*</span></label>
+                            <input name="nomineeImage" accept=".jpg,.jpeg,.png" onchange="handleFileInput(event, 'nomineeImage')" id="nomineeImage" type="file" required="required" class="form-control" />
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer text-center">
 {{--                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Add</button>--}}
@@ -603,11 +619,17 @@
         #nomineeModal .form-group {
             margin-bottom: 10px
         }
+        .nominee-image {
+            width: 40px;
+            height: 40px;
+        }
     </style>
 @endpush
 @push('after-scripts')
     <script type="text/javascript">
         var apiUrl = "{{ config('alpha.api_url') }}";
+        var nominees = [];
+        var tempNomImage;
         jQuery(document).ready(function () {
             //default data
             businessMonths();
@@ -639,9 +661,7 @@
             var navListItems = $('div.setup-panel div a'),
                 allWells = $('.setup-content'),
                 allNextBtn = $('.nextBtn');
-
             allWells.hide();
-
             navListItems.click(function (e) {
                 e.preventDefault();
                 var $target = $($(this).attr('href')),
@@ -655,7 +675,6 @@
                     $target.find('input:eq(0)').focus();
                 }
             });
-
             allNextBtn.click(function () {
                 var curStep = $(this).closest(".setup-content"),
                     curStepBtn = curStep.attr("id"),
@@ -674,7 +693,6 @@
 
                 if (isValid) nextStepWizard.removeAttr('disabled').trigger('click');
             });
-
             $('div.setup-panel div a.btn-success').trigger('click');
             // Step wise form end
             $(document).on('change','#division',function(){
@@ -689,6 +707,10 @@
                 let district = $(this).find('option:selected').val();
                 if(!district) return;
                 getThana(district);
+            });
+
+            $('#nomineeModal').on('shown.bs.modal', function () {
+                tempNomImage = '';
             });
         });
 
@@ -1014,7 +1036,9 @@
                 document.getElementById(elmId).value = "";
                 alert('Invalid File Type. Allowed: JPG,PNG,JPEG');
             } else {
-                console.log("file valid")
+                if (elmId == 'nomineeImage') {
+                    encodeImgtoBase64(e.target);
+                }
             }
         }
 
@@ -1028,10 +1052,55 @@
                     $(curInputs[i]).closest(".form-group").addClass("has-error");
                 }
             }
-
-            if(isValid) {
-                alert('Valid Data');
-            }
+            if (!isValid) { return; }
+            nominees.push({
+                'name': $('#nomineeName').val(),
+                'age': $('#nomineeAge').val(),
+                'percentage': $('#nomineePercentage').val(),
+                'relation': $('#nomineeRelation option:selected').val(),
+                'image': tempNomImage,
+            });
+            listNominees(nominees);
+            tempNomImage = '';
+            closeNomineeModal();
         }
+
+        function encodeImgtoBase64(element) {
+            var file = element.files[0];
+            var reader = new FileReader();
+            reader.onloadend = function() {
+                tempNomImage = reader.result;
+            }
+            reader.readAsDataURL(file);
+        }
+         function closeNomineeModal() {
+             $('#nomineeName').val('');
+             $('#nomineeAge').val('');
+             $('#nomineePercentage').val('');
+             $('#nomineeRelation').val('');
+             $('#nomineeImage').val('');
+             $('#nomineeModal').modal('hide');
+        }
+        function listNominees(data) {
+            var rows = '';
+            data.forEach((item, index) => {
+                rows += '<tr id="nominee'+index+'">'
+                    + '<td><img src="'+item.image+'" width="40px" height="40px" class="nominee-image"></td>'
+                    + '<td class="text-left">'+item.name+'</td>'
+                    + '<td class="text-left">'+item.age+'</td>'
+                    + '<td class="text-left">'+item.percentage+'</td>'
+                    + '<td class="text-left">'+item.relation+'</td>'
+                    + '<td><a href="javascript:;" class="removeNominee" onclick="deleteNominee('+index+')" data-index="'+index+'"><i class="fa fa-times text-red"></i></a></td>'
+                    + '</tr>';
+            });
+            $('#nomineeList tbody').html(rows).removeClass('hide');
+        }
+
+        function deleteNominee(index) {
+            $('#nomineeList #nominee'+index).remove();
+            nominees.splice(index,1);
+        }
+
+        // $('#image').prop('files');
     </script>
 @endpush
