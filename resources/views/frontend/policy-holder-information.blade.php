@@ -61,7 +61,7 @@
                                 <input name="name" id="name" type="text" required="required" class="form-control" placeholder="Name" />
                             </div>
                             <div class="form-group col-md-3">
-                                <label class="control-label" for="image">Image[JPEG,JPG,PNG]<span class="text-danger">*</span></label>
+                                <label class="control-label" for="image">Image[JPEG,JPG,PNG]</label>
                                 <input type="file" accept=".png,.jpg,.jpeg" name="image" id="image" onchange="handleFileInput(event, 'image')" required="required" class="form-control" placeholder="Upload" />
                             </div>
                             <div class="form-group col-md-3">
@@ -109,7 +109,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="age">Age</label>
-                                <input type="text" onblur="onAgeChange()" name="age" id="age" required="required" class="form-control" placeholder="Age" />
+                                <input type="number" onblur="onAgeChange()" name="age" id="age" required="required" class="form-control" placeholder="Age" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="ageProof">Age Proof</label>
@@ -143,7 +143,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label class="control-label" for="nidBRegPass">NID/Birth Reg./Passport[JPEG,JPG,PNG]<span class="text-danger">*</span></label>
+                                <label class="control-label" for="nidBRegPass">NID/Birth Reg./Passport[JPEG,JPG,PNG]</label>
                                 <input name="nidBRegPass" accept=".jpg,.jpeg,.png" onchange="handleFileInput(event, 'nidBRegPass')" id="nidBRegPass" type="file" required="required" class="form-control" />
                             </div>
                             <div class="col-md-12 fontItalic">Address</div>
@@ -172,8 +172,7 @@
                                 <label class="control-label" for="address">Address</label>
                                 <textarea rows="2" name="address" id="address" required="required" class="form-control" placeholder="Address"></textarea>
                             </div>
-                            <div class="col-md-12 fontItalic bold">Nominee(s)</div>
-
+                            <div class="col-md-12" id="nomineeBlock"><label class="control-label bold">Nominee(s)</label></div>
                             <div class="col-md-12 text-center form-group">
                                 <div id="nomineeList">
                                     <table class="table table-bordered">
@@ -200,7 +199,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="guardianAge">Guardian Age</label>
-                                <input type="text" name="guardianAge" id="guardianAge" required="required" class="form-control" placeholder="Guardina Age" />
+                                <input type="number" name="guardianAge" id="guardianAge" required="required" class="form-control" placeholder="Guardina Age" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="guardianRelation">Relation</label>
@@ -289,11 +288,11 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="stipendTerm">Stipend Term</label>
-                                <input type="number" name="stipendTerm" id="stipendTerm" required="required" class="form-control" placeholder="Stipend Term" />
+                                <input type="text" name="stipendTerm" id="stipendTerm" required="required" class="form-control" placeholder="Stipend Term" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="stipendUnit">Stipend Unit</label>
-                                <input type="number" name="stipendUnit" id="stipendUnit" required="required" class="form-control" placeholder="Stipend Unit"/>
+                                <input type="text" name="stipendUnit" id="stipendUnit" required="required" class="form-control" placeholder="Stipend Unit"/>
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="stipendAmount">Stipend Amount</label>
@@ -369,6 +368,8 @@
                                 <label class="control-label" for="lienType">Lien Type</label>
                                 <select name="lienType" id="lienType" required="required" class="form-control">
                                     <option value="">Select</option>
+                                    <option value="lien1">Type 1</option>
+                                    <option value="lien2">Type 2</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
@@ -501,7 +502,7 @@
                                 <input name="prAmount" id="prAmount" type="text" required="required" class="form-control" placeholder="PR Amount" />
                             </div>
                             <div class="form-group col-md-12">
-                                <button class="btn btn-success pull-right" type="submit">Finish!</button>
+                                <button class="btn btn-success nextBtn pull-right" type="button" id="finishBtn">Finish!</button>
                             </div>
                         </div>
                     </div>
@@ -523,37 +524,56 @@
                 <div class="modal-body">
                     <form id="nomineeAddForm">
                         <div class="form-group">
-                            <label class="control-label" for="nomineeName">Nominee Name<span class="text-danger">*</span></label>
+                            <label class="control-label" for="nomineeName">Nominee Name</label>
                             <input name="nomineeName" id="nomineeName" type="text" required="required" class="form-control" placeholder="Nominee Name" />
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="nomineeAge">Nominee Age<span class="text-danger">*</span></label>
+                            <label class="control-label" for="nomineeAge">Nominee Age</label>
                             <input name="nomineeAge" id="nomineeAge" type="number" required="required" class="form-control" placeholder="Nominee Age" />
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="nomineePercentage">%<span class="text-danger">*</span></label>
+                            <label class="control-label" for="nomineePercentage">%</label>
                             <input name="nomineePercentage" id="nomineePercentage" type="number" max="100" required="required" class="form-control" placeholder="%" />
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="nomineeRelation">Relation<span class="text-danger">*</span></label>
+                            <label class="control-label" for="nomineeRelation">Relation</label>
                             <select name="nomineeRelation" id="nomineeRelation" required="required" class="form-control">
                                 <option value="">Select</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="nomineeImage">Image[JPEG,JPG,PNG]<span class="text-danger">*</span></label>
+                            <label class="control-label" for="nomineeImage">Image[JPEG,JPG,PNG]</label>
                             <input name="nomineeImage" accept=".jpg,.jpeg,.png" onchange="handleFileInput(event, 'nomineeImage')" id="nomineeImage" type="file" required="required" class="form-control" />
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer text-center">
-{{--                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Add</button>--}}
                     <button type="button" class="btn btn-primary btn-sm" onclick="addNominee()">Add</button>
                 </div>
             </div>
         </div>
     </div>
     <!-- end nominee modal-->
+    <!-- confirmation modal-->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title font-weight-600">Are you sure?</span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Please make sure that you have re-checked the information you have provided.</p>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-primary btn-sm" onclick="savePolicyHolderInfo()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end confirmation modal-->
 @endsection
 @push('after-styles')
     <style>
@@ -601,9 +621,6 @@
             text-align: center;
             position: relative;
         }
-        form {
-            margin-bottom: 80px;
-        }
         .btn-circle {
             width: 30px;
             height: 30px;
@@ -632,7 +649,7 @@
     <script type="text/javascript">
         var apiUrl = "{{ config('alpha.api_url') }}";
         var nominees = [];
-        var tempNomImage;
+        var tempNomImage, userImg, nidBRegPassImg, childImg;
         jQuery(document).ready(function () {
             //default data
             businessMonths();
@@ -682,19 +699,28 @@
                 var curStep = $(this).closest(".setup-content"),
                     curStepBtn = curStep.attr("id"),
                     nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
-                    // curInputs = curStep.find("input[type='text'],input[type='url'], input[type='file'], textarea, select"),
-                    curInputs = curStep.find("input[type='text'],input[type='url'], textarea"),
+                    curInputs = curStep.find("input, textarea, select"),
+                    excludeFields = ['faCodeName', 'umCodeName', 'bmCodeName', 'smCodeName', 'asmCodeName', 'ssmCodeName', 'amCodeName', 'dcmoCodeName', 'cmoCodeName'],
                     isValid = true;
 
-                // $(".form-group").removeClass("has-error");
-                // for (var i = 0; i < curInputs.length; i++) {
-                //     if (!curInputs[i].validity.valid) {
-                //         isValid = false;
-                //         $(curInputs[i]).closest(".form-group").addClass("has-error");
-                //     }
-                // }
-
-                if (isValid) nextStepWizard.removeAttr('disabled').trigger('click');
+                $(".form-group, #nomineeBlock").removeClass("has-error");
+                for (var i = 0; i < curInputs.length; i++) {
+                    if (!curInputs[i].validity.valid && !excludeFields.includes(curInputs[i]['id'])) {
+                        isValid = false;
+                        $(curInputs[i]).closest(".form-group").addClass("has-error");
+                    }
+                }
+                if (!nominees.length) {
+                    isValid = false;
+                    $('#nomineeBlock').addClass('has-error');
+                }
+                if (!isValid) return;
+                if (curStepBtn != 'step-4') {
+                    nextStepWizard.removeAttr('disabled').trigger('click');
+                    return;
+                }
+                savePolicyHolderInfo();
+                // $('#confirmationModal').modal('show');
             });
             $('div.setup-panel div a.btn-success').trigger('click');
             // Step wise form end
@@ -1085,9 +1111,7 @@
                 document.getElementById(elmId).value = "";
                 alert('Invalid File Type. Allowed: JPG,PNG,JPEG');
             } else {
-                if (elmId == 'nomineeImage') {
-                    encodeImgtoBase64(e.target);
-                }
+                encodeImgtoBase64(e.target, elmId);
             }
         }
 
@@ -1114,14 +1138,26 @@
             closeNomineeModal();
         }
 
-        function encodeImgtoBase64(element) {
+        function encodeImgtoBase64(element, elmId) {
             var file = element.files[0];
             var reader = new FileReader();
             reader.onloadend = function() {
-                tempNomImage = reader.result;
+                if (elmId == 'nomineeImage') {
+                    tempNomImage = reader.result;
+                }
+                if (elmId == 'image') {
+                    userImg = reader.result;
+                }
+                if (elmId == 'childImage') {
+                    childImg = reader.result;
+                }
+                if (elmId == 'nidBRegPass') {
+                    nidBRegPassImg = reader.result;
+                }
             }
             reader.readAsDataURL(file);
         }
+
         function closeNomineeModal() {
              $('#nomineeName').val('');
              $('#nomineeAge').val('');
@@ -1151,6 +1187,116 @@
             nominees.splice(index,1);
         }
 
-        // $('#image').prop('files');
+        function encodeImgtoBase64ByProp(element) {
+            var file = element[0];
+            var reader = new FileReader();
+            reader.onloadend = function() {
+                return reader.result;
+            }
+            reader.readAsDataURL(file);
+        }
+
+        function generateRandomNumber(length) {
+            return Math.floor(Math.pow(10, length-1) + Math.random() * 9 * Math.pow(10, length-1));
+
+        }
+
+        function savePolicyHolderInfo() {
+            $('#finishBtn').attr('disabled',  'disabled');
+            let data = {
+                'proposalNo': generateRandomNumber(10),
+                'commDate': $('#commDate').val(),
+                'type': $('#type option:selected').val(),
+                'businessMonth': $('#businessMonth option:selected').val(),
+                'proposalDate': $('#proposalDate').val(),
+                'name': $('#name').val(),
+                'image': userImg,
+                'father': $('#father').val(),
+                'mother': $('#mother').val(),
+                'spouseName': $('#spouseName').val(),
+                'occupation': $('#occupation').val(),
+                'nationality': $('#nationality').val(),
+                'urbanRural': $('#urbanRural').val(),
+                'mobile': $('#mobile').val(),
+                'email': $('#email').val(),
+                'dob': $('#dob').val(),
+                'age': $('#age').val(),
+                'ageProof': $('#ageProof option:selected').val(),
+                'education': $('#education option:selected').val(),
+                'religion': $('#religion option:selected').val(),
+                'sex': $('#sex option:selected').val(),
+                'nidBRegPass': nidBRegPassImg,
+                'division': $('#division option:selected').val(),
+                'district': $('#district option:selected').val(),
+                'upazilla': $('#upazilla option:selected').val(),
+                'address': $('#address').val(),
+                'nominees': nominees,
+                'guardianName': $('#guardianName').val(),
+                'guardianAge': $('#guardianAge').val(),
+                'childName': $('#childName').val(),
+                'childDob': $('#childDob').val(),
+                'childAge': $('#childAge').val(),
+                'childAgeProof': $('#childAgeProof option:selected').val(),
+                'childImage': childImg,
+                'childClass': $('#childClass option:selected').val(),
+                'relationWithPayee': $('#relationWithPayee option:selected').val(),
+                'sumAssured': $('#sumAssured').val(),
+                'plan': $('#plan option:selected').val(),
+                'term': $('#term option:selected').val(),
+                'paymentMethod': $('#paymentMethod option:selected').val(),
+                'pensionAmount': $('#pensionAmount').val(),
+                'pensionAge': $('#pensionAge option:selected').val(),
+                'stipendTerm': $('#stipendTerm').val(),
+                'stipendUnit': $('#stipendUnit').val(),
+                'stipendAmount': $('#stipendAmount').val(),
+                'sumRisk': $('#sumRisk').val(),
+                'premiumRate': $('#premiumRate').val(),
+                'suppleName': $('#suppleName option:selected').val(),
+                'suppPreRate': $('#suppPreRate').val(),
+                'suppAge': $('#suppAge').val(),
+                'limit': $('#limit').val(),
+                'healthInsurance': $('#healthInsurance option:selected').val(),
+                'clauseName': $('#clauseName option:selected').val(),
+                'clauseCode': $('#clauseCode').val(),
+                'extraName': $('#extraName option:selected').val(),
+                'extraCode': $('#extraCode').val(),
+                'extraPreRate': $('#extraPreRate').val(),
+                'lienYear': $('#lienYear').val(),
+                'lienPercent': $('#lienPercent').val(),
+                'lienType': $('#lienType option:selected').val(),
+                'basicPremium': $('#basicPremium').val(),
+                'suppPremium': $('#suppPremium').val(),
+                'fePremium': $('#fePremium').val(),
+                'oePremium': $('#oePremium').val(),
+                'hExtraLoading': $('#hExtraLoading').val(),
+                'totalPremium': $('#totalPremium').val(),
+                'agencyCode': $('#agencyCode').val(),
+                'agencyName': $('#agencyName').val(),
+                'organizationCode': $('#organizationCode').val(),
+                'organizationName': $('#organizationName').val(),
+                'serviceCellCode': $('#serviceCellCode').val(),
+                'serviceCellName': $('#serviceCellName').val(),
+                'businessWing': $('#businessWing').val(),
+                'finanicalAssociate': $('#finanicalAssociate option:selected').val(),
+                'faCodeName': $('#faCodeName').val(),
+                'umCodeName': $('#umCodeName').val(),
+                'bmCodeName': $('#bmCodeName').val(),
+                'asmCodeName': $('#asmCodeName').val(),
+                'smCodeName': $('#smCodeName').val(),
+                'ssmCodeName': $('#ssmCodeName').val(),
+                'amCodeName': $('#amCodeName').val(),
+                'dcmoCodeName': $('#dcmoCodeName').val(),
+                'cmoCodeName': $('#cmoCodeName').val(),
+                'prNumber': $('#prNumber').val(),
+                'prDate': $('#prDate').val(),
+                'prAmount': $('#prAmount').val()
+            };
+
+            console.log(data);
+        }
+
+        function showconfirm() {
+            $('#confirmationModal').modal('show');
+        }
     </script>
 @endpush
