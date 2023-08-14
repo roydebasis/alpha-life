@@ -9,22 +9,22 @@
             <div class="row">
                 <div class="stepwizard">
                     <div class="stepwizard-row setup-panel">
-                        <div class="stepwizard-step col-xs-3">
+                        <div class="stepwizard-step col-xs-4">
                             <a href="#step-1" type="button" class="btn btn-success btn-circle">1</a>
                             <p><small>Policy Holder Information</small></p>
                         </div>
-                        <div class="stepwizard-step col-xs-3">
+                        <div class="stepwizard-step col-xs-4">
                             <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
                             <p><small>Policy Information</small></p>
                         </div>
-                        <div class="stepwizard-step col-xs-3">
+                        <div class="stepwizard-step col-xs-4">
                             <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
                             <p><small>Chain Setup</small></p>
                         </div>
-                        <div class="stepwizard-step col-xs-3">
-                            <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
-                            <p><small>PR Information</small></p>
-                        </div>
+{{--                        <div class="stepwizard-step col-xs-3">--}}
+{{--                            <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>--}}
+{{--                            <p><small>PR Information</small></p>--}}
+{{--                        </div>--}}
                     </div>
                 </div>
                 <form role="form">
@@ -35,7 +35,7 @@
                         <div class="panel-body">
                             <div class="form-group col-md-3">
                                 <label class="control-label">Proposal No</label>
-                                <input maxlength="100" disabled type="text" required="required" class="form-control" placeholder="Proposal No" />
+                                <input maxlength="100" disabled type="text" required="required" id="proposalno" class="form-control" placeholder="Proposal No" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="commDate">Comm. Date</label>
@@ -232,7 +232,6 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="childClass">Class</label>
-{{--                                <input type="text" name="childClass" id="childClass" required="required" class="form-control" placeholder="Class" />--}}
                                 <select name="childClass" id="childClass" required="required" class="form-control">
                                     <option value="">Select</option>
                                 </select>
@@ -431,10 +430,7 @@
                                 <label class="control-label" for="serviceCellName">Service Cell Name</label>
                                 <input name="serviceCellName" id="serviceCellName" type="text" required="required" class="form-control" placeholder="Service Cell Name" />
                             </div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="businessWing">Business Wing</label>
-                                <input name="businessWing" id="businessWing" type="text" required="required" class="form-control" placeholder="Business Wing" />
-                            </div>
+                            <div class="clearfix"></div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="finanicalAssociate">Financial Associate</label>
                                 <select name="finanicalAssociate" onchange="getChainSetup()" id="finanicalAssociate" required="required" class="form-control">
@@ -442,70 +438,78 @@
                                     <option value="10000783">10000783</option>
                                 </select>
                             </div>
+                            <div class="clearfix"></div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="faCodeName">FA Code and Name</label>
-                                <input name="faCodeName" id="faCodeName" type="text" required="required" class="form-control" placeholder="FA Code and Name" />
+                                <input name="faCode" id="faCode" type="text" required="required" class="form-control margin-bottom-10" placeholder="FA Code" />
+                                <input name="faName" id="faName" type="text" required="required" class="form-control" placeholder="FA Name" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="umCodeName">UM Code and Name</label>
-                                <input name="umCodeName" id="umCodeName" type="text" required="required" class="form-control" placeholder="UM Code and Name" />
+                                <input name="umCode" id="umCode" type="text" required="required" class="form-control margin-bottom-10" placeholder="UM Code" />
+                                <input name="umName" id="umName" type="text" required="required" class="form-control" placeholder="UM Name" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="bmCodeName">BM Code and Name</label>
-                                <input name="bmCodeName" id="bmCodeName" type="text" required="required" class="form-control" placeholder="BM Code and Name" />
+                                <input name="bmCode" id="bmCode" type="text" required="required" class="form-control margin-bottom-10" placeholder="BM Code" />
+                                <input name="bmName" id="bmName" type="text" required="required" class="form-control" placeholder="BM Name" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="asmCodeName">ASM Code and Name</label>
-                                <input name="asmCodeName" id="asmCodeName" type="text" required="required" class="form-control" placeholder="ASM Code and Name" />
+                                <input name="asmCode" id="asmCode" type="text" required="required" class="form-control margin-bottom-10" placeholder="ASM Code" />
+                                <input name="asmName" id="asmName" type="text" required="required" class="form-control" placeholder="ASM Name" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="smCodeName">SM Code and Name</label>
-                                <input name="smCodeName" id="smCodeName" type="text" required="required" class="form-control" placeholder="SM Code and Name" />
+                                <input name="smCode" id="smCode" type="text" required="required" class="form-control margin-bottom-10" placeholder="SM Code" />
+                                <input name="smName" id="smName" type="text" required="required" class="form-control" placeholder="SM Name" />
                             </div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="ssmCodeName">SSM Code and Name</label>
-                                <input name="ssmCodeName" id="ssmCodeName" type="text" required="required" class="form-control" placeholder="SSM Code and Name" />
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="amCodeName">AM Code and Name</label>
-                                <input name="amCodeName" id="amCodeName" type="text" required="required" class="form-control" placeholder="AM Code and Name" />
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="dcmoCodeName">DCMO Code and Name</label>
-                                <input name="dcmoCodeName" id="dcmoCodeName" type="text" required="required" class="form-control" placeholder="DCMO Code and Name" />
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="cmoCodeName">CMO Code and Name</label>
-                                <input name="cmoCodeName" id="cmoCodeName" type="text" required="required" class="form-control" placeholder="CMO Code and Name" />
-                            </div>
-                            <div class="form-group col-md-12">
-                                <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="panel panel-primary setup-content" id="step-4">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">PR Information</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="prNumber">PR Number</label>
-                                <input name="prNumber" id="prNumber" type="text" required="required" class="form-control" placeholder="PR Number" />
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="prDate">PR Date</label>
-                                <input name="prDate" id="prDate" type="text" required="required" class="form-control date-field" placeholder="PR Date" />
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="prAmount">PR Amount</label>
-                                <input name="prAmount" id="prAmount" type="text" required="required" class="form-control" placeholder="PR Amount" />
+                            <div class="hide">
+                                <div class="form-group col-md-3">
+                                    <label class="control-label" for="ssmCodeName">SSM Code and Name</label>
+                                    <input name="ssmCodeName" id="ssmCodeName" type="text" required="required" class="form-control" placeholder="SSM Code and Name" />
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label class="control-label" for="amCodeName">AM Code and Name</label>
+                                    <input name="amCodeName" id="amCodeName" type="text" required="required" class="form-control" placeholder="AM Code and Name" />
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label class="control-label" for="dcmoCodeName">DCMO Code and Name</label>
+                                    <input name="dcmoCodeName" id="dcmoCodeName" type="text" required="required" class="form-control" placeholder="DCMO Code and Name" />
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label class="control-label" for="cmoCodeName">CMO Code and Name</label>
+                                    <input name="cmoCodeName" id="cmoCodeName" type="text" required="required" class="form-control" placeholder="CMO Code and Name" />
+                                </div>
                             </div>
                             <div class="form-group col-md-12">
                                 <button class="btn btn-success nextBtn pull-right" type="button" id="finishBtn">Finish!</button>
                             </div>
                         </div>
                     </div>
+
+{{--                    <div class="panel panel-primary setup-content" id="step-4">--}}
+{{--                        <div class="panel-heading">--}}
+{{--                            <h3 class="panel-title">PR Information</h3>--}}
+{{--                        </div>--}}
+{{--                        <div class="panel-body">--}}
+{{--                            <div class="form-group col-md-3">--}}
+{{--                                <label class="control-label" for="prNumber">PR Number</label>--}}
+{{--                                <input name="prNumber" id="prNumber" type="text" required="required" class="form-control" placeholder="PR Number" />--}}
+{{--                            </div>--}}
+{{--                            <div class="form-group col-md-3">--}}
+{{--                                <label class="control-label" for="prDate">PR Date</label>--}}
+{{--                                <input name="prDate" id="prDate" type="text" required="required" class="form-control date-field" placeholder="PR Date" />--}}
+{{--                            </div>--}}
+{{--                            <div class="form-group col-md-3">--}}
+{{--                                <label class="control-label" for="prAmount">PR Amount</label>--}}
+{{--                                <input name="prAmount" id="prAmount" type="text" required="required" class="form-control" placeholder="PR Amount" />--}}
+{{--                            </div>--}}
+{{--                            <div class="form-group col-md-12">--}}
+{{--                                <button class="btn btn-success nextBtn pull-right" type="button" id="finishBtn">Finish!</button>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </form>
             </div>
         </div>
@@ -643,6 +647,9 @@
             width: 40px;
             height: 40px;
         }
+        .margin-bottom-10 {
+            margin-bottom: 10px;
+        }
     </style>
 @endpush
 @push('after-scripts')
@@ -664,6 +671,7 @@
             getExtraName();
             getPlans();
             onDateChange();
+            $('#proposalno').val(generateRandomNumber(10));
             $('.date-field').datepicker({
                 dateFormat: "dd/mm/yy",
                 changeYear: true,
@@ -704,23 +712,25 @@
                     isValid = true;
 
                 $(".form-group, #nomineeBlock").removeClass("has-error");
-                for (var i = 0; i < curInputs.length; i++) {
-                    if (!curInputs[i].validity.valid && !excludeFields.includes(curInputs[i]['id'])) {
-                        isValid = false;
-                        $(curInputs[i]).closest(".form-group").addClass("has-error");
-                    }
-                }
-                if (!nominees.length) {
-                    isValid = false;
-                    $('#nomineeBlock').addClass('has-error');
-                }
-                if (!isValid) return;
-                if (curStepBtn != 'step-4') {
-                    nextStepWizard.removeAttr('disabled').trigger('click');
-                    return;
-                }
-                savePolicyHolderInfo();
-                // $('#confirmationModal').modal('show');
+
+                nextStepWizard.removeAttr('disabled').trigger('click');
+
+                // for (var i = 0; i < curInputs.length; i++) {
+                //     if (!curInputs[i].validity.valid && !excludeFields.includes(curInputs[i]['id'])) {
+                //         isValid = false;
+                //         $(curInputs[i]).closest(".form-group").addClass("has-error");
+                //     }
+                // }
+                // if (!nominees.length) {
+                //     isValid = false;
+                //     $('#nomineeBlock').addClass('has-error');
+                // }
+                // if (!isValid) return;
+                // if (curStepBtn != 'step-3') {
+                //     nextStepWizard.removeAttr('disabled').trigger('click');
+                //     return;
+                // }
+                // savePolicyHolderInfo();
             });
             $('div.setup-panel div a.btn-success').trigger('click');
             // Step wise form end
@@ -1197,14 +1207,18 @@
         }
 
         function generateRandomNumber(length) {
-            return Math.floor(Math.pow(10, length-1) + Math.random() * 9 * Math.pow(10, length-1));
-
+            let date = new Date();
+            let year = date.getFullYear();
+            let month = date.getMonth() <10 ? '0' + date.getMonth() : date.getMonth();
+            let digits = Math.floor(Math.pow(10, length-1) + Math.random() * 9 * Math.pow(10, length-1));
+            return year.toString() + month.toString() + digits.toString();
         }
 
         function savePolicyHolderInfo() {
             $('#finishBtn').attr('disabled',  'disabled');
             let data = {
-                'proposalNo': generateRandomNumber(10),
+                // 'proposalNo': generateRandomNumber(10),
+                'proposalNo': $('#proposalno').val(),
                 'commDate': $('#commDate').val(),
                 'type': $('#type option:selected').val(),
                 'businessMonth': $('#businessMonth option:selected').val(),
@@ -1276,7 +1290,6 @@
                 'organizationName': $('#organizationName').val(),
                 'serviceCellCode': $('#serviceCellCode').val(),
                 'serviceCellName': $('#serviceCellName').val(),
-                'businessWing': $('#businessWing').val(),
                 'finanicalAssociate': $('#finanicalAssociate option:selected').val(),
                 'faCodeName': $('#faCodeName').val(),
                 'umCodeName': $('#umCodeName').val(),
@@ -1287,9 +1300,9 @@
                 'amCodeName': $('#amCodeName').val(),
                 'dcmoCodeName': $('#dcmoCodeName').val(),
                 'cmoCodeName': $('#cmoCodeName').val(),
-                'prNumber': $('#prNumber').val(),
-                'prDate': $('#prDate').val(),
-                'prAmount': $('#prAmount').val()
+                // 'prNumber': $('#prNumber').val(),
+                // 'prDate': $('#prDate').val(),
+                // 'prAmount': $('#prAmount').val()
             };
 
             console.log(data);
