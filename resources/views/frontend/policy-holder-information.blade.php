@@ -84,7 +84,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="nationality">Nationality</label>
-                                <input name="nationality" id="nationality" type="text" readonly required="required" value="Bangladesh" class="form-control" placeholder="Nationality" />
+                                <input name="nationality" id="nationality" type="text" readonly required="required" value="Bangladeshi" class="form-control" placeholder="Nationality" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="urbanRural">Urban\Rural</label>
