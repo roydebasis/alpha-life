@@ -305,24 +305,27 @@
                                 <label class="control-label" for="premiumRate">Premium Rate</label>
                                 <input type="number" name="premiumRate" id="premiumRate" required="required" class="form-control" placeholder="Premium Rate"/>
                             </div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="suppleName">Supple. Name</label>
-                                <select name="pensionAge" id="suppleName" required="required" class="form-control">
-                                    <option value="">Select</option>
-                                </select>
+                            <div>
+                                <label class="bold">Supplementary Services</label>
                             </div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="suppPreRate">Supp Pre Rate</label>
-                                <input type="number" name="suppPreRate" id="suppPreRate" required="required" class="form-control" placeholder="Supp Pre Rate" />
+                            <div class="form-group col-md-12 text-center">
+                                <div id="suppServiceList">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th width="30%">Supple. Name</th>
+                                            <th width="20%"> Supp Pre Rate</th>
+                                            <th width="10%"> Supp Age</th>
+                                            <th width="20%"> Sum Assured</th>
+                                            <th width="20%">Limit</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <button type="button" class="btn-info btn-sm" onclick="showSupplementaryModal()">Add Service</button>
                             </div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="suppAge">Supp Age</label>
-                                <input type="number" name="suppAge" id="suppAge" required="required" class="form-control" placeholder="Supp Age" />
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="limit">Limit</label>
-                                <input type="number" name="limit" id="limit" required="required" class="form-control" placeholder="Limit" />
-                            </div>
+
 
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="healthInsurance">Health Insurance</label>
@@ -558,6 +561,9 @@
         </div>
     </div>
     <!-- end nominee modal-->
+    <!-- supplementary modal-->
+    @include('frontend.modals.supplementary')
+    <!-- end supplementary modal-->
     <!-- confirmation modal-->
     <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -634,13 +640,15 @@
             line-height: 1.428571429;
             border-radius: 15px;
         }
-        #nomineeModal .form-control {
+        #nomineeModal .form-control,
+        #supplementaryServiceModal .form-control {
             height: auto;
             padding: 10px;
             font-size: 14px;
             line-height: 20px;
         }
-        #nomineeModal .form-group {
+        #nomineeModal .form-group,
+        #supplementaryServiceModal .form-group {
             margin-bottom: 10px
         }
         .nominee-image {
@@ -656,6 +664,7 @@
     <script type="text/javascript">
         var apiUrl = "{{ config('alpha.api_url') }}";
         var nominees = [];
+        var suppServices = [];
         var tempNomImage, userImg, nidBRegPassImg, childImg;
         jQuery(document).ready(function () {
             //default data
@@ -712,9 +721,9 @@
                     isValid = true;
 
                 $(".form-group, #nomineeBlock").removeClass("has-error");
-
+                //remove this when validation is open.
                 nextStepWizard.removeAttr('disabled').trigger('click');
-
+                //uncomment below lines when validation is open.
                 // for (var i = 0; i < curInputs.length; i++) {
                 //     if (!curInputs[i].validity.valid && !excludeFields.includes(curInputs[i]['id'])) {
                 //         isValid = false;
@@ -851,11 +860,12 @@
             }
         }
 
-        /**
-         * calculate premium
-         */
         function showNomineeModal() {
             $('#nomineeModal').modal('show');
+        }
+
+        function showSupplementaryModal() {
+            $('#supplementaryServiceModal').modal('show');
         }
 
         function businessMonths() {
@@ -1148,6 +1158,48 @@
             closeNomineeModal();
         }
 
+        function addSuppService() {
+            var curInputs = $('#supplementaryServiceModal .modal-body').find("input, select"),
+                isValid = true;
+            $(".form-group").removeClass("has-error");
+            for (var i = 0; i < curInputs.length; i++) {
+                if (!curInputs[i].validity.valid) {
+                    isValid = false;
+                    $(curInputs[i]).closest(".form-group").addClass("has-error");
+                }
+            }
+            if (!isValid) { return; }
+            suppServices.push({
+                'suppleName': $('#suppleName').val(),
+                'suppPreRate': $('#suppPreRate').val(),
+                'suppAge': $('#suppAge').val(),
+                'suppSumAssured': $('#suppSumAssured').val(),
+                'limit': $('#limit').val()
+            });
+            listServices(suppServices);
+            closeSuppServiceModal();
+        }
+
+        function listServices(data) {
+            var rows = '';
+            data.forEach((item, index) => {
+                rows += '<tr id="suppService'+index+'">'
+                    + '<td class="text-left">'+item.suppleName+'</td>'
+                    + '<td class="text-left">'+item.suppPreRate+'</td>'
+                    + '<td class="text-left">'+item.suppAge+'</td>'
+                    + '<td class="text-left">'+item.suppSumAssured+'</td>'
+                    + '<td class="text-left">'+item.limit+'</td>'
+                    + '<td><a href="javascript:;" class="removeNominee" onclick="deleteSupService('+index+')" data-index="'+index+'"><i class="fa fa-times text-red"></i></a></td>'
+                    + '</tr>';
+            });
+            $('#suppServiceList tbody').html(rows).removeClass('hide');
+        }
+
+        function deleteSupService(index) {
+            $('#suppServiceList #suppService'+index).remove();
+            suppServices.splice(index, 1);
+        }
+
         function encodeImgtoBase64(element, elmId) {
             var file = element.files[0];
             var reader = new FileReader();
@@ -1166,6 +1218,16 @@
                 }
             }
             reader.readAsDataURL(file);
+        }
+
+        function closeSuppServiceModal() {
+            $('#suppleName').val('');
+            $('#suppPreRate').val('');
+            $('#suppPreRate').val('');
+            $('#suppAge').val('');
+            $('#suppSumAssured').val('');
+            $('#limit').val('');
+            $('#supplementaryServiceModal').modal('hide');
         }
 
         function closeNomineeModal() {
