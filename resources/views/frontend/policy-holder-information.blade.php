@@ -305,7 +305,7 @@
                                 <label class="control-label" for="premiumRate">Premium Rate</label>
                                 <input type="number" name="premiumRate" id="premiumRate" required="required" class="form-control" placeholder="Premium Rate"/>
                             </div>
-                            <div>
+                            <div class="col-md-12">
                                 <label class="bold">Supplementary Services</label>
                             </div>
                             <div class="form-group col-md-12 text-center">
