@@ -10,15 +10,15 @@
                 <div class="stepwizard">
                     <div class="stepwizard-row setup-panel">
                         <div class="stepwizard-step col-xs-4">
-                            <a href="#step-1" type="button" class="btn btn-success btn-circle">1</a>
+                            <a href="#step-1" type="button" id="stepCounter1" class="btn btn-success btn-circle">1</a>
                             <p><small>Policy Holder Information</small></p>
                         </div>
                         <div class="stepwizard-step col-xs-4">
-                            <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                            <a href="#step-2" type="button" id="stepCounter2" class="btn btn-default btn-circle" disabled="disabled">2</a>
                             <p><small>Policy Information</small></p>
                         </div>
                         <div class="stepwizard-step col-xs-4">
-                            <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                            <a href="#step-3" type="button" id="stepCounter3" class="btn btn-default btn-circle" disabled="disabled">3</a>
                             <p><small>Chain Setup</small></p>
                         </div>
 {{--                        <div class="stepwizard-step col-xs-3">--}}
@@ -39,8 +39,10 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="commDate">Comm. Date</label>
-                                <input name="commDate" id="commDate" type="text" required="required" class="form-control date-field" placeholder="Comm. Date" />
+                                <!-- <input name="commDate" id="commDate" type="text" required="required" class="commDate_cal form-control date-field" placeholder="Comm. Date" /> -->
+                                <input type="text" name="commDate" id="commDate" required="required" class="commDate_cal form-control date-field" placeholder="Comm. Date" onchange="calculateAge('both')"/>
                             </div>
+
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="type">Type</label>
                                 <select name="type" required="required" class="form-control" id="type">
@@ -53,7 +55,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="proposalDate">Proposal Date</label>
-                                <input name="proposalDate" id="proposalDate" type="text" required="required" class="form-control date-field" placeholder="Proposal Date" />
+                                <input name="proposalDate" id="proposalDate" type="text" required="required" class="form-control date-fieldpd" placeholder="Proposal Date" />
                             </div>
                             <div class="col-md-12"></div>
                             <div class="form-group col-md-3">
@@ -87,7 +89,7 @@
                                 <input name="nationality" id="nationality" type="text" readonly required="required" value="Bangladeshi" class="form-control" placeholder="Nationality" />
                             </div>
                             <div class="form-group col-md-3">
-                                <label class="control-label" for="urbanRural">Urban\Rural</label>
+                                <label class="control-label" for="urbanRural">Locality</label>
                                 <select name="urban_rural" required="required" class="form-control" id="urbanRural">
                                     <option value="">Select</option>
                                     <option value="URBAN">URBAN</option>
@@ -101,15 +103,15 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="email">Email ID</label>
-                                <input type="text" name="email" id="email" required="required" class="form-control" placeholder="Email" />
+                                <input type="text" name="email" id="email" class="form-control" placeholder="Email" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="dob">DOB</label>
-                                <input type="text" name="dob" id="dob" required="required" class="form-control date-field" placeholder="DOB" />
+                                <input type="text" name="dob" id="dob" required="required" class="dob_cal_age form-control date-field" placeholder="DOB" onchange="calculateAge('dob')"/>
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="age">Age</label>
-                                <input type="number" onblur="onAgeChange()" name="age" id="age" required="required" class="form-control" placeholder="Age" />
+                                <input type="number" onblur="onAgeChange()" name="age" id="age" required="required" class="form-control age_cal_dob" placeholder="Age" readonly/>
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="ageProof">Age Proof</label>
@@ -117,6 +119,12 @@
                                     <option value="">Select</option>
                                 </select>
                             </div>
+
+                            <div class="form-group col-md-3 " id="contro_age_prof_doc" style="display: none;">
+                                <label class="control-label" for="ageProofDoc"> Upload Document </label>
+                                <input type="file" name="ageProofDoc" id="ageProofDoc" required="required" class="form-control" onchange="handleFileInput(event, 'ageProofDoc')" placeholder="Age Proof Document"/>
+                            </div>
+
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="education">Education</label>
                                 <select name="education" id="education" required="required" class="form-control">
@@ -142,9 +150,13 @@
                                     <option value="Hermaphrodite">Hermaphrodite</option>
                                 </select>
                             </div>
-                            <div class="form-group col-md-3">
-                                <label class="control-label" for="nidBRegPass">NID/Birth Reg./Passport[JPEG,JPG,PNG]</label>
-                                <input name="nidBRegPass" accept=".jpg,.jpeg,.png" onchange="handleFileInput(event, 'nidBRegPass')" id="nidBRegPass" type="file" required="required" class="form-control" />
+                            <div class="form-group col-md-3" id="nidBlock">
+                                <label class="control-label" for="nidBRegPass"> NID </label>
+                                <!-- <input name="nidBRegPass" accept=".jpg,.jpeg,.png" onchange="handleFileInput(event, 'nidBRegPass')" id="nidBRegPass" type="file" required="required" class="form-control" /> -->
+                                <input name="nidNumber" type="number" id="nidNumber" required="required" class="form-control" onchange="handleNumberOfdigit(this.value)" />
+                                <div class="invalid-feedback text-danger" id="nidError" style="display: none;">
+                                    Please provide a NID number in 10,13 or 17 digits.
+                                </div>
                             </div>
                             <div class="col-md-12 fontItalic">Address</div>
                             <div class="form-group col-md-3">
@@ -172,7 +184,7 @@
                                 <label class="control-label" for="address">Address</label>
                                 <textarea rows="2" name="address" id="address" required="required" class="form-control" placeholder="Address"></textarea>
                             </div>
-                            <div class="col-md-12" id="nomineeBlock"><label class="control-label bold">Nominee(s)</label></div>
+                            <div class="col-md-12" id="nomineeBlock"><label class="control-label">Nominee(s)</label></div>
                             <div class="col-md-12 text-center form-group">
                                 <div id="nomineeList">
                                     <table class="table table-bordered">
@@ -195,50 +207,56 @@
                             <div class="col-md-12 fontItalic">Guardian</div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="guardianName">Guardian Name</label>
-                                <input type="text" name="guardianName" id="guardianName" required="required" class="form-control" placeholder="Guardina Name" />
+                                <input type="text" name="guardianName" id="guardianName" class="form-control" placeholder="Guardina Name" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="guardianAge">Guardian Age</label>
-                                <input type="number" name="guardianAge" id="guardianAge" required="required" class="form-control" placeholder="Guardina Age" />
+                                <input type="number" name="guardianAge" id="guardianAge" class="form-control" placeholder="Guardina Age" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="guardianRelation">Relation</label>
-                                <select name="guardianRelation" id="guardianRelation" required="required" class="form-control">
+                                <select name="guardianRelation" id="guardianRelation" class="form-control">
                                     <option value="">Select</option>
                                 </select>
                             </div>
                             <div class="col-md-12 fontItalic">Child</div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="childName">Child Name</label>
-                                <input type="text" name="childName" id="childName" required="required" class="form-control" placeholder="Child Name" />
+                                <input type="text" name="childName" id="childName" class="form-control" placeholder="Child Name" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="childDob">DOB</label>
-                                <input type="text" name="childDob" id="childDob" required="required" class="form-control date-field" placeholder="Child DOB" />
+                                <input type="text" name="childDob" id="childDob" class="form-control date-field" placeholder="Child DOB" onchange="calculateAge('childDOB')"/>
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="childAge">Age</label>
-                                <input type="number" name="childAge" id="childAge" required="required" class="form-control" placeholder="Child Age" />
+                                <input type="number" name="childAge" id="childAge" class="form-control" placeholder="Child Age"/>
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="childAgeProof">Age Proof</label>
-                                <select name="childAgeProof" id="childAgeProof" required="required" class="form-control">
+                                <select name="childAgeProof" id="childAgeProof" class="form-control">
                                     <option value="">Select</option>
                                 </select>
                             </div>
+
+                            <div class="form-group col-md-3 " id="child_control_age_prof_doc" style="display: none;">
+                                <label class="control-label" for="childAgeProofDoc"> Upload Child Document </label>
+                                <input type="file" name="childAgeProofDoc" id="childAgeProofDoc" class="form-control" onchange="handleFileInput(event, 'childAgeProofDoc')" placeholder="Child Age Proof Document"/>
+                            </div>
+
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="childImage">Image</label>
-                                <input type="file" accept=".jpg,.jpeg,.png" onchange="handleFileInput(event, 'childImage')" name="childImage" id="childImage" required="required" class="form-control" />
+                                <input type="file" accept=".jpg,.jpeg,.png" onchange="handleFileInput(event, 'childImage')" name="childImage" id="childImage" class="form-control" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="childClass">Class</label>
-                                <select name="childClass" id="childClass" required="required" class="form-control">
+                                <select name="childClass" id="childClass" class="form-control">
                                     <option value="">Select</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="relationWithPayee">Relation With Payee</label>
-                                <select name="relationWithPayee" id="relationWithPayee" required="required" class="form-control">
+                                <select name="relationWithPayee" id="relationWithPayee" class="form-control">
                                     <option value="">Select</option>
                                 </select>
                             </div>
@@ -265,7 +283,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="term">Term</label>
-                                <select name="term" id="term" required="required" class="form-control">
+                                <select name="term" id="term" required="required" class="form-control" onchange="calculateSumAtRisk()">
                                     <option value="">Select</option>
                                 </select>
                             </div>
@@ -665,7 +683,8 @@
         var apiUrl = "{{ config('alpha.api_url') }}";
         var nominees = [];
         var suppServices = [];
-        var tempNomImage, userImg, nidBRegPassImg, childImg;
+        var tempNomImage, userImg, nidBRegPassImg, childImg, ageProofDoc, childAgeProofDoc;
+        var total_percentage = 0;
         jQuery(document).ready(function () {
             //default data
             businessMonths();
@@ -681,8 +700,40 @@
             getPlans();
             onDateChange();
             $('#proposalno').val(generateRandomNumber(10));
+
+            var date = new Date();
+            var tyear = date.getFullYear();
+            var tmonth = date.getMonth();
+            var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+            var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+
+            $( ".date-fieldpd" ).datepicker({ 
+                minDate: firstDay, 
+                dateFormat: "mm/dd/yy",
+                changeYear: true,
+                changeMonth: true,
+                yearRange: "-100:+10",
+                beforeShowDay: function(date) {
+                    if ((date.getDate() >= 29) && (date.getDay() <= 31)) {
+                        return [false]
+                    } else {
+                    return [true]
+                    }
+                } 
+            });
+
+
+            $("#commDate" ).datepicker({ 
+                minDate: firstDay, 
+                dateFormat: "mm/dd/yy",
+                changeYear: true,
+                changeMonth: true,
+                yearRange: "-100:+15",
+            });
+
+
             $('.date-field').datepicker({
-                dateFormat: "dd/mm/yy",
+                dateFormat: "mm/dd/yy",
                 changeYear: true,
                 changeMonth: true,
                 yearRange: "-100:+10",
@@ -690,8 +741,9 @@
                     $(this).change();
                 }
             });
+            
             let currDate = new Date();
-            $('#dob, #childDob, #riskDate, #proposalDate, #commDate').datepicker('option', 'maxDate', currDate);
+            $('#dob, #childDob, #riskDate').datepicker('option', 'maxDate', currDate);
             // $('#effective_date').datepicker('option', 'minDate', new Date());
 
             // Step wise form start
@@ -722,24 +774,38 @@
 
                 $(".form-group, #nomineeBlock").removeClass("has-error");
                 //remove this when validation is open.
-                nextStepWizard.removeAttr('disabled').trigger('click');
+                // nextStepWizard.removeAttr('disabled').trigger('click');
                 //uncomment below lines when validation is open.
-                // for (var i = 0; i < curInputs.length; i++) {
-                //     if (!curInputs[i].validity.valid && !excludeFields.includes(curInputs[i]['id'])) {
-                //         isValid = false;
-                //         $(curInputs[i]).closest(".form-group").addClass("has-error");
-                //     }
-                // }
-                // if (!nominees.length) {
-                //     isValid = false;
-                //     $('#nomineeBlock').addClass('has-error');
-                // }
-                // if (!isValid) return;
-                // if (curStepBtn != 'step-3') {
-                //     nextStepWizard.removeAttr('disabled').trigger('click');
-                //     return;
-                // }
-                // savePolicyHolderInfo();
+                for (var i = 0; i < curInputs.length; i++) {
+                    if (!curInputs[i].validity.valid && !excludeFields.includes(curInputs[i]['id'])) {
+                        isValid = false;
+                        $(curInputs[i]).closest(".form-group").addClass("has-error");
+                    }
+                }
+                if (!nominees.length) {
+                    isValid = false;
+                    $('#nomineeBlock').addClass('has-error');
+                }
+                var nid = $("#nidNumber").val();
+                const validDigit = [10,13,17];
+                var isNIDValid = false;
+                validDigit.forEach(function(item) {
+                    if(item == nid.length) {
+                        isNIDValid = true;
+                    }
+                });
+                if(!isNIDValid) {
+                    isValid = false;
+                    $('#nidBlock').addClass('has-error');
+                } else {
+                    $('#nidBlock').removeClass('has-error');
+                }
+                if (!isValid) return;
+                if (curStepBtn != 'step-3') {
+                    nextStepWizard.removeAttr('disabled').trigger('click');
+                    return;
+                }
+                savePolicyHolderInfo();
             });
             $('div.setup-panel div a.btn-success').trigger('click');
             // Step wise form end
@@ -788,12 +854,91 @@
                 getTerms(planId);
                 getMOP(planId);
             }
+            if(planId == 06) {
+                var childName = $('#childName').val(),
+                    childDob = $('#childDob').val(),
+                    childAge = $('#childAge').val(),
+                    childAgeProof = $('#childAgeProof option:selected').val(),
+                    childImage = $('#childImage').val(),
+                    childClass = $('#childClass option:selected').val(),
+                    relationWithPayee = $('#relationWithPayee option:selected').val(),
+                    childAgeProofDoc = $('#childAgeProofDoc').val();
+
+                if (childName.length == 0 || childDob.length == 0 || childAge.length == 0 || childAgeProof.length == 0 ||
+                    childImage.length == 0 || childClass.length == 0 || relationWithPayee.length == 0 || childAgeProofDoc.length == 0)
+                {
+                    alert("Child Field is required ! Fill it up First");
+                    $('#step-1').css('display', 'block');
+                    $('#step-2').css('display', 'none');
+                }
+                $('#stepCounter1').addClass('btn-success');
+                $('#stepCounter2').removeClass('btn-success');
+                $("#stepCounter2").attr("disabled","disabled");
+                
+                if(childName.length == 0) {
+                    $('#childName').attr('required', 'required');
+                } 
+                if(childDob.length == 0) {
+                    $('#childDob').attr('required', 'required');
+                } 
+                if(childAge.length == 0) {
+                    $('#childAge').attr('required', 'required');
+                } 
+                if(childAgeProof.length == 0) {
+                    $('#childAgeProof').attr('required', 'required');
+                }
+                if(childAgeProofDoc.length == 0) {
+                    $('#childAgeProofDoc').attr('required', 'required');
+                } 
+                if(childImage.length == 0) {
+                    $('#childImage').attr('required', 'required');
+                } 
+                if(childClass.length == 0) {
+                    $('#childClass').attr('required', 'required');
+                } 
+                if(relationWithPayee.length == 0) {
+                    $('#relationWithPayee').attr('required', 'required');
+                }
+                $("#sumRisk").val('');
+                $("#term").val('');
+                calculateSumAtRisk();     
+            } else {
+                calculateSumAtRisk();
+            }
             // $('#plan-selected').hide();
         }
         function onSuplementaryChange() {
             $('#health-insurance').show();
         }
 
+        function calculateSumAtRisk() {
+            var term = $("#term").val();
+            var sumAssured = $("#sumAssured").val();
+            var age = $("#age").val();
+            var planId = $('#plan').val();
+            if(term.length != 0 && planId == 06 && sumAssured.length != 0 && age.length!= 0) {
+                $.ajax({
+                    url: apiUrl + "public/misc/calc-sum-at-risk",
+                    method: 'POST',
+                    dataType: 'JSON',
+                    data: {
+                        age: age ,
+                        planNo: planId,
+                        term: term,
+                        sumAssured: sumAssured
+                    }
+                }).done(function(data) {
+                if (data.status == 200 && data.data) {
+                    $("#sumRisk").val(data.data.sumAtRiskAmt);
+                }
+                }).fail(function() {
+                    console.log('Failed loading Sum At Risks');
+                });
+            } 
+            else {
+                $("#sumRisk").val(sumAssured);
+            }
+        }
         /**
          * get plans according to age
          * @param birth_date
@@ -1127,7 +1272,11 @@
             if (size > 300) { //300KB
                 document.getElementById(elmId).value = "";
                 alert('Allowed File Size: 300KB');
-            } else if (type !== "image/jpg" && type !== "image/jpeg" && type !== "image/png") {
+            }
+            if(elmId == 'ageProofDoc' || elmId == 'childAgeProofDoc') {
+                encodeImgtoBase64(e.target, elmId);
+            } 
+            else if (type !== "image/jpg" && type !== "image/jpeg" && type !== "image/png") {
                 document.getElementById(elmId).value = "";
                 alert('Invalid File Type. Allowed: JPG,PNG,JPEG');
             } else {
@@ -1138,6 +1287,7 @@
         function addNominee() {
             var curInputs = $('#nomineeModal .modal-body').find("input, select, textarea"),
                 isValid = true;
+                total_percentage = 0;
             $(".form-group").removeClass("has-error");
             for (var i = 0; i < curInputs.length; i++) {
                 if (!curInputs[i].validity.valid) {
@@ -1146,6 +1296,21 @@
                 }
             }
             if (!isValid) { return; }
+            if(nominees.length > 4) {
+                alert("You can't add more than 4 nominnes");
+                closeNomineeModal();
+                return;
+            }
+            nominees.forEach((item, index) => {
+                total_percentage = total_percentage + Number(item.percentage);
+            });
+            total_percentage = total_percentage + Number($('#nomineePercentage').val());
+            if(total_percentage > 100) {
+                alert("Cumulative percentages can't more than 100");
+                total_percentage = total_percentage- Number($('#nomineePercentage').val());
+                return;
+            }
+
             nominees.push({
                 'name': $('#nomineeName').val(),
                 'age': $('#nomineeAge').val(),
@@ -1155,6 +1320,7 @@
             });
             listNominees(nominees);
             tempNomImage = '';
+            handleGuardian(nominees);
             closeNomineeModal();
         }
 
@@ -1216,6 +1382,12 @@
                 if (elmId == 'nidBRegPass') {
                     nidBRegPassImg = reader.result;
                 }
+                if (elmId == 'ageProofDoc') {
+                    ageProofDoc = reader.result;
+                }
+                if (elmId == 'childAgeProofDoc') {
+                    childAgeProofDoc = reader.result;
+                }   
             }
             reader.readAsDataURL(file);
         }
@@ -1255,6 +1427,11 @@
         }
 
         function deleteNominee(index) {
+            nominees.forEach((item, ind) => {
+                if(index == ind) {
+                    total_percentage = total_percentage - item.percentage;
+                }
+            });
             $('#nomineeList #nominee'+index).remove();
             nominees.splice(index,1);
         }
@@ -1276,6 +1453,77 @@
             return year.toString() + month.toString() + digits.toString();
         }
 
+        function calculateAge(type) {
+            if(type == 'dob' || type == 'both') {
+                dob = $('.dob_cal_age').val();
+                cm = $('.commDate_cal').val();
+                if(dob != "" && cm != "") {
+                    var now = new Date(cm);
+                    var past = new Date(dob);
+                    var nowYear = now.getFullYear();
+                    var pastYear = past.getFullYear();
+                    var age = nowYear - pastYear;
+                    $('.age_cal_dob').val(age);
+                }
+            } 
+            if(type == 'childDOB' || type == 'both') {
+                dob_child = $('#childDob').val();
+                cm = $('.commDate_cal').val();
+                if(dob_child != "" && cm != "") {
+                    var now = new Date(cm);
+                    var past = new Date(dob_child);
+                    var nowYear = now.getFullYear();
+                    var pastYear = past.getFullYear();
+                    var age = nowYear - pastYear;
+                    $('#childAge').val(age);
+                }
+            }
+        }
+
+        $('#ageProof').on('change', function()
+        {
+            if(this.value == "") {
+                $("#contro_age_prof_doc").css("display", "none");
+            } else {
+                $("#contro_age_prof_doc").css("display", "inline");
+            }
+        });
+
+        $('#childAgeProof').on('change', function()
+        {
+            if(this.value == "") {
+                $("#child_control_age_prof_doc").css("display", "none");
+            } else {
+                $("#child_control_age_prof_doc").css("display", "inline");
+            }
+        });
+
+        function handleNumberOfdigit(e) {
+            if(e.length == 10 || e.length == 13 || e.length == 17) {
+                $("#nidError").css("display", "none");
+            } else {
+                $("#nidError").css("display", "inline");
+            }
+        }
+
+        function handleGuardian(items) {
+            var isAdult = true;
+            items.forEach((item, ind) => {
+                if(item.age < 18) {
+                    isAdult = false;
+                }
+            });
+            if(!isAdult) {
+                $('#guardianName').attr('required', 'required');
+                $('#guardianAge').attr('required', 'required')
+                $('#guardianRelation').attr('required', 'required');
+            } else {
+                $('#guardianName').removeAttr("required");
+                $('#guardianAge').removeAttr("required");
+                $('#guardianRelation').removeAttr("required");
+            }
+        }
+        
         function savePolicyHolderInfo() {
             $('#finishBtn').attr('disabled',  'disabled');
             let data = {
@@ -1301,7 +1549,7 @@
                 'education': $('#education option:selected').val(),
                 'religion': $('#religion option:selected').val(),
                 'sex': $('#sex option:selected').val(),
-                'nidBRegPass': nidBRegPassImg,
+                //'nidBRegPass': nidBRegPassImg,
                 'division': $('#division option:selected').val(),
                 'district': $('#district option:selected').val(),
                 'upazilla': $('#upazilla option:selected').val(),
@@ -1365,6 +1613,8 @@
                 // 'prNumber': $('#prNumber').val(),
                 // 'prDate': $('#prDate').val(),
                 // 'prAmount': $('#prAmount').val()
+                //'ageProofDoc': ageProofDoc,
+                //'childAgeProofDoc': childAgeProofDoc,
             };
 
             console.log(data);
