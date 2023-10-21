@@ -10,15 +10,15 @@
                 <div class="stepwizard">
                     <div class="stepwizard-row setup-panel">
                         <div class="stepwizard-step col-xs-4">
-                            <a href="#step-1" type="button" class="btn btn-success btn-circle">1</a>
+                            <a href="#step-1" type="button" id="stepCounter1" class="btn btn-success btn-circle">1</a>
                             <p><small>Policy Holder Information</small></p>
                         </div>
                         <div class="stepwizard-step col-xs-4">
-                            <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                            <a href="#step-2" type="button" id="stepCounter2" class="btn btn-default btn-circle" disabled="disabled">2</a>
                             <p><small>Policy Information</small></p>
                         </div>
                         <div class="stepwizard-step col-xs-4">
-                            <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                            <a href="#step-3" type="button" id="stepCounter3" class="btn btn-default btn-circle" disabled="disabled">3</a>
                             <p><small>Chain Setup</small></p>
                         </div>
 {{--                        <div class="stepwizard-step col-xs-3">--}}
@@ -40,7 +40,7 @@
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="commDate">Comm. Date</label>
                                 <!-- <input name="commDate" id="commDate" type="text" required="required" class="commDate_cal form-control date-field" placeholder="Comm. Date" /> -->
-                                <input type="text" name="commDate" id="commDate" required="required" class="commDate_cal form-control date-field" placeholder="Comm. Date" />
+                                <input type="text" name="commDate" id="commDate" required="required" class="commDate_cal form-control date-field" placeholder="Comm. Date" onchange="calculateAge('both')"/>
                             </div>
 
                             <div class="form-group col-md-3">
@@ -107,7 +107,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="dob">DOB</label>
-                                <input type="text" name="dob" id="dob" required="required" class="dob_cal_age form-control date-field" placeholder="DOB" />
+                                <input type="text" name="dob" id="dob" required="required" class="dob_cal_age form-control date-field" placeholder="DOB" onchange="calculateAge('dob')"/>
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="age">Age</label>
@@ -116,7 +116,7 @@
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="ageProof">Age Proof</label>
                                 <select name="ageProof" id="ageProof" required="required" class="form-control">
-                                    <option value="Select">Select</option>
+                                    <option value="">Select</option>
                                 </select>
                             </div>
 
@@ -150,7 +150,7 @@
                                     <option value="Hermaphrodite">Hermaphrodite</option>
                                 </select>
                             </div>
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-3" id="nidBlock">
                                 <label class="control-label" for="nidBRegPass"> NID </label>
                                 <!-- <input name="nidBRegPass" accept=".jpg,.jpeg,.png" onchange="handleFileInput(event, 'nidBRegPass')" id="nidBRegPass" type="file" required="required" class="form-control" /> -->
                                 <input name="nidNumber" type="number" id="nidNumber" required="required" class="form-control" onchange="handleNumberOfdigit(this.value)" />
@@ -226,7 +226,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="childDob">DOB</label>
-                                <input type="text" name="childDob" id="childDob" class="form-control date-field" placeholder="Child DOB" />
+                                <input type="text" name="childDob" id="childDob" class="form-control date-field" placeholder="Child DOB" onchange="calculateAge('childDOB')"/>
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="childAge">Age</label>
@@ -283,7 +283,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="control-label" for="term">Term</label>
-                                <select name="term" id="term" required="required" class="form-control">
+                                <select name="term" id="term" required="required" class="form-control" onchange="calculateSumAtRisk()">
                                     <option value="">Select</option>
                                 </select>
                             </div>
@@ -774,9 +774,8 @@
 
                 $(".form-group, #nomineeBlock").removeClass("has-error");
                 //remove this when validation is open.
-                nextStepWizard.removeAttr('disabled').trigger('click');
+                // nextStepWizard.removeAttr('disabled').trigger('click');
                 //uncomment below lines when validation is open.
-                console.log("CCC ", curInputs);
                 for (var i = 0; i < curInputs.length; i++) {
                     if (!curInputs[i].validity.valid && !excludeFields.includes(curInputs[i]['id'])) {
                         isValid = false;
@@ -786,6 +785,20 @@
                 if (!nominees.length) {
                     isValid = false;
                     $('#nomineeBlock').addClass('has-error');
+                }
+                var nid = $("#nidNumber").val();
+                const validDigit = [10,13,17];
+                var isNIDValid = false;
+                validDigit.forEach(function(item) {
+                    if(item == nid.length) {
+                        isNIDValid = true;
+                    }
+                });
+                if(!isNIDValid) {
+                    isValid = false;
+                    $('#nidBlock').addClass('has-error');
+                } else {
+                    $('#nidBlock').removeClass('has-error');
                 }
                 if (!isValid) return;
                 if (curStepBtn != 'step-3') {
@@ -858,6 +871,10 @@
                     $('#step-1').css('display', 'block');
                     $('#step-2').css('display', 'none');
                 }
+                $('#stepCounter1').addClass('btn-success');
+                $('#stepCounter2').removeClass('btn-success');
+                $("#stepCounter2").attr("disabled","disabled");
+                
                 if(childName.length == 0) {
                     $('#childName').attr('required', 'required');
                 } 
@@ -881,7 +898,12 @@
                 } 
                 if(relationWithPayee.length == 0) {
                     $('#relationWithPayee').attr('required', 'required');
-                }     
+                }
+                $("#sumRisk").val('');
+                $("#term").val('');
+                calculateSumAtRisk();     
+            } else {
+                calculateSumAtRisk();
             }
             // $('#plan-selected').hide();
         }
@@ -889,6 +911,34 @@
             $('#health-insurance').show();
         }
 
+        function calculateSumAtRisk() {
+            var term = $("#term").val();
+            var sumAssured = $("#sumAssured").val();
+            var age = $("#age").val();
+            var planId = $('#plan').val();
+            if(term.length != 0 && planId == 06 && sumAssured.length != 0 && age.length!= 0) {
+                $.ajax({
+                    url: apiUrl + "public/misc/calc-sum-at-risk",
+                    method: 'POST',
+                    dataType: 'JSON',
+                    data: {
+                        age: age ,
+                        planNo: planId,
+                        term: term,
+                        sumAssured: sumAssured
+                    }
+                }).done(function(data) {
+                if (data.status == 200 && data.data) {
+                    $("#sumRisk").val(data.data.sumAtRiskAmt);
+                }
+                }).fail(function() {
+                    console.log('Failed loading Sum At Risks');
+                });
+            } 
+            else {
+                $("#sumRisk").val(sumAssured);
+            }
+        }
         /**
          * get plans according to age
          * @param birth_date
@@ -1402,33 +1452,37 @@
             let digits = Math.floor(Math.pow(10, length-1) + Math.random() * 9 * Math.pow(10, length-1));
             return year.toString() + month.toString() + digits.toString();
         }
-        $('.dob_cal_age').on("change", function()
-        {
-            dob = $('.dob_cal_age').val();
-            cm = $('.commDate_cal').val();
-            var now = new Date(cm);
-            var past = new Date(dob);
-            var nowYear = now.getFullYear();
-            var pastYear = past.getFullYear();
-            var age = nowYear - pastYear;
-            $('.age_cal_dob').val(age);
-        });
 
-        $('#childDob').on("change", function()
-        {
-            dob_child = $('#childDob').val();
-            cm = $('.commDate_cal').val();
-            var now = new Date(cm);
-            var past = new Date(dob_child);
-            var nowYear = now.getFullYear();
-            var pastYear = past.getFullYear();
-            var age = nowYear - pastYear;
-            $('#childAge').val(age);
-        });
+        function calculateAge(type) {
+            if(type == 'dob' || type == 'both') {
+                dob = $('.dob_cal_age').val();
+                cm = $('.commDate_cal').val();
+                if(dob != "" && cm != "") {
+                    var now = new Date(cm);
+                    var past = new Date(dob);
+                    var nowYear = now.getFullYear();
+                    var pastYear = past.getFullYear();
+                    var age = nowYear - pastYear;
+                    $('.age_cal_dob').val(age);
+                }
+            } 
+            if(type == 'childDOB' || type == 'both') {
+                dob_child = $('#childDob').val();
+                cm = $('.commDate_cal').val();
+                if(dob_child != "" && cm != "") {
+                    var now = new Date(cm);
+                    var past = new Date(dob_child);
+                    var nowYear = now.getFullYear();
+                    var pastYear = past.getFullYear();
+                    var age = nowYear - pastYear;
+                    $('#childAge').val(age);
+                }
+            }
+        }
 
         $('#ageProof').on('change', function()
         {
-            if(this.value == "Select") {
+            if(this.value == "") {
                 $("#contro_age_prof_doc").css("display", "none");
             } else {
                 $("#contro_age_prof_doc").css("display", "inline");
