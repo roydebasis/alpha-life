@@ -17,3 +17,4 @@ cgi-bin/
 .well-known/
 .htaccess
 /error_log
+composer.lock
