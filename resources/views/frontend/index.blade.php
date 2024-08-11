@@ -247,7 +247,7 @@
         </div><!-- /.container-fluid -->
     </section>
 
-    <section class="mujib-section section-padding">
+    <section class="mujib-section section-padding" style="display:none">
         <div class="container">
             <div class="row text-center">
                 <div class="col-md-4">
